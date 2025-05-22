@@ -8,7 +8,6 @@ public class GuardarPieza : MonoBehaviour
     [TextArea(3, 10)]
     public string descripcionPieza; // Descripcion de para que sirve esa pieza
 
-    public InformacionUI informacionUI; // Referencia a script
     public Material materialSeleccion; // El material que deseamos al momento de pararnos sobre la pieza
     public GameObject prefabInstancia; // El prefab que posteriormente instanciará esa pieza
     public Sprite icono; // Imagen para mostrar en el botón del inventario
@@ -34,7 +33,7 @@ public class GuardarPieza : MonoBehaviour
     void OnMouseEnter()
     {
         AgregarMaterial(); // Asignamos el material secundario
-        informacionUI.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+        InformacionUI.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
     }
 
     /// <summary>
@@ -43,7 +42,7 @@ public class GuardarPieza : MonoBehaviour
     void OnMouseExit()
     {
         QuitarMaterial(); // Quitamos el material secundario
-        informacionUI.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        InformacionUI.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
     }
 
     /// <summary>
@@ -54,9 +53,10 @@ public class GuardarPieza : MonoBehaviour
         InventarioUI inventario = FindObjectOfType<InventarioUI>();  // Encontramos y referenciamos nuestro inventario
         if (inventario != null)
         {
-            inventario.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton); // Agregamos el objeto a nuestro inventario
+            inventario.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, descripcionPieza); // Agregamos el objeto a nuestro inventario
         }
-        informacionUI.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+
+        InformacionUI.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
         Destroy(this.gameObject); // Destruimos el objeto
     }
 

@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class InformacionUI : MonoBehaviour
 {
+    [Header("ESTA ES UNA CLASE SINGLETON")]
     public TextMeshProUGUI txtTitulo; // Referencia al texto titulo
     public TextMeshProUGUI txtDescripcion; // Referencia al texto descripcion
+
+    public static InformacionUI singleton;
+
+    private void Awake()
+    {
+        // Configurar Singleton
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     /// <summary>
     /// Metodo utilizado para actualizar la informacion de la pieza tomada de la mesa

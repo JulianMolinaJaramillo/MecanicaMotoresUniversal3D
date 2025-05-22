@@ -5,7 +5,7 @@ public class ControlCamaraMotor : MonoBehaviour
 {
     public Transform camara; // Camara objetivo
     public Transform posicionUp, posicionDown, posicionLeft, posicionRight; // Posiciones en los puntos donde queremos mover la camara
-    public float velocidadPos; // Velocidad de desplazamiento
+    public float velocidadPos = 1; // Velocidad de desplazamiento
     private bool noMover; // Para saber si debo o no mover la camara
 
     private void Update()
