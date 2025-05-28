@@ -14,7 +14,6 @@ public class SueloInteractivo : MonoBehaviour
     public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
 
     [Header("Referencias Opcionales")]
-    public GameObject canvasInformativo; // Hace referencia al canvas de informacion
     public ControlCamaraMotor controlCamaraMotor; // Referencia al script que controla las camaras en el armado
     public Collider[] piezasMeson; // Piezas sobre la mesa
 
@@ -32,34 +31,30 @@ public class SueloInteractivo : MonoBehaviour
     }
 
     private void Start()
-    {    
+    {
+        StartCoroutine(CargaFantasmaCanvas()); // Cargamos los componentes de canvas rapidamente al inicio
         playerLayer = LayerMask.NameToLayer("Player"); // Obtener el número de layer correspondiente al nombre "Player"
     }
+
     private void Update()
     {
         if (interactuar)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                DesactivarMovimientoJugador(movimientoJugador); // Desactivamos el movimiento del jugador que interactua
+
                 posicionOriginal = camaraPrincipal.transform.position; // Guardamos la posicion original de mi camara orbital antes de interactuar
                 rotacionOriginal = camaraPrincipal.transform.rotation; // Guardamos la rotacion original de mi camara orbital antes de interactuar
 
+                camaraPrincipal.CursorVisible(); // Habilitamos la vista del cursor
                 camaraPrincipal.enabled = false; // Deshabilitamos el script de la camara orbital
-                camaraPrincipal.tag = "MainCamera"; // Cambiamos el tag de la camara orbital para que interactue con las piezas armables
                 StartCoroutine(MoverCamara(posicionObjetivoCamara.position, posicionObjetivoCamara.rotation, velocidadPosCamara)); // Movemos la camara
 
                 camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje         
-                DesactivarMovimientoJugador(movimientoJugador); // Desactivamos el movimiento del jugador que interactua
-
-                canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
-                canvasPrincipal.SetActive(true);  // Activamos canvas informativo
                 
+                canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 botonSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
-
-                if (canvasInformativo != null) // Si es diferente de null habilitamos el canvas informativo
-                {
-                    canvasInformativo.SetActive(true);
-                }
 
                 if (controlCamaraMotor != null) // Si es diferente de null habilitamos el script del movimiento de camaras
                 {
@@ -132,9 +127,16 @@ public class SueloInteractivo : MonoBehaviour
         if (salirInteraccion) // Si salimos de interaccion
         {
             camaraPrincipal.enabled = true; // Habilitamos nuevamente la camara orbital
+            camaraPrincipal.CursorInvisible(); // Habilitamos la vista del cursor
+            ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua
             salirInteraccion = false; // Indicamos que ya no estamos interactuando
             interactuar = true; // Indicamos que nuevamente puede interactura aun sin salir del trigger
         }
+        else
+        {
+            botonSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
+            canvasPrincipal.SetActive(true);  // Activamos canvas informativo         
+        }    
     }
 
     /// <summary>
@@ -143,11 +145,6 @@ public class SueloInteractivo : MonoBehaviour
     public void SalirInteraccion()
     {
         salirInteraccion = true; // Indicamos que estamos saliendo de la interacion
-
-        if (canvasInformativo != null) // Si es diferente de null deshabilitamos el canvas informativo
-        {
-            canvasInformativo.SetActive(false);
-        }
 
         if (controlCamaraMotor != null) // Si es diferente de null deshabilitamos el script
         {
@@ -165,11 +162,10 @@ public class SueloInteractivo : MonoBehaviour
         }
 
        StartCoroutine(MoverCamara(posicionOriginal,rotacionOriginal,velocidadPosCamara)); // Retornamos la camara principal a la posicion original
-       camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea
-       ActivarMovimientoJugador(movimientoJugador); // Activamos el movimiento del jugador que interactua
+       camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
        canvasWorldSpace.SetActive(true); // Activamos canvas visual
-       canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo
-       camaraPrincipal.tag = "Untagged"; // Volvemos el tag de la camara al por defecto para que no interactue con las piezas armables     
+       canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo   
+       botonSalir.gameObject.SetActive(false); // Habilitamos el boton de salir
        botonSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
     }
 
@@ -219,5 +215,16 @@ public class SueloInteractivo : MonoBehaviour
                 piezasMeson[i].enabled = false;
             }          
         }
+    }
+
+    IEnumerator CargaFantasmaCanvas()
+    {
+        canvasWorldSpace.SetActive(true);
+        canvasPrincipal.SetActive(true);
+        botonSalir.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.01f);
+        canvasWorldSpace.SetActive(false);
+        canvasPrincipal.SetActive(false);
+        botonSalir.gameObject.SetActive(false);
     }
 }

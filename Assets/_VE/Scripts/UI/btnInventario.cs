@@ -12,28 +12,38 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// </summary>
     public void InstanciarPiezaMotor()
     {
-        if (MesaMotor.singleton.mesaMotorActiva)
+        if (MesaMotor.singleton.mesaMotorActiva) // Solo instanciamos si estamos en la mesa de armado
         {
-            //Instantiate(prebafInstancia, posicionInstancia.position, prebafInstancia.transform.rotation); // Instanciar sin ser hijos de ningun objeto
-            Instantiate(prebafInstancia, posicionInstancia); // Instanciar dentro de un objeto como hijos
-            Destroy(this.gameObject);
+            // Generar variación aleatoria en cada eje
+            float offsetX = Random.Range(-0.5f, 0.5f);
+            float offsetY = Random.Range(0f, 0.1f);
+            float offsetZ = Random.Range(-0.2f, 0.1f);
+
+            // Crear una nueva posición basada en los cambios de los ejes
+            Vector3 nuevaPosicion = posicionInstancia.position + new Vector3(offsetX, offsetY, offsetZ);
+
+            // Instanciar el objeto con su rotación original (la del prefab)
+            GameObject nuevaPieza = Instantiate(prebafInstancia, nuevaPosicion, prebafInstancia.transform.rotation);
+            nuevaPieza.transform.SetParent(posicionInstancia); // Formamos la pieza instancia hija de la  posicionInstancia
+            InventarioUI.singleton.contadorInstancias -= 1; // Liberamos espacio en el inventario
+            Destroy(this.gameObject); // Destruimos el boton
         }       
     }
 
     /// <summary>
-    /// Se llama automáticamente cuando el mouse entra en el botón
+    /// Metodo utilizado para actualizar la informacion de la pieza, Se llama automáticamente cuando el mouse entra en el botón
     /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        InformacionUI.singleton.ActualizarInformacionPieza(nombre, descripcion); // Actualizamos la informacion de la pieza en el canvas
+        ManagerCanvas.singleton.ActualizarInformacionPieza(nombre, descripcion); // Actualizamos la informacion de la pieza en el canvas
     }
 
     /// <summary>
-    /// Se llama automáticamente cuando el mouse sale del botón
+    /// Metodo utilizado para borrar la informacion de la pieza, Se llama automáticamente cuando el mouse sale del botón
     /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
-        InformacionUI.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
     }
 
 }

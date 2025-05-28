@@ -4,11 +4,30 @@ using TMPro;
 
 public class InventarioUI : MonoBehaviour
 {
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public GameObject buttonPrefab; // Prefab del botón
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public Transform contentPanel;  // Contenedor de los botones (dentro del panel del inventario)
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public Transform puntoInstancia; // Punto de instancia de las piezas
-    private GameObject prefabSeleccionado; // El prefab seleccionado actualmente
-    private int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
+ 
+    public int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
+    public static InventarioUI singleton;
+
+    private GameObject prefabSeleccionado; // El prefab seleccionado actualmente 
+
+    private void Awake()
+    {
+        // Configurar Singleton
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     /// <summary>
     /// Metodo implementado al momento de agregar nuevos objetos al inventario
@@ -16,9 +35,9 @@ public class InventarioUI : MonoBehaviour
     /// <param name="icono"> El icono que tendrá el boton</param>
     /// <param name="prefab"> El prefab que instanciará ese boton </param>
     /// <param name="nombreBoton"> El nombre del objeto que tendrá el boton </param>
-    public void AgregarAlInventario(Sprite icono, GameObject prefab, string nombreBoton, string descripcionPieza)
+    public void AgregarAlInventario(Sprite icono, GameObject prefab, string nombreBoton, string nombrePieza, string descripcionPieza)
     {
-        if (contadorInstancias < 13) // Si hay menos de 13 piezas en el inventario
+        if (contadorInstancias < 12) // Si hay menos de 13 piezas en el inventario
         {
             prefabSeleccionado = prefab; // Asignamos el prefab
 
@@ -33,7 +52,7 @@ public class InventarioUI : MonoBehaviour
             btnInventario.prebafInstancia = prefabSeleccionado; // Agregamos el prefab seleccionado
             btnInventario.posicionInstancia = puntoInstancia; // Le Asignamos el punto de instancia
             btnInventario.descripcion = descripcionPieza; // Agregamos la descripcion de la pieza
-            btnInventario.nombre = nombreBoton; // Agregamos la descripcion de la pieza
+            btnInventario.nombre = nombrePieza; // Agregamos la descripcion de la pieza
    
             Button btn = nuevoBoton.GetComponent<Button>(); // Obtenemos el componenete button
             btn.onClick.AddListener(btnInventario.InstanciarPiezaMotor); // Agregamos la acción al botón

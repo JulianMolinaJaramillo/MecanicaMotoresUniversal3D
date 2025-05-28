@@ -15,6 +15,9 @@ public class MoverPieza : MonoBehaviour
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
     private bool noMover; // Para identificar si puedo o no mover la pieza
 
+    public MessageOnly mensaje1 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
+    public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
+
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
@@ -27,8 +30,16 @@ public class MoverPieza : MonoBehaviour
     }
     void Start()
     {
-        // Guardamos el material original
-        materialesOriginales = meshRenderer.materials;
+        if (meshRendererHijos.Length > 0)
+        {
+            // Guardamos el material original de los hijos
+            materialesOriginales = meshRendererHijos[0].materials;
+        }
+        else
+        {
+            // Guardamos el material original
+            materialesOriginales = meshRenderer.materials;
+        }   
     }
 
     /// <summary>
@@ -36,13 +47,16 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        puedoValidar = false;
-        if (!noMover)
+        if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
-            AgregarSegundoMaterial(0);
-            coordinadaZ = Camera.main.WorldToScreenPoint(transform.position).z; // Convertimos la posicion del objeto en coordenadas de la pantalla
-            offset = transform.position - ObtenerPosicionMouse(); // Calcula la diferencia entre la posición real del objeto y la posición del mouse en el mundo 3D
-        }     
+            puedoValidar = false;
+            if (!noMover)
+            {
+                AgregarSegundoMaterial(0);
+                coordinadaZ = Camera.main.WorldToScreenPoint(transform.position).z; // Convertimos la posicion del objeto en coordenadas de la pantalla
+                offset = transform.position - ObtenerPosicionMouse(); // Calcula la diferencia entre la posición real del objeto y la posición del mouse en el mundo 3D
+            }
+        }    
     }
 
     /// <summary>
@@ -50,21 +64,27 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void OnMouseDrag()
     {
-        if (!noMover)
+        if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
-            // Actualiza la posición del objeto a la nueva posición del mouse en el mundo, manteniendo el offset inicial
-            transform.position = ObtenerPosicionMouse() + offset;
-        }    
+            if (!noMover)
+            {
+                // Actualiza la posición del objeto a la nueva posición del mouse en el mundo, manteniendo el offset inicial
+                transform.position = ObtenerPosicionMouse() + offset;
+            }
+        }   
     }
 
     /// <summary>
     /// Metodo incovado al momento de soltar el click sostenido de una pieza
     /// </summary>
     void OnMouseUp()
-    {    
-        puedoValidar = true;  
-        QuitarMateriales();
-        StartCoroutine(GetPuedoValidar());
+    {
+        if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
+        {
+            puedoValidar = true;
+            QuitarMateriales();
+            StartCoroutine(GetPuedoValidar());
+        }     
     }
 
     /// <summary>
@@ -125,10 +145,13 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void DesactivarSnappColliders()
     {
-        for (int i = 0; i < snappsParaDesactivar.Length; i++)
+        if (snappsParaDesactivar.Length > 0)
         {
-            snappsParaDesactivar[i].enabled = false;
-        }
+            for (int i = 0; i < snappsParaDesactivar.Length; i++)
+            {
+                snappsParaDesactivar[i].enabled = false;
+            }
+        }    
     }
 
     /// <summary>
@@ -136,11 +159,13 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void ActivarSnappColliders()
     {
-        for (int i = 0; i < snappsParaActivar.Length; i++)
+        if (snappsParaActivar.Length > 0)
         {
-            snappsParaActivar[i].enabled = true;
-            
-        }
+            for (int i = 0; i < snappsParaActivar.Length; i++)
+            {
+                snappsParaActivar[i].enabled = true;
+            }
+        }    
     }
 
     /// <summary>
@@ -151,10 +176,21 @@ public class MoverPieza : MonoBehaviour
     {
         if (materialesSeleccion.Length > 0)
         {
-            Material[] nuevosMateriales = new Material[2];
+            Material[] nuevosMateriales = new Material[2]; // Creamos los nuevos materiales
             nuevosMateriales[0] = materialesOriginales[0]; // mantener el original
             nuevosMateriales[1] = materialesSeleccion[id]; // añadir el segundo
-            meshRenderer.materials = nuevosMateriales;
+
+            if (meshRendererHijos.Length > 0) // Validamos si tengo renders hijos o no
+            {
+                for (int i = 0; i < meshRendererHijos.Length; i++)
+                {
+                    meshRendererHijos[i].materials = nuevosMateriales; // Agrego los materiales a los hijos
+                }
+            }
+            else
+            {
+                meshRenderer.materials = nuevosMateriales; // Agrego el material a nuestro objeto padre
+            }      
         }     
     }
 
@@ -163,6 +199,16 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     public void QuitarMateriales()
     {
-        meshRenderer.materials = new Material[] { materialesOriginales[0] };
+        if (meshRendererHijos.Length > 0)
+        {
+            for (int i = 0; i < meshRendererHijos.Length; i++)
+            {
+                meshRendererHijos[i].materials = new Material[] { materialesOriginales[0] };
+            }      
+        }
+        else
+        {
+            meshRenderer.materials = new Material[] { materialesOriginales[0] };
+        }      
     }
 }

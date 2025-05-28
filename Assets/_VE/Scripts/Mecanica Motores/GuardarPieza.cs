@@ -12,6 +12,9 @@ public class GuardarPieza : MonoBehaviour
     public GameObject prefabInstancia; // El prefab que posteriormente instanciará esa pieza
     public Sprite icono; // Imagen para mostrar en el botón del inventario
 
+    public MessageOnly mensaje1 = new MessageOnly("Si lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
+    public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
+
     private MeshRenderer meshRenderer; // Referencia a nuestro mesh
     private Material[] materialesOriginales; // Para almacenar nuestros materiales
 
@@ -23,8 +26,16 @@ public class GuardarPieza : MonoBehaviour
 
     void Start()
     {
-        // Guardamos el material original
-        materialesOriginales = meshRenderer.materials;
+        if (meshRendererHijos.Length > 0)
+        {
+            // Guardamos el material original de los hijos
+            materialesOriginales = meshRendererHijos[0].materials;
+        }
+        else
+        {
+            // Guardamos el material original
+            materialesOriginales = meshRenderer.materials;
+        }
     }
 
     /// <summary>
@@ -33,7 +44,7 @@ public class GuardarPieza : MonoBehaviour
     void OnMouseEnter()
     {
         AgregarMaterial(); // Asignamos el material secundario
-        InformacionUI.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+        ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
     }
 
     /// <summary>
@@ -42,7 +53,7 @@ public class GuardarPieza : MonoBehaviour
     void OnMouseExit()
     {
         QuitarMaterial(); // Quitamos el material secundario
-        InformacionUI.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
     }
 
     /// <summary>
@@ -50,14 +61,20 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        InventarioUI inventario = FindObjectOfType<InventarioUI>();  // Encontramos y referenciamos nuestro inventario
-        if (inventario != null)
+        if (InventarioUI.singleton != null)
         {
-            inventario.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, descripcionPieza); // Agregamos el objeto a nuestro inventario
-        }
+            if (InventarioUI.singleton.contadorInstancias < 12) // Si todavia tengo capacidad en el inventario
+            {
+                InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza); // instanciamos en el inventario
 
-        InformacionUI.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
-        Destroy(this.gameObject); // Destruimos el objeto
+                ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+                Destroy(this.gameObject); // Destruimos el objeto
+            }
+            else
+            {
+                ManagerCanvas.singleton.NotificarInventarioLLeno();
+            }
+        }     
     }
 
     /// <summary>
@@ -66,10 +83,24 @@ public class GuardarPieza : MonoBehaviour
     /// <param name="id"> Para identificar si el material debe ser el verde o rojo </param>
     public void AgregarMaterial()
     {
-        Material[] nuevosMateriales = new Material[2]; // Obtener material
-        nuevosMateriales[0] = materialesOriginales[0]; // mantener el original
-        nuevosMateriales[1] = materialSeleccion; // añadir el segundo
-        meshRenderer.materials = nuevosMateriales; // Asignar material
+        if (materialSeleccion != null)
+        {
+            Material[] nuevosMateriales = new Material[2]; // Creamos los nuevos materiales
+            nuevosMateriales[0] = materialesOriginales[0]; // mantener el original
+            nuevosMateriales[1] = materialSeleccion; // añadir el segundo
+
+            if (meshRendererHijos.Length > 0) // Validamos si tengo renders hijos o no
+            {
+                for (int i = 0; i < meshRendererHijos.Length; i++)
+                {
+                    meshRendererHijos[i].materials = nuevosMateriales; // Agrego los materiales a los hijos
+                }
+            }
+            else
+            {
+                meshRenderer.materials = nuevosMateriales; // Agrego el material a nuestro objeto padre
+            }
+        }
     }
 
     /// <summary>
@@ -77,6 +108,16 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     public void QuitarMaterial()
     {
-        meshRenderer.materials = new Material[] { materialesOriginales[0] }; // Reestablecemos el material original
+        if (meshRendererHijos.Length > 0)
+        {
+            for (int i = 0; i < meshRendererHijos.Length; i++)
+            {
+                meshRendererHijos[i].materials = new Material[] { materialesOriginales[0] };
+            }
+        }
+        else
+        {
+            meshRenderer.materials = new Material[] { materialesOriginales[0] };
+        }
     }
 }
