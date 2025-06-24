@@ -211,11 +211,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Patin
   nombrePieza: Patin
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Gu\xEDa pl\xE1stica o met\xE1lica para la cadena o banda de
+    distribuci\xF3n. Evita el contacto entre la cadena y otras piezas. Ayuda a mantener
+    la tensi\xF3n y reducir ruidos.\nSe desgasta con el tiempo y requiere revisi\xF3n."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 384055413995915476, guid: 61122cd875eb0fb40b956f70790f1a13,
     type: 3}
   icono: {fileID: 21300000, guid: 7c1a1e3881018db41950102bb4e8ef98, type: 3}
+  piezaExterna: 0
   mensaje1:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

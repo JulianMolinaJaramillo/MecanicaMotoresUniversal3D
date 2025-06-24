@@ -302,11 +302,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Seguro
   nombrePieza: Seguro
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Elemento peque\xF1o pero esencial para fijar componentes. Puede
+    ser tipo anillo, clip o pasador.\nSu funci\xF3n es evitar que piezas como pernos
+    o ejes se salgan. Es com\xFAn en pistones, v\xE1lvulas y otras partes m\xF3viles."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 7339563575233856254, guid: 266db7b6283e69a4fa46ff6525d90187,
     type: 3}
   icono: {fileID: 21300000, guid: f5378dff39301fb459d794e2cebe548c, type: 3}
+  piezaExterna: 0
   mensaje1:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

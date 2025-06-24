@@ -120,11 +120,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Cojinete
   nombrePieza: Cojinete De Friccion
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Superficie o inserto met\xE1lico antifricci\xF3n. Se coloca
+    entre piezas m\xF3viles como cig\xFCe\xF1al y bielas. Permite un movimiento suave
+    sin desgaste excesivo y requiere lubricaci\xF3n constante para funcionar bien."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 6419413084708562191, guid: a407869ad95d5c5498bf0af03846ad0a,
     type: 3}
   icono: {fileID: 21300000, guid: 9155ad410c28cb345b90f7e7575832c8, type: 3}
+  piezaExterna: 0
   mensaje1:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

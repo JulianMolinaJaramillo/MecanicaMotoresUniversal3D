@@ -211,11 +211,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Resorte Ext
   nombrePieza: Resorte Valvula Externo
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Es el resorte m\xE1s grande que rodea la v\xE1lvula. Ayuda a
+    devolver la v\xE1lvula a su posici\xF3n cerrada. Trabaja junto al resorte interno
+    para evitar rebotes y se comprime cada vez que se abre la v\xE1lvula."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 5215548490217767294, guid: b77a9cd04c7ee2441a3fdac1a4d6af83,
     type: 3}
   icono: {fileID: 21300000, guid: d9de9103a0ec35e4a964e539d35d70a5, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 3087313500951557251}
   - {fileID: 8970238344122715763}

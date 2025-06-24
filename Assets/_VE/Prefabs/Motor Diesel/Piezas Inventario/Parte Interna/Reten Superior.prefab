@@ -460,11 +460,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Reten Superior
   nombrePieza: Reten Superior
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Similar al inferior, pero ubicado en la parte frontal o superior
+    del cig\xFCe\xF1al. Sella la uni\xF3n con el damper o polea del motor. Previene
+    escapes de aceite por la parte frontal del motor y es importante para mantener
+    la lubricaci\xF3n."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 5412477224452336378, guid: ec56d08b67b94e2419a2089dad185a72,
     type: 3}
   icono: {fileID: 21300000, guid: 598554ecd01a5f64d8234ab02c66949b, type: 3}
+  piezaExterna: 0
   mensaje1:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

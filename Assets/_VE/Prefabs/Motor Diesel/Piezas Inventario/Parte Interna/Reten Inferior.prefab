@@ -709,11 +709,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Reten Inf
   nombrePieza: Reten Inferior
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Sello circular colocado en la parte baja del motor. Evita fugas
+    de aceite donde pasa el cig\xFCe\xF1al. Es com\xFAnmente de goma con borde met\xE1lico.
+    Su desgaste puede causar p\xE9rdidas de aceite visibles."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 342513630681671587, guid: 5e06c3a4d01214345b6770e22d3a66d2,
     type: 3}
   icono: {fileID: 21300000, guid: 493a3a4426a76c343b4670841ce2a24b, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 760439312592647381}
   - {fileID: 6478415245015903977}

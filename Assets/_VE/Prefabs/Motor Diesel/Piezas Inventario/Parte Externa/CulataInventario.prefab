@@ -120,8 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Culata
   nombrePieza: Culata
-  descripcionPieza: Pieza utilizada en el motor para algo
+  descripcionPieza: "Se coloca encima del bloque y cierra los cilindros.\nAloja las
+    v\xE1lvulas, balancines, buj\xEDas y parte del \xE1rbol de levas. Es fundamental
+    para la compresi\xF3n del motor y debe soportar altas temperaturas y presiones."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 2627475988213637242, guid: 79606d11a1e87744ab3b2d6478405a01,
     type: 3}
   icono: {fileID: 21300000, guid: 28945c737c7a6204aafb54fc916d895e, type: 3}
+  piezaExterna: 1
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []

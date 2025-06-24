@@ -124,11 +124,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Bielas
   nombrePieza: Bielas
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Conectan los pistones al cig\xFCe\xF1al. Transmiten la energ\xEDa
+    de la combusti\xF3n al giro del motor. Est\xE1n sometidas a grandes esfuerzos
+    y velocidades. Tienen un extremo superior (pist\xF3n) y uno inferior (cig\xFCe\xF1al)."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 4731504461485281238, guid: 70626b76c1b4bb74cbe99927cbd562c4,
     type: 3}
   icono: {fileID: 21300000, guid: c02d1ed2f3d00f547a4f2f0238f76931, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 3702598862288241561}
   - {fileID: 6493181172927322915}

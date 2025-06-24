@@ -120,9 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: "Cigue\xF1al"
   nombrePieza: "Cigue\xF1al"
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Transforma el movimiento lineal de los pistones en rotaci\xF3n.
+    Gira dentro del bloque con apoyo de casquetes. Est\xE1 conectado a las bielas
+    mediante mu\xF1ones y es clave para transmitir la potencia hacia la caja de cambios."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 8614045044746644050, guid: 763b607b50d7ff046852940424c509fe,
     type: 3}
   icono: {fileID: 21300000, guid: ca7b7d438a08cf24087a68afb9a2534d, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos: []

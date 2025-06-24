@@ -456,11 +456,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Piston
   nombrePieza: Piston
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Pieza que sube y baja dentro del cilindro con cada ciclo del
+    motor. Comprime el aire y recibe el golpe de la combusti\xF3n. Est\xE1 conectado
+    a la biela mediante un perno y generalmente hecho de aleaciones de aluminio."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 3977726891539909022, guid: 7195d0fcf39d91c4094cf23a86eac8ad,
     type: 3}
   icono: {fileID: 21300000, guid: 057fd9326097c844a84de2d89c87c940, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 245751091473600602}
   - {fileID: 7050943057974254672}

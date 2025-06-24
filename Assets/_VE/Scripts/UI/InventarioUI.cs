@@ -4,12 +4,15 @@ using TMPro;
 
 public class InventarioUI : MonoBehaviour
 {
+    [Header("ESTA ES UNA CLASE SINGLETON")]
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public GameObject buttonPrefab; // Prefab del botón
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public Transform contentPanel;  // Contenedor de los botones (dentro del panel del inventario)
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
-    public Transform puntoInstancia; // Punto de instancia de las piezas
+    public Transform puntoInstanciaInterno; // Punto de instancia de las piezas internas
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
+    public Transform puntoInstanciaExterno; // Punto de instancia de las piezas externas
  
     public int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
     public static InventarioUI singleton;
@@ -35,7 +38,7 @@ public class InventarioUI : MonoBehaviour
     /// <param name="icono"> El icono que tendrá el boton</param>
     /// <param name="prefab"> El prefab que instanciará ese boton </param>
     /// <param name="nombreBoton"> El nombre del objeto que tendrá el boton </param>
-    public void AgregarAlInventario(Sprite icono, GameObject prefab, string nombreBoton, string nombrePieza, string descripcionPieza)
+    public void AgregarAlInventario(Sprite icono, GameObject prefab, string nombreBoton, string nombrePieza, string descripcionPieza, bool piezaExterna)
     {
         if (contadorInstancias < 12) // Si hay menos de 13 piezas en el inventario
         {
@@ -50,7 +53,16 @@ public class InventarioUI : MonoBehaviour
 
             btnInventario btnInventario = nuevoBoton.GetComponent<btnInventario>(); // Obtenemos el componenete inventario
             btnInventario.prebafInstancia = prefabSeleccionado; // Agregamos el prefab seleccionado
-            btnInventario.posicionInstancia = puntoInstancia; // Le Asignamos el punto de instancia
+
+            if (piezaExterna)
+            {
+                btnInventario.posicionInstancia = puntoInstanciaExterno; // Le Asignamos el punto de instancia 
+            }
+            else
+            {
+                btnInventario.posicionInstancia = puntoInstanciaInterno; // Le Asignamos el punto de instancia 
+            }
+            
             btnInventario.descripcion = descripcionPieza; // Agregamos la descripcion de la pieza
             btnInventario.nombre = nombrePieza; // Agregamos la descripcion de la pieza
    

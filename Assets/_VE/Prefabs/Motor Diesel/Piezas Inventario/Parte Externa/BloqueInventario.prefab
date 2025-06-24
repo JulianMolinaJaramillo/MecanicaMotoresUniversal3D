@@ -120,8 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Bloque
   nombrePieza: Bloque
-  descripcionPieza: Pieza utilizada en el motor para algo
+  descripcionPieza: "Es el cuerpo principal del motor donde se alojan los cilindros.
+    Est\xE1 hecho generalmente de hierro fundido o aluminio. Tambi\xE9n contiene
+    conductos para aceite y refrigerante."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 3561357350427630296, guid: f7cf335b9f8ff5f46bea405f8899e5dd,
     type: 3}
   icono: {fileID: 21300000, guid: 48b3f167b7da25e45aa3653d1c03a128, type: 3}
+  piezaExterna: 1
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []

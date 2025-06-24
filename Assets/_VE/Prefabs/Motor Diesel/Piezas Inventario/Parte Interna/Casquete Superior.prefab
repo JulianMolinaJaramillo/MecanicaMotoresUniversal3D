@@ -457,11 +457,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Casquete Superior
   nombrePieza: Casquete Superior
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Se instala en el bloque del motor, sobre el cig\xFCe\xF1al.\nForma
+    parte del cojinete del cig\xFCe\xF1al junto con el inferior. Est\xE1 dise\xF1ado
+    para soportar alta presi\xF3n y temperatura garantizando el giro libre pero controlado
+    del cig\xFCe\xF1al."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 3741671954733998442, guid: abca85d279cf75447bb900c7f553d304,
     type: 3}
   icono: {fileID: 21300000, guid: d31746dca84ba5a44b3b22edc60ca8ba, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 5100642398481334718}
   - {fileID: 2628889063287894679}

@@ -1,4 +1,3 @@
-
 using TMPro;
 using UnityEngine;
 
@@ -6,11 +5,15 @@ public class ManagerCanvas : MonoBehaviour
 {
     [Header("ESTA ES UNA CLASE SINGLETON")]
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public TextMeshProUGUI txtTitulo; // Referencia al texto titulo
+    public TextMeshProUGUI txtTituloPieza; // Referencia al texto titulo de la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public TextMeshProUGUI txtDescripcion; // Referencia al texto descripcion
+    public TextMeshProUGUI txtDescripcionPieza; // Referencia al texto descripcion para la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject inventarioLleno;
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject miniJuegoAotrnillar;
 
     public static ManagerCanvas singleton;
 
@@ -34,8 +37,8 @@ public class ManagerCanvas : MonoBehaviour
     /// <param name="descripcion"> Descripcion de para que sirve esa pieza </param>
     public void ActualizarInformacionPieza(string titulo, string descripcion)
     {
-        txtTitulo.text = titulo;
-        txtDescripcion.text = descripcion;
+        txtTituloPieza.text = titulo;
+        txtDescripcionPieza.text = descripcion;
     }
 
     /// <summary>
@@ -43,15 +46,22 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void BorrarInformacionPieza()
     {
-        txtTitulo.text = "";
-        txtDescripcion.text = "";
+        txtTituloPieza.text = "";
+        txtDescripcionPieza.text = "";
     }
 
     /// <summary>
-    /// Para habilitar la notificacion de inventario lleno
+    /// Para habilitar la notificacion de inventario lleno o cualquier otro mensaje de alerta
     /// </summary>
-    public void NotificarInventarioLLeno()
+    public void NotificarInventarioLLeno(string texto)
     {
+        txtMensaje.text = texto;
         inventarioLleno.SetActive(true);
+    }
+
+    public void ActivarMinijuego()
+    {
+        miniJuegoAotrnillar.SetActive(true);
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionMinijuego, 1);
     }
 }

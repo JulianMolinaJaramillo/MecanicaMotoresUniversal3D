@@ -208,11 +208,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Casquete Inferior
   nombrePieza: Casquete Inferior
-  descripcionPieza: Sirve para algo
+  descripcionPieza: "Parte semicircular que va en la tapa de bancada. Sirve como
+    cojinete para el cig\xFCe\xF1al, reduciendo fricci\xF3n. Trabaja junto con el
+    casquete superior. y permite el giro suave del cig\xFCe\xF1al."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 4040818471742087900, guid: 5b0627f4b7a94774592a7695c40632f0,
     type: 3}
   icono: {fileID: 21300000, guid: 25a8bb54dc72da14d91f1a81e162fee8, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 78947387470146905}
   - {fileID: 1189068360413353139}

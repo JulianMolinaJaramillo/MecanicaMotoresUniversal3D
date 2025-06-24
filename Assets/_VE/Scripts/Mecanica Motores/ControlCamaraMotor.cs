@@ -5,9 +5,25 @@ public class ControlCamaraMotor : MonoBehaviour
 {
     public Transform camara; // Camara objetivo
     public Transform posicionUp, posicionDown, posicionLeft, posicionRight; // Posiciones en los puntos donde queremos mover la camara
+    public Transform posicionExpansion;
+    public Transform posicionMinijuego;
     public float velocidadPos = 1; // Velocidad de desplazamiento
     private bool noMover; // Para saber si debo o no mover la camara
 
+    public static ControlCamaraMotor singleton;
+
+    private void Awake()
+    {
+        // Configurar Singleton
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
     private void Update()
     {
         if (!noMover)
@@ -37,12 +53,18 @@ public class ControlCamaraMotor : MonoBehaviour
             }
         }
     }
+
+
+    public void IniciarMovimientoCamara(Transform posicionDeseada, float duracion)
+    {
+        StartCoroutine(MoverCamara(posicionDeseada, duracion));
+    }
+
     /// <summary>
     /// Currutina encargada del movimiento de la pieza suavizado
     /// </summary>
     /// <param name="posicionDeseada"> La posicion a la cual queremos moder la camara </param>
-    /// <param name="duracion"> Tiempo del movimiento de la pieza </param>
-
+    /// <param name="duracion"> Tiempo del movimiento de la pieza </param
     public IEnumerator MoverCamara(Transform posicionDeseada, float duracion)
     {
         Vector3 posicionInicio = camara.transform.position; //  Guardamos la posicion de inicio

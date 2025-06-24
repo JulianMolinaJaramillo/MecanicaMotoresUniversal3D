@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class GuardarPieza : MonoBehaviour
@@ -11,6 +10,7 @@ public class GuardarPieza : MonoBehaviour
     public Material materialSeleccion; // El material que deseamos al momento de pararnos sobre la pieza
     public GameObject prefabInstancia; // El prefab que posteriormente instanciará esa pieza
     public Sprite icono; // Imagen para mostrar en el botón del inventario
+    public bool piezaExterna;
 
     public MessageOnly mensaje1 = new MessageOnly("Si lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
@@ -65,14 +65,15 @@ public class GuardarPieza : MonoBehaviour
         {
             if (InventarioUI.singleton.contadorInstancias < 12) // Si todavia tengo capacidad en el inventario
             {
-                InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza); // instanciamos en el inventario
+                InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza, piezaExterna); // instanciamos en el inventario
 
                 ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
                 Destroy(this.gameObject); // Destruimos el objeto
             }
             else
             {
-                ManagerCanvas.singleton.NotificarInventarioLLeno();
+                string texto = "El Inventario Se Encuentra LLeno, Debes Liberar Espacio Primero";
+                ManagerCanvas.singleton.NotificarInventarioLLeno(texto);
             }
         }     
     }

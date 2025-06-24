@@ -120,8 +120,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Empaque
   nombrePieza: Empaque Culata
-  descripcionPieza: Pieza utilizada en el motor para algo
+  descripcionPieza: "Es una junta que sella el contacto entre bloque y culata. Evita
+    fugas de compresi\xF3n, aceite y refrigerante. Generalmente est\xE1 hecha de
+    materiales compuestos met\xE1licos y es vital para mantener el motor funcionando
+    correctamente."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 2778333502906357419, guid: ed244eda857f2cd4d8763873a60e8de6,
     type: 3}
   icono: {fileID: 21300000, guid: c2f6d02406a91e944a8746f7fab9b063, type: 3}
+  piezaExterna: 1
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []

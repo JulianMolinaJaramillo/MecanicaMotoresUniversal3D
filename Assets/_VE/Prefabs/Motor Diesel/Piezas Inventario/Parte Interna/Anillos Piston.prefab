@@ -713,11 +713,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Anillos
   nombrePieza: Anillos Piston
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Se colocan en ranuras del pist\xF3n. Sellan la c\xE1mara de
+    combusti\xF3n y controlan el consumo de aceite. Hay anillos de compresi\xF3n
+    y de lubricaci\xF3n. Ayudan a mantener la potencia y eficiencia del motor."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 2482898972775714520, guid: feb7a000a4abe464680003476f8694c1,
     type: 3}
   icono: {fileID: 21300000, guid: ce792f2dfed2cf04dbdc677fa24f4154, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 8292508519045875049}
   - {fileID: 5144479723459337634}

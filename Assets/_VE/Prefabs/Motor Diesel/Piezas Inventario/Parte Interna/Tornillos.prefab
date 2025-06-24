@@ -1134,11 +1134,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Tornillos
   nombrePieza: Tornillos
-  descripcionPieza: De algo
+  descripcionPieza: "se llaman com\xFAnmente tornillos de biela o pernos de biela.
+    Se instalan en la parte inferior de la biela, espec\xEDficamente en la tapa de
+    biela, y su funci\xF3n es unir firmemente la biela al mu\xF1\xF3n del cig\xFCe\xF1al,
+    manteniendo el casquete de biela en su lugar."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 381691275898645608, guid: 781533de39d0dca4eaa3634f7ff45f85,
     type: 3}
   icono: {fileID: 21300000, guid: d0951f71f08072d41bc35962b2ffb53c, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 1939519140103348773}
   - {fileID: 1958211850734332175}

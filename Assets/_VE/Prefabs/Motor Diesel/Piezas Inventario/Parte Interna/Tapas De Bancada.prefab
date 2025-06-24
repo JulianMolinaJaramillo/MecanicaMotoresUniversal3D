@@ -457,11 +457,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Bancada
   nombrePieza: Tapas De Bancada
-  descripcionPieza: Sirve para algo
+  descripcionPieza: "Sujetan el cig\xFCe\xF1al al bloque del motor. Se ajustan con
+    pernos para garantizar su firmeza. Albergan los casquetes de bancada y mantienen
+    alineado el cig\xFCe\xF1al durante su giro."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 9107665622741938256, guid: 3c4e38a151b175e4e825d60181a477b8,
     type: 3}
   icono: {fileID: 21300000, guid: de816355b2f4e8840b9af8472fe3b4f4, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 3057281036185937778}
   - {fileID: 1603003627884695723}

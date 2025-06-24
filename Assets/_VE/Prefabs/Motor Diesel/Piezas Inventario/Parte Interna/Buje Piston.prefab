@@ -207,11 +207,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Buje
   nombrePieza: Buje Piston
-  descripcionPieza: Para algo
+  descripcionPieza: "Cilindro peque\xF1o que va en el interior de la cabeza de la
+    biela. Permite el giro suave del perno del pist\xF3n. Reduce el desgaste entre
+    piezas m\xF3viles y puede ser de bronce o material antifricci\xF3n."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 8391576512643745108, guid: 79362100f8abb344ea214d011f40cb49,
     type: 3}
   icono: {fileID: 21300000, guid: 53986f5b328da174d87c7189b9f35210, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 4932839683232952331}
   - {fileID: 6298420448180917393}

@@ -120,8 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Base
   nombrePieza: Base Motor
-  descripcionPieza: Pieza utilizada en el motor para algo
+  descripcionPieza: "Es una estructura met\xE1lica que une el motor con el chasis
+    del veh\xEDculo. Su funci\xF3n principal es soportar el peso del motor y absorber
+    las vibraciones generadas durante el funcionamiento."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 5628263604162620459, guid: de23274f773718b46bbb435e735cb0e6,
     type: 3}
   icono: {fileID: 21300000, guid: acd2fa748f3999d4893aca870365abc0, type: 3}
+  piezaExterna: 1
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []

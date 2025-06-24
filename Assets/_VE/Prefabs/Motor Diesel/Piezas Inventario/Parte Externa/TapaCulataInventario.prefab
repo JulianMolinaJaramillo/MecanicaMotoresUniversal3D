@@ -120,8 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Tapa
   nombrePieza: Tapa Culata
-  descripcionPieza: Pieza utilizada en el motor para algo
+  descripcionPieza: "Cubre la parte superior de la culata y los balancines.\nSu funci\xF3n
+    es evitar la salida de aceite del motor. Suele llevar el tap\xF3n para a\xF1adir
+    aceite y tambi\xE9n ayuda a proteger los componentes internos del polvo"
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 3221794936688514465, guid: 19b7b7d4e23bd3b4783313359ae4cd35,
     type: 3}
   icono: {fileID: 21300000, guid: 5983d25c2e549a544b15e18bae37a9a1, type: 3}
+  piezaExterna: 1
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []

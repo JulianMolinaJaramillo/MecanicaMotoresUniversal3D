@@ -709,11 +709,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Piston R
   nombrePieza: Piston De Regulacion
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Componente interno de la bomba de inyecci\xF3n o del sistema
+    hidr\xE1ulico. Regula presi\xF3n o caudal en funci\xF3n de la demanda del motor.
+    Se mueve por presi\xF3n de combustible o aceite y es vital para un funcionamiento
+    suave y eficiente."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 1281911146080964838, guid: 831e63ae1d4602849af1a15b577554d9,
     type: 3}
   icono: {fileID: 21300000, guid: f831af686fe98174296a57838ffac1e6, type: 3}
+  piezaExterna: 0
   mensaje1:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

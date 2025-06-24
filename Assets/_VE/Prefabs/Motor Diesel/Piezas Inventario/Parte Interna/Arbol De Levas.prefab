@@ -120,11 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Arbol
   nombrePieza: Arbol De Levas
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Eje con levas que controlan la apertura y cierre de las v\xE1lvulas.
+    Gira sincronizado con el cig\xFCe\xF1al mediante cadena o engranajes. Cada leva
+    acciona una v\xE1lvula en un momento espec\xEDfico y es clave para el tiempo
+    de distribuci\xF3n del motor."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 1688975464370690322, guid: 26ece5c72ca6afc43a88554a867a60d6,
     type: 3}
   icono: {fileID: 21300000, guid: b81ad6732a80e5b4ea277c5537d329af, type: 3}
+  piezaExterna: 0
   mensaje1:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

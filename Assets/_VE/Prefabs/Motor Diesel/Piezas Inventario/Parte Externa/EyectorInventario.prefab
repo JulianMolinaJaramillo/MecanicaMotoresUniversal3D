@@ -120,8 +120,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Eyector
   nombrePieza: Eyector
-  descripcionPieza: Pieza utilizada en el motor para algo
+  descripcionPieza: "Dispositivo que inyecta el combustible di\xE9sel a alta presi\xF3n
+    en la c\xE1mara de combusti\xF3n. Pulveriza el di\xE9sel para una mejor mezcla
+    con el aire comprimido y es fundamental para el encendido por compresi\xF3n."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 8357812288823980610, guid: 576548843234a5a44ba51a4d723a639c,
     type: 3}
   icono: {fileID: 21300000, guid: 1cf79ae89b94a5a4b9dd97c63d31f0cd, type: 3}
+  piezaExterna: 1
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []

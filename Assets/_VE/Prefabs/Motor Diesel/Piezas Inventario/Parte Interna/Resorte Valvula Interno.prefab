@@ -792,11 +792,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Resorte Int
   nombrePieza: Resorte Valvula Interno
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Resorte m\xE1s peque\xF1o alojado dentro del externo. Refuerza
+    la acci\xF3n del externo en motores de altas RPM. Aumenta la presi\xF3n de cierre
+    y evita flotaci\xF3n de v\xE1lvulas y mejora el rendimiento a altas velocidades."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   prefabInstancia: {fileID: 8324875029593865114, guid: 6d9efbf1fb1e6cc49a814ab3133adea8,
     type: 3}
   icono: {fileID: 21300000, guid: 7712d6c50ed8e85478333ca745fbfbc2, type: 3}
+  piezaExterna: 0
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos:
   - {fileID: 1205977347108144931}
   - {fileID: 4489622262647010965}
