@@ -5,6 +5,8 @@ using TMPro;
 public class InventarioUI : MonoBehaviour
 {
     [Header("ESTA ES UNA CLASE SINGLETON")]
+    [Header("")]
+    [Header("REFERENCIAS PARA EL INVENTARIO PRINCIPAL")]
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public GameObject buttonPrefab; // Prefab del botón
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
@@ -13,12 +15,18 @@ public class InventarioUI : MonoBehaviour
     public Transform puntoInstanciaInterno; // Punto de instancia de las piezas internas
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public Transform puntoInstanciaExterno; // Punto de instancia de las piezas externas
- 
-    public int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
-    public static InventarioUI singleton;
 
+    [Header("REFERENCIAS PARA EL INVENTARIO DE HERRAMIENTAS")]
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
+    public Image imgHerramienta; // Prefab del botón
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtHerramienta; // Prefab del botón
+
+    [HideInInspector]
+    public int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
     private GameObject prefabSeleccionado; // El prefab seleccionado actualmente 
 
+    public static InventarioUI singleton;
     private void Awake()
     {
         // Configurar Singleton
@@ -71,4 +79,10 @@ public class InventarioUI : MonoBehaviour
         }
         contadorInstancias += 1; // Aumentamos el contador
     }    
+
+    public void AgregarHerramientaInventario(Sprite imagenHerramienta, string textoHerramienta)
+    {
+        imgHerramienta.sprite = imagenHerramienta;
+        txtHerramienta.text = textoHerramienta;
+    }
 }
