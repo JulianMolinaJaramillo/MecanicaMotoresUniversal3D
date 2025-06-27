@@ -31,7 +31,7 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         else
         {
             string texto = "Debes ir primero a la mesa de armado para colocar la pieza";
-            ManagerCanvas.singleton.NotificarInventarioLLeno(texto);
+            ManagerCanvas.singleton.AlertarMensaje(texto);
         }
     }
 

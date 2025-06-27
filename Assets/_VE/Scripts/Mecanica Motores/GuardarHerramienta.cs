@@ -4,6 +4,7 @@ public class GuardarHerramienta : MonoBehaviour
 {
     public string nombreHerramientaImagen; // Nombre para asignarle a la imagen
     public string nombreHerramienta; // Nombre completo de la pieza para el titulo
+    public int sizeHerramienta; // Para indicar el tamaño en milimetros
     [TextArea(3, 10)]
     public string descripcionPieza; // Descripcion de para que sirve esta herramienta
 
@@ -50,7 +51,7 @@ public class GuardarHerramienta : MonoBehaviour
     {
         if (InventarioUI.singleton != null)
         {
-            InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen);
+            InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen,sizeHerramienta);
             ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
 
             if (AdministrarHerramientas.singleton != null)

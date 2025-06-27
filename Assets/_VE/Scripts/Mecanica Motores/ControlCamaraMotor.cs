@@ -6,7 +6,7 @@ public class ControlCamaraMotor : MonoBehaviour
     public Transform camara; // Camara objetivo
     public Transform posicionUp, posicionDown, posicionLeft, posicionRight; // Posiciones en los puntos donde queremos mover la camara
     public Transform posicionExpansion;
-    public Transform posicionMinijuego;
+    
     public float velocidadPos = 1; // Velocidad de desplazamiento
     private bool noMover; // Para saber si debo o no mover la camara
 
@@ -26,7 +26,7 @@ public class ControlCamaraMotor : MonoBehaviour
     }
     private void Update()
     {
-        if (!noMover)
+        if (!noMover && !ManagerMinijuego.singleton.minijuegoActivo)
         {
             // Validamos si presionamos las flechas de direccion del tecla o las teclas ASDW
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))

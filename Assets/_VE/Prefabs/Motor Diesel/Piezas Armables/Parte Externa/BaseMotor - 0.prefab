@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
+  activaMinijuego: 0
   posicionObjetivo: {x: 0, y: 0.472, z: 0.135}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -424,4 +425,7 @@ MonoBehaviour:
   - {fileID: 6616443462063989532}
   snappsParaDesactivar:
   - {fileID: 5557422431449322005}
+  mensaje1:
+    message: SI lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos: []

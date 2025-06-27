@@ -12,9 +12,11 @@ public class SueloInteractivo : MonoBehaviour
     public Transform posicionObjetivoCamara; // Posicion a la que deseamos llevar la camara
     public float velocidadPosCamara = 1; // Velocidad de desplazamiento de la camara
     public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
+    public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
 
     [Header("Referencias Opcionales")]
     public ControlCamaraMotor controlCamaraMotor; // Referencia al script que controla las camaras en el armado
+    public MoverObjeto moverObjeto;
     public Collider[] piezasMeson; // Piezas sobre la mesa
 
     private MovimientoJugador movimientoJugador; // Para guardar la referencia del movimiento del jugador
@@ -49,7 +51,15 @@ public class SueloInteractivo : MonoBehaviour
 
                 camaraPrincipal.CursorVisible(); // Habilitamos la vista del cursor
                 camaraPrincipal.enabled = false; // Deshabilitamos el script de la camara orbital
-                StartCoroutine(MoverCamara(posicionObjetivoCamara.position, posicionObjetivoCamara.rotation, velocidadPosCamara)); // Movemos la camara
+
+                if (mesaArmadoMotor && ManagerMinijuego.singleton.minijuegoActivo)
+                {
+                    StartCoroutine(MoverCamara(ManagerMinijuego.singleton.posicionMonijuegoActual.position, ManagerMinijuego.singleton.posicionMonijuegoActual.rotation, velocidadPosCamara)); // Movemos la camara      
+                }
+                else
+                {
+                    StartCoroutine(MoverCamara(posicionObjetivoCamara.position, posicionObjetivoCamara.rotation, velocidadPosCamara)); // Movemos la camara 
+                }
 
                 camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje         
                 
@@ -59,6 +69,17 @@ public class SueloInteractivo : MonoBehaviour
                 if (controlCamaraMotor != null) // Si es diferente de null habilitamos el script del movimiento de camaras
                 {
                     controlCamaraMotor.enabled = true;
+
+                    // Si el miijuego esta activo lo activamos al momento de entrar en la interaccion de la mesa de armado
+                    if (ManagerMinijuego.singleton.minijuegoActivo)
+                    {
+                        ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(true);
+                    }
+                }
+
+                if (moverObjeto != null)
+                {
+                    moverObjeto.IniciarDesplazamientoObjeto();
                 }
 
                 if (piezasMeson.Length > 0) // Si tenemos almenos una pieza para interactuar
@@ -149,6 +170,17 @@ public class SueloInteractivo : MonoBehaviour
         if (controlCamaraMotor != null) // Si es diferente de null deshabilitamos el script
         {
             controlCamaraMotor.enabled = false;
+
+            // Si el miijuego esta activo lo desactivamos al momento de salir de la interaccion de la mesa de armado
+            if (ManagerMinijuego.singleton.minijuegoActivo)
+            {
+                ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
+            }
+        }
+
+        if (moverObjeto != null)
+        {
+            moverObjeto.RetornarPosicionOriginal();
         }
 
         if (piezasMeson.Length > 0) // Si tenemos almenos una pieza para interactuar

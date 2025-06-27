@@ -9,12 +9,10 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtDescripcionPieza; // Referencia al texto descripcion para la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject inventarioLleno;
+    public GameObject mensajeAlerta;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
-    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject miniJuegoAotrnillar;
-
+    
     public static ManagerCanvas singleton;
 
     private void Awake()
@@ -53,15 +51,9 @@ public class ManagerCanvas : MonoBehaviour
     /// <summary>
     /// Para habilitar la notificacion de inventario lleno o cualquier otro mensaje de alerta
     /// </summary>
-    public void NotificarInventarioLLeno(string texto)
+    public void AlertarMensaje(string texto)
     {
         txtMensaje.text = texto;
-        inventarioLleno.SetActive(true);
-    }
-
-    public void ActivarMinijuego()
-    {
-        miniJuegoAotrnillar.SetActive(true);
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionMinijuego, 1);
+        mensajeAlerta.SetActive(true);
     }
 }

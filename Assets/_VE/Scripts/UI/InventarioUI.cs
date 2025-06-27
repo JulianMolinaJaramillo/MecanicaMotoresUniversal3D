@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using System.Drawing;
 
 public class InventarioUI : MonoBehaviour
 {
@@ -21,10 +22,17 @@ public class InventarioUI : MonoBehaviour
     public Image imgHerramienta; // Prefab del botón
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtHerramienta; // Prefab del botón
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
+    public Image imgManoSuelta; // imagen de la mano
+    [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
+    public GameObject btnSoltarHerramienta; // referencia al btnSoltarHerramienta
+    [HideInInspector]
+    public int tamanoHerramienta;
 
     [HideInInspector]
     public int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
     private GameObject prefabSeleccionado; // El prefab seleccionado actualmente 
+    private Sprite spriteActualHerramienta;
 
     public static InventarioUI singleton;
     private void Awake()
@@ -38,6 +46,12 @@ public class InventarioUI : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    private void Start()
+    {
+        // Obtenemos una referencia a el sprite inicial de la herramienta
+        spriteActualHerramienta = imgHerramienta.sprite;
     }
 
     /// <summary>
@@ -78,11 +92,29 @@ public class InventarioUI : MonoBehaviour
             btn.onClick.AddListener(btnInventario.InstanciarPiezaMotor); // Agregamos la acción al botón
         }
         contadorInstancias += 1; // Aumentamos el contador
-    }    
+    }
 
-    public void AgregarHerramientaInventario(Sprite imagenHerramienta, string textoHerramienta)
+    /// <summary>
+    /// Metodo invocado para agregar una herramienta a mi inventario de tools
+    /// </summary>
+    /// <param name="imagenHerramienta"> Imagen de la herramienta a colocar, tomada del prefab de la herramienta</param>
+    /// <param name="textoHerramienta"> Texto de la herramienta a colocar, tomada del prefab de la herramienta</param>
+    public void AgregarHerramientaInventario(Sprite imagenHerramienta, string textoHerramienta, int size)
     {
+        tamanoHerramienta = size;
         imgHerramienta.sprite = imagenHerramienta;
         txtHerramienta.text = textoHerramienta;
+        imgManoSuelta.enabled = false;
+        btnSoltarHerramienta.SetActive(true);
+    }
+
+    /// <summary>
+    /// Metodo invocado desde btnSoltarHerramienta para reestablecer la imagen de mi herramienta inicial
+    /// </summary>
+    public void ReestablecerHerramientaInventario()
+    {
+        imgHerramienta.sprite = spriteActualHerramienta;
+        txtHerramienta.text = "";
+        tamanoHerramienta = 0;
     }
 }

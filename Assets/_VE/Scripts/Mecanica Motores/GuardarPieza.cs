@@ -73,7 +73,7 @@ public class GuardarPieza : MonoBehaviour
             else
             {
                 string texto = "El Inventario Se Encuentra LLeno, Debes Liberar Espacio Primero";
-                ManagerCanvas.singleton.NotificarInventarioLLeno(texto);
+                ManagerCanvas.singleton.AlertarMensaje(texto);
             }
         }     
     }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +22,7 @@ public class AdministrarHerramientas : MonoBehaviour
 
     public void ReactivarHerramientas()
     {
+        // Reestablecemos las herramientas que hayamos tomado
         for (int i = 0; i < herramientas.Count; i++)
         {
             herramientas[i].SetActive(true);

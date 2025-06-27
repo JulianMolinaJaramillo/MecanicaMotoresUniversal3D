@@ -7,7 +7,8 @@ public class MoverPieza : MonoBehaviour
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
     [HideInInspector]
     public bool piezaColocada; // Para validar si la pieza ya fue colocada
-    public bool activaMinijuego;
+    public bool activaMinijuego; // Para validar si el prefab activa minijuego
+    public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
     public Collider[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
@@ -141,9 +142,17 @@ public class MoverPieza : MonoBehaviour
 
         transform.position = posicionObjetivo; // Asegura posición final
 
+        // Validamos si la pieza a colocar activa minijuego, de ser asi enviamos los datos necesarios
         if (activaMinijuego)
         {
-            ManagerCanvas.singleton.ActivarMinijuego();
+            if (ManagerCanvas.singleton != null)
+            {
+                ManagerMinijuego.singleton.ActivarMinijuego();
+            }
+            if (ManagerMinijuego.singleton != null)
+            {
+                ManagerMinijuego.singleton.sizeHerramienta = sizeMinijuego;
+            }
         }
     }
 

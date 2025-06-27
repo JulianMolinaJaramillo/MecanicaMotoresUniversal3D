@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class ControlSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Atornillar manoAnimada;  // arrastra aquí la imagen con el script de la mano
-
+    
     /// <summary>
     /// Metodo invocado al momento de manipular el slider
     /// </summary>
@@ -12,7 +12,20 @@ public class ControlSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerDown(PointerEventData eventData)
     {
         if (manoAnimada != null)
-            manoAnimada.estaManipulando = true;
+        {
+            if (InventarioUI.singleton.tamanoHerramienta == ManagerMinijuego.singleton.sizeHerramienta)
+            {
+                manoAnimada.estaManipulando = true;
+            }
+            else
+            {
+                if (ManagerCanvas.singleton != null)
+                {
+                    string texto = "Estas utilizando el tamaño de llave incorrecta, necesitas la llave de     "+ ManagerMinijuego.singleton.sizeHerramienta+ " mm, vuelve a intentarlo";
+                    ManagerCanvas.singleton.AlertarMensaje(texto);
+                }         
+            }
+        }          
     }
 
     /// <summary>
@@ -22,6 +35,8 @@ public class ControlSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     public void OnPointerUp(PointerEventData eventData)
     {
         if (manoAnimada != null)
+        {
             manoAnimada.estaManipulando = false;
+        }        
     }
 }

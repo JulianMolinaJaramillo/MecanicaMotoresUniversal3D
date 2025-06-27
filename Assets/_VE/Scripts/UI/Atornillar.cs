@@ -12,6 +12,7 @@ public class Atornillar : MonoBehaviour
 
     private RectTransform rectTransform;
     private float anguloInicial;
+    private float valorSliderActual;
     private float tiempoAnimacion = 0f;
 
     void Start()
@@ -32,5 +33,15 @@ public class Atornillar : MonoBehaviour
 
         float valorConvertido = sliderVelocidad.value * 100f;
         torque.text = valorConvertido.ToString("F0");
+
+        valorSliderActual = sliderVelocidad.value;
+    }
+
+    /// <summary>
+    /// Metodo invocado desde btnCerrar en el mensaje de alerta del canvas
+    /// </summary>
+    public void ReestablecerValorSlider()
+    {
+        sliderVelocidad.value = valorSliderActual;
     }
 }
