@@ -145,6 +145,11 @@ public class SueloInteractivo : MonoBehaviour
         camaraPrincipal.transform.position = destinoPos; // Aseguramos la posición final
         camaraPrincipal.transform.rotation = destinoRot; // Aseguramos la rotacion final
 
+        SaliendoInteraccion();
+    }
+
+    public void SaliendoInteraccion()
+    {
         if (salirInteraccion) // Si salimos de interaccion
         {
             camaraPrincipal.enabled = true; // Habilitamos nuevamente la camara orbital
@@ -157,7 +162,7 @@ public class SueloInteractivo : MonoBehaviour
         {
             botonSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
             canvasPrincipal.SetActive(true);  // Activamos canvas informativo         
-        }    
+        }
     }
 
     /// <summary>

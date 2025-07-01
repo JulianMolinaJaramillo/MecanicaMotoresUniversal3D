@@ -294,6 +294,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapID: "cigue\xF1al"
+--- !u!1 &8542520726445959825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7830987041026916894}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7830987041026916894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8542520726445959825}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0024112887}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1321611426268667874}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8614045044746644050
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +337,7 @@ GameObject:
   - component: {fileID: 2850966652271219018}
   - component: {fileID: 547066170949039767}
   - component: {fileID: 1613981009806464682}
+  - component: {fileID: -5816221349799346886}
   - component: {fileID: 6926349053084352286}
   m_Layer: 0
   m_Name: "Cigue\xF1al - 3"
@@ -329,6 +361,7 @@ Transform:
   m_Children:
   - {fileID: 4051464074387744074}
   - {fileID: 8573202045965581232}
+  - {fileID: 7830987041026916894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2850966652271219018
@@ -402,6 +435,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0011845003, y: 0.0014295422, z: 0.0050925775}
   m_Center: {x: -8.731149e-11, y: 0.000004007743, z: 0.002411289}
+--- !u!54 &-5816221349799346886
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8614045044746644050}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &6926349053084352286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,8 +474,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c488d3aece86cfa499f969f606f0e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotacionInicial: {x: 0, y: 0, z: 0, w: 0}
+  regresarARotacion: 0
   puedoValidar: 0
   piezaColocada: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: 0.472, z: 0.135}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -424,4 +488,7 @@ MonoBehaviour:
   - {fileID: 504425234891620661}
   snappsParaDesactivar:
   - {fileID: 591698709851607014}
+  mensaje1:
+    message: SI lo que deseas es modificarle el material a los hijos
+    type: 0
   meshRendererHijos: []

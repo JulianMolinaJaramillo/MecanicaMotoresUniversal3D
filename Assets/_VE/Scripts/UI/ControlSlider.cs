@@ -3,19 +3,17 @@ using UnityEngine.EventSystems;
 
 public class ControlSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    public Atornillar manoAnimada;  // arrastra aquí la imagen con el script de la mano
-    
     /// <summary>
     /// Metodo invocado al momento de manipular el slider
     /// </summary>
     /// <param name="eventData"></param>
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (manoAnimada != null)
+        if (Atornillar.singleton != null)
         {
             if (InventarioUI.singleton.tamanoHerramienta == ManagerMinijuego.singleton.sizeHerramienta)
             {
-                manoAnimada.estaManipulando = true;
+                Atornillar.singleton.estaManipulando = true;
             }
             else
             {
@@ -34,9 +32,9 @@ public class ControlSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     /// <param name="eventData"></param>
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (manoAnimada != null)
+        if (Atornillar.singleton != null)
         {
-            manoAnimada.estaManipulando = false;
+            Atornillar.singleton.estaManipulando = false;
         }        
     }
 }

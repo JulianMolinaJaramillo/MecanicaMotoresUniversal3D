@@ -13,15 +13,18 @@ public class SnapPoint : MonoBehaviour
             if (snapID == snap.snapID) // Si coinciden los ID de los snapPoint
             {
                 MoverPieza moverPiezaPadre = snap.GetComponentInParent<MoverPieza>(); // Obtenemos el script del padre del objeto que colisiona
-                if (!moverPiezaPadre.piezaColocada) // Si la pieza no esta colocada aun
+                if (moverPiezaPadre != null)
                 {
-                    moverPiezaPadre.AgregarSegundoMaterial(1); // Le asignamos el material verde de pieza correcta
-
-                    if (moverPiezaPadre.puedoValidar)// Se activa al momento de soltar el mouse de la piza seleccionada
+                    if (!moverPiezaPadre.piezaColocada) // Si la pieza no esta colocada aun
                     {
-                        moverPiezaPadre.IniciarMovimiento(); // Iniciamos el desplazamiento de la pieza
+                        moverPiezaPadre.AgregarSegundoMaterial(1); // Le asignamos el material verde de pieza correcta
+
+                        if (moverPiezaPadre.puedoValidar)// Se activa al momento de soltar el mouse de la piza seleccionada
+                        {
+                            moverPiezaPadre.IniciarMovimiento(); // Iniciamos el desplazamiento de la pieza
+                        }
                     }
-                }           
+                }                      
             }
         }
     }
@@ -35,10 +38,13 @@ public class SnapPoint : MonoBehaviour
             if (snapID == snap.snapID) // Si coinciden los ID de los snapPoint
             {
                 MoverPieza moverPiezaPadre = snap.GetComponentInParent<MoverPieza>(); // Obtenemos el script del padre del objeto que salio de la colision
-                if (!moverPiezaPadre.piezaColocada)
+                if (moverPiezaPadre != null)
                 {
-                    moverPiezaPadre.AgregarSegundoMaterial(0); // Le agregamos el material rojo
-                }         
+                    if (!moverPiezaPadre.piezaColocada)
+                    {
+                        moverPiezaPadre.AgregarSegundoMaterial(0); // Le agregamos el material rojo
+                    }
+                }                      
             }
         }
     }

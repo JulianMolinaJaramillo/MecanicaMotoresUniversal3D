@@ -15,6 +15,21 @@ public class Atornillar : MonoBehaviour
     private float valorSliderActual;
     private float tiempoAnimacion = 0f;
 
+    public static Atornillar singleton;
+
+    private void Awake()
+    {
+        // Configurar Singleton
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -43,5 +58,19 @@ public class Atornillar : MonoBehaviour
     public void ReestablecerValorSlider()
     {
         sliderVelocidad.value = valorSliderActual;
+        float valorConvertido = sliderVelocidad.value * 100f;
+        torque.text = valorConvertido.ToString("F0");
+    }
+
+    public float AsignarValorTorque()
+    {
+        return valorSliderActual * 100;
+    }
+
+    public void ReiniciarValorSlider()
+    {
+        valorSliderActual = 0f;
+        sliderVelocidad.value = 0f;
+        torque.text = "0";
     }
 }

@@ -306,6 +306,7 @@ GameObject:
   - component: {fileID: 6316200787030489037}
   - component: {fileID: 4954471088722363522}
   - component: {fileID: 7442581650506829679}
+  - component: {fileID: 8428911563368198986}
   - component: {fileID: 7516211335398470332}
   m_Layer: 0
   m_Name: BaseMotor - 0
@@ -402,6 +403,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0026631237, y: 0.0044665704, z: 0.0011888571}
   m_Center: {x: 0.00020156172, y: -0.002231215, z: -0.00059442857}
+--- !u!54 &8428911563368198986
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628263604162620459}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7516211335398470332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +445,7 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: 0.472, z: 0.135}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}

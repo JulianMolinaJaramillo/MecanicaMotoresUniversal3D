@@ -5,7 +5,7 @@ public class MoverPieza : MonoBehaviour
 {
     [HideInInspector]
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
-    [HideInInspector]
+    
     public bool piezaColocada; // Para validar si la pieza ya fue colocada
     public bool activaMinijuego; // Para validar si el prefab activa minijuego
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
@@ -115,10 +115,8 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     public void IniciarMovimiento()
     {
-        piezaColocada = true;
         noMover = true;
-        collider.enabled = false;
-        QuitarMateriales();
+        collider.enabled = false;  
         DesactivarSnappColliders();
         ActivarSnappColliders();
         StartCoroutine(MoverPiezaSuavemente(2));
@@ -141,6 +139,8 @@ public class MoverPieza : MonoBehaviour
         }
 
         transform.position = posicionObjetivo; // Asegura posición final
+        piezaColocada = true;
+        QuitarMateriales();
 
         // Validamos si la pieza a colocar activa minijuego, de ser asi enviamos los datos necesarios
         if (activaMinijuego)
