@@ -14,6 +14,8 @@ public class ExpansionRadial : MonoBehaviour
     private bool contraer;
     private List<Transform> hijos = new List<Transform>();
     private Dictionary<Transform, Vector3> posicionesOriginales = new Dictionary<Transform, Vector3>();
+    private Coroutine expandirCoroutine;
+    private Coroutine contraerCoroutine;
 
     void Update()
     {
@@ -31,8 +33,12 @@ public class ExpansionRadial : MonoBehaviour
         // Guardamos posiciones originales
         foreach (Transform child in transform)
         {
-            hijos.Add(child);
-            posicionesOriginales[child] = child.localPosition;
+            MoverPieza mover = child.GetComponent<MoverPieza>();
+            if (mover != null && mover.piezaColocada)
+            {
+                hijos.Add(child);
+                posicionesOriginales[child] = child.localPosition;
+            }
         }
     }
 
@@ -49,8 +55,12 @@ public class ExpansionRadial : MonoBehaviour
             expandir = true;
             AsignarHijos();
             ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
-            StopAllCoroutines();
-            StartCoroutine(ExpandirCoroutine());
+
+            if (contraerCoroutine != null)
+            {
+                StopCoroutine(contraerCoroutine);
+            }     
+            expandirCoroutine = StartCoroutine(ExpandirCoroutine());
         }      
     }
 
@@ -60,8 +70,12 @@ public class ExpansionRadial : MonoBehaviour
         {
             contraer = false;
             ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionDown, 1);
-            StopAllCoroutines();
-            StartCoroutine(ContraerCoroutine());
+
+            if (expandirCoroutine != null)
+            {
+                StopCoroutine(expandirCoroutine);
+            }   
+            contraerCoroutine = StartCoroutine(ContraerCoroutine());
         }        
     }
 
@@ -101,6 +115,7 @@ public class ExpansionRadial : MonoBehaviour
         }
         txtBoton.text = "Contraer";
         contraer = true;
+        expandirCoroutine = null;
     }
 
     private IEnumerator ContraerCoroutine()
@@ -127,5 +142,6 @@ public class ExpansionRadial : MonoBehaviour
         }
         txtBoton.text = "Expandir";    
         expandir = false;
+        contraerCoroutine = null;
     }
 }

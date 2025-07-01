@@ -86,5 +86,10 @@ public class ControlCamaraMotor : MonoBehaviour
         camara.transform.rotation = posicionDeseada.rotation; // Aseguramos la rotacion final
 
         noMover = false; // indicamos que podemos volver a mover
+
+        if (ManagerMinijuego.singleton != null)
+        {
+            ManagerMinijuego.singleton.aplicandoTorque = false;
+        }
     }
 }

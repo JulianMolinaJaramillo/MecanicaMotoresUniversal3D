@@ -6,6 +6,7 @@ public class RotarHijosPieza : MonoBehaviour
     public float velocidadRotacion = 50f;
     public bool rotarEnZ, rotarEnY, rotarEnX;
     public float velocidadRetorno = 2f;
+    public GameObject btnRotar;
 
     private Quaternion rotacionInicial;
     private bool regresandoARotacionOriginal = false;
@@ -22,22 +23,52 @@ public class RotarHijosPieza : MonoBehaviour
     {
         if (regresandoARotacionOriginal)
         {
+            // Verificar si se agregó algún nuevo hijo no colocado durante el retorno
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                Transform hijo = transform.GetChild(i);
+                if (hijosNoColocados.Contains(hijo)) continue;
+
+                MoverPieza mover = hijo.GetComponent<MoverPieza>();
+                if (mover != null && !mover.piezaColocada)
+                {
+                    Vector3 posOriginal = hijo.position;
+                    Quaternion rotOriginal = hijo.rotation;
+
+                    hijo.SetParent(null);
+                    hijo.position = posOriginal;
+                    hijo.rotation = rotOriginal;
+
+                    // Opcional: corregir eje Y si aún ves rotaciones indeseadas
+                    Vector3 rot = hijo.eulerAngles;
+                    rot.y = 0f;
+                    hijo.eulerAngles = rot;
+
+                    hijosNoColocados.Add(hijo);
+                }
+            }
+
+            // Retornar rotación suavemente al estado original
             transform.rotation = Quaternion.Lerp(transform.rotation, rotacionInicial, Time.deltaTime * velocidadRetorno);
 
+            // Finalizar el retorno si estamos lo suficientemente cerca
             if (Quaternion.Angle(transform.rotation, rotacionInicial) < 0.1f)
             {
                 transform.rotation = rotacionInicial;
                 regresandoARotacionOriginal = false;
                 rotando = false;
-
-                ReparentarHijosNoColocados(); // ← ✅ Aquí vuelven todos
+                btnRotar.SetActive(true);
+                ReparentarHijosNoColocados(); // ← Reemparentar los hijos que se habían separado
             }
 
-            return;
+            return; // Importante: salir para no rotar mientras regresa
         }
 
         if (rotando)
         {
+            // Separar los hijos no colocados justo antes de aplicar la rotación
+            SepararHijosNoColocados();
+
             Vector3 rotacion = Vector3.zero;
             if (rotarEnX) rotacion.x = velocidadRotacion * Time.deltaTime;
             if (rotarEnY) rotacion.y = velocidadRotacion * Time.deltaTime;
@@ -47,20 +78,29 @@ public class RotarHijosPieza : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    private void SepararHijosNoColocados()
     {
-        // Solo validar hijos cuando está rotando o regresando
-        if (!rotando && !regresandoARotacionOriginal) return;
-
-        foreach (Transform hijo in transform)
+        for (int i = transform.childCount - 1; i >= 0; i--)
         {
+            Transform hijo = transform.GetChild(i);
             if (hijosNoColocados.Contains(hijo)) continue;
 
             MoverPieza mover = hijo.GetComponent<MoverPieza>();
             if (mover != null && !mover.piezaColocada)
             {
+                Vector3 posOriginal = hijo.position;
+                Quaternion rotOriginal = hijo.rotation;
+
                 hijo.SetParent(null);
-                hijosNoColocados.Add(hijo); // ← ✅ Esto es lo que garantiza el reparentado
+                hijo.position = posOriginal;
+                hijo.rotation = rotOriginal;
+
+                // Opcional: corregir eje Y
+                Vector3 rot = hijo.eulerAngles;
+                rot.y = 0f;
+                hijo.eulerAngles = rot;
+
+                hijosNoColocados.Add(hijo);
             }
         }
     }

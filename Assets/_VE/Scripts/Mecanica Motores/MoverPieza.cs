@@ -119,6 +119,10 @@ public class MoverPieza : MonoBehaviour
         collider.enabled = false;  
         DesactivarSnappColliders();
         ActivarSnappColliders();
+        if (ManagerCanvas.singleton != null)
+        {
+            ManagerCanvas.singleton.DeshabilitarBtnSalir();
+        }
         StartCoroutine(MoverPiezaSuavemente(2));
     }
 
@@ -153,6 +157,11 @@ public class MoverPieza : MonoBehaviour
             {
                 ManagerMinijuego.singleton.sizeHerramienta = sizeMinijuego;
             }
+        }
+
+        if (ManagerCanvas.singleton != null)
+        {
+            ManagerCanvas.singleton.HabilitarBtnSalir();
         }
     }
 

@@ -1,9 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ManagerCanvas : MonoBehaviour
 {
     [Header("ESTA ES UNA CLASE SINGLETON")]
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button btnSalir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtTituloPieza; // Referencia al texto titulo de la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -55,5 +58,21 @@ public class ManagerCanvas : MonoBehaviour
     {
         txtMensaje.text = texto;
         mensajeAlerta.SetActive(true);
+    }
+
+    /// <summary>
+    /// Para habilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void HabilitarBtnSalir()
+    {
+        btnSalir.interactable = true;
+    }
+
+    /// <summary>
+    /// Para deshabilitar el interactuable del boton salir donde se requiera
+    /// </summary>
+    public void DeshabilitarBtnSalir()
+    {
+        btnSalir.interactable = false;
     }
 }
