@@ -10,6 +10,7 @@ public class EntornoMecanica : MonoBehaviour
     public GameObject[] luces;
     public GameObject[] puntosIntanciasPiezas;
     public MoverObjeto mesa;
+    public RotacionObjeto rotacionObjeto;
     public MoverObjeto[] compuertas;
     public MoverObjeto[] brazoMecanico;
     public MoverObjeto[] brazoMecanicoDedos;
@@ -54,6 +55,7 @@ public class EntornoMecanica : MonoBehaviour
         
         luzPrincipal.SetActive(true);
         mesa.IniciarDesplazamientoObjeto();
+        rotacionObjeto.enabled = true;
 
         yield return new WaitForSeconds(tiempoEspera2);
 
@@ -108,7 +110,7 @@ public class EntornoMecanica : MonoBehaviour
         {
             puntosIntanciasPiezas[i].SetActive(true);
         }
-
+        rotacionObjeto.enabled = false;
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
         sueloInteractivo.SaliendoInteraccion();
         iniciarCompuertas = null;

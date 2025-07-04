@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 611196004049845026}
   - component: {fileID: 4004584481650692667}
   - component: {fileID: 4521833210956543432}
-  - component: {fileID: 3332540952172681888}
   - component: {fileID: 6733782221485413267}
+  - component: {fileID: 3332540952172681888}
   m_Layer: 0
   m_Name: LLAVE_INGLESA
   m_TagString: Untagged
@@ -85,24 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3332540952172681888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5201465383985491434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350db7fae723826428fea6d45230b841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreHerramientaImagen: 20 mm
-  nombreHerramienta: Llave Inglesa
-  sizeHerramienta: 20
-  descripcionPieza: Sirve de algo
-  materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
-  icono: {fileID: 21300000, guid: 4645f45593a9f2d45bb3152ac5adbb58, type: 3}
 --- !u!65 &6733782221485413267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +106,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.005444841, y: 0.0008953845, z: 0.016321162}
   m_Center: {x: 0.0015358318, y: 0.000046552228, z: 0.007909701}
+--- !u!114 &3332540952172681888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201465383985491434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350db7fae723826428fea6d45230b841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreHerramientaImagen: 20 mm
+  nombreHerramienta: Llave Inglesa
+  sizeHerramienta: 20
+  descripcionPieza: Sirve de algo
+  materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
+  icono: {fileID: 21300000, guid: 4645f45593a9f2d45bb3152ac5adbb58, type: 3}

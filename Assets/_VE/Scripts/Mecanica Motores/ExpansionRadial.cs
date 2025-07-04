@@ -8,6 +8,7 @@ public class ExpansionRadial : MonoBehaviour
     public float expansionRadius = 2f;
     public float expansionDuration = 1f;
     public TextMeshProUGUI txtBoton;
+    public GestorPiezas gestorPiezas;
     public bool randomDirection = true;
 
     private bool expandir;
@@ -30,15 +31,12 @@ public class ExpansionRadial : MonoBehaviour
     public void AsignarHijos()
     {
         LimpiarHijos();
+        gestorPiezas.TransferirPiezasColocadas();
         // Guardamos posiciones originales
         foreach (Transform child in transform)
-        {
-            MoverPieza mover = child.GetComponent<MoverPieza>();
-            if (mover != null && mover.piezaColocada)
-            {
-                hijos.Add(child);
-                posicionesOriginales[child] = child.localPosition;
-            }
+        {     
+            hijos.Add(child);
+            posicionesOriginales[child] = child.localPosition;        
         }
     }
 

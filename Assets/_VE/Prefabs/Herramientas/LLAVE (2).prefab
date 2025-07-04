@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6850112054671422641}
   - component: {fileID: 6754227412653357376}
   - component: {fileID: 234427697518677082}
-  - component: {fileID: 4005282664015561303}
   - component: {fileID: 2899509469025048318}
+  - component: {fileID: 4005282664015561303}
   m_Layer: 0
   m_Name: LLAVE (2)
   m_TagString: Untagged
@@ -85,24 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4005282664015561303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3847271361785331145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350db7fae723826428fea6d45230b841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreHerramientaImagen: 8 mm
-  nombreHerramienta: Llave
-  sizeHerramienta: 8
-  descripcionPieza: Sirve de algo
-  materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
-  icono: {fileID: 21300000, guid: 7cbbc57a75b698048a3e4e89f50dcdc3, type: 3}
 --- !u!65 &2899509469025048318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +106,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.0004961056, y: 0.00008534117, z: 0.0024883973}
   m_Center: {x: 0.00046467065, y: -0.00017964524, z: 0.001252626}
+--- !u!114 &4005282664015561303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3847271361785331145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350db7fae723826428fea6d45230b841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombreHerramientaImagen: 8 mm
+  nombreHerramienta: Llave 8 mm
+  sizeHerramienta: 8
+  descripcionPieza: Sirve de algo
+  materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
+  icono: {fileID: 21300000, guid: 7cbbc57a75b698048a3e4e89f50dcdc3, type: 3}
