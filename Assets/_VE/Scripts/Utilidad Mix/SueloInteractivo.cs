@@ -15,7 +15,6 @@ public class SueloInteractivo : MonoBehaviour
     public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
 
     [Header("Referencias Opcionales")]
-    public ControlCamaraMotor controlCamaraMotor; // Referencia al script que controla las camaras en el armado
     public MoverObjeto moverObjeto;
     public Collider[] piezasMeson; // Piezas sobre la mesa
 
@@ -56,26 +55,19 @@ public class SueloInteractivo : MonoBehaviour
                 {
                     StartCoroutine(MoverCamara(ManagerMinijuego.singleton.posicionMonijuegoActual.position, ManagerMinijuego.singleton.posicionMonijuegoActual.rotation, velocidadPosCamara)); // Movemos la camara      
                 }
+                else if (mesaArmadoMotor)
+                {
+                    EntornoMecanica.singleton.AbrirCompuerta();
+                }
                 else
                 {
-                    StartCoroutine(MoverCamara(posicionObjetivoCamara.position, posicionObjetivoCamara.rotation, velocidadPosCamara)); // Movemos la camara 
+                    StartCoroutine(MoverCamara(posicionObjetivoCamara.position, posicionObjetivoCamara.rotation, velocidadPosCamara)); // Movemos la camara              
                 }
 
                 camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje         
                 
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 botonSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
-
-                if (controlCamaraMotor != null) // Si es diferente de null habilitamos el script del movimiento de camaras
-                {
-                    controlCamaraMotor.enabled = true;
-
-                    // Si el miijuego esta activo lo activamos al momento de entrar en la interaccion de la mesa de armado
-                    if (ManagerMinijuego.singleton.minijuegoActivo)
-                    {
-                        ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(true);
-                    }
-                }
 
                 if (moverObjeto != null)
                 {
@@ -85,11 +77,6 @@ public class SueloInteractivo : MonoBehaviour
                 if (piezasMeson.Length > 0) // Si tenemos almenos una pieza para interactuar
                 {
                     ActivarPiezas();
-                }
-
-                if (mesaArmadoMotor)
-                {
-                    MesaMotor.singleton.mesaMotorActiva = true;
                 }
 
                 interactuar = false; // indicamos que ya no podemos interactuar
@@ -172,17 +159,6 @@ public class SueloInteractivo : MonoBehaviour
     {
         salirInteraccion = true; // Indicamos que estamos saliendo de la interacion
 
-        if (controlCamaraMotor != null) // Si es diferente de null deshabilitamos el script
-        {
-            controlCamaraMotor.enabled = false;
-
-            // Si el miijuego esta activo lo desactivamos al momento de salir de la interaccion de la mesa de armado
-            if (ManagerMinijuego.singleton.minijuegoActivo)
-            {
-                ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
-            }
-        }
-
         if (moverObjeto != null)
         {
             moverObjeto.RetornarPosicionOriginal();
@@ -195,15 +171,23 @@ public class SueloInteractivo : MonoBehaviour
 
         if (mesaArmadoMotor)
         {
-            MesaMotor.singleton.mesaMotorActiva = false;
+            EntornoMecanica.singleton.CerrarCompuerta();
         }
-
-       StartCoroutine(MoverCamara(posicionOriginal,rotacionOriginal,velocidadPosCamara)); // Retornamos la camara principal a la posicion original
+        else
+        {
+            StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
+            HabilitarInfoMesaArmado();
+        }
+        
        camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-       canvasWorldSpace.SetActive(true); // Activamos canvas visual
        canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo   
        botonSalir.gameObject.SetActive(false); // Habilitamos el boton de salir
        botonSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
+    }
+
+    public void HabilitarInfoMesaArmado()
+    {
+        canvasWorldSpace.SetActive(true); // Activamos canvas visual
     }
 
     /// <summary>

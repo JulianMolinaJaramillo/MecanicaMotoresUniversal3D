@@ -65,7 +65,7 @@ public class ControlCamaraMotor : MonoBehaviour
     /// </summary>
     /// <param name="posicionDeseada"> La posicion a la cual queremos moder la camara </param>
     /// <param name="duracion"> Tiempo del movimiento de la pieza </param
-    public IEnumerator MoverCamara(Transform posicionDeseada, float duracion)
+    private IEnumerator MoverCamara(Transform posicionDeseada, float duracion)
     {
         Vector3 posicionInicio = camara.transform.position; //  Guardamos la posicion de inicio
         Quaternion rotacionInicio = camara.transform.rotation; //  Guardamos la rotacion de inicio

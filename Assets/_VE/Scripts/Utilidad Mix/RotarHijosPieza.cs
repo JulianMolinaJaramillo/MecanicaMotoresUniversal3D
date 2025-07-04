@@ -40,9 +40,9 @@ public class RotarHijosPieza : MonoBehaviour
                     hijo.rotation = rotOriginal;
 
                     // Opcional: corregir eje Y si aún ves rotaciones indeseadas
-                    Vector3 rot = hijo.eulerAngles;
-                    rot.y = 0f;
-                    hijo.eulerAngles = rot;
+                    //Vector3 rot = hijo.eulerAngles;
+                    //rot.y = 0f;
+                    //hijo.eulerAngles = rot;
 
                     hijosNoColocados.Add(hijo);
                 }
@@ -96,9 +96,9 @@ public class RotarHijosPieza : MonoBehaviour
                 hijo.rotation = rotOriginal;
 
                 // Opcional: corregir eje Y
-                Vector3 rot = hijo.eulerAngles;
-                rot.y = 0f;
-                hijo.eulerAngles = rot;
+                //Vector3 rot = hijo.eulerAngles;
+                //rot.y = 0f;
+                //hijo.eulerAngles = rot;
 
                 hijosNoColocados.Add(hijo);
             }
