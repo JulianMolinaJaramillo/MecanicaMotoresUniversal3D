@@ -589,7 +589,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3977726891539909022}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.32606, y: 0.813, z: 0.22907}
   m_LocalScale: {x: 0.1, y: 0.39471963, z: 0.15470181}
   m_ConstrainProportionsScale: 1
@@ -601,7 +601,7 @@ Transform:
   - {fileID: 2029844541354342841}
   - {fileID: 685136762101962813}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &7875201948329345020
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -715,8 +715,9 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  piezaFinal: 0
   sizeMinijuego: 0
-  posicionObjetivo: {x: 0.0013, y: 0.63, z: 0.3585}
+  posicionObjetivo: {x: 0, y: -0.2446, z: 0.007}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}

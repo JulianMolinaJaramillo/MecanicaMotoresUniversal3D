@@ -8,6 +8,7 @@ public class MoverPieza : MonoBehaviour
     
     public bool piezaColocada; // Para validar si la pieza ya fue colocada
     public bool activaMinijuego; // Para validar si el prefab activa minijuego
+    public bool piezaFinal; // Para validar si el prefab activa minijuego
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
@@ -119,6 +120,7 @@ public class MoverPieza : MonoBehaviour
         collider.enabled = false;  
         DesactivarSnappColliders();
         ActivarSnappColliders();
+
         if (ManagerCanvas.singleton != null)
         {
             ManagerCanvas.singleton.DeshabilitarBtnSalir();
@@ -132,30 +134,50 @@ public class MoverPieza : MonoBehaviour
     /// <param name="duracion"> Tiempo del movimiento de la pieza</param>
     public IEnumerator MoverPiezaSuavemente(float duracion)
     {
-        Vector3 inicio = transform.position; //  Guardamos la posicion de inicio
-        float tiempo = 0f; // Damos un tiempo para la interpolacion
-        
+        //Vector3 inicio = transform.position; //  Guardamos la posicion de inicio
+        //float tiempo = 0f; // Damos un tiempo para la interpolacion
+
+        //while (tiempo < duracion)
+        //{
+        //    transform.position = Vector3.Lerp(inicio, posicionObjetivo, tiempo / duracion);
+        //    tiempo += Time.deltaTime;
+        //    yield return null;
+        //}
+
+        //transform.position = posicionObjetivo; // Asegura posición final
+        //piezaColocada = true;
+        //QuitarMateriales();
+
+        Vector3 inicio = transform.localPosition; // Trabajamos en local
+        float tiempo = 0f;
+
         while (tiempo < duracion)
         {
-            transform.position = Vector3.Lerp(inicio, posicionObjetivo, tiempo / duracion);
+            transform.localPosition = Vector3.Lerp(inicio, posicionObjetivo, tiempo / duracion); // Mover en local
             tiempo += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = posicionObjetivo; // Asegura posición final
+        transform.localPosition = posicionObjetivo; // Posición final también en local
         piezaColocada = true;
         QuitarMateriales();
 
         // Validamos si la pieza a colocar activa minijuego, de ser asi enviamos los datos necesarios
         if (activaMinijuego)
         {
-            if (ManagerCanvas.singleton != null)
-            {
-                ManagerMinijuego.singleton.ActivarMinijuego();
-            }
             if (ManagerMinijuego.singleton != null)
             {
+                ManagerMinijuego.singleton.ActivarMinijuego();
                 ManagerMinijuego.singleton.sizeHerramienta = sizeMinijuego;
+            }
+        }
+
+        // Validamos si la pieza a colocar es la ultima pieza de dicho motor para la validacion final
+        if (piezaFinal)
+        {
+            if (ManagerMinijuego.singleton != null)
+            {
+                ManagerMinijuego.singleton.ValidarMiniJuego();
             }
         }
 

@@ -442,7 +442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3741671954733998442}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.32675, y: 0.66863996, z: 0.22772}
   m_LocalScale: {x: 0.06280829, y: 0.033164695, z: 0.4280648}
   m_ConstrainProportionsScale: 1
@@ -569,8 +569,9 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  piezaFinal: 0
   sizeMinijuego: 0
-  posicionObjetivo: {x: 0.0013, y: 0.4857, z: 0.3585}
+  posicionObjetivo: {x: 0, y: -0.3895, z: 0.0092}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}

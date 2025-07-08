@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2778333502906357419}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.373, y: 0.551, z: 0.135}
   m_LocalScale: {x: 100, y: 99.999985, z: 99.999985}
   m_ConstrainProportionsScale: 0
@@ -184,7 +184,7 @@ Transform:
   - {fileID: 1833888042022338831}
   - {fileID: 7048877709161179725}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &8965584665355702120
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -298,8 +298,9 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  piezaFinal: 0
   sizeMinijuego: 0
-  posicionObjetivo: {x: 0, y: 1.1, z: 0.135}
+  posicionObjetivo: {x: 0, y: -0.4004, z: -0.217}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -326,7 +327,7 @@ GameObject:
   - component: {fileID: 6981305634271198481}
   - component: {fileID: 5658585842645532319}
   m_Layer: 8
-  m_Name: SPtapaSuperior
+  m_Name: SPvalvulas
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +342,7 @@ Transform:
   m_GameObject: {fileID: 6060866093858585590}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000264, y: -0.00212, z: 0.00242}
+  m_LocalPosition: {x: 0.000002, y: -0.00212, z: 0.002598}
   m_LocalScale: {x: 0.0002, y: 0.0002, z: 0.0002}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -457,4 +458,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: tapaSuperior
+  snapID: valvulas

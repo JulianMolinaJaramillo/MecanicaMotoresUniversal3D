@@ -6,8 +6,6 @@ public class RotacionObjeto : MonoBehaviour
     public float velocidadRotacion = 50f;
     public bool rotarEnZ, rotarEnY, rotarEnX;
     public float velocidadRetorno = 2f; // Velocidad del retorno suave
-    public GameObject btnRotar;
-    public GestorPiezas gestorPiezas;
 
     private Quaternion rotacionInicial;
     private bool regresandoARotacionOriginal = false;
@@ -25,15 +23,7 @@ public class RotacionObjeto : MonoBehaviour
             // Interpolación suave hacia la rotación original
             transform.rotation = Quaternion.Lerp(transform.rotation, rotacionInicial, Time.deltaTime * velocidadRetorno);
 
-            // Opcional: detener cuando esté lo suficientemente cerca
-            if (Quaternion.Angle(transform.rotation, rotacionInicial) < 0.1f)
-            {
-                transform.rotation = rotacionInicial;
-                regresandoARotacionOriginal = false;
-                btnRotar.SetActive(true);
-            }
-
-            return; // Salir de Update para no aplicar rotaciones mientras vuelve
+            return;
         }
 
         if (rotarEnZ)
@@ -66,7 +56,6 @@ public class RotacionObjeto : MonoBehaviour
 
     public void RotarEnX()
     {
-        gestorPiezas.TransferirPiezasColocadas();
         rotarEnY = false;
         rotarEnZ = false;
         rotarEnX = true;
@@ -74,7 +63,6 @@ public class RotacionObjeto : MonoBehaviour
 
     public void RotarEnY()
     {
-        gestorPiezas.TransferirPiezasColocadas();
         rotarEnX = false;
         rotarEnZ = false;
         rotarEnY = true;
@@ -82,7 +70,6 @@ public class RotacionObjeto : MonoBehaviour
 
     public void RotarEnZ()
     {
-        gestorPiezas.TransferirPiezasColocadas();
         rotarEnY = false;
         rotarEnX = false;
         rotarEnZ = true;       
@@ -90,7 +77,6 @@ public class RotacionObjeto : MonoBehaviour
 
     public void RotarEnTodosLosEjes()
     {
-        gestorPiezas.TransferirPiezasColocadas();
         rotarEnY = true;
         rotarEnX = true;
         rotarEnZ = true;

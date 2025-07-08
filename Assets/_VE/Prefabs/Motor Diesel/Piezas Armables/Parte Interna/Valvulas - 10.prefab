@@ -295,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2765503680542184921}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0.3224, y: 0.95837003, z: 0.22645}
   m_LocalScale: {x: 0.047303107, y: 0.372398, z: 0.13414519}
   m_ConstrainProportionsScale: 1
@@ -311,7 +311,7 @@ Transform:
   - {fileID: 6567338786328776013}
   - {fileID: 2479792294121611138}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &4656757702443994085
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -425,8 +425,9 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  piezaFinal: 0
   sizeMinijuego: 0
-  posicionObjetivo: {x: 0.0013, y: 0.7767, z: 0.3585}
+  posicionObjetivo: {x: 0.0042, y: -0.1, z: 0.01}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -1141,7 +1142,7 @@ Transform:
   m_GameObject: {fileID: 7333058680790013677}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07737335, y: -0.005276096, z: -0.421}
+  m_LocalPosition: {x: -0.07737335, y: -0.005, z: -0.525}
   m_LocalScale: {x: 0.42280516, y: 0.05370589, z: 0.14909194}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1273,7 +1274,7 @@ GameObject:
   - component: {fileID: 1898484549736911363}
   - component: {fileID: 5258561578627710728}
   m_Layer: 8
-  m_Name: SPretenInferior
+  m_Name: SPculata
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1288,7 +1289,7 @@ Transform:
   m_GameObject: {fileID: 8300244383922971723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07737335, y: -0.005, z: 0.12}
+  m_LocalPosition: {x: 0.57, y: 0.01, z: -0.526}
   m_LocalScale: {x: 0.42280516, y: 0.05370589, z: 0.14909194}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1404,7 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: retenInferior
+  snapID: culata
 --- !u!1 &9186625533907421413
 GameObject:
   m_ObjectHideFlags: 0

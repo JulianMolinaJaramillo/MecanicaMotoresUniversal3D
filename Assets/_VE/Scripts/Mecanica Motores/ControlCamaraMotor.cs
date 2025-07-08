@@ -10,6 +10,7 @@ public class ControlCamaraMotor : MonoBehaviour
     public float velocidadPos = 1; // Velocidad de desplazamiento
     private bool noMover; // Para saber si debo o no mover la camara
 
+    private Coroutine miCoroutine;
     public static ControlCamaraMotor singleton;
 
     private void Awake()
@@ -28,27 +29,32 @@ public class ControlCamaraMotor : MonoBehaviour
     {
         if (!noMover && !ManagerMinijuego.singleton.minijuegoActivo)
         {
+            if (miCoroutine != null)
+            {
+                StopCoroutine(miCoroutine);
+            }
+
             // Validamos si presionamos las flechas de direccion del tecla o las teclas ASDW
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                StartCoroutine(MoverCamara(posicionUp, velocidadPos));
+                miCoroutine = StartCoroutine(MoverCamara(posicionUp, velocidadPos));
                 noMover = true;
             }
 
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                StartCoroutine(MoverCamara(posicionDown, velocidadPos));
+                miCoroutine = StartCoroutine(MoverCamara(posicionDown, velocidadPos));
                 noMover = true;
             }
 
             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                StartCoroutine(MoverCamara(posicionLeft, velocidadPos));
+                miCoroutine = StartCoroutine(MoverCamara(posicionLeft, velocidadPos));
                 noMover = true;
             }
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                StartCoroutine(MoverCamara(posicionRight, velocidadPos));
+                miCoroutine = StartCoroutine(MoverCamara(posicionRight, velocidadPos));
                 noMover = true;
             }
         }
@@ -57,7 +63,12 @@ public class ControlCamaraMotor : MonoBehaviour
 
     public void IniciarMovimientoCamara(Transform posicionDeseada, float duracion)
     {
-        StartCoroutine(MoverCamara(posicionDeseada, duracion));
+        if (miCoroutine != null)
+        {
+            StopCoroutine(miCoroutine);
+        }
+        noMover = true;
+        miCoroutine = StartCoroutine(MoverCamara(posicionDeseada, duracion));
     }
 
     /// <summary>

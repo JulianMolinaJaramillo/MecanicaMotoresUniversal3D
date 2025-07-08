@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 7910912876300856782}
   - component: {fileID: 672470517418233554}
   m_Layer: 8
-  m_Name: SPsuelo
+  m_Name: SPbase
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,7 +709,7 @@ Transform:
   m_GameObject: {fileID: 5637323533867175361}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: -3.87, z: 0.007}
+  m_LocalPosition: {x: 0, y: 0.217, z: 0.007}
   m_LocalScale: {x: 0.18114929, y: 0.04515838, z: 0.32576564}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: suelo
+  snapID: base
 --- !u!1 &7284921590479323578
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9107665622741938256}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.325, y: 0.624, z: 0.22509}
   m_LocalScale: {x: 0.11040617, y: 0.061393797, z: 0.44288552}
   m_ConstrainProportionsScale: 1
@@ -1115,8 +1115,9 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  piezaFinal: 1
   sizeMinijuego: 0
-  posicionObjetivo: {x: 0.0013, y: 1.07, z: 0.3585}
+  posicionObjetivo: {x: 0, y: -0.4307, z: 0.0092}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}

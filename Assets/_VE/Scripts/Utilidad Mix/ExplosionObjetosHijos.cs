@@ -16,6 +16,21 @@ public class ExplosionObjetosHijos : MonoBehaviour
     public float duracionVibracion = 1.5f;
     public float intensidadVibracion = 0.05f; // qué tanto se mueven las piezas
 
+    public static ExplosionObjetosHijos singleton;
+
+    private void Awake()
+    {
+        // Configurar Singleton
+        if (singleton == null)
+        {
+            singleton = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
     [ContextMenu("explot")]
     public void ExplotarTodo()
     {

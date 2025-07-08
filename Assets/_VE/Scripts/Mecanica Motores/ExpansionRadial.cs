@@ -10,6 +10,10 @@ public class ExpansionRadial : MonoBehaviour
     public TextMeshProUGUI txtBoton;
     public GestorPiezas gestorPiezas;
     public bool randomDirection = true;
+    public float alturaMinimaY = 0.5f;
+    public float alturaMaximaY = 2.5f;
+    [HideInInspector]
+    public bool noInteractuar;
 
     private bool expandir;
     private bool contraer;
@@ -18,14 +22,6 @@ public class ExpansionRadial : MonoBehaviour
     private Coroutine expandirCoroutine;
     private Coroutine contraerCoroutine;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-            Expandir();
-
-        if (Input.GetKeyDown(KeyCode.C))
-            Contraer();
-    }
 
     [ContextMenu ("Asignar")]
     public void AsignarHijos()
@@ -45,23 +41,27 @@ public class ExpansionRadial : MonoBehaviour
         hijos.Clear();
         posicionesOriginales.Clear();
     }
-
+    [ContextMenu("Expandir")]
     public void Expandir()
     {
-        if (!expandir)
+        if (!noInteractuar)
         {
-            expandir = true;
-            AsignarHijos();
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
-
-            if (contraerCoroutine != null)
+            if (!expandir)
             {
-                StopCoroutine(contraerCoroutine);
-            }     
-            expandirCoroutine = StartCoroutine(ExpandirCoroutine());
-        }      
+                expandir = true;
+                AsignarHijos();
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
+
+                if (contraerCoroutine != null)
+                {
+                    StopCoroutine(contraerCoroutine);
+                }
+                expandirCoroutine = StartCoroutine(ExpandirCoroutine());
+            }
+        }         
     }
 
+    [ContextMenu("Contraer")]
     public void Contraer()
     {
         if (contraer)
@@ -72,8 +72,12 @@ public class ExpansionRadial : MonoBehaviour
             if (expandirCoroutine != null)
             {
                 StopCoroutine(expandirCoroutine);
-            }   
+            }
             contraerCoroutine = StartCoroutine(ContraerCoroutine());
+        }
+        if (!noInteractuar)
+        {
+            
         }        
     }
 
@@ -87,16 +91,21 @@ public class ExpansionRadial : MonoBehaviour
             Vector3 dir;
             if (randomDirection)
             {
-                dir = Random.onUnitSphere;  // para 3D
-                //dir.y = 0; // si solo quieres expansión en plano XZ
+                dir = Random.onUnitSphere;
+                Vector3 target = posicionesOriginales[hijos[i]] + dir.normalized * expansionRadius;
+
+                // Clampear Y entre mínimo y máximo
+                target.y = Mathf.Clamp(target.y, alturaMinimaY, alturaMaximaY);
+
+                targetPositions[i] = target;
             }
             else
             {
                 float angle = (360f / hijos.Count) * i;
                 dir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+                Vector3 target = posicionesOriginales[hijos[i]] + dir.normalized * expansionRadius;
+                targetPositions[i] = target;
             }
-
-            targetPositions[i] = posicionesOriginales[hijos[i]] + dir.normalized * expansionRadius;
         }
 
         while (elapsed < expansionDuration)

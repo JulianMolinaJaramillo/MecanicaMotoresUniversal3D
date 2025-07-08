@@ -16,7 +16,7 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             // Generar variación aleatoria en cada eje
             float offsetX = Random.Range(-0.5f, 0.5f);
-            float offsetY = Random.Range(0f, 0.1f);
+            float offsetY = Random.Range(-0.2f, -0.1f);
             float offsetZ = Random.Range(-0.2f, 0.1f);
 
             // Crear una nueva posición basada en los cambios de los ejes

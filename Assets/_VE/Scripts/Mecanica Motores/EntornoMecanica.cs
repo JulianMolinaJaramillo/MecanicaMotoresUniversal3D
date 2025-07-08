@@ -6,7 +6,7 @@ public class EntornoMecanica : MonoBehaviour
 {
     [Header("MANIPULACION DE LAS COMPUERTAS")]
     public SueloInteractivo sueloInteractivo;
-    public GameObject luzPrincipal;
+    public Light luzPrincipal;
     public GameObject[] luces;
     public GameObject[] puntosIntanciasPiezas;
     public MoverObjeto mesa;
@@ -15,11 +15,6 @@ public class EntornoMecanica : MonoBehaviour
     public MoverObjeto[] brazoMecanico;
     public MoverObjeto[] brazoMecanicoDedos;
     public Transform[] posicionDeseada;
-    public float tiempoEspera;
-    public float tiempoEspera2;
-
-    public float velocidadCamara;
-    public float velocidadCamara2;
 
     public static EntornoMecanica singleton;
     private Coroutine iniciarCompuertas;
@@ -37,8 +32,9 @@ public class EntornoMecanica : MonoBehaviour
         }
     }
 
-    public void AbrirCompuerta()
+    public void AbrirCompuerta(Transform posicionObjetivo)
     {
+        posicionDeseada[2] = posicionObjetivo;
         iniciarCompuertas = StartCoroutine(IniciarAnimacionAbrirCompuertas());
     }
 
@@ -48,46 +44,47 @@ public class EntornoMecanica : MonoBehaviour
         {
             compuertas[i].IniciarDesplazamientoObjeto();
         }
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0],velocidadCamara);
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0],1.5f);
 
-        yield return new WaitForSeconds(tiempoEspera);
+        yield return new WaitForSeconds(2f);
 
-        
-        luzPrincipal.SetActive(true);
+        luzPrincipal.enabled = true;
+        luzPrincipal.intensity = 20;
+
         mesa.IniciarDesplazamientoObjeto();
         rotacionObjeto.enabled = true;
 
-        yield return new WaitForSeconds(tiempoEspera2);
+        yield return new WaitForSeconds(1f);
 
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[1], velocidadCamara2);
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[1], 2f);
 
         for (int i = 0; i < brazoMecanico.Length; i++)
         {
             brazoMecanico[i].IniciarDesplazamientoObjeto();
         }
 
-        yield return new WaitForSeconds(tiempoEspera);
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < brazoMecanicoDedos.Length; i++)
         {
             brazoMecanicoDedos[i].IniciarDesplazamientoObjeto();
         }
 
-        yield return new WaitForSeconds(tiempoEspera2);
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < brazoMecanicoDedos.Length; i++)
         {
             brazoMecanicoDedos[i].RetornarPosicionOriginal();
         }
 
-        yield return new WaitForSeconds(tiempoEspera2);
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < brazoMecanico.Length; i++)
         {
             brazoMecanico[i].RetornarPosicionOriginal();
         }
 
-        yield return new WaitForSeconds(tiempoEspera);
+        yield return new WaitForSeconds(2f);
 
         if (ControlCamaraMotor.singleton != null) // Si es diferente de null habilitamos el script del movimiento de camaras
         {
@@ -110,6 +107,7 @@ public class EntornoMecanica : MonoBehaviour
         {
             puntosIntanciasPiezas[i].SetActive(true);
         }
+        luzPrincipal.intensity = 1;
         rotacionObjeto.enabled = false;
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
         sueloInteractivo.SaliendoInteraccion();
@@ -123,6 +121,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionCerrarCompuertas()
     {
+        luzPrincipal.intensity = 20;
         if (ControlCamaraMotor.singleton != null) // Si es diferente de null deshabilitamos el script
         {
             ControlCamaraMotor.singleton.enabled = false;
@@ -135,14 +134,14 @@ public class EntornoMecanica : MonoBehaviour
         }
 
         mesa.RetornarPosicionOriginal();
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], velocidadCamara);
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
 
         for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
         {
             puntosIntanciasPiezas[i].SetActive(false);
         }
 
-        yield return new WaitForSeconds(tiempoEspera);
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < luces.Length; i++)
         {
@@ -155,12 +154,13 @@ public class EntornoMecanica : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
 
-        luzPrincipal.SetActive(false);
+        luzPrincipal.enabled = false;
 
         yield return new WaitForSeconds(2);
 
         sueloInteractivo.SaliendoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
         MesaMotor.singleton.mesaMotorActiva = false;
+        iniciarCompuertas = null;
     }
 }

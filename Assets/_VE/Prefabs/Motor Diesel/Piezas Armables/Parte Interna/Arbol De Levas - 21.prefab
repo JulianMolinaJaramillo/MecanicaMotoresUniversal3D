@@ -176,7 +176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688975464370690322}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000023367397, y: -0.0000000939113, z: 0.9956806, w: -0.092845}
+  m_LocalRotation: {x: 0, y: 0, z: -0.99568033, w: 0.09284849}
   m_LocalPosition: {x: -0.25897917, y: 0.9929499, z: 0.19891103}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -184,7 +184,7 @@ Transform:
   - {fileID: 7026774381051792177}
   - {fileID: 3897031666455482131}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -169.345}
 --- !u!33 &6214141784632668187
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -298,8 +298,9 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
+  piezaFinal: 0
   sizeMinijuego: 0
-  posicionObjetivo: {x: 0.0634, y: 0.8079, z: 0.3314}
+  posicionObjetivo: {x: 0.0664, y: -0.0605, z: -0.0131}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -326,7 +327,7 @@ GameObject:
   - component: {fileID: 6211132394710581399}
   - component: {fileID: 1644858297491278010}
   m_Layer: 8
-  m_Name: SPcojinete
+  m_Name: SPtapa
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +342,7 @@ Transform:
   m_GameObject: {fileID: 5254842976887454849}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06565135, y: 0.7040527, z: -0.7040523, w: -0.06565132}
-  m_LocalPosition: {x: 0.001282, y: 0.003214, z: -0.002118}
+  m_LocalPosition: {x: 0.000402, y: -0.000168, z: -0.00012}
   m_LocalScale: {x: 0.00019999988, y: 0.0001999994, z: 0.00019999937}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -457,4 +458,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: cojinete
+  snapID: tapa

@@ -53,11 +53,11 @@ public class SueloInteractivo : MonoBehaviour
 
                 if (mesaArmadoMotor && ManagerMinijuego.singleton.minijuegoActivo)
                 {
-                    StartCoroutine(MoverCamara(ManagerMinijuego.singleton.posicionMonijuegoActual.position, ManagerMinijuego.singleton.posicionMonijuegoActual.rotation, velocidadPosCamara)); // Movemos la camara      
+                    EntornoMecanica.singleton.AbrirCompuerta(ManagerMinijuego.singleton.posicionMonijuegoActual);
                 }
                 else if (mesaArmadoMotor)
                 {
-                    EntornoMecanica.singleton.AbrirCompuerta();
+                    EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);
                 }
                 else
                 {

@@ -10,6 +10,8 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnAplicarTorque;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button btnEncenderMotor;
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Transform[] posicionesMinijuego1;
     public int[] torquesTornillosBancada;
 
@@ -19,11 +21,12 @@ public class ManagerMinijuego : MonoBehaviour
     public bool[] minijuegos;
     [HideInInspector]
     public Transform posicionMonijuegoActual;
-    [HideInInspector]
+    //[HideInInspector]
     public bool aplicandoTorque;
 
 
     private int contador = 0;
+    private int puntaje = 0;
     public static ManagerMinijuego singleton;
 
     private void Awake()
@@ -73,10 +76,43 @@ public class ManagerMinijuego : MonoBehaviour
         miniJuegoAtornillar.SetActive(false);
     }
 
+    public void ValidarMiniJuego()
+    {
+        for (int i = 0; i < torquesTornillosBancada.Length; i++)
+        {
+            if (torquesTornillosBancada[i] > 49 && torquesTornillosBancada[i] < 61)
+            {
+                puntaje += 1;
+            }
+        }
+
+        for (int i = 0; i < torquesTornillosBielas.Length; i++)
+        {
+            if (torquesTornillosBielas[i] > 59 && torquesTornillosBielas[i] < 71)
+            {
+                puntaje += 1;
+            }
+        }
+
+        btnEncenderMotor.gameObject.SetActive(true);
+
+        if (puntaje == 8)
+        {
+            Debug.Log("todo good");
+        }
+        else
+        {
+            Debug.Log("todo mal");
+            btnEncenderMotor.onClick.AddListener(ExplosionObjetosHijos.singleton.ExplotarTodo);
+            btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
+        }
+    }
+
     public void TorqueAplicadoTornillosBancada()
     {
         if (!aplicandoTorque)
         {
+            Debug.Log("TorqueAplicadoTornillosBancada");
             aplicandoTorque = true;
 
             torquesTornillosBancada[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
@@ -93,7 +129,8 @@ public class ManagerMinijuego : MonoBehaviour
                 btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBielas);
                 minijuegos[0] = false;
                 minijuegos[1] = true;
-                             
+                aplicandoTorque = false;
+
                 DesactivarMinijuego();
                 posicionMonijuegoActual = posicionesMinijuego2[contador];
             }
@@ -104,6 +141,7 @@ public class ManagerMinijuego : MonoBehaviour
     {
         if (!aplicandoTorque)
         {
+            Debug.Log("TorqueAplicadoTornillosBielas");
             aplicandoTorque = true;
 
             torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
@@ -115,8 +153,7 @@ public class ManagerMinijuego : MonoBehaviour
                 posicionMonijuegoActual = posicionesMinijuego2[contador];
             }
             else
-            {
-                
+            {     
                 DesactivarMinijuego();
                 //posicionMonijuegoActual = posicionesMinijuego3[contador];
             }
