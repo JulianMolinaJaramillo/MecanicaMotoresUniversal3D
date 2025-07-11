@@ -9,9 +9,12 @@ public class MoverPieza : MonoBehaviour
     public bool piezaColocada; // Para validar si la pieza ya fue colocada
     public bool activaMinijuego; // Para validar si el prefab activa minijuego
     public bool piezaFinal; // Para validar si el prefab activa minijuego
+    public string nombreMotor; // Unicamente es para colocar el nombre del motor en la pieza que este marcada como PiezaFinal y saber que motor armé
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
+    public Material materialDisolver; // Para el material de disolucion
+    public float tiempoDisolver; // Para controlar el tiempo de disolver 
     public Collider[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
     public Collider[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
 
@@ -19,12 +22,13 @@ public class MoverPieza : MonoBehaviour
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
     private bool noMover; // Para identificar si puedo o no mover la pieza
 
-    public MessageOnly mensaje1 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
+    public MessageOnly mensaje2 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
 
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
+    private Coroutine coroutine;
 
     private void Awake()
     {
@@ -43,7 +47,9 @@ public class MoverPieza : MonoBehaviour
         {
             // Guardamos el material original
             materialesOriginales = meshRenderer.materials;
-        }   
+        }
+
+        AgregarDisolver(tiempoDisolver); // Asegúrate de que esté seteado
     }
 
     /// <summary>
@@ -87,7 +93,7 @@ public class MoverPieza : MonoBehaviour
         {
             puedoValidar = true;
             QuitarMateriales();
-            StartCoroutine(GetPuedoValidar());
+            coroutine = StartCoroutine(GetPuedoValidar());
         }     
     }
 
@@ -98,6 +104,7 @@ public class MoverPieza : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         puedoValidar = false;
+        coroutine = null;
     }
 
     /// <summary>
@@ -125,7 +132,7 @@ public class MoverPieza : MonoBehaviour
         {
             ManagerCanvas.singleton.DeshabilitarBtnSalir();
         }
-        StartCoroutine(MoverPiezaSuavemente(2));
+        coroutine = StartCoroutine(MoverPiezaSuavemente(2));
     }
 
     /// <summary>
@@ -134,20 +141,6 @@ public class MoverPieza : MonoBehaviour
     /// <param name="duracion"> Tiempo del movimiento de la pieza</param>
     public IEnumerator MoverPiezaSuavemente(float duracion)
     {
-        //Vector3 inicio = transform.position; //  Guardamos la posicion de inicio
-        //float tiempo = 0f; // Damos un tiempo para la interpolacion
-
-        //while (tiempo < duracion)
-        //{
-        //    transform.position = Vector3.Lerp(inicio, posicionObjetivo, tiempo / duracion);
-        //    tiempo += Time.deltaTime;
-        //    yield return null;
-        //}
-
-        //transform.position = posicionObjetivo; // Asegura posición final
-        //piezaColocada = true;
-        //QuitarMateriales();
-
         Vector3 inicio = transform.localPosition; // Trabajamos en local
         float tiempo = 0f;
 
@@ -178,6 +171,7 @@ public class MoverPieza : MonoBehaviour
             if (ManagerMinijuego.singleton != null)
             {
                 ManagerMinijuego.singleton.ValidarMiniJuego();
+                ManagerMinijuego.singleton.motorArmado = nombreMotor;
             }
         }
 
@@ -185,6 +179,8 @@ public class MoverPieza : MonoBehaviour
         {
             ManagerCanvas.singleton.HabilitarBtnSalir();
         }
+
+        coroutine = null;
     }
 
     /// <summary>
@@ -257,5 +253,57 @@ public class MoverPieza : MonoBehaviour
         {
             meshRenderer.materials = new Material[] { materialesOriginales[0] };
         }      
+    }
+
+    
+    public void AgregarDisolver(float tiempo)
+    {
+        Debug.Log("Iniciando disolución...");
+        tiempoDisolver = tiempo;
+        coroutine = StartCoroutine(AgregarMaterialDisolver());
+    }
+
+    private IEnumerator AgregarMaterialDisolver()
+    {
+        if (materialDisolver != null)
+        {
+            Debug.Log("Material instancia: " );
+            // Instanciar copia para que este objeto tenga su propio material
+            Material instanciaMaterial = new Material(materialDisolver);
+            instanciaMaterial.SetFloat("_Frecuencia", 1f);
+
+            Material[] nuevosMateriales = new Material[1];
+            nuevosMateriales[0] = instanciaMaterial;
+
+            // Asignar material a los renderers
+            if (meshRendererHijos.Length > 0)
+            {
+                for (int i = 0; i < meshRendererHijos.Length; i++)
+                {
+                    meshRendererHijos[i].materials = nuevosMateriales;
+                }
+            }
+            else
+            {
+                meshRenderer.materials = nuevosMateriales;
+            }
+
+            // Interpolar la propiedad "_Frecuencia"
+            float tiempo = 0f;
+            while (tiempo < tiempoDisolver)
+            {
+                float t = tiempo / tiempoDisolver;
+                float valor = Mathf.Lerp(1f, -1f, t);
+                instanciaMaterial.SetFloat("_Frecuencia", valor);
+
+                tiempo += Time.deltaTime;
+                yield return null;
+            }
+            Debug.Log("Tiempo disolver: " + tiempoDisolver);
+            // Asegurar valor final
+            instanciaMaterial.SetFloat("_Frecuencia", -1f);
+            coroutine = null;
+            QuitarMateriales();
+        }
     }
 }

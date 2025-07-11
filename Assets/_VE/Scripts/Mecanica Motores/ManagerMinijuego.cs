@@ -12,6 +12,7 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnEncenderMotor;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+
     public Transform[] posicionesMinijuego1;
     public int[] torquesTornillosBancada;
 
@@ -19,10 +20,13 @@ public class ManagerMinijuego : MonoBehaviour
     public int[] torquesTornillosBielas;
 
     public bool[] minijuegos;
+
     [HideInInspector]
     public Transform posicionMonijuegoActual;
-    //[HideInInspector]
+    [HideInInspector]
     public bool aplicandoTorque;
+    [HideInInspector]
+    public string motorArmado;
 
 
     private int contador = 0;
@@ -46,6 +50,22 @@ public class ManagerMinijuego : MonoBehaviour
     {
         posicionMonijuegoActual = posicionesMinijuego1[0];
         btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBancada);
+    }
+
+    /// <summary>
+    /// Para habilitar el interactuable del boton btnEncenderMotor donde se requiera
+    /// </summary>
+    public void HabilitarBtnEnceder()
+    {
+        btnEncenderMotor.interactable = true;
+    }
+
+    /// <summary>
+    /// Para deshabilitar el interactuable del boton btnEncenderMotor donde se requiera
+    /// </summary>
+    public void DeshabilitarBtnEnceder()
+    {
+        btnEncenderMotor.interactable = false;
     }
 
     public void ActivarMinijuego()
@@ -99,13 +119,18 @@ public class ManagerMinijuego : MonoBehaviour
         if (puntaje == 8)
         {
             Debug.Log("todo good");
+            if (ManagerCanvas.singleton != null)
+            {
+                ManagerCanvas.singleton.HabilitarBtnReutilizarMotor();
+            }
         }
         else
         {
             Debug.Log("todo mal");
-            btnEncenderMotor.onClick.AddListener(ExplosionObjetosHijos.singleton.ExplotarTodo);
             btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
         }
+
+        puntaje = 0;
     }
 
     public void TorqueAplicadoTornillosBancada()

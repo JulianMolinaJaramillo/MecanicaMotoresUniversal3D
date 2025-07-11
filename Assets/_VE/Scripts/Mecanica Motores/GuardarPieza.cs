@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GuardarPieza : MonoBehaviour
@@ -8,6 +9,10 @@ public class GuardarPieza : MonoBehaviour
     public string descripcionPieza; // Descripcion de para que sirve esa pieza
 
     public Material materialSeleccion; // El material que deseamos al momento de pararnos sobre la pieza
+    public Material materialDisolver; // El material que deseamos poner al momento de tomar la pieza
+    public float tiempoDisolver; // Para controlar el tiempo de disolver 
+    private string frecuencia = "_Frecuencia"; // Nombre exacto de la propiedad en el Shader Graph
+
     public GameObject prefabInstancia; // El prefab que posteriormente instanciará esa pieza
     public Sprite icono; // Imagen para mostrar en el botón del inventario
     public bool piezaExterna;
@@ -17,6 +22,8 @@ public class GuardarPieza : MonoBehaviour
 
     private MeshRenderer meshRenderer; // Referencia a nuestro mesh
     private Material[] materialesOriginales; // Para almacenar nuestros materiales
+
+    private bool puedoInteractuar;
 
     private void Awake()
     {
@@ -43,8 +50,11 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     void OnMouseEnter()
     {
-        AgregarMaterial(); // Asignamos el material secundario
-        ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+        if (!puedoInteractuar)
+        {
+            AgregarMaterialSeleccion(); // Asignamos el material secundario
+            ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas 
+        }     
     }
 
     /// <summary>
@@ -52,8 +62,11 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     void OnMouseExit()
     {
-        QuitarMaterial(); // Quitamos el material secundario
-        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        if (!puedoInteractuar)
+        {
+            QuitarMaterial(); // Quitamos el material secundario
+            ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        }    
     }
 
     /// <summary>
@@ -61,17 +74,69 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
+        if (!puedoInteractuar)
+        {
+            StartCoroutine(AgregarMaterialDisolver());
+        }    
+    }
+
+    private IEnumerator AgregarMaterialDisolver()
+    {
         if (InventarioUI.singleton != null)
         {
             if (InventarioUI.singleton.contadorInstancias < 12) // Si todavia tengo capacidad en el inventario
             {
+                puedoInteractuar = true;
+
                 InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza, piezaExterna); // instanciamos en el inventario
 
                 ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
-                Destroy(this.gameObject); // Destruimos el objeto
+
+                if (materialDisolver != null)
+                {
+                    // Instanciar copia para que este objeto tenga su propio material
+                    Material instanciaMaterial = new Material(materialDisolver);
+                    instanciaMaterial.SetFloat("_Frecuencia", -1f);
+
+                    Material[] nuevosMateriales = new Material[1];
+                    nuevosMateriales[0] = instanciaMaterial;
+
+                    // Asignar material a los renderers
+                    if (meshRendererHijos.Length > 0)
+                    {
+                        for (int i = 0; i < meshRendererHijos.Length; i++)
+                        {
+                            meshRendererHijos[i].materials = nuevosMateriales;
+                        }
+                    }
+                    else
+                    {
+                        meshRenderer.materials = nuevosMateriales;
+                    }
+
+                    // Interpolar la propiedad "_Frecuencia"
+                    float tiempo = 0f;
+                    while (tiempo < tiempoDisolver)
+                    {
+                        float t = tiempo / tiempoDisolver;
+                        float valor = Mathf.Lerp(-1f, 1f, t);
+                        instanciaMaterial.SetFloat("_Frecuencia", valor);
+
+                        tiempo += Time.deltaTime;
+                        yield return null;
+                    }
+
+                    // Asegurar valor final
+                    instanciaMaterial.SetFloat("_Frecuencia", 1f);
+                }
+         
+                this.gameObject.SetActive(false);
+                puedoInteractuar = false;
+                QuitarMaterial();
             }
             else
             {
+                yield return new WaitForSeconds(0.01f);
                 string texto = "El Inventario Se Encuentra LLeno, Debes Liberar Espacio Primero";
                 ManagerCanvas.singleton.AlertarMensaje(texto);
             }
@@ -79,10 +144,10 @@ public class GuardarPieza : MonoBehaviour
     }
 
     /// <summary>
-    /// Metodo utilizado para asignarle el material de seleccion al momento de mover las piezas del motor
+    /// Metodo utilizado para asignarle el material de seleccion al momento de mover sobre las piezas del motor
     /// </summary>
     /// <param name="id"> Para identificar si el material debe ser el verde o rojo </param>
-    public void AgregarMaterial()
+    public void AgregarMaterialSeleccion()
     {
         if (materialSeleccion != null)
         {

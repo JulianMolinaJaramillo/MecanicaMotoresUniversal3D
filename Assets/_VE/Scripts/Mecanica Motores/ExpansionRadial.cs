@@ -17,6 +17,7 @@ public class ExpansionRadial : MonoBehaviour
 
     private bool expandir;
     private bool contraer;
+    private Dictionary<Transform, Transform> nietosSP = new Dictionary<Transform, Transform>();
     private List<Transform> hijos = new List<Transform>();
     private Dictionary<Transform, Vector3> posicionesOriginales = new Dictionary<Transform, Vector3>();
     private Coroutine expandirCoroutine;
@@ -28,11 +29,33 @@ public class ExpansionRadial : MonoBehaviour
     {
         LimpiarHijos();
         gestorPiezas.TransferirPiezasColocadas();
+
+        List<Transform> nietosParaDesvincular = new List<Transform>();
+
         // Guardamos posiciones originales
         foreach (Transform child in transform)
         {     
             hijos.Add(child);
-            posicionesOriginales[child] = child.localPosition;        
+            posicionesOriginales[child] = child.localPosition;
+
+            // Guardar los nietos SP sin desvincular aún
+            foreach (Transform nieto in child)
+            {
+                if (nieto.name.StartsWith("SP"))
+                {
+                    if (!nietosSP.ContainsKey(nieto))
+                    {
+                        nietosSP[nieto] = child;
+                        nietosParaDesvincular.Add(nieto);
+                    }
+                }
+            }
+
+            // Ahora sí, desvincular fuera del foreach para evitar modificar la jerarquía durante el recorrido
+            foreach (Transform nieto in nietosParaDesvincular)
+            {
+                nieto.SetParent(null);
+            }
         }
     }
 
@@ -48,6 +71,7 @@ public class ExpansionRadial : MonoBehaviour
         {
             if (!expandir)
             {
+                ManagerMinijuego.singleton.DeshabilitarBtnEnceder();
                 expandir = true;
                 AsignarHijos();
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
@@ -63,21 +87,21 @@ public class ExpansionRadial : MonoBehaviour
 
     [ContextMenu("Contraer")]
     public void Contraer()
-    {
-        if (contraer)
-        {
-            contraer = false;
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionDown, 1);
-
-            if (expandirCoroutine != null)
-            {
-                StopCoroutine(expandirCoroutine);
-            }
-            contraerCoroutine = StartCoroutine(ContraerCoroutine());
-        }
+    {     
         if (!noInteractuar)
         {
-            
+            if (contraer)
+            {
+                ManagerMinijuego.singleton.DeshabilitarBtnEnceder();
+                contraer = false;
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionDown, 1);
+
+                if (expandirCoroutine != null)
+                {
+                    StopCoroutine(expandirCoroutine);
+                }
+                contraerCoroutine = StartCoroutine(ContraerCoroutine());
+            }
         }        
     }
 
@@ -120,6 +144,7 @@ public class ExpansionRadial : MonoBehaviour
 
             yield return null;
         }
+        ManagerMinijuego.singleton.HabilitarBtnEnceder();
         txtBoton.text = "Contraer";
         contraer = true;
         expandirCoroutine = null;
@@ -147,6 +172,14 @@ public class ExpansionRadial : MonoBehaviour
 
             yield return null;
         }
+
+        foreach (var kvp in nietosSP)
+        {
+            kvp.Key.SetParent(kvp.Value); // Vuelve a ser hijo de su padre original
+        }
+        nietosSP.Clear();
+
+        ManagerMinijuego.singleton.HabilitarBtnEnceder();
         txtBoton.text = "Expandir";    
         expandir = false;
         contraerCoroutine = null;

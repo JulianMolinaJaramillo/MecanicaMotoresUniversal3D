@@ -25,6 +25,7 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             // Instanciar el objeto con su rotación original (la del prefab)
             GameObject nuevaPieza = Instantiate(prebafInstancia, nuevaPosicion, prebafInstancia.transform.rotation);
             nuevaPieza.transform.SetParent(posicionInstancia); // Formamos la pieza instancia hija de la  posicionInstancia
+
             InventarioUI.singleton.contadorInstancias -= 1; // Liberamos espacio en el inventario
             Destroy(this.gameObject); // Destruimos el boton
         }

@@ -9,6 +9,8 @@ public class EntornoMecanica : MonoBehaviour
     public Light luzPrincipal;
     public GameObject[] luces;
     public GameObject[] puntosIntanciasPiezas;
+    public ParticleSystem particulasCascada;
+    public ActivarMaterialesDisolverHijos[] puntosIntanciasPiezasMateriales;
     public MoverObjeto mesa;
     public RotacionObjeto rotacionObjeto;
     public MoverObjeto[] compuertas;
@@ -58,6 +60,17 @@ public class EntornoMecanica : MonoBehaviour
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[1], 2f);
 
+        if (!particulasCascada.isPlaying)
+        {
+            particulasCascada.Play();
+        }
+
+        for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
+        {
+            puntosIntanciasPiezas[i].SetActive(true);
+            puntosIntanciasPiezasMateriales[i].ActivarMaterialesDisolucion();
+        }
+
         for (int i = 0; i < brazoMecanico.Length; i++)
         {
             brazoMecanico[i].IniciarDesplazamientoObjeto();
@@ -103,10 +116,6 @@ public class EntornoMecanica : MonoBehaviour
             luces[i].SetActive(true);
         }
 
-        for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
-        {
-            puntosIntanciasPiezas[i].SetActive(true);
-        }
         luzPrincipal.intensity = 1;
         rotacionObjeto.enabled = false;
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
@@ -136,11 +145,14 @@ public class EntornoMecanica : MonoBehaviour
         mesa.RetornarPosicionOriginal();
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
 
-        for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
+        if (!MesaMotor.singleton.interaccionEjecutada)
         {
-            puntosIntanciasPiezas[i].SetActive(false);
+            for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
+            {
+                puntosIntanciasPiezas[i].SetActive(false);
+            }
         }
-
+        
         yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < luces.Length; i++)
@@ -152,11 +164,11 @@ public class EntornoMecanica : MonoBehaviour
         {
             compuertas[i].RetornarPosicionOriginal();
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         luzPrincipal.enabled = false;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         sueloInteractivo.SaliendoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();

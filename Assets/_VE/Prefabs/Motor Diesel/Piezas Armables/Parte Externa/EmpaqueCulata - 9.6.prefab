@@ -299,16 +299,19 @@ MonoBehaviour:
   piezaColocada: 0
   activaMinijuego: 0
   piezaFinal: 0
+  nombreMotor: 
   sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: -0.4004, z: -0.217}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
+  materialDisolver: {fileID: 2100000, guid: 4d1a4c2c346611549bacfcb1a447eff1, type: 2}
+  tiempoDisolver: 1.5
   snappsParaActivar:
   - {fileID: 4487273239571538666}
   snappsParaDesactivar:
   - {fileID: 1017238117208273215}
-  mensaje1:
+  mensaje2:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos: []

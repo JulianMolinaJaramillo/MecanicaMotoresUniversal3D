@@ -8,6 +8,8 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject btnReutilizarMotor; // Referencia al boton btnSalir del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtTituloPieza; // Referencia al texto titulo de la pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtDescripcionPieza; // Referencia al texto descripcion para la pieza
@@ -74,5 +76,22 @@ public class ManagerCanvas : MonoBehaviour
     public void DeshabilitarBtnSalir()
     {
         btnSalir.interactable = false;
+    }
+
+
+    /// <summary>
+    /// Para habilitar el interactuable del boton btnReutilizarMotor donde se requiera
+    /// </summary>
+    public void HabilitarBtnReutilizarMotor()
+    {
+        btnReutilizarMotor.SetActive(true);
+    }
+
+    /// <summary>
+    /// Para deshabilitar el interactuable del boton btnReutilizarMotor donde se requiera
+    /// </summary>
+    public void DeshabilitarBtnReutilizarMotor()
+    {
+        btnReutilizarMotor.SetActive(false);
     }
 }

@@ -6,7 +6,7 @@ public class RotadorPiezas : MonoBehaviour
     public float velocidadRotacion = 50f;
     public bool rotarEnZ, rotarEnY, rotarEnX;
     public float velocidadRetorno = 2f; // Velocidad del retorno suave
-    public GameObject btnRotar;
+    public GameObject btnRotar, btnNoRotar;
     public GestorPiezas gestorPiezas;
     [HideInInspector]
     public bool dejarDeRotar;
@@ -33,6 +33,7 @@ public class RotadorPiezas : MonoBehaviour
                 transform.rotation = rotacionInicial;
                 regresandoARotacionOriginal = false;
                 btnRotar.SetActive(true);
+                btnNoRotar.SetActive(false);
             }
 
             return;
