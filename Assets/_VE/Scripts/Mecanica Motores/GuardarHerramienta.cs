@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class GuardarHerramienta : MonoBehaviour
@@ -9,10 +10,15 @@ public class GuardarHerramienta : MonoBehaviour
     public string descripcionPieza; // Descripcion de para que sirve esta herramienta
 
     public Material materialSeleccion; // El material que deseamos al momento de pararnos sobre la pieza
+    public Material materialDisolver; // El material que deseamos poner al momento de tomar la pieza
+    public float tiempoDisolver; // Para controlar el tiempo de disolver 
+    private string frecuencia = "_Frecuencia"; // Nombre exacto de la propiedad en el Shader Graph
     public Sprite icono; // Imagen para mostrar en el botón del inventario
 
     private MeshRenderer meshRenderer; // Referencia a nuestro mesh
     private Material[] materialesOriginales; // Para almacenar nuestros materiales
+
+    private bool puedoInteractuar;
 
     private void Awake()
     {
@@ -31,8 +37,11 @@ public class GuardarHerramienta : MonoBehaviour
     /// </summary>
     void OnMouseEnter()
     {
-        AgregarMaterial(); // Asignamos el material secundario
-        ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+        if (!puedoInteractuar)
+        {
+            AgregarMaterial(); // Asignamos el material secundario
+            ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+        }    
     }
 
     /// <summary>
@@ -40,8 +49,11 @@ public class GuardarHerramienta : MonoBehaviour
     /// </summary>
     void OnMouseExit()
     {
-        QuitarMaterial(); // Quitamos el material secundario
-        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        if (!puedoInteractuar)
+        {
+            QuitarMaterial(); // Quitamos el material secundario
+            ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        }    
     }
 
     /// <summary>
@@ -49,18 +61,58 @@ public class GuardarHerramienta : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
+        if (!puedoInteractuar)
+        {
+            StartCoroutine(AgregarMaterialDisolver());
+        }    
+    }
+
+    private IEnumerator AgregarMaterialDisolver()
+    {
         if (InventarioUI.singleton != null)
         {
-            InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen,sizeHerramienta);
+            puedoInteractuar = true;
+
+            InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen, sizeHerramienta);
             ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+
+            if (materialDisolver != null)
+            {
+                // Instanciar copia para que este objeto tenga su propio material
+                Material instanciaMaterial = new Material(materialDisolver);
+                instanciaMaterial.SetFloat("_Frecuencia", -1f);
+
+                Material[] nuevosMateriales = new Material[1];
+                nuevosMateriales[0] = instanciaMaterial;
+
+                // Asignar material a los renderers
+                meshRenderer.materials = nuevosMateriales;
+
+                // Interpolar la propiedad "_Frecuencia"
+                float tiempo = 0f;
+                while (tiempo < tiempoDisolver)
+                {
+                    float t = tiempo / tiempoDisolver;
+                    float valor = Mathf.Lerp(-1f, 1f, t);
+                    instanciaMaterial.SetFloat("_Frecuencia", valor);
+
+                    tiempo += Time.deltaTime;
+                    yield return null;
+                }
+
+                // Asegurar valor final
+                instanciaMaterial.SetFloat("_Frecuencia", 1f);
+            }
 
             if (AdministrarHerramientas.singleton != null)
             {
                 AdministrarHerramientas.singleton.ReactivarHerramientas(); // Reactivamos la herramienta antes desactivada
                 AdministrarHerramientas.singleton.herramientas.Add(this.gameObject); // Agregamos la herramienta a nuestro administrador
             }
-            QuitarMaterial(); // Quitamos el material secundario
+
+            puedoInteractuar = false;
             this.gameObject.SetActive(false); // Desactivamos la herramienta seleccionada
+            QuitarMaterial(); // Quitamos el material secundario
         }
     }
 

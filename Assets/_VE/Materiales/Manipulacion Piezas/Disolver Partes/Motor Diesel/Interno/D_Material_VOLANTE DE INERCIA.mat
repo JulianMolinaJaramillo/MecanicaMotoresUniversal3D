@@ -45,6 +45,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: c7cce80de787fcc4d986448b651ce738, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Brillo:
+        m_Texture: {fileID: 2800000, guid: 76ed62902943fee40820f3c066a5868f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -67,6 +71,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Metallic:
+        m_Texture: {fileID: 2800000, guid: 0e7a44a1ac4bd1c4fbed94a4e6ad6bd8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -119,6 +127,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Intensidad_Brillo: 3
+    - _Intensidad_Metal: 1.2
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005

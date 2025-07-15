@@ -25,7 +25,7 @@ public class ManagerMinijuego : MonoBehaviour
     public Transform posicionMonijuegoActual;
     [HideInInspector]
     public bool aplicandoTorque;
-    [HideInInspector]
+    //[HideInInspector]
     public string motorArmado;
 
 

@@ -6,6 +6,7 @@ public class MesaMotor : MonoBehaviour
     [Header("ESTA ES UNA CLASE SINGLETON")]
     public bool mesaMotorActiva;
     public bool interaccionEjecutada;
+    public bool motorRotando; // Para validar cuando el motor este rotando y no permitir que se coloquen piezas
     public RotadorPiezas[] rotadorPiezas;
     public ExpansionRadial[] expansionRadials;
 

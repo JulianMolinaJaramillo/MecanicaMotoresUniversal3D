@@ -9,7 +9,8 @@ public class EntornoMecanica : MonoBehaviour
     public Light luzPrincipal;
     public GameObject[] luces;
     public GameObject[] puntosIntanciasPiezas;
-    public ParticleSystem particulasCascada;
+    public ParticleSystem[] particulasCascada;
+    public ControlarShape[] particulasCascadaShape;
     public ActivarMaterialesDisolverHijos[] puntosIntanciasPiezasMateriales;
     public MoverObjeto mesa;
     public RotacionObjeto rotacionObjeto;
@@ -56,19 +57,35 @@ public class EntornoMecanica : MonoBehaviour
         mesa.IniciarDesplazamientoObjeto();
         rotacionObjeto.enabled = true;
 
+        if (VibracionCamara.singleton != null)
+        {
+            VibracionCamara.singleton.IniciarVibracion(1f, 0.007f);
+        }
+
         yield return new WaitForSeconds(1f);
 
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[1], 2f);
-
-        if (!particulasCascada.isPlaying)
+        if (VibracionCamara.singleton != null)
         {
-            particulasCascada.Play();
+            VibracionCamara.singleton.MoverCamaraConVibracion(posicionDeseada[1],5f,0.007f);
+        }
+
+        for (int i = 0; i < particulasCascada.Length; i++)
+        {
+            if (!particulasCascada[i].isPlaying)
+            {
+                particulasCascada[i].Play();
+            }
+        }
+
+        for (int i = 0; i < particulasCascadaShape.Length; i++)
+        {
+            particulasCascadaShape[i].AumentarEscala();
         }
 
         for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
         {
             puntosIntanciasPiezas[i].SetActive(true);
-            puntosIntanciasPiezasMateriales[i].ActivarMaterialesDisolucion();
+            puntosIntanciasPiezasMateriales[i].ActivarMaterialesDisolucion(6,1);
         }
 
         for (int i = 0; i < brazoMecanico.Length; i++)
@@ -130,6 +147,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionCerrarCompuertas()
     {
+        MesaMotor.singleton.mesaMotorActiva = false;
         luzPrincipal.intensity = 20;
         if (ControlCamaraMotor.singleton != null) // Si es diferente de null deshabilitamos el script
         {
@@ -141,6 +159,34 @@ public class EntornoMecanica : MonoBehaviour
                 ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
             }
         }
+
+        if (VibracionCamara.singleton != null)
+        {
+            VibracionCamara.singleton.IniciarVibracion(3f, 0.004f);
+        }
+
+        for (int i = 0; i < particulasCascada.Length; i++)
+        {
+            if (!particulasCascada[i].isPlaying)
+            {
+                particulasCascada[i].Play();
+            }
+        }
+
+        for (int i = 0; i < particulasCascadaShape.Length; i++)
+        {
+            particulasCascadaShape[i].RestaurarEscala();
+        }
+
+        if (!MesaMotor.singleton.interaccionEjecutada)
+        {
+            for (int i = 0; i < puntosIntanciasPiezasMateriales.Length; i++)
+            {
+                puntosIntanciasPiezasMateriales[i].ActivarMaterialesDisolucion(3, 0);
+            }
+        }
+       
+        yield return new WaitForSeconds(3f);
 
         mesa.RetornarPosicionOriginal();
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
@@ -172,7 +218,7 @@ public class EntornoMecanica : MonoBehaviour
 
         sueloInteractivo.SaliendoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
-        MesaMotor.singleton.mesaMotorActiva = false;
+        
         iniciarCompuertas = null;
     }
 }

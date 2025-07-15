@@ -9,23 +9,26 @@ public class SnapPoint : MonoBehaviour
         // Verificamos por tag
         if (other.CompareTag("SnapPoint"))
         {
-            SnapPoint snap = other.GetComponent<SnapPoint>(); // Obtenemos el script del objeto que colisiona
-            if (snapID == snap.snapID) // Si coinciden los ID de los snapPoint
+            if (!MesaMotor.singleton.motorRotando)
             {
-                MoverPieza moverPiezaPadre = snap.GetComponentInParent<MoverPieza>(); // Obtenemos el script del padre del objeto que colisiona
-                if (moverPiezaPadre != null)
+                SnapPoint snap = other.GetComponent<SnapPoint>(); // Obtenemos el script del objeto que colisiona
+                if (snapID == snap.snapID) // Si coinciden los ID de los snapPoint
                 {
-                    if (!moverPiezaPadre.piezaColocada) // Si la pieza no esta colocada aun
+                    MoverPieza moverPiezaPadre = snap.GetComponentInParent<MoverPieza>(); // Obtenemos el script del padre del objeto que colisiona
+                    if (moverPiezaPadre != null)
                     {
-                        moverPiezaPadre.AgregarSegundoMaterial(1); // Le asignamos el material verde de pieza correcta
-
-                        if (moverPiezaPadre.puedoValidar)// Se activa al momento de soltar el mouse de la piza seleccionada
+                        if (!moverPiezaPadre.piezaColocada) // Si la pieza no esta colocada aun
                         {
-                            moverPiezaPadre.IniciarMovimiento(); // Iniciamos el desplazamiento de la pieza
+                            moverPiezaPadre.AgregarSegundoMaterial(1); // Le asignamos el material verde de pieza correcta
+
+                            if (moverPiezaPadre.puedoValidar)// Se activa al momento de soltar el mouse de la piza seleccionada
+                            {
+                                moverPiezaPadre.IniciarMovimiento(); // Iniciamos el desplazamiento de la pieza
+                            }
                         }
                     }
-                }                      
-            }
+                }
+            }       
         }
     }
 

@@ -20,6 +20,7 @@ public class MoverPieza : MonoBehaviour
 
     private Vector3 offset; // Para almacenar la diferencia entre la posicion del objeto y el punto de click
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
+    private float valorDisolver;
     private bool noMover; // Para identificar si puedo o no mover la pieza
 
     public MessageOnly mensaje2 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
@@ -49,7 +50,7 @@ public class MoverPieza : MonoBehaviour
             materialesOriginales = meshRenderer.materials;
         }
 
-        AgregarDisolver(tiempoDisolver); // Asegúrate de que esté seteado
+        AgregarDisolver(tiempoDisolver,1); // Asegúrate de que esté seteado
     }
 
     /// <summary>
@@ -57,6 +58,11 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             puedoValidar = false;
@@ -66,7 +72,7 @@ public class MoverPieza : MonoBehaviour
                 coordinadaZ = Camera.main.WorldToScreenPoint(transform.position).z; // Convertimos la posicion del objeto en coordenadas de la pantalla
                 offset = transform.position - ObtenerPosicionMouse(); // Calcula la diferencia entre la posición real del objeto y la posición del mouse en el mundo 3D
             }
-        }    
+        }
     }
 
     /// <summary>
@@ -74,6 +80,11 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void OnMouseDrag()
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             if (!noMover)
@@ -81,7 +92,7 @@ public class MoverPieza : MonoBehaviour
                 // Actualiza la posición del objeto a la nueva posición del mouse en el mundo, manteniendo el offset inicial
                 transform.position = ObtenerPosicionMouse() + offset;
             }
-        }   
+        }
     }
 
     /// <summary>
@@ -89,12 +100,17 @@ public class MoverPieza : MonoBehaviour
     /// </summary>
     void OnMouseUp()
     {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             puedoValidar = true;
             QuitarMateriales();
             coroutine = StartCoroutine(GetPuedoValidar());
-        }     
+        }
     }
 
     /// <summary>
@@ -131,6 +147,11 @@ public class MoverPieza : MonoBehaviour
         if (ManagerCanvas.singleton != null)
         {
             ManagerCanvas.singleton.DeshabilitarBtnSalir();
+            ManagerCanvas.singleton.DeshabilitarBtnRotar();
+        }
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
         }
         coroutine = StartCoroutine(MoverPiezaSuavemente(2));
     }
@@ -178,6 +199,7 @@ public class MoverPieza : MonoBehaviour
         if (ManagerCanvas.singleton != null)
         {
             ManagerCanvas.singleton.HabilitarBtnSalir();
+            ManagerCanvas.singleton.HabilitarBtnRotar();
         }
 
         coroutine = null;
@@ -256,18 +278,20 @@ public class MoverPieza : MonoBehaviour
     }
 
     
-    public void AgregarDisolver(float tiempo)
+    public void AgregarDisolver(float tiempo, int disolver)
     {
-        Debug.Log("Iniciando disolución...");
         tiempoDisolver = tiempo;
-        coroutine = StartCoroutine(AgregarMaterialDisolver());
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(AgregarMaterialDisolver(disolver));
     }
 
-    private IEnumerator AgregarMaterialDisolver()
+    private IEnumerator AgregarMaterialDisolver(int disolverAdentro)
     {
         if (materialDisolver != null)
         {
-            Debug.Log("Material instancia: " );
             // Instanciar copia para que este objeto tenga su propio material
             Material instanciaMaterial = new Material(materialDisolver);
             instanciaMaterial.SetFloat("_Frecuencia", 1f);
@@ -293,13 +317,22 @@ public class MoverPieza : MonoBehaviour
             while (tiempo < tiempoDisolver)
             {
                 float t = tiempo / tiempoDisolver;
-                float valor = Mathf.Lerp(1f, -1f, t);
-                instanciaMaterial.SetFloat("_Frecuencia", valor);
+
+                if (disolverAdentro == 1)
+                {           
+                    valorDisolver = Mathf.Lerp(1f, -1f, t);
+                }
+                else
+                {
+                    valorDisolver = Mathf.Lerp(-1f, 1f, t);
+                }
+                
+                instanciaMaterial.SetFloat("_Frecuencia", valorDisolver);
 
                 tiempo += Time.deltaTime;
                 yield return null;
             }
-            Debug.Log("Tiempo disolver: " + tiempoDisolver);
+
             // Asegurar valor final
             instanciaMaterial.SetFloat("_Frecuencia", -1f);
             coroutine = null;

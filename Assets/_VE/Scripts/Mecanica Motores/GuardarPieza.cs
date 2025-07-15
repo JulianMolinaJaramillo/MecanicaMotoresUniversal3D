@@ -24,6 +24,8 @@ public class GuardarPieza : MonoBehaviour
     private Material[] materialesOriginales; // Para almacenar nuestros materiales
 
     private bool puedoInteractuar;
+    private float valorDisolver;
+    private Coroutine coroutine;
 
     private void Awake()
     {
@@ -76,11 +78,11 @@ public class GuardarPieza : MonoBehaviour
     {
         if (!puedoInteractuar)
         {
-            StartCoroutine(AgregarMaterialDisolver());
+            InteractuarPieza();
         }    
     }
 
-    private IEnumerator AgregarMaterialDisolver()
+    public void InteractuarPieza()
     {
         if (InventarioUI.singleton != null)
         {
@@ -92,55 +94,85 @@ public class GuardarPieza : MonoBehaviour
 
                 ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
 
-                if (materialDisolver != null)
+                if (coroutine != null)
                 {
-                    // Instanciar copia para que este objeto tenga su propio material
-                    Material instanciaMaterial = new Material(materialDisolver);
-                    instanciaMaterial.SetFloat("_Frecuencia", -1f);
-
-                    Material[] nuevosMateriales = new Material[1];
-                    nuevosMateriales[0] = instanciaMaterial;
-
-                    // Asignar material a los renderers
-                    if (meshRendererHijos.Length > 0)
-                    {
-                        for (int i = 0; i < meshRendererHijos.Length; i++)
-                        {
-                            meshRendererHijos[i].materials = nuevosMateriales;
-                        }
-                    }
-                    else
-                    {
-                        meshRenderer.materials = nuevosMateriales;
-                    }
-
-                    // Interpolar la propiedad "_Frecuencia"
-                    float tiempo = 0f;
-                    while (tiempo < tiempoDisolver)
-                    {
-                        float t = tiempo / tiempoDisolver;
-                        float valor = Mathf.Lerp(-1f, 1f, t);
-                        instanciaMaterial.SetFloat("_Frecuencia", valor);
-
-                        tiempo += Time.deltaTime;
-                        yield return null;
-                    }
-
-                    // Asegurar valor final
-                    instanciaMaterial.SetFloat("_Frecuencia", 1f);
+                    StopCoroutine(coroutine);
                 }
-         
-                this.gameObject.SetActive(false);
-                puedoInteractuar = false;
-                QuitarMaterial();
+                coroutine = StartCoroutine(MaterialDisolver(1));     
             }
             else
             {
-                yield return new WaitForSeconds(0.01f);
                 string texto = "El Inventario Se Encuentra LLeno, Debes Liberar Espacio Primero";
                 ManagerCanvas.singleton.AlertarMensaje(texto);
             }
-        }     
+        }
+        
+    }
+
+    public void AgregarMaterialDisolver(int id)
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(MaterialDisolver(id));
+    }
+    private IEnumerator MaterialDisolver(int id)
+    {
+        if (materialDisolver != null)
+        {
+            // Instanciar copia para que este objeto tenga su propio material
+            Material instanciaMaterial = new Material(materialDisolver);
+            instanciaMaterial.SetFloat("_Frecuencia", -1f);
+
+            Material[] nuevosMateriales = new Material[1];
+            nuevosMateriales[0] = instanciaMaterial;
+
+            // Asignar material a los renderers
+            if (meshRendererHijos.Length > 0)
+            {
+                for (int i = 0; i < meshRendererHijos.Length; i++)
+                {
+                    meshRendererHijos[i].materials = nuevosMateriales;
+                }
+            }
+            else
+            {
+                meshRenderer.materials = nuevosMateriales;
+            }
+
+            // Interpolar la propiedad "_Frecuencia"
+            float tiempo = 0f;
+            while (tiempo < tiempoDisolver)
+            {
+                float t = tiempo / tiempoDisolver;
+                if (id == 1)
+                {
+                    valorDisolver = Mathf.Lerp(-1f, 1f, t);
+                }
+                else
+                {
+                    valorDisolver = Mathf.Lerp(1f, -1f, t);
+                }
+                
+                instanciaMaterial.SetFloat("_Frecuencia", valorDisolver);
+
+                tiempo += Time.deltaTime;
+                yield return null;
+            }
+
+            // Asegurar valor final
+            instanciaMaterial.SetFloat("_Frecuencia", 1f);
+
+            if (id == 1)
+            {
+                this.gameObject.SetActive(false);
+            }
+
+            puedoInteractuar = false;
+            QuitarMaterial();
+            coroutine = null;
+        }
     }
 
     /// <summary>

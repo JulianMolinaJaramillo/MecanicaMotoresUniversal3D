@@ -17,44 +17,58 @@ public class ExpansionRadial : MonoBehaviour
 
     private bool expandir;
     private bool contraer;
-    private Dictionary<Transform, Transform> nietosSP = new Dictionary<Transform, Transform>();
     private List<Transform> hijos = new List<Transform>();
     private Dictionary<Transform, Vector3> posicionesOriginales = new Dictionary<Transform, Vector3>();
     private Coroutine expandirCoroutine;
     private Coroutine contraerCoroutine;
 
+    private class SPInfo
+    {
+        public Transform spTransform;
+        public Transform parentOriginal;
+        public Vector3 localPosition;
+        public Quaternion localRotation;
+        public Vector3 localScale;
+    }
 
-    [ContextMenu ("Asignar")]
+    private List<SPInfo> spInfos = new List<SPInfo>();
+
+    [ContextMenu("Asignar")]
     public void AsignarHijos()
     {
         LimpiarHijos();
         gestorPiezas.TransferirPiezasColocadas();
+        spInfos.Clear();
 
-        List<Transform> nietosParaDesvincular = new List<Transform>();
-
-        // Guardamos posiciones originales
         foreach (Transform child in transform)
-        {     
+        {
             hijos.Add(child);
             posicionesOriginales[child] = child.localPosition;
 
-            // Guardar los nietos SP sin desvincular aún
+            List<Transform> nietosSP = new List<Transform>(); // Este se reinicia por cada hijo
+
             foreach (Transform nieto in child)
             {
                 if (nieto.name.StartsWith("SP"))
                 {
-                    if (!nietosSP.ContainsKey(nieto))
+                    spInfos.Add(new SPInfo
                     {
-                        nietosSP[nieto] = child;
-                        nietosParaDesvincular.Add(nieto);
-                    }
+                        spTransform = nieto,
+                        parentOriginal = child,
+                        localPosition = nieto.localPosition,
+                        localRotation = nieto.localRotation,
+                        localScale = nieto.localScale
+                    });
+
+                    nietosSP.Add(nieto);
                 }
             }
 
-            // Ahora sí, desvincular fuera del foreach para evitar modificar la jerarquía durante el recorrido
-            foreach (Transform nieto in nietosParaDesvincular)
+            // Después de recorrer TODOS los nietos de ese hijo, los desemparentamos
+            foreach (Transform sp in nietosSP)
             {
-                nieto.SetParent(null);
+                sp.SetParent(null, true);
+                sp.hasChanged = false;
             }
         }
     }
@@ -64,6 +78,7 @@ public class ExpansionRadial : MonoBehaviour
         hijos.Clear();
         posicionesOriginales.Clear();
     }
+
     [ContextMenu("Expandir")]
     public void Expandir()
     {
@@ -77,17 +92,16 @@ public class ExpansionRadial : MonoBehaviour
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
 
                 if (contraerCoroutine != null)
-                {
                     StopCoroutine(contraerCoroutine);
-                }
+
                 expandirCoroutine = StartCoroutine(ExpandirCoroutine());
             }
-        }         
+        }
     }
 
     [ContextMenu("Contraer")]
     public void Contraer()
-    {     
+    {
         if (!noInteractuar)
         {
             if (contraer)
@@ -97,16 +111,16 @@ public class ExpansionRadial : MonoBehaviour
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionDown, 1);
 
                 if (expandirCoroutine != null)
-                {
                     StopCoroutine(expandirCoroutine);
-                }
+
                 contraerCoroutine = StartCoroutine(ContraerCoroutine());
             }
-        }        
+        }
     }
 
     private IEnumerator ExpandirCoroutine()
     {
+        yield return null; // Esperar 1 frame para asegurarnos de que todo fue desemparentado
         float elapsed = 0f;
         Vector3[] targetPositions = new Vector3[hijos.Count];
 
@@ -117,10 +131,7 @@ public class ExpansionRadial : MonoBehaviour
             {
                 dir = Random.onUnitSphere;
                 Vector3 target = posicionesOriginales[hijos[i]] + dir.normalized * expansionRadius;
-
-                // Clampear Y entre mínimo y máximo
                 target.y = Mathf.Clamp(target.y, alturaMinimaY, alturaMaximaY);
-
                 targetPositions[i] = target;
             }
             else
@@ -144,6 +155,7 @@ public class ExpansionRadial : MonoBehaviour
 
             yield return null;
         }
+
         ManagerMinijuego.singleton.HabilitarBtnEnceder();
         txtBoton.text = "Contraer";
         contraer = true;
@@ -153,8 +165,8 @@ public class ExpansionRadial : MonoBehaviour
     private IEnumerator ContraerCoroutine()
     {
         float elapsed = 0f;
-
         Vector3[] startPositions = new Vector3[hijos.Count];
+
         for (int i = 0; i < hijos.Count; i++)
         {
             startPositions[i] = hijos[i].localPosition;
@@ -173,14 +185,17 @@ public class ExpansionRadial : MonoBehaviour
             yield return null;
         }
 
-        foreach (var kvp in nietosSP)
+        foreach (var info in spInfos)
         {
-            kvp.Key.SetParent(kvp.Value); // Vuelve a ser hijo de su padre original
+            info.spTransform.SetParent(info.parentOriginal, false);
+            info.spTransform.localPosition = info.localPosition;
+            info.spTransform.localRotation = info.localRotation;
+            info.spTransform.localScale = info.localScale;
         }
-        nietosSP.Clear();
+        spInfos.Clear();
 
         ManagerMinijuego.singleton.HabilitarBtnEnceder();
-        txtBoton.text = "Expandir";    
+        txtBoton.text = "Expandir";
         expandir = false;
         contraerCoroutine = null;
     }

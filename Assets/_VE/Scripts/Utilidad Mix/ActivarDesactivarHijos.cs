@@ -10,14 +10,21 @@ public class ActivarDesactivarHijos : MonoBehaviour
     public void ActivarTodosLosHijos()
     {
         if (motor == ManagerMinijuego.singleton.motorArmado)
-        {      
+        {
             foreach (Transform hijo in transform)
             {
-                GuardarPieza pieza = hijo.GetComponent<GuardarPieza>();
-                hijo.gameObject.SetActive(true);
-                pieza.QuitarMaterial();
+                if (!hijo.gameObject.activeSelf) // Solo si está inactivo
+                {
+                    hijo.gameObject.SetActive(true);
+
+                    GuardarPieza pieza = hijo.GetComponent<GuardarPieza>();
+                    if (pieza != null)
+                    {
+                        pieza.AgregarMaterialDisolver(0);
+                    }
+                }
             }
-        }    
+        }
     }
 
 

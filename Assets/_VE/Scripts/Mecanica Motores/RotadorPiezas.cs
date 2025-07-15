@@ -34,6 +34,11 @@ public class RotadorPiezas : MonoBehaviour
                 regresandoARotacionOriginal = false;
                 btnRotar.SetActive(true);
                 btnNoRotar.SetActive(false);
+
+                if (MesaMotor.singleton != null)
+                {
+                    MesaMotor.singleton.motorRotando = false;
+                }
             }
 
             return;
@@ -72,6 +77,7 @@ public class RotadorPiezas : MonoBehaviour
 
     public void RotarEnX()
     {
+        IndicarRotacion();
         gestorPiezas.TransferirPiezasColocadas();
         rotarEnY = false;
         rotarEnZ = false;
@@ -80,6 +86,7 @@ public class RotadorPiezas : MonoBehaviour
 
     public void RotarEnY()
     {
+        IndicarRotacion();
         gestorPiezas.TransferirPiezasColocadas();
         rotarEnX = false;
         rotarEnZ = false;
@@ -88,6 +95,7 @@ public class RotadorPiezas : MonoBehaviour
 
     public void RotarEnZ()
     {
+        IndicarRotacion();
         gestorPiezas.TransferirPiezasColocadas();
         rotarEnY = false;
         rotarEnX = false;
@@ -96,9 +104,18 @@ public class RotadorPiezas : MonoBehaviour
 
     public void RotarEnTodosLosEjes()
     {
+        IndicarRotacion();
         gestorPiezas.TransferirPiezasColocadas();
         rotarEnY = true;
         rotarEnX = true;
         rotarEnZ = true;
+    }
+
+    public void IndicarRotacion()
+    {
+        if (MesaMotor.singleton != null)
+        {
+            MesaMotor.singleton.motorRotando = true;
+        }
     }
 }
