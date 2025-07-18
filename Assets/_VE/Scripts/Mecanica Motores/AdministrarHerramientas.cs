@@ -22,6 +22,11 @@ public class AdministrarHerramientas : MonoBehaviour
 
     public void ReactivarHerramientas()
     {
+        if (herramientas.Count > 0)
+        {
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Pop"); // Ejecutamos el efecto nombrado   
+        }
+
         // Reestablecemos las herramientas que hayamos tomado
         for (int i = 0; i < herramientas.Count; i++)
         {

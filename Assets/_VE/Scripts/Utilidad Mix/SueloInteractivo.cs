@@ -7,16 +7,18 @@ public class SueloInteractivo : MonoBehaviour
     [Header("Referencias Obligatorias")]
     public GameObject canvasWorldSpace; // Hace referencia al canvas que nos indica que tecla oprimir
     public GameObject canvasPrincipal; // Hace referencia al canvas principal del escenario
-    public Button botonSalir; // Referencia al boton del canvas
+    public Button btnSalir; // Referencia al btnSalir del canvas
     public CamaraOrbital camaraPrincipal; // Camara orbital / principal
     public Transform posicionObjetivoCamara; // Posicion a la que deseamos llevar la camara
     public float velocidadPosCamara = 1; // Velocidad de desplazamiento de la camara
-    public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
-    public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
+    
 
     [Header("Referencias Opcionales")]
     public MoverObjeto moverObjeto;
+    public Button btnBajarPlataforma; // Referencia al btnBajarPlataforma del canvas
     public Collider[] piezasMeson; // Piezas sobre la mesa
+    public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
+    public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
 
     private MovimientoJugador movimientoJugador; // Para guardar la referencia del movimiento del jugador
     private Camera camera; // Para guardar referencia a nuestra camara
@@ -24,7 +26,9 @@ public class SueloInteractivo : MonoBehaviour
     private Vector3 posicionOriginal; // para guardar la posicion original
     private Quaternion rotacionOriginal; // para guardar la rotacion original
     private bool interactuar; // Para validar si estoy interactuando
-    private bool salirInteraccion; // Para validar si salgo de la interaccion
+    public bool salirInteraccion; // Para validar si salgo de la interaccion
+    private bool plataformaAbajo; // Para validar si salgo bajando la plataforma
+    private Coroutine coroutine;
     
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class SueloInteractivo : MonoBehaviour
     {
         StartCoroutine(CargaFantasmaCanvas()); // Cargamos los componentes de canvas rapidamente al inicio
         playerLayer = LayerMask.NameToLayer("Player"); // Obtener el número de layer correspondiente al nombre "Player"
+        plataformaAbajo = true; // indicamos que inicialmente la plataforma se encuentra abajo
     }
 
     private void Update()
@@ -43,6 +48,8 @@ public class SueloInteractivo : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
+                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("SueloInteractivo2");
+
                 DesactivarMovimientoJugador(movimientoJugador); // Desactivamos el movimiento del jugador que interactua
 
                 posicionOriginal = camaraPrincipal.transform.position; // Guardamos la posicion original de mi camara orbital antes de interactuar
@@ -53,35 +60,64 @@ public class SueloInteractivo : MonoBehaviour
 
                 if (mesaArmadoMotor && ManagerMinijuego.singleton.minijuegoActivo)
                 {
-                    EntornoMecanica.singleton.AbrirCompuerta(ManagerMinijuego.singleton.posicionMonijuegoActual);
+                    if (plataformaAbajo)
+                    {
+                        EntornoMecanica.singleton.AbrirCompuerta(ManagerMinijuego.singleton.posicionMonijuegoActual);
+                        plataformaAbajo = false;
+                    }
+                    else
+                    {
+                        InicializarMovimientoCamara(ManagerMinijuego.singleton.posicionMonijuegoActual);
+                    }
                 }
                 else if (mesaArmadoMotor)
                 {
-                    EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);
+                    if (plataformaAbajo)
+                    {
+                        EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);
+                        plataformaAbajo = false;
+                    }
+                    else
+                    {
+                        InicializarMovimientoCamara(posicionObjetivoCamara);
+                    }            
                 }
                 else
                 {
-                    StartCoroutine(MoverCamara(posicionObjetivoCamara.position, posicionObjetivoCamara.rotation, velocidadPosCamara)); // Movemos la camara              
+                    InicializarMovimientoCamara(posicionObjetivoCamara);
                 }
 
-                camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje         
-                
+                if (!mesaArmadoMotor && !mesaHerramientas)
+                {
+                    if (ManagerCanvas.singleton != null && ManagerCanvas.singleton.btnReutilizableHabilitado == true && MesaMotor.singleton.interaccionEjecutada == true)
+                    {
+                        ManagerCanvas.singleton.HabilitarBtnReutilizarMotor();
+                    }
+                }
+
+                camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje               
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
-                botonSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
+                btnSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
 
-                if (moverObjeto != null)
-                {
-                    moverObjeto.IniciarDesplazamientoObjeto();
-                }
+                // Si tenemos referenciado el boton lo activamos
+                if (btnBajarPlataforma != null) btnBajarPlataforma.onClick.AddListener(BajarPlataforma);
 
-                if (piezasMeson.Length > 0) // Si tenemos almenos una pieza para interactuar
-                {
-                    ActivarPiezas();
-                }
+                // Si tenemos referenciado el script, ejecutamos
+                if (moverObjeto != null) moverObjeto.IniciarDesplazamientoObjeto();
+
+                // Si tenemos almenos una pieza para interactuar
+                if (piezasMeson.Length > 0) ActivarPiezas();
 
                 interactuar = false; // indicamos que ya no podemos interactuar
             }
         }
+    }
+
+    public void InicializarMovimientoCamara(Transform posicionObjetivo)
+    {
+        if (coroutine != null) StopCoroutine(coroutine);
+
+        coroutine = StartCoroutine(MoverCamara(posicionObjetivo.position, posicionObjetivo.rotation, velocidadPosCamara)); // Movemos la camara 
     }
 
     private void OnTriggerEnter(Collider other)
@@ -147,8 +183,22 @@ public class SueloInteractivo : MonoBehaviour
         }
         else
         {
-            botonSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
-            canvasPrincipal.SetActive(true);  // Activamos canvas informativo         
+            btnSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
+            canvasPrincipal.SetActive(true);  // Activamos canvas informativo
+
+            if (btnBajarPlataforma != null) btnBajarPlataforma.gameObject.SetActive(true);// Si tenemos referenciado el boton lo activamos
+
+            if (mesaArmadoMotor && !plataformaAbajo)
+            {
+                // Si el miijuego esta activo lo desactivamos al momento de salir de la interaccion de la mesa de armado
+                if (ManagerMinijuego.singleton.minijuegoActivo) ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(true);
+
+                if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
+
+                if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = true;
+
+                MesaMotor.singleton.mesaMotorActiva = true;
+            }      
         }
     }
 
@@ -157,32 +207,66 @@ public class SueloInteractivo : MonoBehaviour
     /// </summary>
     public void SalirInteraccion()
     {
-        salirInteraccion = true; // Indicamos que estamos saliendo de la interacion
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("SueloInteractivo2");
 
-        if (moverObjeto != null)
-        {
-            moverObjeto.RetornarPosicionOriginal();
-        }
+        // Indicamos que estamos saliendo de la interacion
+        salirInteraccion = true; 
 
-        if (piezasMeson.Length > 0) // Si tenemos almenos una pieza para interactuar
-        {
-            DesactivarPiezas();
-        }
+        if (moverObjeto != null) moverObjeto.RetornarPosicionOriginal();
 
-        if (mesaArmadoMotor)
+        // Si tenemos almenos una pieza para interactuar
+        if (piezasMeson.Length > 0) DesactivarPiezas();
+
+        if (!plataformaAbajo && mesaArmadoMotor)
         {
-            EntornoMecanica.singleton.CerrarCompuerta();
+            if (ManagerMinijuego.singleton.minijuegoActivo) ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
+
+            if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
+
+            if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = false;
+
+            MesaMotor.singleton.mesaMotorActiva = false;
+
+            if (coroutine != null) StopCoroutine(coroutine);
+            coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
+            HabilitarInfoMesaArmado();      
         }
-        else
+        else if(!mesaArmadoMotor)
         {
-            StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
+            if (coroutine != null) StopCoroutine(coroutine);
+            coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
             HabilitarInfoMesaArmado();
         }
-        
-       camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-       canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo   
-       botonSalir.gameObject.SetActive(false); // Habilitamos el boton de salir
-       botonSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
+
+        camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
+        canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo   
+        btnSalir.gameObject.SetActive(false); // Habilitamos el boton de salir 
+        btnSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
+
+        if (!mesaArmadoMotor && !mesaHerramientas)
+        {
+            if (ManagerCanvas.singleton != null && ManagerCanvas.singleton.btnReutilizableHabilitado == true)
+            {
+                ManagerCanvas.singleton.DeshabilitarBtnReutilizarMotor();
+            }
+        }
+
+        if (btnBajarPlataforma != null)
+        {
+            btnBajarPlataforma.onClick.RemoveListener(BajarPlataforma); // Retiramos el evento actual del boton
+            btnBajarPlataforma.gameObject.SetActive(false);
+        }
+    }
+
+    public void BajarPlataforma()
+    {
+        if (EntornoMecanica.singleton != null)
+        {
+            plataformaAbajo = true;
+            SalirInteraccion();
+            EntornoMecanica.singleton.CerrarCompuerta();       
+            btnBajarPlataforma.gameObject.SetActive(false);       
+        }  
     }
 
     public void HabilitarInfoMesaArmado()
@@ -242,10 +326,10 @@ public class SueloInteractivo : MonoBehaviour
     {
         canvasWorldSpace.SetActive(true);
         canvasPrincipal.SetActive(true);
-        botonSalir.gameObject.SetActive(true);
+        btnSalir.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.01f);
         canvasWorldSpace.SetActive(false);
         canvasPrincipal.SetActive(false);
-        botonSalir.gameObject.SetActive(false);
+        btnSalir.gameObject.SetActive(false);
     }
 }

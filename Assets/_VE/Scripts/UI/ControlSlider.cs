@@ -19,6 +19,7 @@ public class ControlSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             {
                 if (ManagerCanvas.singleton != null)
                 {
+                    if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
                     string texto = "Estas utilizando el tamaño de llave incorrecta, necesitas la llave de     "+ ManagerMinijuego.singleton.sizeHerramienta+ " mm, vuelve a intentarlo";
                     ManagerCanvas.singleton.AlertarMensaje(texto);
                 }         

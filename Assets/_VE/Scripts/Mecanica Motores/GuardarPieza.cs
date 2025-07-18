@@ -82,12 +82,17 @@ public class GuardarPieza : MonoBehaviour
         }    
     }
 
+    /// <summary>
+    /// Metodo utilizado para instanciar la pieza en el canvas, en el inventario y ser guardada
+    /// </summary>
     public void InteractuarPieza()
     {
         if (InventarioUI.singleton != null)
         {
             if (InventarioUI.singleton.contadorInstancias < 12) // Si todavia tengo capacidad en el inventario
             {
+                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("TomarPieza2"); // Ejecutamos el efecto nombrado
+
                 puedoInteractuar = true;
 
                 InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza, piezaExterna); // instanciamos en el inventario
@@ -102,6 +107,7 @@ public class GuardarPieza : MonoBehaviour
             }
             else
             {
+                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
                 string texto = "El Inventario Se Encuentra LLeno, Debes Liberar Espacio Primero";
                 ManagerCanvas.singleton.AlertarMensaje(texto);
             }

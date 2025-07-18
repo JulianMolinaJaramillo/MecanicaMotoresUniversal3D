@@ -73,6 +73,8 @@ public class GuardarHerramienta : MonoBehaviour
         {
             puedoInteractuar = true;
 
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("TomarPieza"); // Ejecutamos el efecto nombrado
+
             InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen, sizeHerramienta);
             ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
 
@@ -107,6 +109,7 @@ public class GuardarHerramienta : MonoBehaviour
             if (AdministrarHerramientas.singleton != null)
             {
                 AdministrarHerramientas.singleton.ReactivarHerramientas(); // Reactivamos la herramienta antes desactivada
+                AdministrarHerramientas.singleton.herramientas.Clear();// limpiamos de herramientas
                 AdministrarHerramientas.singleton.herramientas.Add(this.gameObject); // Agregamos la herramienta a nuestro administrador
             }
 

@@ -148,6 +148,7 @@ public class MoverPieza : MonoBehaviour
         {
             ManagerCanvas.singleton.DeshabilitarBtnSalir();
             ManagerCanvas.singleton.DeshabilitarBtnRotar();
+            ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
         }
         if (coroutine != null)
         {
@@ -162,6 +163,8 @@ public class MoverPieza : MonoBehaviour
     /// <param name="duracion"> Tiempo del movimiento de la pieza</param>
     public IEnumerator MoverPiezaSuavemente(float duracion)
     {
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("PiezaColocada"); // Ejecutamos el efecto nombrado
+
         Vector3 inicio = transform.localPosition; // Trabajamos en local
         float tiempo = 0f;
 
@@ -200,6 +203,7 @@ public class MoverPieza : MonoBehaviour
         {
             ManagerCanvas.singleton.HabilitarBtnSalir();
             ManagerCanvas.singleton.HabilitarBtnRotar();
+            ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         }
 
         coroutine = null;

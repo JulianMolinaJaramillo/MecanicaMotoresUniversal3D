@@ -6,9 +6,15 @@ public class ManagerCanvas : MonoBehaviour
 {
     [Header("ESTA ES UNA CLASE SINGLETON")]
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public MovimientoJugador movimientoJugador; // Referencia al movimiento jugador principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject menuPausa; // Referencia al Menu Pausa del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnRotar; // Referencia al boton btnSalir del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button btnBajarPlataforma; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnReutilizarMotor; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -19,7 +25,11 @@ public class ManagerCanvas : MonoBehaviour
     public GameObject mensajeAlerta;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
-    
+
+    [HideInInspector]
+    public bool btnReutilizableHabilitado;
+    [HideInInspector]
+    public bool juegoPausado;
     public static ManagerCanvas singleton;
 
     private void Awake()
@@ -32,6 +42,29 @@ public class ManagerCanvas : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!juegoPausado)
+            {
+                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                juegoPausado = true;
+                menuPausa.SetActive(true);
+                movimientoJugador.enabled = false;
+                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
+            }
+            else
+            {
+                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+                juegoPausado = false;
+                menuPausa.SetActive(false);
+                movimientoJugador.enabled = true;
+                if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
+            }
         }
     }
 
@@ -96,9 +129,25 @@ public class ManagerCanvas : MonoBehaviour
         btnRotar.interactable = false;
     }
 
+    /// <summary>
+    /// Para habilitar el interactuable del BtnBajarPlataforma salir donde se requiera
+    /// </summary>
+    public void HabilitarBtnBajarPlataforma()
+    {
+        btnBajarPlataforma.interactable = true;
+    }
 
     /// <summary>
-    /// Para habilitar el interactuable del boton btnReutilizarMotor donde se requiera
+    /// Para deshabilitar el interactuable del BtnBajarPlataforma salir donde se requiera
+    /// </summary>
+    public void DeshabilitarBtnBajarPlataforma()
+    {
+        btnBajarPlataforma.interactable = false;
+    }
+
+
+    /// <summary>
+    /// Para habilitar el boton btnReutilizarMotor donde se requiera
     /// </summary>
     public void HabilitarBtnReutilizarMotor()
     {
@@ -106,7 +155,7 @@ public class ManagerCanvas : MonoBehaviour
     }
 
     /// <summary>
-    /// Para deshabilitar el interactuable del boton btnReutilizarMotor donde se requiera
+    /// Para deshabilitar el boton btnReutilizarMotor donde se requiera
     /// </summary>
     public void DeshabilitarBtnReutilizarMotor()
     {

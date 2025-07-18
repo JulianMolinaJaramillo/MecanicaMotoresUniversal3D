@@ -43,6 +43,7 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionAbrirCompuertas()
     {
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Compuerta"); // Ejecutamos el efecto nombrado
         for (int i = 0; i < compuertas.Length; i++)
         {
             compuertas[i].IniciarDesplazamientoObjeto();
@@ -52,7 +53,7 @@ public class EntornoMecanica : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         luzPrincipal.enabled = true;
-        luzPrincipal.intensity = 20;
+        SubirIntensidadLuzPrincipal();
 
         mesa.IniciarDesplazamientoObjeto();
         rotacionObjeto.enabled = true;
@@ -64,6 +65,7 @@ public class EntornoMecanica : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Particulas"); // Ejecutamos el efecto nombrado
         if (VibracionCamara.singleton != null)
         {
             VibracionCamara.singleton.MoverCamaraConVibracion(posicionDeseada[1],5f,0.007f);
@@ -133,8 +135,7 @@ public class EntornoMecanica : MonoBehaviour
             luces[i].SetActive(true);
         }
 
-        luzPrincipal.intensity = 1;
-        rotacionObjeto.enabled = false;
+        BajarIntensidadLuzPrincipal();
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
         sueloInteractivo.SaliendoInteraccion();
         iniciarCompuertas = null;
@@ -147,8 +148,11 @@ public class EntornoMecanica : MonoBehaviour
 
     private IEnumerator IniciarAnimacionCerrarCompuertas()
     {
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Particulas"); // Ejecutamos el efecto nombrado
+
         MesaMotor.singleton.mesaMotorActiva = false;
-        luzPrincipal.intensity = 20;
+        SubirIntensidadLuzPrincipal();
+
         if (ControlCamaraMotor.singleton != null) // Si es diferente de null deshabilitamos el script
         {
             ControlCamaraMotor.singleton.enabled = false;
@@ -187,6 +191,7 @@ public class EntornoMecanica : MonoBehaviour
         }
        
         yield return new WaitForSeconds(3f);
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Compuerta"); // Ejecutamos el efecto nombrado
 
         mesa.RetornarPosicionOriginal();
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0], 1.5f);
@@ -212,6 +217,7 @@ public class EntornoMecanica : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
 
+        rotacionObjeto.enabled = false;
         luzPrincipal.enabled = false;
 
         yield return new WaitForSeconds(1);
@@ -220,5 +226,15 @@ public class EntornoMecanica : MonoBehaviour
         sueloInteractivo.HabilitarInfoMesaArmado();
         
         iniciarCompuertas = null;
+    }
+
+    public void SubirIntensidadLuzPrincipal()
+    {
+        luzPrincipal.intensity = 20;
+    }
+
+    public void BajarIntensidadLuzPrincipal()
+    {
+        luzPrincipal.intensity = 1;
     }
 }

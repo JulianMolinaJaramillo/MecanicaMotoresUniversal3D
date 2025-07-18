@@ -11,6 +11,7 @@ public class ActivarDesactivarHijos : MonoBehaviour
     {
         if (motor == ManagerMinijuego.singleton.motorArmado)
         {
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("AparecerPieza"); // Ejecutamos el efecto nombrado
             foreach (Transform hijo in transform)
             {
                 if (!hijo.gameObject.activeSelf) // Solo si está inactivo

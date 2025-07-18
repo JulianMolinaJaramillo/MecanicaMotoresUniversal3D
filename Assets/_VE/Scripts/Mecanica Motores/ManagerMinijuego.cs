@@ -121,7 +121,7 @@ public class ManagerMinijuego : MonoBehaviour
             Debug.Log("todo good");
             if (ManagerCanvas.singleton != null)
             {
-                ManagerCanvas.singleton.HabilitarBtnReutilizarMotor();
+                ManagerCanvas.singleton.btnReutilizableHabilitado = true;
             }
         }
         else

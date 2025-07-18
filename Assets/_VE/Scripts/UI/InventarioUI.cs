@@ -113,6 +113,11 @@ public class InventarioUI : MonoBehaviour
     /// </summary>
     public void ReestablecerHerramientaInventario()
     {
+        if (AdministrarHerramientas.singleton != null)
+        {
+            AdministrarHerramientas.singleton.herramientas.Clear(); // Limpiamos la lista de herramientas
+        }
+        
         imgHerramienta.sprite = spriteActualHerramienta;
         txtHerramienta.text = "";
         tamanoHerramienta = 0;

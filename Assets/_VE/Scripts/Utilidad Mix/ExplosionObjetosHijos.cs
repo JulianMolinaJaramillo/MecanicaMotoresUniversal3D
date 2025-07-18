@@ -13,7 +13,7 @@ public class ExplosionObjetosHijos : MonoBehaviour
     public float radioExplosion = 5f;
 
     [Header("Configuración de vibración previa a la explosión")]
-    public float duracionVibracion = 1.5f;
+    public float duracionVibracion = 5f;
     public float intensidadVibracion = 0.05f; // qué tanto se mueven las piezas
 
     public static ExplosionObjetosHijos singleton;
@@ -124,6 +124,7 @@ public class ExplosionObjetosHijos : MonoBehaviour
             }
         }
 
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("DestruccionMotor"); // Ejecutamos el efecto nombrado
         // 3. Aplicar explosión
         foreach (Transform pieza in padre.transform)
         {

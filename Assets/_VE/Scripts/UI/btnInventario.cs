@@ -14,6 +14,8 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         if (MesaMotor.singleton.mesaMotorActiva) // Solo instanciamos si estamos en la mesa de armado
         {
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("AparecerPieza"); // Ejecutamos el efecto nombrado
+
             // Generar variación aleatoria en cada eje
             float offsetX = Random.Range(-0.5f, 0.5f);
             float offsetY = Random.Range(-0.2f, -0.1f);
@@ -31,6 +33,7 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
             string texto = "Debes ir primero a la mesa de armado para colocar la pieza";
             ManagerCanvas.singleton.AlertarMensaje(texto);
         }

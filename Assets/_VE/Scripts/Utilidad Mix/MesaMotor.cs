@@ -32,6 +32,7 @@ public class MesaMotor : MonoBehaviour
     private IEnumerator DetenerMotor()
     {
         interaccionEjecutada = true;
+        if (ManagerCanvas.singleton != null) ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
 
         for (int i = 0; i < rotadorPiezas.Length; i++)
         {
@@ -49,10 +50,12 @@ public class MesaMotor : MonoBehaviour
 
         ExplosionObjetosHijos.singleton.ExplotarTodo();
 
-        if (ManagerCanvas.singleton != null)
+        yield return new WaitForSeconds(ExplosionObjetosHijos.singleton.duracionVibracion);
+        if (ManagerCanvas.singleton != null) 
         {
-            ManagerCanvas.singleton.HabilitarBtnReutilizarMotor();
-        }
+            ManagerCanvas.singleton.btnReutilizableHabilitado = true;
+            ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+        } 
     }
 
     /// <summary>
@@ -61,6 +64,7 @@ public class MesaMotor : MonoBehaviour
     public void RehabilitarInteraccionesMotor()
     {
         interaccionEjecutada = false;
+        if (ManagerCanvas.singleton != null) ManagerCanvas.singleton.btnReutilizableHabilitado = false;
 
         for (int i = 0; i < rotadorPiezas.Length; i++)
         {
