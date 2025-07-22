@@ -8,6 +8,8 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public MovimientoJugador movimientoJugador; // Referencia al movimiento jugador principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject menuBienvenida; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
@@ -45,6 +47,13 @@ public class ManagerCanvas : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (menuBienvenida != null)
+        {
+            menuBienvenida.SetActive(true);
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

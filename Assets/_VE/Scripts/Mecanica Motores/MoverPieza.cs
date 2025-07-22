@@ -15,8 +15,8 @@ public class MoverPieza : MonoBehaviour
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
     public Material materialDisolver; // Para el material de disolucion
     public float tiempoDisolver; // Para controlar el tiempo de disolver 
-    public Collider[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
-    public Collider[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
+    public GameObject[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
+    public GameObject[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
 
     private Vector3 offset; // Para almacenar la diferencia entre la posicion del objeto y el punto de click
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
@@ -141,8 +141,7 @@ public class MoverPieza : MonoBehaviour
     {
         noMover = true;
         collider.enabled = false;  
-        DesactivarSnappColliders();
-        ActivarSnappColliders();
+        DesactivarSnapp();
 
         if (ManagerCanvas.singleton != null)
         {
@@ -177,6 +176,7 @@ public class MoverPieza : MonoBehaviour
 
         transform.localPosition = posicionObjetivo; // Posición final también en local
         piezaColocada = true;
+        ActivarSnapp();
         QuitarMateriales();
 
         // Validamos si la pieza a colocar activa minijuego, de ser asi enviamos los datos necesarios
@@ -212,13 +212,13 @@ public class MoverPieza : MonoBehaviour
     /// <summary>
     /// Metodo encargado de desactivar los collider de los snapPoint
     /// </summary>
-    void DesactivarSnappColliders()
+    void DesactivarSnapp()
     {
         if (snappsParaDesactivar.Length > 0)
         {
             for (int i = 0; i < snappsParaDesactivar.Length; i++)
             {
-                snappsParaDesactivar[i].enabled = false;
+                snappsParaDesactivar[i].SetActive(false);
             }
         }    
     }
@@ -226,13 +226,13 @@ public class MoverPieza : MonoBehaviour
     /// <summary>
     /// Metodo encargado de desactivar los collider de los snapPoint
     /// </summary>
-    void ActivarSnappColliders()
+    void ActivarSnapp()
     {
         if (snappsParaActivar.Length > 0)
         {
             for (int i = 0; i < snappsParaActivar.Length; i++)
             {
-                snappsParaActivar[i].enabled = true;
+                snappsParaActivar[i].SetActive(true);
             }
         }    
     }
