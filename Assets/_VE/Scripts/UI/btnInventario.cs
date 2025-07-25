@@ -17,16 +17,21 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("AparecerPieza"); // Ejecutamos el efecto nombrado
 
             // Generar variación aleatoria en cada eje
-            float offsetX = Random.Range(-0.5f, 0.5f);
-            float offsetY = Random.Range(-0.2f, -0.1f);
-            float offsetZ = Random.Range(-0.2f, 0.1f);
+            float offsetX = Random.Range(-0.4f, 0.6f);
+            float offsetY = Random.Range(-0.4f, 0.1f);
+            float offsetZ = Random.Range(-0.1f, 0.2f);
 
             // Crear una nueva posición basada en los cambios de los ejes
-            Vector3 nuevaPosicion = posicionInstancia.position + new Vector3(offsetX, offsetY, offsetZ);
+            Vector3 offsetLocal = new Vector3(offsetX, offsetY, offsetZ);
 
-            // Instanciar el objeto con su rotación original (la del prefab)
-            GameObject nuevaPieza = Instantiate(prebafInstancia, nuevaPosicion, prebafInstancia.transform.rotation);
-            nuevaPieza.transform.SetParent(posicionInstancia); // Formamos la pieza instancia hija de la  posicionInstancia
+            // Instanciar como hijo de la posición deseada (ya con la rotación del prefab)
+            GameObject nuevaPieza = Instantiate(prebafInstancia, posicionInstancia);
+
+            // Seteamos la posicion inicil en 0
+            nuevaPieza.transform.localPosition = Vector3.zero;
+
+            // Aplicar desplazamiento en espacio local respecto al padre
+            nuevaPieza.transform.localPosition += offsetLocal;
 
             InventarioUI.singleton.contadorInstancias -= 1; // Liberamos espacio en el inventario
             Destroy(this.gameObject); // Destruimos el boton

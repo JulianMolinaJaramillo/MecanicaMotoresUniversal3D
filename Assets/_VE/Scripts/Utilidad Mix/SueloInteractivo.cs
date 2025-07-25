@@ -26,6 +26,7 @@ public class SueloInteractivo : MonoBehaviour
     private Vector3 posicionOriginal; // para guardar la posicion original
     private Quaternion rotacionOriginal; // para guardar la rotacion original
     private bool interactuar; // Para validar si estoy interactuando
+    [HideInInspector]
     public bool salirInteraccion; // Para validar si salgo de la interaccion
     private bool plataformaAbajo; // Para validar si salgo bajando la plataforma
     private Coroutine coroutine;

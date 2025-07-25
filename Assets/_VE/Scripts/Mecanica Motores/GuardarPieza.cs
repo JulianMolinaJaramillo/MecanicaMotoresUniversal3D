@@ -15,7 +15,7 @@ public class GuardarPieza : MonoBehaviour
 
     public GameObject prefabInstancia; // El prefab que posteriormente instanciará esa pieza
     public Sprite icono; // Imagen para mostrar en el botón del inventario
-    public bool piezaExterna;
+    public bool piezaExterna; // Para identificar si instanciamos en el punto de instancia interno o externo
 
     public MessageOnly mensaje1 = new MessageOnly("Si lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
