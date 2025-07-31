@@ -10,6 +10,8 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject menuBienvenida; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject menuEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
@@ -52,6 +54,7 @@ public class ManagerCanvas : MonoBehaviour
         if (menuBienvenida != null)
         {
             menuBienvenida.SetActive(true);
+            menuEleccionMotor.SetActive(true);
         }
     }
     private void Update()
@@ -169,5 +172,25 @@ public class ManagerCanvas : MonoBehaviour
     public void DeshabilitarBtnReutilizarMotor()
     {
         btnReutilizarMotor.SetActive(false);
+    }
+
+    public void ActivarMenuPrincipal()
+    {
+        menuPausa.SetActive(true);
+    }
+
+    public void DesactivarMenuPrincipal()
+    {
+        menuPausa.SetActive(false);
+    }
+
+    public void ActivarMenuEleccionMotor()
+    {
+        menuEleccionMotor.SetActive(true);
+    }
+
+    public void DesactivarMenuEleccionMotor()
+    {
+        menuEleccionMotor.SetActive(false);
     }
 }

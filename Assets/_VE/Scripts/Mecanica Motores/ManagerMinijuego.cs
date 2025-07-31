@@ -26,7 +26,7 @@ public class ManagerMinijuego : MonoBehaviour
     [HideInInspector]
     public bool aplicandoTorque;
     //[HideInInspector]
-    public string motorArmado;
+    public string motorActivo;
 
 
     private int contador = 0;
@@ -66,6 +66,15 @@ public class ManagerMinijuego : MonoBehaviour
     public void DeshabilitarBtnEnceder()
     {
         btnEncenderMotor.interactable = false;
+    }
+
+    /// <summary>
+    /// Metodo invocado desde los botones de Eleccion Motor en el canvas principal
+    /// </summary>
+    /// <param name="nombreMotor"> Nombre del motor que se va a proceder con el armado</param>
+    public void AsignarMotorActivo(string nombreMotor)
+    {
+        motorActivo = nombreMotor;
     }
 
     public void ActivarMinijuego()

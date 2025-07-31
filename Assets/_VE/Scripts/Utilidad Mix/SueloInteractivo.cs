@@ -96,7 +96,7 @@ public class SueloInteractivo : MonoBehaviour
                     }
                 }
 
-                camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje               
+                camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 btnSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
 

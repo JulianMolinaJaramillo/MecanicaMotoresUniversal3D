@@ -195,7 +195,7 @@ public class MoverPieza : MonoBehaviour
             if (ManagerMinijuego.singleton != null)
             {
                 ManagerMinijuego.singleton.ValidarMiniJuego();
-                ManagerMinijuego.singleton.motorArmado = nombreMotor;
+                ManagerMinijuego.singleton.motorActivo = nombreMotor;
             }
         }
 

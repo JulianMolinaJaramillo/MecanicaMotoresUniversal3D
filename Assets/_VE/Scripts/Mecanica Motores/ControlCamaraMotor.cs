@@ -4,12 +4,13 @@ using UnityEngine;
 public class ControlCamaraMotor : MonoBehaviour
 {
     public Transform camara; // Camara objetivo
-    public Transform posicionUp, posicionDown, posicionLeft, posicionRight; // Posiciones en los puntos donde queremos mover la camara
+    public Transform posicionDown; // Posicion por defecto de la vista del motor
+    public Transform[] posicionesCamara; // Lista de posiciones de cámara para ejercer una rotacion
+    public Transform[] posicionesCamaraUp; // Lista de posiciones de cámara para ejercer una rotacion pero la vista desde arriba
     public Transform posicionExpansion;
-    
     public float velocidadPos = 1; // Velocidad de desplazamiento
-    private bool noMover; // Para saber si debo o no mover la camara
 
+    private int indiceActual = 0;  // Índice de la posición actual
     private Coroutine miCoroutine;
     public static ControlCamaraMotor singleton;
 
@@ -27,35 +28,29 @@ public class ControlCamaraMotor : MonoBehaviour
     }
     private void Update()
     {
-        if (!noMover && !ManagerMinijuego.singleton.minijuegoActivo)
-        {
-            if (miCoroutine != null)
-            {
-                StopCoroutine(miCoroutine);
-            }
-
+        if (!ManagerMinijuego.singleton.minijuegoActivo)
+        {  
             // Validamos si presionamos las flechas de direccion del tecla o las teclas ASDW
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
-                miCoroutine = StartCoroutine(MoverCamara(posicionUp, velocidadPos));
-                noMover = true;
+                IniciarMovimientoCamara(posicionesCamaraUp[indiceActual], velocidadPos);
             }
 
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
-                miCoroutine = StartCoroutine(MoverCamara(posicionDown, velocidadPos));
-                noMover = true;
+                IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                miCoroutine = StartCoroutine(MoverCamara(posicionLeft, velocidadPos));
-                noMover = true;
+                indiceActual = (indiceActual + 1) % posicionesCamara.Length;
+                IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
             }
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                miCoroutine = StartCoroutine(MoverCamara(posicionRight, velocidadPos));
-                noMover = true;
+                indiceActual = (indiceActual - 1 + posicionesCamara.Length) % posicionesCamara.Length;
+                IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);      
             }
         }
     }
@@ -67,7 +62,7 @@ public class ControlCamaraMotor : MonoBehaviour
         {
             StopCoroutine(miCoroutine);
         }
-        noMover = true;
+
         miCoroutine = StartCoroutine(MoverCamara(posicionDeseada, duracion));
     }
 
@@ -95,8 +90,6 @@ public class ControlCamaraMotor : MonoBehaviour
 
         camara.transform.position = posicionDeseada.position; // Aseguramos la posición final
         camara.transform.rotation = posicionDeseada.rotation; // Aseguramos la rotacion final
-
-        noMover = false; // indicamos que podemos volver a mover
 
         if (ManagerMinijuego.singleton != null)
         {

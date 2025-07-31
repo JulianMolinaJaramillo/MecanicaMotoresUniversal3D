@@ -9,7 +9,7 @@ public class ActivarDesactivarHijos : MonoBehaviour
     [ContextMenu("Activar")]
     public void ActivarTodosLosHijos()
     {
-        if (motor == ManagerMinijuego.singleton.motorArmado)
+        if (motor == ManagerMinijuego.singleton.motorActivo)
         {
             if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("AparecerPieza"); // Ejecutamos el efecto nombrado
             foreach (Transform hijo in transform)

@@ -108,8 +108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.0000001}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.0810738, y: 1, z: 1.0000001}
+  m_Center: {x: 0.040536955, y: 0, z: 0}
 --- !u!54 &8553787374223191998
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   activaMinijuego: 0
-  piezaFinal: 1
+  piezaFinal: 0
   nombreMotor: Diesel
   sizeMinijuego: 6
   posicionObjetivo: {x: 0.0166, y: -0.4519, z: 0.0083}
@@ -506,7 +506,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5698940728948790437}
-  m_Mesh: {fileID: 6416302070336371891, guid: 75b19cb617a39d04e92810dd419729a2, type: 3}
+  m_Mesh: {fileID: 6416302070336371891, guid: 10ccd17d89d12d547b13b5fe39197318, type: 3}
 --- !u!23 &4050130594612235657
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -568,8 +568,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.0026631237, y: 0.004466572, z: 0.0011888575}
-  m_Center: {x: 0.0002015617, y: -0.0022312156, z: -0.00059442874}
+  m_Size: {x: 0.0028880404, y: 0.0044665714, z: 0.0011888574}
+  m_Center: {x: 0.00031402044, y: -0.0022312154, z: -0.00059442874}
 --- !u!54 &1368315882821741304
 Rigidbody:
   m_ObjectHideFlags: 0
