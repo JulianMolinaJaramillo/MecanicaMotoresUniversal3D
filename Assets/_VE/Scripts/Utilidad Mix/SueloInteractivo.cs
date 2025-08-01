@@ -73,6 +73,8 @@ public class SueloInteractivo : MonoBehaviour
                 }
                 else if (mesaArmadoMotor)
                 {
+                    ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
                     if (plataformaAbajo)
                     {
                         EntornoMecanica.singleton.AbrirCompuerta(posicionObjetivoCamara);

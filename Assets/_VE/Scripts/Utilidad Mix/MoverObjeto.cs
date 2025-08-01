@@ -6,7 +6,9 @@ public class MoverObjeto : MonoBehaviour
     public Vector3 posicionObjetivo; // Camara objetivo
     public Quaternion rotacionObjetivo; // Camara objetivo
 
-    public float velocidadMovimiento = 1; // Velocidad de desplazamiento
+    public float velocidadMovimiento = 1f; // Velocidad de desplazamiento
+    public bool iniciarAnimado;
+    public float intervaloTiempo = 1f;
     private Vector3 posicionInicial; // Para saber si debo o no mover la camara
     private Quaternion rotacionInicial; // Para saber si debo o no mover la camara
 
@@ -15,6 +17,16 @@ public class MoverObjeto : MonoBehaviour
     {
         posicionInicial = transform.localPosition; //  Guardamos la posicion de inicial
         rotacionInicial = transform.localRotation; //  Guardamos la rotacion de inicial
+
+        if (iniciarAnimado)
+        {
+            // Si ya se está ejecutando una corrutina, la detenemos primero
+            if (movimientoActual != null)
+            {
+                StopCoroutine(movimientoActual);
+            }
+            movimientoActual = StartCoroutine(MoverRepetidamente());
+        }
     }
 
     [ContextMenu("si")]
@@ -25,7 +37,7 @@ public class MoverObjeto : MonoBehaviour
         {
             StopCoroutine(movimientoActual);
         }
-        movimientoActual = StartCoroutine(MoverCamara(posicionObjetivo, rotacionObjetivo, velocidadMovimiento));
+        movimientoActual = StartCoroutine(MoverObjetoA(posicionObjetivo, rotacionObjetivo, velocidadMovimiento));
     }
 
     [ContextMenu("no")]
@@ -36,7 +48,7 @@ public class MoverObjeto : MonoBehaviour
         {
             StopCoroutine(movimientoActual);
         }
-        movimientoActual = StartCoroutine(MoverCamara(posicionInicial, rotacionInicial, velocidadMovimiento));
+        movimientoActual = StartCoroutine(MoverObjetoA(posicionInicial, rotacionInicial, velocidadMovimiento));
     }
 
     /// <summary>
@@ -45,7 +57,7 @@ public class MoverObjeto : MonoBehaviour
     /// <param name="posicionDeseada">La posición local deseada</param>
     /// <param name="rotacionDeseada">La rotación local deseada</param>
     /// <param name="duracion">Duración del movimiento</param>
-    public IEnumerator MoverCamara(Vector3 posicionDeseada, Quaternion rotacionDeseada, float duracion)
+    public IEnumerator MoverObjetoA(Vector3 posicionDeseada, Quaternion rotacionDeseada, float duracion)
     {
         Vector3 posicionInicio = transform.localPosition; //  Guardamos la posicion de inicio
         Quaternion rotacionInicio = transform.localRotation; //  Guardamos la rotacion de inicio
@@ -64,5 +76,23 @@ public class MoverObjeto : MonoBehaviour
 
         transform.localPosition = posicionDeseada; // Aseguramos la posición final
         transform.localRotation = rotacionDeseada; // Aseguramos la rotacion final
+    }
+
+    private IEnumerator MoverRepetidamente()
+    {
+        while (true)
+        {
+            // Mover hacia la posición objetivo
+            movimientoActual = StartCoroutine(MoverObjetoA(posicionObjetivo, rotacionObjetivo, velocidadMovimiento));
+            yield return movimientoActual;
+
+            yield return new WaitForSeconds(intervaloTiempo);
+
+            // Mover hacia la posición inicial
+            movimientoActual = StartCoroutine(MoverObjetoA(posicionInicial, rotacionInicial, velocidadMovimiento));
+            yield return movimientoActual;
+
+            yield return new WaitForSeconds(intervaloTiempo);
+        }
     }
 }

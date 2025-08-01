@@ -86,6 +86,8 @@ public class ExpansionRadial : MonoBehaviour
         {
             if (!expandir)
             {
+                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
                 ManagerMinijuego.singleton.DeshabilitarBtnEnceder();
                 expandir = true;
                 AsignarHijos();
@@ -106,9 +108,11 @@ public class ExpansionRadial : MonoBehaviour
         {
             if (contraer)
             {
+                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
                 ManagerMinijuego.singleton.DeshabilitarBtnEnceder();
                 contraer = false;
-                ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionDown, 1);
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
 
                 if (expandirCoroutine != null)
                     StopCoroutine(expandirCoroutine);

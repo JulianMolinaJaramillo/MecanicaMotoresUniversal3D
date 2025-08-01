@@ -99,7 +99,7 @@ public class ManagerMinijuego : MonoBehaviour
     public void DesactivarMinijuego()
     {
         Atornillar.singleton.ReiniciarValorSlider();
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionDown, 1);
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
         contador = 0;
         minijuegoActivo = false;
         miniJuegoAtornillar.SetActive(false);

@@ -1,16 +1,25 @@
 using System.Collections;
+using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class ControlCamaraMotor : MonoBehaviour
 {
     public Transform camara; // Camara objetivo
-    public Transform posicionDown; // Posicion por defecto de la vista del motor
+    public Transform posicionFrontal; // Posicion por defecto de la vista del motor    
     public Transform[] posicionesCamara; // Lista de posiciones de cámara para ejercer una rotacion
-    public Transform[] posicionesCamaraUp; // Lista de posiciones de cámara para ejercer una rotacion pero la vista desde arriba
+    public Transform[] posicionesCamaraArriba; // Lista de posiciones de cámara para ejercer una rotacion pero la vista desde arriba
+    public Transform[] posicionesCamaraAbajo; // Lista de posiciones de cámara para ejercer una rotacion pero la vista desde abajo
     public Transform posicionExpansion;
     public float velocidadPos = 1; // Velocidad de desplazamiento
 
-    private int indiceActual = 0;  // Índice de la posición actual
+    [HideInInspector]
+    public int indiceActual = 0;  // Índice de la posición actual
+    //[HideInInspector]
+    public bool posicionadoArriba; // Para confirmar si estoy en las camaras sobre el motor
+    //[HideInInspector]
+    public bool posicionadoEnMedio; // Para confirmar si estoy en las camaras alrededor del motor
+    //[HideInInspector]
+    public bool posicionadoAbajo; // Para confirmar si estoy en las camaras debajo del motor
     private Coroutine miCoroutine;
     public static ControlCamaraMotor singleton;
 
@@ -33,26 +42,83 @@ public class ControlCamaraMotor : MonoBehaviour
             // Validamos si presionamos las flechas de direccion del tecla o las teclas ASDW
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
-                IniciarMovimientoCamara(posicionesCamaraUp[indiceActual], velocidadPos);
+                if (posicionadoAbajo)
+                {
+                    IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
+                    posicionadoAbajo = false;
+                    posicionadoEnMedio = true;
+                }
+                else
+                {
+                    IniciarMovimientoCamara(posicionesCamaraArriba[indiceActual], velocidadPos);
+                    posicionadoEnMedio = false;
+                    posicionadoArriba = true;
+                }            
             }
 
             if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
             {
-                IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
+                if (!posicionadoAbajo)
+                {
+                    if (posicionadoEnMedio)
+                    {
+                        IniciarMovimientoCamara(posicionesCamaraAbajo[indiceActual], velocidadPos);
+                        posicionadoAbajo = true;
+                        posicionadoEnMedio = false;
+                    }
+                    else
+                    {
+                        IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
+                        posicionadoEnMedio = true;
+                    }
+                    posicionadoArriba = false;
+                }          
             }
 
             if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
                 indiceActual = (indiceActual + 1) % posicionesCamara.Length;
-                IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
+
+                if (posicionadoArriba)
+                {
+                    IniciarMovimientoCamara(posicionesCamaraArriba[indiceActual], velocidadPos);
+                }
+                else if (posicionadoAbajo)
+                {
+                    IniciarMovimientoCamara(posicionesCamaraAbajo[indiceActual], velocidadPos);
+                }
+                else
+                {
+                    IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 indiceActual = (indiceActual - 1 + posicionesCamara.Length) % posicionesCamara.Length;
-                IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);      
+
+                if (posicionadoArriba)
+                {
+                    IniciarMovimientoCamara(posicionesCamaraArriba[indiceActual], velocidadPos);
+                }
+                else if (posicionadoAbajo)
+                {
+                    IniciarMovimientoCamara(posicionesCamaraAbajo[indiceActual], velocidadPos);
+                }
+                else
+                {
+                    IniciarMovimientoCamara(posicionesCamara[indiceActual], velocidadPos);
+                }                
             }
         }
+    }
+
+    public void ReestablecerPosicionCamara()
+    {
+        indiceActual = 0;
+        posicionadoArriba = false;
+        posicionadoAbajo = false;
+        posicionadoEnMedio = true;
     }
 
 

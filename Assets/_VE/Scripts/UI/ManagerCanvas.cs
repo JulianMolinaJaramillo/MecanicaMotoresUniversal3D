@@ -34,7 +34,9 @@ public class ManagerCanvas : MonoBehaviour
     public bool btnReutilizableHabilitado;
     [HideInInspector]
     public bool juegoPausado;
+    public bool activarTutorial;
     public static ManagerCanvas singleton;
+
 
     private void Awake()
     {
@@ -51,11 +53,14 @@ public class ManagerCanvas : MonoBehaviour
 
     private void Start()
     {
-        if (menuBienvenida != null)
+        if (activarTutorial)
         {
-            menuBienvenida.SetActive(true);
-            menuEleccionMotor.SetActive(true);
-        }
+            if (menuBienvenida != null)
+            {
+                menuBienvenida.SetActive(true);
+                menuEleccionMotor.SetActive(true);
+            }
+        }    
     }
     private void Update()
     {

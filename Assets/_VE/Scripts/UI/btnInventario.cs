@@ -17,7 +17,15 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("AparecerPieza"); // Ejecutamos el efecto nombrado
 
             // Generar variación aleatoria en cada eje
-            float offsetX = Random.Range(-0.4f, 0.6f);
+            float offsetX;
+            if (Random.value < 0.5f)
+            {
+                offsetX = Random.Range(-0.6f, -0.2f); // Lado izquierdo
+            }
+            else
+            {
+                offsetX = Random.Range(0.2f, 0.6f);   // Lado derecho
+            }
             float offsetY = Random.Range(-0.4f, 0.1f);
             float offsetZ = Random.Range(-0.1f, 0.2f);
 
