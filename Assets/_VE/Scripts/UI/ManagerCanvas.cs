@@ -30,7 +30,7 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool btnReutilizableHabilitado;
     [HideInInspector]
     public bool juegoPausado;
@@ -179,14 +179,24 @@ public class ManagerCanvas : MonoBehaviour
         btnReutilizarMotor.SetActive(false);
     }
 
-    public void ActivarMenuPrincipal()
+    public void ActivarPausa()
     {
-        menuPausa.SetActive(true);
-    }
-
-    public void DesactivarMenuPrincipal()
-    {
-        menuPausa.SetActive(false);
+        if (!juegoPausado)
+        {
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+            juegoPausado = true;
+            menuPausa.SetActive(true);
+            movimientoJugador.enabled = false;
+            if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
+        }
+        else
+        {
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
+            juegoPausado = false;
+            menuPausa.SetActive(false);
+            movimientoJugador.enabled = true;
+            if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
+        }
     }
 
     public void ActivarMenuEleccionMotor()

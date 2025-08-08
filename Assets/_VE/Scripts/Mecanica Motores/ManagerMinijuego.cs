@@ -5,6 +5,7 @@ public class ManagerMinijuego : MonoBehaviour
 {
     public bool minijuegoActivo;
     public int sizeHerramienta;
+    public string motorActivo;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject miniJuegoAtornillar;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -12,6 +13,7 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnEncenderMotor;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject sliderVelocidadMotor;
 
     public Transform[] posicionesMinijuego1;
     public int[] torquesTornillosBancada;
@@ -23,11 +25,10 @@ public class ManagerMinijuego : MonoBehaviour
 
     [HideInInspector]
     public Transform posicionMonijuegoActual;
+
     [HideInInspector]
     public bool aplicandoTorque;
-    //[HideInInspector]
-    public string motorActivo;
-
+    
 
     private int contador = 0;
     private int puntaje = 0;
@@ -124,14 +125,15 @@ public class ManagerMinijuego : MonoBehaviour
         }
 
         btnEncenderMotor.gameObject.SetActive(true);
-
-        if (puntaje == 8)
+        
+        if (puntaje == 4)
         {
             Debug.Log("todo good");
             if (ManagerCanvas.singleton != null)
             {
                 ManagerCanvas.singleton.btnReutilizableHabilitado = true;
             }
+            sliderVelocidadMotor.gameObject.SetActive(true);
         }
         else
         {

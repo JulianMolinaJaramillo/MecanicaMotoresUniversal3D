@@ -7,7 +7,7 @@ public class ControlarShape : MonoBehaviour
     public float escalaXObjetivo = 5f;
 
     [Header("Velocidad de transición")]
-    public float velocidadLerp = 2f;
+    public float velocidadLerp = 0.5f;
 
     private ParticleSystem sistema;
     private ParticleSystem.ShapeModule shape;
@@ -32,7 +32,6 @@ public class ControlarShape : MonoBehaviour
     void Update()
     {
         if (!enTransicion) return;
-
         // Interpolación suavizada
         float nuevaX = Mathf.Lerp(escalaActual.x, objetivoX, Time.deltaTime * velocidadLerp);
         escalaActual = new Vector3(nuevaX, escalaActual.y, escalaActual.z);

@@ -39,6 +39,16 @@ public class BrazoMecanico : MonoBehaviour
         SolveIK();
     }
 
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        for (int i = 1; i < bones.Length; i++)
+        {
+            Gizmos.DrawSphere(bones[i].transform.position, 0.1f);
+            Gizmos.DrawLine(bones[i].transform.position, bones[i - 1].transform.position);
+        }
+    }
+
     public void SolveIK()
     {
         Vector3[] finalBonesPositions = new Vector3[bones.Length];
@@ -56,52 +66,14 @@ public class BrazoMecanico : MonoBehaviour
         for (int i = 0; i < bones.Length; i++)
         {
             bones[i].position = finalBonesPositions[i];
-            bones[i].eulerAngles = new Vector3(90, 0, CalcularRotaciones());
+
             //bones[i].eulerAngles = new Vector3(CalcularRotacionX(), 0, CalcularRotaciones());
-            bones[i].GetChild(0).transform.localEulerAngles = new Vector3(0, CalcularRotacionX(bones[i], (i==bones.Length-1)? targetPositions: bones[i+1]) + 90+180, 0);
+            //bones[i].GetChild(0).transform.localEulerAngles = new Vector3(0, CalcularRotacionX(bones[i], (i == bones.Length - 1) ? targetPositions : bones[i + 1]) + 90 + 180, 0);
         }
 
 
     }
 
-    public float CalcularRotaciones()
-    {
-        //alfa = tan-1 ((x' - x)/( z'- z))
-
-        float co = targetPositions.position.x - bones[0].position.x;
-        float ca = targetPositions.position.z - bones[0].position.z;
-
-        float alfaR = Mathf.Atan(co / ca);
-        float alfaG = Mathf.Rad2Deg * alfaR;
-        float delay = 90;
-        if (ca < 0)
-        {
-            delay += 180;
-        }
-        return - alfaG + delay;
-    }
-
-    public float CalcularRotacionX(Transform t1, Transform t2)
-    {
-        float co = t2.position.y - t1.position.y;
-        float ca = t2.position.x - t1.position.x;
-
-        float alfaR = Mathf.Atan(co / ca);
-        float alfaG = Mathf.Rad2Deg * alfaR;
-
-        float delay = 0;
-        if (ca < 0)
-        {
-            delay += 180;
-        }
-        if (bones[0].position.x - targetPositions.position.x < 0)
-        {
-            alfaG = -alfaG;
-            delay += 180;
-        }
-
-        return -alfaG + delay;
-    }
 
     Vector3[] SolverInversePositions(Vector3[] forwardPositions)
     {

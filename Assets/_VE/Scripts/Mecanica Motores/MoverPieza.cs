@@ -9,7 +9,6 @@ public class MoverPieza : MonoBehaviour
     public bool piezaColocada; // Para validar si la pieza ya fue colocada
     public bool activaMinijuego; // Para validar si el prefab activa minijuego
     public bool piezaFinal; // Para validar si el prefab activa minijuego
-    public string nombreMotor; // Unicamente es para colocar el nombre del motor en la pieza que este marcada como PiezaFinal y saber que motor armé
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
@@ -195,7 +194,6 @@ public class MoverPieza : MonoBehaviour
             if (ManagerMinijuego.singleton != null)
             {
                 ManagerMinijuego.singleton.ValidarMiniJuego();
-                ManagerMinijuego.singleton.motorActivo = nombreMotor;
             }
         }
 

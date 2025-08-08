@@ -8,8 +8,8 @@ public class VibracionCamara : MonoBehaviour
     private Transform objetivoMovimiento;
 
     [Header("Vibración")]
-    public float shakeIntensity = 0.01f;
-    public float shakeDuration = 5f;
+    public float intensidadVibracion = 0.01f;
+    public float duracionVibracion = 5f;
 
     private Vector3 offsetVibracion = Vector3.zero;
     private Coroutine movimientoActual;
@@ -36,10 +36,10 @@ public class VibracionCamara : MonoBehaviour
         if (!activo || camara == null)
             return;
 
-        if (shakeDuration > 0)
+        if (duracionVibracion > 0)
         {
-            offsetVibracion = Random.insideUnitSphere * shakeIntensity;
-            shakeDuration -= Time.deltaTime;
+            offsetVibracion = Random.insideUnitSphere * intensidadVibracion;
+            duracionVibracion -= Time.deltaTime;
         }
         else
         {
@@ -54,8 +54,8 @@ public class VibracionCamara : MonoBehaviour
 
     public void IniciarVibracion(float duracion, float intensidad)
     {
-        shakeDuration = duracion;
-        shakeIntensity = intensidad;
+        duracionVibracion = duracion;
+        intensidadVibracion = intensidad;
         activo = true;
     }
 
@@ -78,8 +78,8 @@ public class VibracionCamara : MonoBehaviour
         Quaternion inicioRot = camara.rotation;
 
         float tiempo = 0f;
-        shakeDuration = duracion;
-        shakeIntensity = intensidad;
+        duracionVibracion = duracion;
+        intensidadVibracion = intensidad;
 
         while (tiempo < duracion)
         {
@@ -97,7 +97,7 @@ public class VibracionCamara : MonoBehaviour
         movimientoActual = null;
 
         // Si ya terminó la vibración también, desactiva el LateUpdate
-        if (shakeDuration <= 0)
+        if (duracionVibracion <= 0)
             activo = false;
     }
 }

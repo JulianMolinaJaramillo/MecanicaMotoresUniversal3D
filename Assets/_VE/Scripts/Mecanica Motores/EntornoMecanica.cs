@@ -9,7 +9,8 @@ public class EntornoMecanica : MonoBehaviour
     public Light luzPrincipal;
     public GameObject[] luces;
     public GameObject[] puntosIntanciasPiezas;
-    public ParticleSystem[] particulasCascada;
+    public ParticleSystem[] sistemasParticulas;
+    public ParticleSystem[] particulasHumo;
     public ControlarShape[] particulasCascadaShape;
     public ActivarMaterialesDisolverHijos[] puntosIntanciasPiezasMateriales;
     public MoverObjeto mesa;
@@ -44,11 +45,21 @@ public class EntornoMecanica : MonoBehaviour
     private IEnumerator IniciarAnimacionAbrirCompuertas()
     {
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Compuerta"); // Ejecutamos el efecto nombrado
+
         for (int i = 0; i < compuertas.Length; i++)
         {
             compuertas[i].IniciarDesplazamientoObjeto();
         }
+
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[0],1.5f);
+
+        for (int i = 0; i < particulasHumo.Length; i++)
+        {
+            if (!particulasHumo[i].isPlaying)
+            {
+                particulasHumo[i].Play();
+            }
+        }
 
         yield return new WaitForSeconds(2f);
 
@@ -71,11 +82,11 @@ public class EntornoMecanica : MonoBehaviour
             VibracionCamara.singleton.MoverCamaraConVibracion(posicionDeseada[1],5f,0.007f);
         }
 
-        for (int i = 0; i < particulasCascada.Length; i++)
+        for (int i = 0; i < sistemasParticulas.Length; i++)
         {
-            if (!particulasCascada[i].isPlaying)
+            if (!sistemasParticulas[i].isPlaying)
             {
-                particulasCascada[i].Play();
+                sistemasParticulas[i].Play();
             }
         }
 
@@ -169,11 +180,11 @@ public class EntornoMecanica : MonoBehaviour
             VibracionCamara.singleton.IniciarVibracion(3f, 0.004f);
         }
 
-        for (int i = 0; i < particulasCascada.Length; i++)
+        for (int i = 0; i < sistemasParticulas.Length; i++)
         {
-            if (!particulasCascada[i].isPlaying)
+            if (!sistemasParticulas[i].isPlaying)
             {
-                particulasCascada[i].Play();
+                sistemasParticulas[i].Play();
             }
         }
 
@@ -191,6 +202,7 @@ public class EntornoMecanica : MonoBehaviour
         }
        
         yield return new WaitForSeconds(3f);
+
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Compuerta"); // Ejecutamos el efecto nombrado
 
         mesa.RetornarPosicionOriginal();
@@ -203,8 +215,19 @@ public class EntornoMecanica : MonoBehaviour
                 puntosIntanciasPiezas[i].SetActive(false);
             }
         }
+
         
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < particulasHumo.Length; i++)
+        {
+            if (!particulasHumo[i].isPlaying)
+            {
+                particulasHumo[i].Play();
+            }
+        }
+
+        yield return new WaitForSeconds(1f);
 
         for (int i = 0; i < luces.Length; i++)
         {
@@ -215,6 +238,9 @@ public class EntornoMecanica : MonoBehaviour
         {
             compuertas[i].RetornarPosicionOriginal();
         }
+
+        
+
         yield return new WaitForSeconds(2);
 
         rotacionObjeto.enabled = false;

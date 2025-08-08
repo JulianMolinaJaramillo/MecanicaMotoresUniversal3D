@@ -7,8 +7,8 @@ public class MoverObjeto : MonoBehaviour
     public Quaternion rotacionObjetivo; // Camara objetivo
 
     public float velocidadMovimiento = 1f; // Velocidad de desplazamiento
-    public bool iniciarAnimado;
-    public float intervaloTiempo = 1f;
+    //public float intervaloTiempo = 1f;
+
     private Vector3 posicionInicial; // Para saber si debo o no mover la camara
     private Quaternion rotacionInicial; // Para saber si debo o no mover la camara
 
@@ -16,17 +16,7 @@ public class MoverObjeto : MonoBehaviour
     private void Start()
     {
         posicionInicial = transform.localPosition; //  Guardamos la posicion de inicial
-        rotacionInicial = transform.localRotation; //  Guardamos la rotacion de inicial
-
-        if (iniciarAnimado)
-        {
-            // Si ya se está ejecutando una corrutina, la detenemos primero
-            if (movimientoActual != null)
-            {
-                StopCoroutine(movimientoActual);
-            }
-            movimientoActual = StartCoroutine(MoverRepetidamente());
-        }
+        rotacionInicial = transform.localRotation; //  Guardamos la rotacion de inicial      
     }
 
     [ContextMenu("si")]
@@ -76,23 +66,5 @@ public class MoverObjeto : MonoBehaviour
 
         transform.localPosition = posicionDeseada; // Aseguramos la posición final
         transform.localRotation = rotacionDeseada; // Aseguramos la rotacion final
-    }
-
-    private IEnumerator MoverRepetidamente()
-    {
-        while (true)
-        {
-            // Mover hacia la posición objetivo
-            movimientoActual = StartCoroutine(MoverObjetoA(posicionObjetivo, rotacionObjetivo, velocidadMovimiento));
-            yield return movimientoActual;
-
-            yield return new WaitForSeconds(intervaloTiempo);
-
-            // Mover hacia la posición inicial
-            movimientoActual = StartCoroutine(MoverObjetoA(posicionInicial, rotacionInicial, velocidadMovimiento));
-            yield return movimientoActual;
-
-            yield return new WaitForSeconds(intervaloTiempo);
-        }
     }
 }
