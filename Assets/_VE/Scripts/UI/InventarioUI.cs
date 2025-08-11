@@ -26,7 +26,7 @@ public class InventarioUI : MonoBehaviour
     public Image imgManoSuelta; // imagen de la mano
     [InfoMessage("Este es una referencia importante, asegúrate de configurarlo correctamente.", MessageTypeCustom.Warning)]
     public GameObject btnSoltarHerramienta; // referencia al btnSoltarHerramienta
-    [HideInInspector]
+    //[HideInInspector]
     public int tamanoHerramienta;
 
     [HideInInspector]
@@ -113,13 +113,14 @@ public class InventarioUI : MonoBehaviour
     /// </summary>
     public void ReestablecerHerramientaInventario()
     {
-        if (AdministrarHerramientas.singleton != null)
+        if (InventarioHerramientas.singleton != null)
         {
-            AdministrarHerramientas.singleton.herramientas.Clear(); // Limpiamos la lista de herramientas
+            InventarioHerramientas.singleton.herramientasIndividuales.Clear(); // Limpiamos la lista de herramientas
         }
         
         imgHerramienta.sprite = spriteActualHerramienta;
         txtHerramienta.text = "";
         tamanoHerramienta = 0;
+        btnSoltarHerramienta.SetActive(false);
     }
 }

@@ -75,9 +75,6 @@ public class GuardarHerramienta : MonoBehaviour
 
             if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("TomarPieza"); // Ejecutamos el efecto nombrado
 
-            InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen, sizeHerramienta);
-            ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
-
             if (materialDisolver != null)
             {
                 // Instanciar copia para que este objeto tenga su propio material
@@ -106,11 +103,15 @@ public class GuardarHerramienta : MonoBehaviour
                 instanciaMaterial.SetFloat("_Frecuencia", 1f);
             }
 
-            if (AdministrarHerramientas.singleton != null)
+            InventarioUI.singleton.AgregarHerramientaInventario(icono, nombreHerramientaImagen, sizeHerramienta);
+            ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+
+            if (InventarioHerramientas.singleton != null)
             {
-                AdministrarHerramientas.singleton.ReactivarHerramientas(); // Reactivamos la herramienta antes desactivada
-                AdministrarHerramientas.singleton.herramientas.Clear();// limpiamos de herramientas
-                AdministrarHerramientas.singleton.herramientas.Add(this.gameObject); // Agregamos la herramienta a nuestro administrador
+                InventarioHerramientas.singleton.ReactivarHerramientasIndividuales(); // Reactivamos la herramienta antes desactivada
+                InventarioHerramientas.singleton.ReactivarHerramientasTomadas(); // Reactivamos la herramienta antes desactivada
+                InventarioHerramientas.singleton.herramientasIndividuales.Clear();// limpiamos de herramientas
+                InventarioHerramientas.singleton.herramientasIndividuales.Add(this.gameObject); // Agregamos la herramienta a nuestro administrador
             }
 
             puedoInteractuar = false;
@@ -122,7 +123,6 @@ public class GuardarHerramienta : MonoBehaviour
     /// <summary>
     /// Metodo utilizado para asignarle el material de seleccion al momento de mover las piezas del motor
     /// </summary>
-    /// <param name="id"> Para identificar si el material debe ser el verde o rojo </param>
     public void AgregarMaterial()
     {
         if (materialSeleccion != null)
