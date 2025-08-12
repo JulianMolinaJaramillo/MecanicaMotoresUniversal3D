@@ -26494,6 +26494,140 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1569765990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &744412965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744412970}
+  - component: {fileID: 744412969}
+  - component: {fileID: 744412968}
+  - component: {fileID: 744412967}
+  - component: {fileID: 744412966}
+  m_Layer: 8
+  m_Name: Copa (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &744412966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744412965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79dbbf024b8f80443a5c5bf6f4a73272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tipoHerramienta: 2
+  compatibleCon: 1
+  puntoAcople: {fileID: 0}
+  componenteAcoplados: {fileID: 0}
+  mensaje1:
+    message: Si lo que deseas es modificarle el material a los hijos
+    type: 0
+  meshRendererHijos: []
+  materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
+  nombreHerramienta: Copa
+  descripcionPieza: 
+  piezaInicial: 0
+  piezaFinal: 1
+  nombreHerramientaImagen: 5 mm
+  icono: {fileID: 21300000, guid: 62355a2076701734a9873b428a0e0a58, type: 3}
+  sizeHerramienta: 5
+--- !u!65 &744412967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744412965}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.024000011, y: 0.04350001, z: 0.024000011}
+  m_Center: {x: 1.0587912e-22, y: -0.000000003725292, z: 7.486785e-23}
+--- !u!23 &744412968
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744412965}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 200339a4285d6154ea384d45e8aefc3e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &744412969
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744412965}
+  m_Mesh: {fileID: -5308210633308118684, guid: 1040fc8d949758140b5e5c435e1cd63a, type: 3}
+--- !u!4 &744412970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744412965}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0.000000059604645, z: -0.7071068, w: -0.000000059604645}
+  m_LocalPosition: {x: 3.2916129, y: 1.6585, z: -10.0894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
 --- !u!1 &747236461
 GameObject:
   m_ObjectHideFlags: 0
@@ -46963,7 +47097,7 @@ PrefabInstance:
     - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.193
+      value: -12.832
       objectReference: {fileID: 0}
     - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d,
         type: 3}
@@ -47013,7 +47147,7 @@ PrefabInstance:
     - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d,
         type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d,
         type: 3}
@@ -52754,7 +52888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipoHerramienta: 0
-  compatibleCon: 1
+  compatibleCon: 2
   puntoAcople: {fileID: 1850886915}
   componenteAcoplados: {fileID: 0}
   mensaje1:
@@ -77770,7 +77904,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2237377655913508709
 GameObject:
   m_ObjectHideFlags: 0
@@ -104124,7 +104258,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8901993763185929678}
-  - component: {fileID: 8901993763185929679}
   - component: {fileID: 8901993763185929680}
   m_Layer: 0
   m_Name: Porta Herramientas
@@ -108087,18 +108220,6 @@ Transform:
   - {fileID: 806130674566586160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8901993763185929679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8125035259629729652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6cc06549169d0438589e76b960eb82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8901993763185929680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108115,6 +108236,7 @@ MonoBehaviour:
   herramientasTomadas: []
   herramientasIndividuales: []
   puntoArmado: {fileID: 629659963}
+  toolReferencia: 0
 --- !u!1 &8907931030229250081
 GameObject:
   m_ObjectHideFlags: 0
@@ -109276,6 +109398,7 @@ SceneRoots:
   - {fileID: 629659963}
   - {fileID: 1661558550}
   - {fileID: 16671689}
+  - {fileID: 744412970}
   - {fileID: 2073016943}
   - {fileID: 543450651792092736}
   - {fileID: 1447597597}

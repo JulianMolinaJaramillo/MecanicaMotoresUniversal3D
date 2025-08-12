@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 /// <summary>
 /// Gestiona qué herramienta está actualmente en uso y cómo se acoplan las piezas.
@@ -15,7 +15,7 @@ public class InventarioHerramientas : MonoBehaviour
 
     [Header("Punto fijo en el entorno donde se colocan las herramientas")]
     public Transform puntoArmado; // Objeto vacío en la escena que actúa como mesa de ensamblaje
-
+    public ToolType toolReferencia;
     public static InventarioHerramientas singleton;
     private void Awake()
     {
@@ -46,6 +46,11 @@ public class InventarioHerramientas : MonoBehaviour
         {
             if (herramientaActiva != null)
             {
+                if (tool.tipoHerramienta == herramientasTomadas[herramientasTomadas.Count - 1].tipoHerramienta)
+                {
+                    RestaurarCopas();
+                }
+
                 // Si ya hay herramienta, intentamos acoplar la nueva
                 if (herramientaActiva.puedoUnir(tool))
                 {
@@ -136,6 +141,14 @@ public class InventarioHerramientas : MonoBehaviour
         herramientaActiva = null;
 
         Debug.Log("Todas las herramientas han vuelto a su posición original.");
+    }
+
+
+    public void RestaurarCopas()
+    {
+        herramientasTomadas[herramientasTomadas.Count - 1].RestaurarPosicionOriginal();
+        herramientasTomadas.RemoveAt(herramientasTomadas.Count - 1);
+        herramientaActiva = herramientasTomadas[herramientasTomadas.Count - 1];
     }
 
     public void ReactivarHerramientasIndividuales()
