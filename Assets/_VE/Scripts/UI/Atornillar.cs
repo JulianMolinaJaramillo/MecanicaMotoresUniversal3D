@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+/// <summary>
+/// Script adjunto a la mano que hace la animacion de atornillar
+/// </summary>
 public class Atornillar : MonoBehaviour
 {
     public float anguloMaximo = 15f;

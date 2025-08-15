@@ -34,6 +34,8 @@ public class ManagerCanvas : MonoBehaviour
     public bool btnReutilizableHabilitado;
     [HideInInspector]
     public bool juegoPausado;
+    //[HideInInspector]
+    public bool mensajeAlertaActivo;
     public bool activarTutorial;
     public static ManagerCanvas singleton;
 
@@ -112,6 +114,16 @@ public class ManagerCanvas : MonoBehaviour
     {
         txtMensaje.text = texto;
         mensajeAlerta.SetActive(true);
+        mensajeAlertaActivo = true;
+    }
+
+    /// <summary>
+    /// Para deshabilitar la notificacion de inventario lleno o cualquier otro mensaje de alerta
+    /// </summary>
+    public void DesactivarAlertarMensaje()
+    {
+        mensajeAlerta.SetActive(false);
+        mensajeAlertaActivo = false;
     }
 
     /// <summary>

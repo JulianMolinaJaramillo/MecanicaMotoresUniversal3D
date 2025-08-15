@@ -153,7 +153,6 @@ MonoBehaviour:
   piezaColocada: 0
   activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
   sizeMinijuego: 0
   posicionObjetivo: {x: -0.0278, y: -0.1914, z: 0.0261}
   materialesSeleccion:
@@ -181,6 +180,8 @@ GameObject:
   - component: {fileID: 7327265701156932894}
   - component: {fileID: 7725458204323622599}
   - component: {fileID: 2525369223035085999}
+  - component: {fileID: 3997849864958421853}
+  - component: {fileID: 1647211168044746884}
   m_Layer: 8
   m_Name: BLOQUE_MOTOR
   m_TagString: Untagged
@@ -253,6 +254,54 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3997849864958421853
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933819429685660859}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.097554445, y: 0.10918017, z: 0.06541429}
+  m_Center: {x: -0.0059968345, y: 0.0067055216, z: -0.096357085}
+--- !u!54 &1647211168044746884
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4933819429685660859}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5220472113702371805
 GameObject:
   m_ObjectHideFlags: 0

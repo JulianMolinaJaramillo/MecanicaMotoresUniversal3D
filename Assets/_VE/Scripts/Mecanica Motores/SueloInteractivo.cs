@@ -210,10 +210,24 @@ public class SueloInteractivo : MonoBehaviour
     /// </summary>
     public void SalirInteraccion()
     {
-        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("SueloInteractivo2");
+        StartCoroutine(SalirInteraccionCurrutina());
+    }
 
+    IEnumerator SalirInteraccionCurrutina()
+    {
+        if (mesaHerramientas && InventarioHerramientas.singleton.herramientasTomadas.Count > 0)
+        {
+            if (InventarioHerramientas.singleton != null) { InventarioHerramientas.singleton.ReactivarHerramientasTomadas(); }
+            yield return new WaitForSeconds(0.5f);          
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("SueloInteractivo2");
         // Indicamos que estamos saliendo de la interacion
-        salirInteraccion = true; 
+        salirInteraccion = true;
 
         if (moverObjeto != null) moverObjeto.RetornarPosicionOriginal();
 
@@ -232,9 +246,9 @@ public class SueloInteractivo : MonoBehaviour
 
             if (coroutine != null) StopCoroutine(coroutine);
             coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
-            HabilitarInfoMesaArmado();      
+            HabilitarInfoMesaArmado();
         }
-        else if(!mesaArmadoMotor)
+        else if (!mesaArmadoMotor)
         {
             if (coroutine != null) StopCoroutine(coroutine);
             coroutine = StartCoroutine(MoverCamara(posicionOriginal, rotacionOriginal, velocidadPosCamara)); // Retornamos la camara principal a la posicion original 
@@ -243,7 +257,7 @@ public class SueloInteractivo : MonoBehaviour
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
         canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo   
-        btnSalir.gameObject.SetActive(false); // Habilitamos el boton de salir 
+        btnSalir.gameObject.SetActive(false); // Deshabilitamos el boton de salir 
         btnSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
 
         if (!mesaArmadoMotor && !mesaHerramientas)
@@ -300,13 +314,35 @@ public class SueloInteractivo : MonoBehaviour
     /// </summary>
     public void ActivarPiezas()
     {
-        for (int i = 0; i < piezasMeson.Length; i++)
+        StartCoroutine(ActivarPiezasmeson());
+    }
+
+    IEnumerator ActivarPiezasmeson()
+    {
+        if (mesaHerramientas)
         {
-            // Validamos que las piezas no sean nulas y procedemos a activar los colliders
-            if (piezasMeson[i] != null)
+            yield return new WaitForSeconds(2f);
+
+            for (int i = 0; i < piezasMeson.Length; i++)
             {
-                piezasMeson[i].enabled = true;
-            }           
+                // Validamos que las piezas no sean nulas y procedemos a activar los colliders
+                if (piezasMeson[i] != null)
+                {
+                    piezasMeson[i].enabled = true;
+                }
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.01f);
+            for (int i = 0; i < piezasMeson.Length; i++)
+            {
+                // Validamos que las piezas no sean nulas y procedemos a activar los colliders
+                if (piezasMeson[i] != null)
+                {
+                    piezasMeson[i].enabled = true;
+                }
+            }
         }
     }
 

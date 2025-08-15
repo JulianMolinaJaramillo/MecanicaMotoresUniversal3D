@@ -49,25 +49,23 @@ public class HerramientaArmable : MonoBehaviour
     public int sizeHerramienta; // Para indicar el tamaño en milimetros
 
     // posición, rotación y parent originales
-    private Vector3 originalPosition;
-    private Quaternion originalRotation;
+    private Vector3 actualPosition;
+    private Quaternion actualRotation;
     private Transform originalParent;
     private MeshRenderer meshRenderer; // Referencia a nuestro mesh
     private Material[] materialesOriginales; // Para almacenar nuestros materiales
+    [HideInInspector]
+    public Collider collider;
 
     private void Awake()
     {
         // Obtenemos los componentes
         meshRenderer = GetComponent<MeshRenderer>();
+        collider = GetComponent<Collider>();
     }
 
     private void Start()
     {
-        // Guardar posición, rotación y padre originales
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
-        originalParent = transform.parent;
-
         if (meshRendererHijos.Length > 0)
         {
             // Guardamos el material original de los hijos
@@ -87,11 +85,14 @@ public class HerramientaArmable : MonoBehaviour
     private void OnMouseDown()
     {
         // Si existe, le pasamos esta herramienta para que gestione la acción
-        if (InventarioHerramientas.singleton != null)
+        if (InventarioHerramientas.singleton != null && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
-            InventarioHerramientas.singleton.ClickHerramienta(this);
+            // Guardar posición, rotación y padre originales
+            actualPosition = transform.position;
+            actualRotation = transform.rotation;
+            originalParent = transform.parent;
+            InventarioHerramientas.singleton.ClickHerramienta(this,collider);
         }
-
     }
 
     /// <summary>
@@ -99,8 +100,12 @@ public class HerramientaArmable : MonoBehaviour
     /// </summary>
     void OnMouseEnter()
     {
-        AgregarMaterial(); // Asignamos el material secundario
-        ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
+        if (!ManagerCanvas.singleton.mensajeAlertaActivo)
+        {
+            AgregarMaterial(); // Asignamos el material secundario
+            ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas   
+        }
+        
     }
 
     /// <summary>
@@ -109,7 +114,7 @@ public class HerramientaArmable : MonoBehaviour
     void OnMouseExit()
     {
         QuitarMaterial(); // Quitamos el material secundario
-        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas    
     }
 
     /// <summary>
@@ -119,7 +124,14 @@ public class HerramientaArmable : MonoBehaviour
     /// <returns>True si es compatible, False si no</returns>
     public bool puedoUnir(HerramientaArmable other)
     {
-        return compatibleCon == other.tipoHerramienta;
+        if (puntoAcople != null)
+        {
+            return compatibleCon == other.tipoHerramienta;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /// <summary>
@@ -183,12 +195,12 @@ public class HerramientaArmable : MonoBehaviour
         }
     }
 
-    public void RestaurarPosicionOriginal()
-    {  
-        StartCoroutine(RestaurarSuamente());
+    public void RestaurarPosicionActual()
+    {
+        StartCoroutine(RestaurarSuamenteActual());
     }
 
-    private IEnumerator RestaurarSuamente()
+    private IEnumerator RestaurarSuamenteActual()
     {
         transform.SetParent(originalParent);
 
@@ -203,15 +215,15 @@ public class HerramientaArmable : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
 
-            transform.position = Vector3.Lerp(startPos, originalPosition, t);
-            transform.rotation = Quaternion.Lerp(startRot, originalRotation, t);
+            transform.position = Vector3.Lerp(startPos, actualPosition, t);
+            transform.rotation = Quaternion.Lerp(startRot, actualRotation, t);
 
             yield return null;
         }
 
         // Asegurar que termine en la posición y rotación exacta
-        transform.position = originalPosition;
-        transform.rotation = originalRotation;
+        transform.position = actualPosition;
+        transform.rotation = actualRotation;
 
         componenteAcoplados = null;
     }

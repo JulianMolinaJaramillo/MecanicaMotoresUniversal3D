@@ -52,7 +52,7 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     void OnMouseEnter()
     {
-        if (!puedoInteractuar)
+        if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             AgregarMaterialSeleccion(); // Asignamos el material secundario
             ManagerCanvas.singleton.ActualizarInformacionPieza(nombrePieza, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas 
@@ -76,7 +76,7 @@ public class GuardarPieza : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        if (!puedoInteractuar)
+        if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             InteractuarPieza();
         }    
@@ -97,13 +97,13 @@ public class GuardarPieza : MonoBehaviour
 
                 InventarioUI.singleton.AgregarAlInventario(icono, prefabInstancia, nombrePiezaBoton, nombrePieza, descripcionPieza, piezaExterna); // instanciamos en el inventario
 
-                ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
-
                 if (coroutine != null)
                 {
                     StopCoroutine(coroutine);
                 }
-                coroutine = StartCoroutine(MaterialDisolver(1));     
+                coroutine = StartCoroutine(MaterialDisolver(1));
+
+                ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
             }
             else
             {

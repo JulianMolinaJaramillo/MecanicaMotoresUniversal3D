@@ -37,7 +37,7 @@ public class GuardarHerramienta : MonoBehaviour
     /// </summary>
     void OnMouseEnter()
     {
-        if (!puedoInteractuar)
+        if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             AgregarMaterial(); // Asignamos el material secundario
             ManagerCanvas.singleton.ActualizarInformacionPieza(nombreHerramienta, descripcionPieza); // Actualizamos la informacion de la pieza en el canvas
@@ -61,7 +61,7 @@ public class GuardarHerramienta : MonoBehaviour
     /// </summary>
     void OnMouseDown()
     {
-        if (!puedoInteractuar)
+        if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
             StartCoroutine(AgregarMaterialDisolver());
         }    
@@ -109,7 +109,12 @@ public class GuardarHerramienta : MonoBehaviour
             if (InventarioHerramientas.singleton != null)
             {
                 InventarioHerramientas.singleton.ReactivarHerramientasIndividuales(); // Reactivamos la herramienta antes desactivada
-                InventarioHerramientas.singleton.ReactivarHerramientasTomadas(); // Reactivamos la herramienta antes desactivada
+
+                if (InventarioHerramientas.singleton.herramientasTomadas.Count > 0)
+                {
+                    InventarioHerramientas.singleton.ReactivarHerramientasTomadas(); // Reactivamos la herramienta antes desactivada 
+                }
+             
                 InventarioHerramientas.singleton.herramientasIndividuales.Clear();// limpiamos de herramientas
                 InventarioHerramientas.singleton.herramientasIndividuales.Add(this.gameObject); // Agregamos la herramienta a nuestro administrador
             }

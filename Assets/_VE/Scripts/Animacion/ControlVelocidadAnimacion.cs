@@ -40,6 +40,7 @@ public class ControlVelocidadAnimacion : MonoBehaviour
             AsignarVelocidades();
             if (sliderVelocidad.value == 0f)
             {
+                print("f");
                 ReestablecerSnapResortes();
             }
         }         

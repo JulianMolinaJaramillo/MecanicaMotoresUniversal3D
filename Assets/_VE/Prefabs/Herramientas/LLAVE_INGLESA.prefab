@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4521833210956543432}
   - component: {fileID: 6733782221485413267}
   - component: {fileID: 3332540952172681888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LLAVE_INGLESA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5201465383985491434}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.122276075, y: -0.7019084, z: -0.6916215, w: -0.11846052}
+  m_LocalRotation: {x: -0.12227736, y: -0.7019089, z: -0.6916211, w: -0.118458666}
   m_LocalPosition: {x: 0.0026102972, y: -0.0019031047, z: 0.000085294545}
   m_LocalScale: {x: 0.18156292, y: 0.1815629, z: 0.18156292}
   m_ConstrainProportionsScale: 0
@@ -102,7 +102,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.005444841, y: 0.0008953845, z: 0.016321162}
   m_Center: {x: 0.0015358318, y: 0.000046552228, z: 0.007909701}
@@ -121,7 +121,10 @@ MonoBehaviour:
   nombreHerramientaImagen: 20 mm
   nombreHerramienta: Llave Inglesa
   sizeHerramienta: 20
-  descripcionPieza: Sirve de algo
+  descripcionPieza: "Llave cuya apertura puede ajustarse mediante un tornillo lateral
+    para adaptarse a diferentes tama\xF1os. Se emplea para sujetar o girar pernos
+    de distintos tama\xF1os sin necesidad de cambiar de herramienta, \xFAtil en trabajos
+    r\xE1pidos o ajustes temporales."
   materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
   materialDisolver: {fileID: 2100000, guid: 685f5fc58d2499542ac03c1af4f7f4e0, type: 2}
   tiempoDisolver: 0.5

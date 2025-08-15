@@ -1,35 +1,41 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ManagerMinijuego : MonoBehaviour
 {
-    public bool minijuegoActivo;
-    public int sizeHerramienta;
-    public string motorActivo;
+    public bool minijuegoActivo; // Para validar si hay un minijuego activo
+    public int sizeHerramienta; // Tamaño de herramienta tomada
+    public string motorActivo; // Para controlar el motor activo
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject miniJuegoAtornillar;
+    public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuego
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public Button btnAplicarTorque;
+    public Button btnAplicarTorque; // Referencia al bt que aplica torque
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public Button btnEncenderMotor;
+    public Button btnEncenderMotor; // Boton que enciende el motor despues de colocar la ultima pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject sliderVelocidadMotor;
+    public GameObject sliderVelocidadMotor; // Slider que controla la velocidad de la animacion del motor activo
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Slider sliderTorqueMinijuego; // Slider que controla la velocidad de la animacion del motor activo
 
-    public Transform[] posicionesMinijuego1;
-    public int[] torquesTornillosBancada;
+    public Collider[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
+    public Collider[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
 
-    public Transform[] posicionesMinijuego2;
-    public int[] torquesTornillosBielas;
+    public Transform[] posicionesMinijuego1; // Posiciones minijuego
+    public int[] torquesTornillosBancada; // Guarda el torque aplicado de dicho minijuego
+
+    public Transform[] posicionesMinijuego2; // Posiciones minijuego
+    public int[] torquesTornillosBielas; // Guarda el torque aplicado de dicho minijuego
 
     public bool[] minijuegos;
 
+    public List<ApretarTornillos> tornillosParaApretar;
+
     [HideInInspector]
     public Transform posicionMonijuegoActual;
-
     [HideInInspector]
     public bool aplicandoTorque;
     
-
     private int contador = 0;
     private int puntaje = 0;
     public static ManagerMinijuego singleton;
@@ -76,6 +82,26 @@ public class ManagerMinijuego : MonoBehaviour
     public void AsignarMotorActivo(string nombreMotor)
     {
         motorActivo = nombreMotor;
+        if (nombreMotor == "Diesel")
+        {
+            for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
+            {
+                sueloInteractivoDiesel[i].enabled = true;
+                sueloInteractivoNissan[i].enabled = false;
+            }
+        }
+        else if (nombreMotor == "Nissan")
+        {
+            for (int i = 0; i < sueloInteractivoNissan.Length; i++)
+            {
+                sueloInteractivoNissan[i].enabled = true;
+                sueloInteractivoDiesel[i].enabled = false;
+            }
+        }
+        else
+        {
+            
+        }
     }
 
     public void ActivarMinijuego()
@@ -83,6 +109,16 @@ public class ManagerMinijuego : MonoBehaviour
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
         PosicionInicialCamaraMinijuego();
+        HabilitarTornilloApretar();
+    }
+
+    public void DesactivarMinijuego()
+    {
+        Atornillar.singleton.ReiniciarValorSlider();
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
+        contador = 0;
+        minijuegoActivo = false;
+        miniJuegoAtornillar.SetActive(false);
     }
 
     public void PosicionInicialCamaraMinijuego()
@@ -97,14 +133,12 @@ public class ManagerMinijuego : MonoBehaviour
         }
     }
 
-    public void DesactivarMinijuego()
+    public void HabilitarTornilloApretar()
     {
-        Atornillar.singleton.ReiniciarValorSlider();
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
-        contador = 0;
-        minijuegoActivo = false;
-        miniJuegoAtornillar.SetActive(false);
+        tornillosParaApretar[0].HabilitarSlider(sliderTorqueMinijuego);
     }
+
+    
 
     public void ValidarMiniJuego()
     {
@@ -150,6 +184,10 @@ public class ManagerMinijuego : MonoBehaviour
         {
             Debug.Log("TorqueAplicadoTornillosBancada");
             aplicandoTorque = true;
+
+            tornillosParaApretar[0].DeshabilitarSlider(sliderTorqueMinijuego);
+            tornillosParaApretar.RemoveAt(0);
+            HabilitarTornilloApretar();
 
             torquesTornillosBancada[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
             contador += 1;

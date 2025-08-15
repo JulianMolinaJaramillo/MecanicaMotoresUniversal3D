@@ -20,7 +20,7 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
                 if (ManagerCanvas.singleton != null)
                 {
                     if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
-                    string texto = "Estas utilizando el tamaño de llave incorrecta, necesitas la llave de     "+ ManagerMinijuego.singleton.sizeHerramienta+ " mm, vuelve a intentarlo";
+                    string texto = "Estas utilizando el tamaño de herramienta incorrecto, necesitas la llave o copa de "+ ManagerMinijuego.singleton.sizeHerramienta+ " mm, vuelve a intentarlo";
                     ManagerCanvas.singleton.AlertarMensaje(texto);
                 }         
             }

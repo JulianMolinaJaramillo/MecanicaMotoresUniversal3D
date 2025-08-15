@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6783032410521582829}
   - component: {fileID: 382971038305266866}
   - component: {fileID: 1674141340132028700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LLAVE (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4660567674944770199}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0076718037, y: -0.69595706, z: -0.71802837, w: -0.0045035486}
+  m_LocalRotation: {x: -0.0076745898, y: -0.69595456, z: -0.7180307, w: -0.004503265}
   m_LocalPosition: {x: 0.0069749975, y: -0.0019019987, z: 0.00018400014}
   m_LocalScale: {x: 0.8134629, y: 0.81346303, z: 0.813463}
   m_ConstrainProportionsScale: 0
@@ -102,7 +102,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.00049610564, y: 0.00008534118, z: 0.0024883973}
   m_Center: {x: 0.0004646856, y: -0.0001796434, z: 0.0012526371}
@@ -121,7 +121,8 @@ MonoBehaviour:
   nombreHerramientaImagen: 9 mm
   nombreHerramienta: Llave 9 mm
   sizeHerramienta: 9
-  descripcionPieza: Sirve de algo
+  descripcionPieza: Herramienta de una sola medida. Permite aplicar torque directo
+    sobre tuercas y tornillos, especialmente en lugares donde un rachet no cabe.
   materialSeleccion: {fileID: 2100000, guid: 17c93069681b1734bbbacfef866e064c, type: 2}
   materialDisolver: {fileID: 2100000, guid: 685f5fc58d2499542ac03c1af4f7f4e0, type: 2}
   tiempoDisolver: 0.5

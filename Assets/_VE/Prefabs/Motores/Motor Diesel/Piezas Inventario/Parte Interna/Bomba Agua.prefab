@@ -122,14 +122,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombrePiezaBoton: Bomba
   nombrePieza: Bomba De Agua
-  descripcionPieza: de algo
+  descripcionPieza: "Hace circular el refrigerante por el motor y el radiador. Est\xE1
+    accionada por correa o engranaje desde el cig\xFCe\xF1al. Mantiene la temperatura
+    del motor en niveles seguros. Su falla puede provocar recalentamiento severo."
   materialSeleccion: {fileID: 2100000, guid: 56742abebb286604fb50f10c1326e7bf, type: 2}
   materialDisolver: {fileID: 2100000, guid: a6e1bf236c7bcad43a99580e165815fb, type: 2}
   tiempoDisolver: 1.5
   prefabInstancia: {fileID: 6872547544188305841, guid: 1fd7c842c6998bc409b28b6db5b04a06,
     type: 3}
   icono: {fileID: 21300000, guid: 4b5da646c438851409f73827501bf9bc, type: 3}
-  piezaExterna: 1
+  piezaExterna: 0
   mensaje1:
     message: Si lo que deseas es modificarle el material a los hijos
     type: 0
