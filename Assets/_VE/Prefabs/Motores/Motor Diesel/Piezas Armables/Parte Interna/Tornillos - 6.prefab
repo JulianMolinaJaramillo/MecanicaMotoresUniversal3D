@@ -443,7 +443,7 @@ Transform:
   m_GameObject: {fileID: 1649441569051608388}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.0000000074505797, z: -0.06607502, w: 0.99781466}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.000003, y: -0.00002, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -559,9 +559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
   moveDistance: -0.0007
   rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &1663393786955745534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,9 +1286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
   moveDistance: -0.0007
   rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &3165537923946580540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,9 +1733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
   moveDistance: -0.0007
   rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &5822435725341635803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,11 +2435,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5291881432c89b45bdb853388cad4dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialesSeleccion:
+  - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
   apretarTornillos:
   - {fileID: 383152722539646434}
   - {fileID: 4176218649819276634}
   - {fileID: 279116948020483607}
   - {fileID: 3775253960877498584}
+  meshRendererHijos:
+  - {fileID: 6372056936886297793}
+  - {fileID: 6607060165660304794}
+  - {fileID: 2680023553564198323}
+  - {fileID: 405813674327990928}
 --- !u!114 &5707931970861192048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2454,9 +2461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 1
   piezaFinal: 0
-  sizeMinijuego: 5
   posicionObjetivo: {x: 0, y: -0.4018, z: 0.0121}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -2467,6 +2472,12 @@ MonoBehaviour:
   - {fileID: 112811758150902754}
   snappsParaDesactivar:
   - {fileID: 2801763310175405371}
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 1
+  asignarTornillos: {fileID: 4183997862633016590}
+  sizeMinijuego: 0
   mensaje2:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
@@ -2519,7 +2530,7 @@ Transform:
   m_GameObject: {fileID: 6516805387049819352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.000017, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2635,9 +2646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
   moveDistance: -0.0007
   rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &6598888919551755236
 GameObject:
   m_ObjectHideFlags: 0

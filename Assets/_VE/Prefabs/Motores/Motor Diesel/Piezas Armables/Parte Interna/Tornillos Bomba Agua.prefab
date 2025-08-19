@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 4610298205577968189}
   - component: {fileID: 1201217949383409103}
   - component: {fileID: 3837070313442397721}
+  - component: {fileID: 2678618405826722636}
   - component: {fileID: 2171615101568440867}
   m_Layer: 0
   m_Name: Tornillos Bomba Agua
@@ -177,14 +178,14 @@ Transform:
   m_GameObject: {fileID: 355243572791666546}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0564, y: -0.2251, z: 0.285}
+  m_LocalPosition: {x: 0.0564, y: -0.2251, z: 0.3065}
   m_LocalScale: {x: 0.036402564, y: 0.04206949, z: 0.03924252}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5703965921737627724}
-  - {fileID: 5144774481760151835}
-  - {fileID: 6140557335062257541}
   - {fileID: 83499471259121771}
+  - {fileID: 5703965921737627724}
+  - {fileID: 6140557335062257541}
+  - {fileID: 5144774481760151835}
   - {fileID: 5392024038266637028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -286,6 +287,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2678618405826722636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355243572791666546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5291881432c89b45bdb853388cad4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialesSeleccion:
+  - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
+  apretarTornillos:
+  - {fileID: 1140803162232582433}
+  - {fileID: 4617225236025761590}
+  - {fileID: 2736810105160896256}
+  - {fileID: 752466915793798075}
+  meshRendererHijos:
+  - {fileID: 7489334363649445658}
+  - {fileID: 3102153194784123504}
+  - {fileID: 1876192504173037015}
+  - {fileID: 6294306749803403}
 --- !u!114 &2171615101568440867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,10 +325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 1
   piezaFinal: 1
-  sizeMinijuego: 6
-  posicionObjetivo: {x: 0.0564, y: -0.2251, z: 0.285}
+  posicionObjetivo: {x: 0.0564, y: -0.2251, z: 0.3065}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -312,6 +335,12 @@ MonoBehaviour:
   snappsParaActivar: []
   snappsParaDesactivar:
   - {fileID: 296482254312253391}
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 1
+  asignarTornillos: {fileID: 2678618405826722636}
+  sizeMinijuego: 0
   mensaje2:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
@@ -333,6 +362,7 @@ GameObject:
   - component: {fileID: 6294306749803403}
   - component: {fileID: 8243516308401627586}
   - component: {fileID: 4335444616913977941}
+  - component: {fileID: 752466915793798075}
   m_Layer: 0
   m_Name: Bolt.038
   m_TagString: Untagged
@@ -453,6 +483,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &752466915793798075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059180236375766538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.75
+  rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &7372888849335265220
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +511,7 @@ GameObject:
   - component: {fileID: 7489334363649445658}
   - component: {fileID: 1540198476919903083}
   - component: {fileID: 2320709640449331548}
+  - component: {fileID: 1140803162232582433}
   m_Layer: 0
   m_Name: Bolt.040
   m_TagString: Untagged
@@ -586,6 +632,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1140803162232582433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7372888849335265220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.75
+  rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &7508039845391892460
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +660,7 @@ GameObject:
   - component: {fileID: 3102153194784123504}
   - component: {fileID: 7329574929330090389}
   - component: {fileID: 4784358260785489579}
+  - component: {fileID: 4617225236025761590}
   m_Layer: 0
   m_Name: Bolt.037
   m_TagString: Untagged
@@ -719,6 +781,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4617225236025761590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508039845391892460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.75
+  rotations: 5
+  sliderPrueba: {fileID: 0}
 --- !u!1 &7672084785347097034
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +809,7 @@ GameObject:
   - component: {fileID: 1876192504173037015}
   - component: {fileID: 1169579383941785593}
   - component: {fileID: 1314590265625915852}
+  - component: {fileID: 2736810105160896256}
   m_Layer: 0
   m_Name: Bolt.039
   m_TagString: Untagged
@@ -852,3 +930,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2736810105160896256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672084785347097034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6e89eef92da9745bae4c2e29b1c88c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDistance: 0.75
+  rotations: 5
+  sliderPrueba: {fileID: 0}

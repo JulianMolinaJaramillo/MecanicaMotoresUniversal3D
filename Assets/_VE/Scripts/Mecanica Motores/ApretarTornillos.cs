@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,43 @@ public class ApretarTornillos : MonoBehaviour
     public float rotations = 5f;       // Número de vueltas completas que da en todo el slider
 
     private Vector3 startPos;
+    private MeshRenderer meshRenderer; // Referencia a nuestro mesh
+    private Material[] materialesOriginales; // Para almacenar nuestros materiales
+    public Slider sliderPrueba;
 
+
+    private void Awake()
+    {
+        // Obtenemos los componentes
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(AsignarMaterial()); 
+    }
+
+    private IEnumerator AsignarMaterial()
+    {
+        yield return new WaitForSeconds(2f);
+        materialesOriginales = meshRenderer.materials; // Guardamos el material original
+    }
+
+    /// <summary>
+    /// Para quitar el materiale de seleccion y solo dejar el material por defecto
+    /// </summary>
+    public void QuitarMaterial()
+    {
+        meshRenderer.materials = new Material[] { materialesOriginales[0] };
+    }
     [ContextMenu("activar")]
+    public void HabilitarSliderPrueba()
+    {
+        startPos = transform.localPosition;
+        sliderPrueba.onValueChanged.AddListener(OnSliderValueChanged);
+    }
+
+    
     public void HabilitarSlider(Slider slider)
     {
         startPos = transform.localPosition;

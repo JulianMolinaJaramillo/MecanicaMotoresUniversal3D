@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +32,7 @@ public class ManagerMinijuego : MonoBehaviour
     public bool[] minijuegos;
 
     public List<ApretarTornillos> tornillosParaApretar;
+    public List<AsignarTornillos> asignarTornillos;
 
     [HideInInspector]
     public Transform posicionMonijuegoActual;
@@ -38,6 +41,7 @@ public class ManagerMinijuego : MonoBehaviour
     
     private int contador = 0;
     private int puntaje = 0;
+    private Coroutine coroutine;
     public static ManagerMinijuego singleton;
 
     private void Awake()
@@ -104,12 +108,14 @@ public class ManagerMinijuego : MonoBehaviour
         }
     }
 
-    public void ActivarMinijuego()
+    public void ActivarMinijuego(AsignarTornillos asignar)
     {
+        asignarTornillos.Add(asignar);
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
+        asignarTornillos[0].InicializarTornillosMinijuego();
         PosicionInicialCamaraMinijuego();
-        HabilitarTornilloApretar();
+        HabilitarTornilloApretar();   
     }
 
     public void DesactivarMinijuego()
@@ -135,7 +141,10 @@ public class ManagerMinijuego : MonoBehaviour
 
     public void HabilitarTornilloApretar()
     {
-        tornillosParaApretar[0].HabilitarSlider(sliderTorqueMinijuego);
+        if (tornillosParaApretar.Count > 0)
+        {
+            tornillosParaApretar[0].HabilitarSlider(sliderTorqueMinijuego);
+        }    
     }
 
     
@@ -160,7 +169,7 @@ public class ManagerMinijuego : MonoBehaviour
 
         btnEncenderMotor.gameObject.SetActive(true);
         
-        if (puntaje == 4)
+        if (puntaje == 8)
         {
             Debug.Log("todo good");
             if (ManagerCanvas.singleton != null)
@@ -178,16 +187,32 @@ public class ManagerMinijuego : MonoBehaviour
         puntaje = 0;
     }
 
+    public void ConfigurarTornilloActivo()
+    {
+        aplicandoTorque = true;
+        tornillosParaApretar[0].DeshabilitarSlider(sliderTorqueMinijuego);
+        tornillosParaApretar[0].QuitarMaterial();
+        tornillosParaApretar.RemoveAt(0);
+        HabilitarTornilloApretar();
+    }
+
     public void TorqueAplicadoTornillosBancada()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueAplicadoTornillosBancadaCorrutina());
+    }
+
+    IEnumerator TorqueAplicadoTornillosBancadaCorrutina()
     {
         if (!aplicandoTorque)
         {
             Debug.Log("TorqueAplicadoTornillosBancada");
-            aplicandoTorque = true;
+            ConfigurarTornilloActivo();
 
-            tornillosParaApretar[0].DeshabilitarSlider(sliderTorqueMinijuego);
-            tornillosParaApretar.RemoveAt(0);
-            HabilitarTornilloApretar();
+            yield return new WaitForSeconds(0.1f);
 
             torquesTornillosBancada[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
             contador += 1;
@@ -195,10 +220,15 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego1[contador], 1);
                 Atornillar.singleton.ReiniciarValorSlider();
-                posicionMonijuegoActual = posicionesMinijuego1[contador];                
+                posicionMonijuegoActual = posicionesMinijuego1[contador];
             }
             else
             {
+                if (asignarTornillos.Count > 0)
+                {
+                    asignarTornillos.RemoveAt(0);
+                }
+
                 btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoTornillosBancada);
                 btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBielas);
                 minijuegos[0] = false;
@@ -208,15 +238,27 @@ public class ManagerMinijuego : MonoBehaviour
                 DesactivarMinijuego();
                 posicionMonijuegoActual = posicionesMinijuego2[contador];
             }
-        }    
+        }       
     }
+    
 
     public void TorqueAplicadoTornillosBielas()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueAplicadoTornillosBielasCorrutina());
+    }
+
+    IEnumerator TorqueAplicadoTornillosBielasCorrutina()
     {
         if (!aplicandoTorque)
         {
             Debug.Log("TorqueAplicadoTornillosBielas");
-            aplicandoTorque = true;
+            ConfigurarTornilloActivo();
+
+            yield return new WaitForSeconds(0.1f);
 
             torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
             contador += 1;
@@ -227,10 +269,10 @@ public class ManagerMinijuego : MonoBehaviour
                 posicionMonijuegoActual = posicionesMinijuego2[contador];
             }
             else
-            {     
+            {
                 DesactivarMinijuego();
                 //posicionMonijuegoActual = posicionesMinijuego3[contador];
             }
-        }       
+        }
     }
 }

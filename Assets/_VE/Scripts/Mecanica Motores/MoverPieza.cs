@@ -5,11 +5,10 @@ public class MoverPieza : MonoBehaviour
 {
     [HideInInspector]
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
-    
-    public bool piezaColocada; // Para validar si la pieza ya fue colocada
-    public bool activaMinijuego; // Para validar si el prefab activa minijuego
+    [HideInInspector]
+    public bool piezaColocada; // Para validar si la pieza ya fue colocada   
+
     public bool piezaFinal; // Para validar si el prefab activa minijuego
-    public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
     public Material materialDisolver; // Para el material de disolucion
@@ -17,14 +16,20 @@ public class MoverPieza : MonoBehaviour
     public GameObject[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
     public GameObject[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
 
+    public MessageOnly mensaje = new MessageOnly("Para las piezas que activen minijuegos", MessageTypeCustom.Info);
+
+    public bool activaMinijuego; // Para validar si el prefab activa minijuego
+    public AsignarTornillos asignarTornillos; // unicamente para las piezas que activen minijuego
+    public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
+    
+    public MessageOnly mensaje2 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
+    public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
+
+
     private Vector3 offset; // Para almacenar la diferencia entre la posicion del objeto y el punto de click
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
     private float valorDisolver;
     private bool noMover; // Para identificar si puedo o no mover la pieza
-
-    public MessageOnly mensaje2 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
-    public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
-
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
@@ -183,7 +188,7 @@ public class MoverPieza : MonoBehaviour
         {
             if (ManagerMinijuego.singleton != null)
             {
-                ManagerMinijuego.singleton.ActivarMinijuego();
+                ManagerMinijuego.singleton.ActivarMinijuego(asignarTornillos);
                 ManagerMinijuego.singleton.sizeHerramienta = sizeMinijuego;
             }
         }
