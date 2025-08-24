@@ -1,5 +1,5 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// Script puente entre la UI y el Gestor. 
@@ -9,6 +9,9 @@ public class UISeleccionPersonalizacion : MonoBehaviour
 {
     [Header("Referencia")]
     public GestorPersonalizacion gestor;
+    public TMP_InputField inputNombre;
+    public TextMeshProUGUI inputmensaje;
+    public GameObject panelAlerta;
 
     // ===== BOTONES ESPECÍFICOS (ejemplos) =====
     // Asigna estas funciones a los OnClick de cada botón en el Inspector
@@ -44,7 +47,17 @@ public class UISeleccionPersonalizacion : MonoBehaviour
     public void BTN_Sexo_Mujer() => gestor.SeleccionarSexo(Sexo.Mujer);
     public void BTN_Sexo_Otro() => gestor.SeleccionarSexo(Sexo.otro);
 
-    // TEXTURA
-    public void BTN_SiguienteTextura() => gestor.BTN_SiguienteTextura();
+    public void BTN_GuardarCombinacion() => gestor.GuardarCombinacion(inputNombre.text);
+    public void BTN_CargarCombinacion() => gestor.CargarCombinacion(inputNombre.text);
 
+    public void ActualizarMensaje(string dato)
+    {
+        inputmensaje.text = dato;
+        panelAlerta.SetActive(true);
+    }
+
+    public void ReiniciarTexto()
+    {
+        inputNombre.text = "";
+    }
 }

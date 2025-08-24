@@ -16,6 +16,6 @@ public class ColorButton : MonoBehaviour
 
     void EnviarColor()
     {
-        gestor.CambiarColorConIntensidad(colorAsignado);
+        gestor.CambiarColorBase(colorAsignado);
     }
 }

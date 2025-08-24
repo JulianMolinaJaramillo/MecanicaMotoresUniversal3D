@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,16 +10,16 @@ using UnityEngine;
 /// </summary>
 public class GestorPersonalizacion : MonoBehaviour
 {
+    [Header("Referencias Principales")]
+    public UISeleccionPersonalizacion seleccionPersonalizacion;
+    public Botonera botonera;
     [Header("Catálogo de combinaciones")]
     [Tooltip("Arrastra aquí TODOS los ConfigPersonaje que crees (uno por combinación).")]
     public List<ConfigPersonaje> configuraciones = new List<ConfigPersonaje>();
 
-    public Texture[] texturasDisponibles;
-    private int indiceTextura = 0;
-
     [Header("Instanciación")]
     [Tooltip("Dónde se instanciará el modelo. Si se deja vacío, usará el transform de este GameObject.")]
-    public Transform spawnRoot;
+    public Transform puntoInstancia;
 
     [Header("Valores por defecto")]
     [Tooltip("Si el usuario elige morfología o atuendo primero, se usará esta raza por defecto.")]
@@ -29,26 +30,43 @@ public class GestorPersonalizacion : MonoBehaviour
     public Sexo sexoPorDefecto = Sexo.Hombre;
     public bool instanciarAlIniciar = true;
 
+    [Header("% Porcentajes de Selección")]
+    public List<OpcionRaza> razasConProbabilidad;
+    public List<OpcionMorfologia> morfologiasConProbabilidad;
+    public List<OpcionAtuendo> atuendosConProbabilidad;
+    public List<OpcionSexo> sexosConProbabilidad;
+
+    [Header("Efecto de Disolver")]
+    public float tiempoDisolver = 1.5f;  // tiempo de la interpolación
+    private Coroutine coroutine;         // para manejar corrutinas
+
+    [Header("Efecto de Disolver")]
+    public ParticleSystem particulaSuelo;
+
     // --- Estado actual ---
+    [SerializeField]
     public Raza RazaActual { get; private set; }
+    [SerializeField]
     public Morfologia MorfologiaActual { get; private set; }
     public Atuendo AtuendoActual { get; private set; }
-
     public Sexo SexoActual { get; private set; }
 
     // Instancia viva del personaje
-    private GameObject personajeActual;
-    //[HideInInspector]
-    public Color colorActualPersonaje;
-    //[HideInInspector]
+    [SerializeField]
+    private string claveActiva = ""; // <- guarda la combinación activa
+    [HideInInspector]
+    private GameObject personajeActual;  
+    [HideInInspector]
     public Texture texturaActualPersonaje;
-    //[HideInInspector]
-    public float intensidadFija = 5f; // siempre usará esta intensidad
+    [HideInInspector]
+    public Texture texturaOriginal; // cada prefab nuevo guarda aquí su textura base
 
     private Color ultimoColorSeleccionado = Color.white; // almacenamos el último color base
 
     // Mapa para acceso O(1) por clave (raza_morfologia_atuendo)
     private Dictionary<string, GameObject> mapaPrefabs;
+    // Diccionario para almacenar combinaciones guardadas en runtime
+    private Dictionary<string, (Raza raza, Morfologia morfo, Atuendo atuendo, Sexo sexo)> combinacionesGuardadas = new Dictionary<string, (Raza, Morfologia, Atuendo, Sexo)>();
 
     private string Clave(Raza r, Morfologia m, Atuendo a, Sexo s) => $"{r}_{m}_{a}_{s}";
 
@@ -258,12 +276,83 @@ public class GestorPersonalizacion : MonoBehaviour
         ActualizarPersonaje();
     }
 
+    private T SeleccionarConPorcentaje<T>(List<(T item, float peso)> opciones)
+    {
+        float total = opciones.Sum(o => o.peso);
+        if (total <= 0) return default;
+
+        float random = Random.Range(0, total);
+        float acumulado = 0;
+
+        foreach (var op in opciones)
+        {
+            acumulado += op.peso;
+            if (random <= acumulado)
+                return op.item;
+        }
+        return opciones.Last().item;
+    }
+
+    public void GenerarAleatorio()
+    {
+        // Creamos un set para recordar combinaciones ya probadas en esta ejecución
+        HashSet<string> intentadas = new HashSet<string>();
+
+        // Bucle de reintentos
+        for (int i = 0; i < 300; i++) // seguridad: máximo 100 intentos
+        {
+            Raza razaSel = SeleccionarConPorcentaje(razasConProbabilidad.Select(r => (r.raza, r.porcentaje)).ToList());
+            Morfologia morfoSel = SeleccionarConPorcentaje(morfologiasConProbabilidad.Select(m => (m.morfologia, m.porcentaje)).ToList());
+            Atuendo atuendoSel = SeleccionarConPorcentaje(atuendosConProbabilidad.Select(a => (a.atuendo, a.porcentaje)).ToList());
+            Sexo sexoSel = SeleccionarConPorcentaje(sexosConProbabilidad.Select(s => (s.sexo, s.porcentaje)).ToList());
+
+            string clave = Clave(razaSel, morfoSel, atuendoSel, sexoSel);
+
+            if (intentadas.Contains(clave))
+                continue; // ya probamos esta combinación en esta ejecución
+
+            intentadas.Add(clave);
+            Debug.Log($"Intento numero: {i} Se probó con la combinacion: {clave}");
+
+            if (mapaPrefabs.ContainsKey(clave))
+            {
+                // Verificar que no sea la misma combinación activa
+                if (clave == claveActiva)
+                {
+                    Debug.Log($"La combinación aleatoria {clave} coincide con la activa, probando otra...");
+                    continue; // seguir buscando otra distinta
+                }
+
+                // Encontramos combinación válida y distinta
+                RazaActual = razaSel;
+                MorfologiaActual = morfoSel;
+                AtuendoActual = atuendoSel;
+                SexoActual = sexoSel;
+
+                seleccionPersonalizacion.ReiniciarTexto();
+                ActualizarPersonaje();
+                Debug.Log($"Generado aleatoriamente: {clave}");
+                return;
+            }
+        }
+
+        // Si llegamos aquí, no se encontró nada válido
+        Debug.LogError("No se pudo generar ninguna combinación válida tras múltiples intentos.");
+    }
+
     /// <summary>
     /// Busca la combinación exacta y actualiza la instancia.
     /// </summary>
     public void ActualizarPersonaje()
     {
         string key = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+
+        // Evitar reinstanciar si ya está la misma configuración activa
+        if (claveActiva == key && personajeActual != null)
+        {
+            Debug.Log($"Ya está activa la combinación {key}, no se reinstancia.");
+            return;
+        }
 
         if (!mapaPrefabs.TryGetValue(key, out GameObject prefab))
         {
@@ -272,11 +361,13 @@ public class GestorPersonalizacion : MonoBehaviour
         }
 
         // Destruir anterior
-        if (personajeActual != null)
-            Destroy(personajeActual);
+        if (personajeActual != null) Destroy(personajeActual);
 
         // Instanciar nuevo
-        personajeActual = Instantiate(prefab, spawnRoot);
+        personajeActual = Instantiate(prefab, puntoInstancia);
+        claveActiva = key; // <- guardar la nueva clave activa
+        botonera.RecibirClaveActual(claveActiva);
+        
 
         // Asegura posición/orientación limpias (opcional)
         personajeActual.transform.localPosition = Vector3.zero;
@@ -284,81 +375,224 @@ public class GestorPersonalizacion : MonoBehaviour
         personajeActual.transform.localScale = Vector3.one;
 
         Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-        texturaActualPersonaje = rend.material.mainTexture;
+        if (rend != null)
+        {
+            // Intentamos primero obtener desde _BaseMap (Shader Graph / Lit URP)
+            if (rend.material.HasProperty("_BaseMap"))
+            {
+                texturaOriginal = rend.material.GetTexture("_BaseMap");
+            }
+            else
+            {
+                // Fallback: usamos mainTexture (por compatibilidad con otros shaders)
+                texturaOriginal = rend.material.mainTexture;
+            }
+
+            // Si ya había una textura seleccionada por el jugador, se reaplica
+            if (texturaActualPersonaje != null)
+            {
+                foreach (var mat in rend.materials)
+                {
+                    if (mat.HasProperty("_BaseMap"))
+                    {
+                        mat.SetTexture("_BaseMap", texturaActualPersonaje);
+                    }
+                }
+            }
+        }
+
+        if (!particulaSuelo.isPlaying)
+        {
+            
+        }
+        particulaSuelo.Play();
+        // Reaplicar el último color elegido al nuevo personaje
+        if (ultimoColorSeleccionado != Color.clear)
+        {
+            CambiarColorBase(ultimoColorSeleccionado);
+        }
+
+        // Llamar a la corrutina de disolver para este nuevo personaje
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = StartCoroutine(AplicarDisolver(personajeActual));
     }
 
-    public void CambiarColorConIntensidad(Color nuevoColor)
+    /// <summary>
+    /// Guarda la combinación actual (raza, morfo, atuendo, sexo) asociada a un nombre.
+    /// Además lo persiste en PlayerPrefs.
+    /// </summary>
+    public void GuardarCombinacion(string nombre)
+    {
+        if (string.IsNullOrEmpty(nombre))
+        {
+            Debug.Log("El nombre para guardar combinación está vacío.");
+            return;
+        }
+
+        // Guardar en diccionario runtime
+        var datos = (RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+        if (combinacionesGuardadas.ContainsKey(nombre))
+            combinacionesGuardadas[nombre] = datos;
+        else
+            combinacionesGuardadas.Add(nombre, datos);
+
+        // Persistir con PlayerPrefs (convertimos a string)
+        string dataStr = $"{(int)RazaActual}|{(int)MorfologiaActual}|{(int)AtuendoActual}|{(int)SexoActual}";
+        PlayerPrefs.SetString($"Combinacion_{nombre}", dataStr);
+        PlayerPrefs.Save();
+
+        seleccionPersonalizacion.ActualizarMensaje($"Combinación guardada con nombre '{nombre}'");
+        Debug.Log($"Combinación guardada con nombre '{nombre}': {dataStr}");
+    }
+
+    /// <summary>
+    /// Carga una combinación guardada por nombre.
+    /// Primero busca en PlayerPrefs, si no la encuentra, revisa el diccionario.
+    /// </summary>
+    public void CargarCombinacion(string nombre)
+    {
+        if (string.IsNullOrEmpty(nombre))
+        {
+            Debug.Log("El nombre para cargar combinación está vacío.");
+            return;
+        }
+
+        // Buscar en PlayerPrefs
+        if (PlayerPrefs.HasKey($"Combinacion_{nombre}"))
+        {
+            string dataStr = PlayerPrefs.GetString($"Combinacion_{nombre}");
+            var partes = dataStr.Split('|');
+            if (partes.Length == 4)
+            {
+                RazaActual = (Raza)int.Parse(partes[0]);
+                MorfologiaActual = (Morfologia)int.Parse(partes[1]);
+                AtuendoActual = (Atuendo)int.Parse(partes[2]);
+                SexoActual = (Sexo)int.Parse(partes[3]);
+
+                ActualizarPersonaje();
+                seleccionPersonalizacion.ActualizarMensaje($"Combinación de '{nombre}' cargada con exito ");
+                Debug.Log($" Combinación '{nombre}' cargada desde PlayerPrefs: {dataStr}");
+                return;
+            }
+        }
+
+        // Si no está en PlayerPrefs, revisar el diccionario runtime
+        if (combinacionesGuardadas.TryGetValue(nombre, out var datos))
+        {
+            RazaActual = datos.raza;
+            MorfologiaActual = datos.morfo;
+            AtuendoActual = datos.atuendo;
+            SexoActual = datos.sexo;
+
+            ActualizarPersonaje();
+            Debug.Log($" Combinación '{nombre}' cargada desde diccionario runtime.");
+        }
+        else
+        {
+            Debug.Log($" No existe ninguna combinación guardada con el nombre '{nombre}'.");
+        }
+    }
+
+    private IEnumerator AplicarDisolver(GameObject personaje)
+    {
+        Renderer[] renderers = personaje.GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0) yield break;
+
+        // Creamos materiales instanciados para no modificar materiales globales
+        List<Material> materialesInstanciados = new List<Material>();
+        foreach (var rend in renderers)
+        {
+            Material[] nuevos = new Material[rend.materials.Length];
+            for (int i = 0; i < rend.materials.Length; i++)
+            {
+                nuevos[i] = new Material(rend.materials[i]); // copia del material
+                nuevos[i].SetFloat("_Frecuencia", -1f); // inicio en -1
+                materialesInstanciados.Add(nuevos[i]);
+            }
+            rend.materials = nuevos;
+        }
+
+        // Interpolamos de -1 a 1
+        float tiempo = 0f;
+        while (tiempo < tiempoDisolver)
+        {
+            float t = tiempo / tiempoDisolver;
+            float valor = Mathf.Lerp(1f, -1f, t);
+
+            foreach (var mat in materialesInstanciados)
+            {
+                mat.SetFloat("_Frecuencia", valor);
+            }
+
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+
+        // Aseguramos valor final
+        foreach (var mat in materialesInstanciados)
+        {
+            mat.SetFloat("_Frecuencia", -1.2f);
+        }
+
+        coroutine = null;
+    }
+    public void CambiarColorBase(Color nuevoColor)
     {
         if (personajeActual == null) return;
+
+        ultimoColorSeleccionado = nuevoColor; // Guardamos el último color elegido
 
         Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
         if (rend != null)
         {
-            rend.material.EnableKeyword("_EMISSION");
-
-            // Guardar el último color elegido (tono puro)
-            ultimoColorSeleccionado = nuevoColor;
-
-            // Aplicar el color con la intensidad fija
-            rend.material.SetColor("_EmissionColor", nuevoColor * intensidadFija);
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_BaseColor")) // <- usa el Reference exacto de tu Shader Graph
+                {
+                    mat.SetColor("_BaseColor", nuevoColor);
+                }
+            }
         }
-    }
-
-    public void ResetearEmission()
-    {
-        if (personajeActual == null) return;
-
-        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-        if (rend != null)
-        {
-            // Apagar emisión, pero sin perder el último color
-            rend.material.SetColor("_EmissionColor", ultimoColorSeleccionado * 0f);
-        }
-    }
-
-    public void RestaurarEmission()
-    {
-        if (personajeActual == null) return;
-
-        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-        if (rend != null)
-        {
-            // Volver a encender con intensidad fija
-            rend.material.SetColor("_EmissionColor", ultimoColorSeleccionado * intensidadFija);
-        }
-    }
-
-    public void BTN_SiguienteTextura()
-    {
-        if (texturasDisponibles.Length == 0 || personajeActual == null) return;
-
-        indiceTextura = (indiceTextura + 1) % texturasDisponibles.Length;
-        CambiarTextura(texturasDisponibles[indiceTextura]);
     }
 
     public void CambiarTextura(Texture nuevaTextura)
     {
         if (personajeActual == null) return;
-        ResetearEmission();
 
         Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-
         if (rend != null)
         {
-            rend.material.mainTexture = nuevaTextura;
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_BaseMap"))
+                {
+                    mat.SetTexture("_BaseMap", nuevaTextura);
+                }
+            }
         }
+
+        // Guardar esta como la textura actual
+        texturaActualPersonaje = nuevaTextura;
     }
 
     public void ReiniciarTextura()
     {
         if (personajeActual == null) return;
-        RestaurarEmission();
 
         Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-
         if (rend != null)
         {
-            rend.material.mainTexture = texturaActualPersonaje;
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_BaseMap"))
+                {
+                    // Restaurar la textura original del personaje actual
+                    mat.SetTexture("_BaseMap", texturaOriginal);
+                }
+            }
         }
+
+        // Actualizar el estado de textura actual (para que sepa que ahora usa la original)
+        texturaActualPersonaje = texturaOriginal;
     }
 }

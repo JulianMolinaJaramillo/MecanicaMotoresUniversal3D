@@ -41,4 +41,32 @@ public class EnumsPersonalizacion : MonoBehaviour
 
 }
 
+[System.Serializable]
+public class OpcionRaza
+{
+    public Raza raza;
+    [Range(0, 100)] public float porcentaje;
+}
+
+[System.Serializable]
+public class OpcionMorfologia
+{
+    public Morfologia morfologia;
+    [Range(0, 100)] public float porcentaje;
+}
+
+[System.Serializable]
+public class OpcionAtuendo
+{
+    public Atuendo atuendo;
+    [Range(0, 100)] public float porcentaje;
+}
+
+[System.Serializable]
+public class OpcionSexo
+{
+    public Sexo sexo;
+    [Range(0, 100)] public float porcentaje;
+}
+
 

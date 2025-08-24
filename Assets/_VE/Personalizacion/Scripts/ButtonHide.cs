@@ -14,7 +14,7 @@ public class ButtonHide : MonoBehaviour
         boton.onClick.AddListener(EsconderBotones);
     }
 
-    void EsconderBotones()
+    public void EsconderBotones()
     {
         for (int i = 0; i < botonesDesactivar.Length; i++)
         {
