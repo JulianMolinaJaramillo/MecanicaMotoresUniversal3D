@@ -21,6 +21,21 @@ public class Botonera : MonoBehaviour
 
     public bool[] razaActiva;
 
+    public void HabilitarBooleanos(int dato)
+    {
+        for (int i = 0; i < razaActiva.Length; i++)
+        {
+            if (i == dato)
+            {
+                razaActiva[i] = true;
+            }
+            else
+            {
+                razaActiva[i] = false;
+            }
+        }
+    }
+
     public void EsconderBotones(string dato)
     {
         if (razaActiva[2]) // Si es demonio
@@ -99,20 +114,5 @@ public class Botonera : MonoBehaviour
             buttonHideDemonio.EsconderBotones();
             EsconderBotones(partes[1]);
         }
-    }
-
-    public void HabilitarBooleanos(int dato)
-    {
-        for (int i = 0; i < razaActiva.Length; i++)
-        {
-            if (i == dato)
-            {
-                razaActiva[i] = true;
-            }
-            else
-            {
-                razaActiva[i] = false;
-            }        
-        }
-    }
+    }    
 }
