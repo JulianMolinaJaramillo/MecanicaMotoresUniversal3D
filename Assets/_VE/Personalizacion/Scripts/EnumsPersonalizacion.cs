@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Enums para las 3 categorías
+// Enums para las 4 categorías. Raza, Morfologia, Atuendo y sexo
 public enum Raza
 {
     Bestia,
@@ -27,7 +27,7 @@ public enum Atuendo
     Armadura,
     Tunica,
     Casual,
-    TrajeNeopreno // (revisé la ortografía, si lo quieres "Neopreno" cámbialo aquí)
+    TrajeNeopreno
 }
 
 public enum Sexo
@@ -41,6 +41,7 @@ public class EnumsPersonalizacion : MonoBehaviour
 
 }
 
+//Clases serializables para los porcentajes
 [System.Serializable]
 public class OpcionRaza
 {

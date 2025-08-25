@@ -13,34 +13,35 @@ public class GestorPersonalizacion : MonoBehaviour
     [Header("Referencias Principales")]
     public UISeleccionPersonalizacion seleccionPersonalizacion;
     public Botonera botonera;
+
     [Header("Catálogo de combinaciones")]
-    [Tooltip("Arrastra aquí TODOS los ConfigPersonaje que crees (uno por combinación).")]
+    [Tooltip("Arrastrar aqui las configuraciones de los personajes disponibles.")]
     public List<ConfigPersonaje> configuraciones = new List<ConfigPersonaje>();
 
     [Header("Instanciación")]
-    [Tooltip("Dónde se instanciará el modelo. Si se deja vacío, usará el transform de este GameObject.")]
+    [Tooltip("Dónde se instanciará el modelo. Si se deja vacío, usará el transform de este objeto.")]
     public Transform puntoInstancia;
 
     [Header("Valores por defecto")]
-    [Tooltip("Si el usuario elige morfología o atuendo primero, se usará esta raza por defecto.")]
+    [Tooltip("Selecciona la raza que quieres tener por defecto.")]
     public Raza razaPorDefecto = Raza.Humano;
-    [Tooltip("Estado inicial al arrancar (opcional).")]
     public Morfologia morfologiaInicial = Morfologia.Normal;
     public Atuendo atuendoInicial = Atuendo.SinAtuendo;
     public Sexo sexoPorDefecto = Sexo.Hombre;
     public bool instanciarAlIniciar = true;
 
     [Header("% Porcentajes de Selección")]
+    [Tooltip("Porcentaje de probabilidades para cada una de las razas.")]
     public List<OpcionRaza> razasConProbabilidad;
     public List<OpcionMorfologia> morfologiasConProbabilidad;
     public List<OpcionAtuendo> atuendosConProbabilidad;
     public List<OpcionSexo> sexosConProbabilidad;
 
-    [Header("Efecto de Disolver")]
+    [Header("Efecto de Disolver.")]
     public float tiempoDisolver = 1.5f;  // tiempo de la interpolación
     private Coroutine coroutine;         // para manejar corrutinas
 
-    [Header("Efecto de Disolver")]
+    [Header("Efectos y particulas.")]
     public ParticleSystem particulaSuelo;
 
     // --- Estado actual ---
@@ -51,29 +52,28 @@ public class GestorPersonalizacion : MonoBehaviour
     public Atuendo AtuendoActual { get; private set; }
     public Sexo SexoActual { get; private set; }
 
-    // Instancia viva del personaje
-    [SerializeField]
-    private string claveActiva = ""; // <- guarda la combinación activa
-    [HideInInspector]
-    private GameObject personajeActual;  
-    [HideInInspector]
-    public Texture texturaActualPersonaje;
-    [HideInInspector]
-    public Texture texturaOriginal; // cada prefab nuevo guarda aquí su textura base
+    // --- Instancia viva del personaje ---
+    //[HideInInspector]
+    public Texture texturaActualPersonaje; // Referencia a la textura actual del personaje
+    //[HideInInspector]
+    public Texture texturaOriginal; // Referencia a la textura original del personaje
 
-    private Color ultimoColorSeleccionado = Color.white; // almacenamos el último color base
+    private string claveActiva = ""; // Para guardar la combinación activa
+    private GameObject personajeActual; // Referencia al personaje actual en scena
+    private Color ultimoColorSeleccionado = Color.white; // Referencia al último color base 
+    private Dictionary<string, GameObject> mapaPrefabs; // Mapa para acceso O(1) por clave (raza_morfologia_atuendo)
 
-    // Mapa para acceso O(1) por clave (raza_morfologia_atuendo)
-    private Dictionary<string, GameObject> mapaPrefabs;
     // Diccionario para almacenar combinaciones guardadas en runtime
     private Dictionary<string, (Raza raza, Morfologia morfo, Atuendo atuendo, Sexo sexo)> combinacionesGuardadas = new Dictionary<string, (Raza, Morfologia, Atuendo, Sexo)>();
-
     private string Clave(Raza r, Morfologia m, Atuendo a, Sexo s) => $"{r}_{m}_{a}_{s}";
+
 
     private void Awake()
     {
-        // Construir diccionario
+        // Construimos el diccionario
         mapaPrefabs = new Dictionary<string, GameObject>();
+
+        //Recorremos y llenamos nuestro diccionario, si encuentra configuraciones duplicadas, nos avisa
         foreach (var cfg in configuraciones.Where(c => c != null && c.prefab != null))
         {
             var key = Clave(cfg.raza, cfg.morfologia, cfg.atuendo, cfg.sexo);
@@ -83,16 +83,19 @@ public class GestorPersonalizacion : MonoBehaviour
                 Debug.LogWarning($"Clave duplicada {key}. Revisa configuraciones repetidas.");
         }
 
-        // Estado inicial
+        // Inicializamos el estado actual
         RazaActual = razaPorDefecto;
         MorfologiaActual = morfologiaInicial;
         AtuendoActual = atuendoInicial;
         SexoActual = sexoPorDefecto;
 
-        if (instanciarAlIniciar)
-            ActualizarPersonaje(); // Mostrar primer modelo válido
+        if (instanciarAlIniciar) ActualizarPersonaje(); // Mostrar primer modelo válido
     }
 
+    /// <summary>
+    /// Metodo incovado desde el scrip UISeleccionPersonalizacion para cambiar de sexo al personaje
+    /// </summary>
+    /// <param name="nuevoSexo"> Indica el tipo de sexo, Masculino, Femenino, Otro </param>
     public void SeleccionarSexo(Sexo nuevoSexo)
     {
         SexoActual = nuevoSexo;
@@ -100,14 +103,14 @@ public class GestorPersonalizacion : MonoBehaviour
     }
 
     /// <summary>
-    /// Seleccionar Raza. Si la combinación exacta no existe,
+    /// Metodo incovado para Seleccionar Raza. Si la combinación exacta no existe,
     /// busca la primera combinación válida disponible de esa raza.
     /// </summary>
     public void SeleccionarRaza(Raza nueva)
     {
         RazaActual = nueva;
-
-        // ¿Existe la combinación exacta con lo que ya estaba elegido?
+        
+        //  Validamos si existe la combinación exacta con lo que ya estaba elegido
         string keyExacta = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
         if (mapaPrefabs.ContainsKey(keyExacta))
         {
@@ -115,7 +118,7 @@ public class GestorPersonalizacion : MonoBehaviour
             return;
         }
 
-        // No existe: buscamos la "primera" de esa raza, priorizando lo actual
+        // Si No existe: buscamos la "primera" de esa raza, priorizando lo actual
         var alternativa = BuscarPrimeraDeRaza(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
 
         if (alternativa != null)
@@ -131,21 +134,22 @@ public class GestorPersonalizacion : MonoBehaviour
         }
 
         // Si la raza elegida no tiene ninguna combinación, caemos a la raza por defecto
-        Debug.LogWarning($"No se encontró ninguna alternativa para Raza={RazaActual}. Probando raza por defecto.");
-        var fallback = BuscarPrimeraDeRaza(razaPorDefecto, morfologiaInicial, atuendoInicial, sexoPorDefecto);
-        if (fallback != null)
-        {
-            RazaActual = fallback.raza;
-            MorfologiaActual = fallback.morfologia;
-            AtuendoActual = fallback.atuendo;
-            SexoActual = fallback.sexo;
+        Debug.Log($"No se encontró ninguna alternativa para Raza={RazaActual}. Probando raza por defecto.");
 
-            ActualizarPersonaje();
-        }
-        else
-        {
-            Debug.LogError("No hay combinaciones ni siquiera para la raza por defecto. Revisa tus ConfigPersonaje.");
-        }
+        //var fallback = BuscarPrimeraDeRaza(razaPorDefecto, morfologiaInicial, atuendoInicial, sexoPorDefecto);
+        //if (fallback != null)
+        //{
+        //    RazaActual = fallback.raza;
+        //    MorfologiaActual = fallback.morfologia;
+        //    AtuendoActual = fallback.atuendo;
+        //    SexoActual = fallback.sexo;
+
+        //    ActualizarPersonaje();
+        //}
+        //else
+        //{
+        //    Debug.LogError("No hay combinaciones ni siquiera para la raza por defecto. Revisa tus ConfigPersonaje.");
+        //}
     }
 
     /// <summary>
@@ -199,6 +203,7 @@ public class GestorPersonalizacion : MonoBehaviour
     /// </summary>
     public void SeleccionarMorfologia(Morfologia nueva)
     {
+        // Si no hay definida ninguna raza asignamos la por defecto
         if (!System.Enum.IsDefined(typeof(Raza), RazaActual))
             RazaActual = razaPorDefecto;
 
@@ -265,7 +270,7 @@ public class GestorPersonalizacion : MonoBehaviour
     }
 
     /// <summary>
-    /// Seleccionar Atuendo. Si nunca se eligió raza, usa la raza por defecto.
+    /// Metodo invocado para seleccionar Atuendo. Si nunca se eligió raza, usa la raza por defecto.
     /// </summary>
     public void SeleccionarAtuendo(Atuendo nuevo)
     {
@@ -276,6 +281,12 @@ public class GestorPersonalizacion : MonoBehaviour
         ActualizarPersonaje();
     }
 
+    /// <summary>
+    /// Para ponderar los porcentajes y elegir un personaje alzar entre estos porcentajes
+    /// </summary>
+    /// <typeparam name="T"> Item, es decir, raza, morfologia, traje o sexo </typeparam>
+    /// <param name="opciones"> Valor porcentual </param>
+    /// <returns> Valor ponderado </returns>
     private T SeleccionarConPorcentaje<T>(List<(T item, float peso)> opciones)
     {
         float total = opciones.Sum(o => o.peso);
@@ -293,6 +304,9 @@ public class GestorPersonalizacion : MonoBehaviour
         return opciones.Last().item;
     }
 
+    /// <summary>
+    /// Metodo invocado desde el boton Generar Personaje Con Datos desde el canvas
+    /// </summary>
     public void GenerarAleatorio()
     {
         // Creamos un set para recordar combinaciones ya probadas en esta ejecución
@@ -329,7 +343,6 @@ public class GestorPersonalizacion : MonoBehaviour
                 AtuendoActual = atuendoSel;
                 SexoActual = sexoSel;
 
-                seleccionPersonalizacion.ReiniciarTexto();
                 ActualizarPersonaje();
                 Debug.Log($"Generado aleatoriamente: {clave}");
                 return;
@@ -341,10 +354,11 @@ public class GestorPersonalizacion : MonoBehaviour
     }
 
     /// <summary>
-    /// Busca la combinación exacta y actualiza la instancia.
+    /// Metodo principal invocado para realizar la actualizacion de cada personaje
     /// </summary>
     public void ActualizarPersonaje()
     {
+        // Guardamos la clave
         string key = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
 
         // Evitar reinstanciar si ya está la misma configuración activa
@@ -360,21 +374,21 @@ public class GestorPersonalizacion : MonoBehaviour
             return;
         }
 
-        // Destruir anterior
+        // Destruir instancia anterior
         if (personajeActual != null) Destroy(personajeActual);
 
-        // Instanciar nuevo
+        // Instanciar nuevo personaje
         personajeActual = Instantiate(prefab, puntoInstancia);
-        claveActiva = key; // <- guardar la nueva clave activa
-        botonera.RecibirClaveActual(claveActiva);
+        claveActiva = key; // guardamos la nueva clave activa
+        botonera.RecibirClaveActual(claveActiva); // Almacenamos la clave actual en el script botonera para su utilidad
         
 
-        // Asegura posición/orientación limpias (opcional)
+        // Aseguramos posición/orientación limpias (opcional)
         personajeActual.transform.localPosition = Vector3.zero;
         personajeActual.transform.localRotation = Quaternion.identity;
         personajeActual.transform.localScale = Vector3.one;
 
-        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
+        Renderer rend = personajeActual.GetComponentInChildren<Renderer>(); // Obtenemos el renderer del personaje
         if (rend != null)
         {
             // Intentamos primero obtener desde _BaseMap (Shader Graph / Lit URP)
@@ -401,11 +415,8 @@ public class GestorPersonalizacion : MonoBehaviour
             }
         }
 
-        if (!particulaSuelo.isPlaying)
-        {
-            
-        }
-        particulaSuelo.Play();
+        particulaSuelo.Play(); // Disparamos las particulas del suelo
+
         // Reaplicar el último color elegido al nuevo personaje
         if (ultimoColorSeleccionado != Color.clear)
         {
@@ -493,6 +504,82 @@ public class GestorPersonalizacion : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo utilizado para cambiar a cada color
+    /// </summary>
+    /// <param name="nuevoColor"> Color objetivo a cambiar </param>
+    public void CambiarColorBase(Color nuevoColor)
+    {
+        if (personajeActual == null) return;
+
+        ultimoColorSeleccionado = nuevoColor; // Guardamos el último color elegido
+
+        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_BaseColor")) // <- usa el Reference exacto de tu Shader Graph
+                {
+                    mat.SetColor("_BaseColor", nuevoColor);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Metodo utilizado para cambiar a cada textura
+    /// </summary>
+    /// <param name="nuevoColor"> textura objetivo a cambiar </param>
+    public void CambiarTextura(Texture nuevaTextura)
+    {
+        if (personajeActual == null) return;
+
+        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_BaseMap"))
+                {
+                    mat.SetTexture("_BaseMap", nuevaTextura);
+                }
+            }
+        }
+
+        // Guardar esta como la textura actual
+        texturaActualPersonaje = nuevaTextura;
+    }
+
+    /// <summary>
+    /// Meotodo invocado desde el boton para reiniciar la textura en el canvas
+    /// </summary>
+    public void ReiniciarTextura()
+    {
+        if (personajeActual == null) return;
+
+        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            foreach (var mat in rend.materials)
+            {
+                if (mat.HasProperty("_BaseMap"))
+                {
+                    // Restaurar la textura original del personaje actual
+                    mat.SetTexture("_BaseMap", texturaOriginal);
+                }
+            }
+        }
+
+        // Dejamos la textuta actual en nulo
+        texturaActualPersonaje = null;
+    }
+
+
+    /// <summary>
+    /// Corrutina empleada para aplicar el efecto de disolver en el shader
+    /// </summary>
+    /// <param name="personaje"> Personaje instanciado </param>
     private IEnumerator AplicarDisolver(GameObject personaje)
     {
         Renderer[] renderers = personaje.GetComponentsInChildren<Renderer>();
@@ -536,63 +623,7 @@ public class GestorPersonalizacion : MonoBehaviour
 
         coroutine = null;
     }
-    public void CambiarColorBase(Color nuevoColor)
-    {
-        if (personajeActual == null) return;
 
-        ultimoColorSeleccionado = nuevoColor; // Guardamos el último color elegido
 
-        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-        if (rend != null)
-        {
-            foreach (var mat in rend.materials)
-            {
-                if (mat.HasProperty("_BaseColor")) // <- usa el Reference exacto de tu Shader Graph
-                {
-                    mat.SetColor("_BaseColor", nuevoColor);
-                }
-            }
-        }
-    }
-
-    public void CambiarTextura(Texture nuevaTextura)
-    {
-        if (personajeActual == null) return;
-
-        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-        if (rend != null)
-        {
-            foreach (var mat in rend.materials)
-            {
-                if (mat.HasProperty("_BaseMap"))
-                {
-                    mat.SetTexture("_BaseMap", nuevaTextura);
-                }
-            }
-        }
-
-        // Guardar esta como la textura actual
-        texturaActualPersonaje = nuevaTextura;
-    }
-
-    public void ReiniciarTextura()
-    {
-        if (personajeActual == null) return;
-
-        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-        if (rend != null)
-        {
-            foreach (var mat in rend.materials)
-            {
-                if (mat.HasProperty("_BaseMap"))
-                {
-                    // Restaurar la textura original del personaje actual
-                    mat.SetTexture("_BaseMap", texturaOriginal);
-                }
-            }
-        }
-
-        // Actualizar el estado de textura actual (para que sepa que ahora usa la original)
-        texturaActualPersonaje = texturaOriginal;
-    }
+    
 }

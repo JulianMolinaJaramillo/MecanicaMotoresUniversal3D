@@ -13,8 +13,8 @@ public class UISeleccionPersonalizacion : MonoBehaviour
     public TextMeshProUGUI inputmensaje;
     public GameObject panelAlerta;
 
-    // ===== BOTONES ESPECÍFICOS (ejemplos) =====
-    // Asigna estas funciones a los OnClick de cada botón en el Inspector
+    // ===== BOTONES ESPECÍFICOS PARA CADA SELECCION DE ATRIBUTO =====
+    // Funciones para asignar en los On Click de cada boton de seleccion
 
     // RAZA
     public void BTN_Raza_Demonio() => gestor.SeleccionarRaza(Raza.Demonio);
@@ -47,17 +47,17 @@ public class UISeleccionPersonalizacion : MonoBehaviour
     public void BTN_Sexo_Mujer() => gestor.SeleccionarSexo(Sexo.Mujer);
     public void BTN_Sexo_Otro() => gestor.SeleccionarSexo(Sexo.otro);
 
+    // GUARDADO DE COMBINACION
     public void BTN_GuardarCombinacion() => gestor.GuardarCombinacion(inputNombre.text);
     public void BTN_CargarCombinacion() => gestor.CargarCombinacion(inputNombre.text);
 
+    /// <summary>
+    /// Meotod para actualizar el texto de la ventana emergente
+    /// </summary>
+    /// <param name="dato"></param>
     public void ActualizarMensaje(string dato)
     {
         inputmensaje.text = dato;
         panelAlerta.SetActive(true);
-    }
-
-    public void ReiniciarTexto()
-    {
-        inputNombre.text = "";
     }
 }
