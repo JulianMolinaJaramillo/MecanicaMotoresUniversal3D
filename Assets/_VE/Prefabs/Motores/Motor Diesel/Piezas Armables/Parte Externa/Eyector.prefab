@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3365572859409547756
+--- !u!1 &1764566350864015464
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1155143318962979847}
-  - component: {fileID: 9123230528012211658}
-  - component: {fileID: 2713350611946372814}
-  - component: {fileID: 8064605011750102837}
-  - component: {fileID: 2891113703385077723}
-  - component: {fileID: 6415710473104764981}
+  - component: {fileID: 7610542244147620080}
+  - component: {fileID: 4430246915393034751}
+  - component: {fileID: 4781795403797621574}
+  - component: {fileID: 5286683932260299187}
+  - component: {fileID: 2203253161308382812}
+  - component: {fileID: 1690282217738785676}
   m_Layer: 8
-  m_Name: SPtapa
+  m_Name: SPtapaDistribucion (1)
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &1155143318962979847
+--- !u!4 &7610542244147620080
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365572859409547756}
+  m_GameObject: {fileID: 1764566350864015464}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.7072302}
-  m_LocalPosition: {x: -0.78824216, y: 0.6498896, z: -0.11599147}
-  m_LocalScale: {x: 0.116088696, y: 0.048618834, z: 0.073703974}
+  m_LocalPosition: {x: -0.7245686, y: -0.24625151, z: 0.47459742}
+  m_LocalScale: {x: 0.116088696, y: 0.04861883, z: 0.073703974}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9094097274485786143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9123230528012211658
+--- !u!33 &4430246915393034751
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365572859409547756}
+  m_GameObject: {fileID: 1764566350864015464}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2713350611946372814
+--- !u!23 &4781795403797621574
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365572859409547756}
+  m_GameObject: {fileID: 1764566350864015464}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -86,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8064605011750102837
+--- !u!135 &5286683932260299187
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365572859409547756}
+  m_GameObject: {fileID: 1764566350864015464}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,13 +107,13 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2891113703385077723
+--- !u!54 &2203253161308382812
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365572859409547756}
+  m_GameObject: {fileID: 1764566350864015464}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -134,19 +134,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6415710473104764981
+--- !u!114 &1690282217738785676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3365572859409547756}
+  m_GameObject: {fileID: 1764566350864015464}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: tapa
+  snapID: tapaDistribucion
 --- !u!1 &5228776244650421010
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +463,7 @@ Transform:
   m_Children:
   - {fileID: 6147585714439632298}
   - {fileID: 2441614200533785051}
-  - {fileID: 1155143318962979847}
+  - {fileID: 7610542244147620080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2748769271843169878
@@ -578,10 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.1612, y: -0.2275, z: 0.0425}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -589,9 +586,15 @@ MonoBehaviour:
   materialDisolver: {fileID: 2100000, guid: 4d1a4c2c346611549bacfcb1a447eff1, type: 2}
   tiempoDisolver: 1.5
   snappsParaActivar:
-  - {fileID: 3365572859409547756}
+  - {fileID: 1764566350864015464}
   snappsParaDesactivar:
   - {fileID: 5888440476161472296}
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  asignarTornillos: {fileID: 0}
+  sizeMinijuego: 0
   mensaje2:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

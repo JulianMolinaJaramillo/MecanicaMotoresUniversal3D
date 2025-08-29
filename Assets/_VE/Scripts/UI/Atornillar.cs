@@ -10,14 +10,9 @@ public class Atornillar : MonoBehaviour
     public float anguloMaximo = 15f;
     public Slider sliderVelocidad;
     public TextMeshProUGUI torque;
+    public RotacionAngularObjeto rotacionAngularObjeto;
 
-    [HideInInspector] 
-    public bool estaManipulando = false;
-
-    private RectTransform rectTransform;
-    private float anguloInicial;
-    private float valorSliderActual;
-    private float tiempoAnimacion = 0f;
+    public float valorSliderActual;
 
     public static Atornillar singleton;
 
@@ -34,24 +29,12 @@ public class Atornillar : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        anguloInicial = rectTransform.localEulerAngles.z;
-    }
-
     void Update()
     {
-        if (!estaManipulando) return;
-
-        float velocidadActual = Mathf.Lerp(1f, 20f, sliderVelocidad.value);
-        tiempoAnimacion += Time.deltaTime * velocidadActual;
-
-        float rotacionZ = Mathf.Sin(tiempoAnimacion) * anguloMaximo;
-        rectTransform.localRotation = Quaternion.Euler(0, 0, anguloInicial + rotacionZ);
-
         float valorConvertido = sliderVelocidad.value * 100f;
         torque.text = valorConvertido.ToString("F0");
+
+        rotacionAngularObjeto.SetVelocidad(sliderVelocidad.value * 30);
 
         valorSliderActual = sliderVelocidad.value;
     }
@@ -61,9 +44,10 @@ public class Atornillar : MonoBehaviour
     /// </summary>
     public void ReestablecerValorSlider()
     {
+        valorSliderActual = 0f;
         sliderVelocidad.value = valorSliderActual;
         float valorConvertido = sliderVelocidad.value * 100f;
-        torque.text = valorConvertido.ToString("F0");
+        torque.text = valorConvertido.ToString("F0");    
     }
 
     public float AsignarValorTorque()

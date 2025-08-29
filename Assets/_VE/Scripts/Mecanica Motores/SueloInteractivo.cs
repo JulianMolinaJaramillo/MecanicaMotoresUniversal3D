@@ -194,7 +194,11 @@ public class SueloInteractivo : MonoBehaviour
             if (mesaArmadoMotor && !plataformaAbajo)
             {
                 // Si el miijuego esta activo lo desactivamos al momento de salir de la interaccion de la mesa de armado
-                if (ManagerMinijuego.singleton.minijuegoActivo) ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(true);
+                if (ManagerMinijuego.singleton.minijuegoActivo) 
+                {
+                    ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(true);
+                    ManagerMinijuego.singleton.herramientasRotatorias.SetActive(true);
+                } 
 
                 if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
 
@@ -236,7 +240,11 @@ public class SueloInteractivo : MonoBehaviour
 
         if (!plataformaAbajo && mesaArmadoMotor)
         {
-            if (ManagerMinijuego.singleton.minijuegoActivo) ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
+            if (ManagerMinijuego.singleton.minijuegoActivo)
+            {
+                ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
+                ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
+            }
 
             if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
 

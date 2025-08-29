@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GuardarHerramienta : MonoBehaviour
 {
+    public RotacionAngularObjeto rotacionAngularObjeto;
+    public bool llaveInglesa;
     public string nombreHerramientaImagen; // Nombre para asignarle a la imagen
     public string nombreHerramienta; // Nombre completo de la pieza para el titulo
     public int sizeHerramienta; // Para indicar el tamaño en milimetros
@@ -63,6 +65,12 @@ public class GuardarHerramienta : MonoBehaviour
     {
         if (!puedoInteractuar && !ManagerCanvas.singleton.mensajeAlertaActivo)
         {
+            //habilitamos la herramienta en cuestion para rotar si es una llave inglesa
+            if (llaveInglesa)
+            {
+                rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
+                rotacionAngularObjeto.herramientasManipulables[1].SetActive(true);
+            }
             StartCoroutine(AgregarMaterialDisolver());
         }    
     }

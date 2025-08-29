@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    public RotacionAngularObjeto[] rotacionAngularObjeto;
     /// <summary>
     /// Metodo invocado al momento de manipular el slider
     /// </summary>
@@ -13,7 +14,10 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
         {
             if (InventarioUI.singleton.tamanoHerramienta == ManagerMinijuego.singleton.sizeHerramienta)
             {
-                Atornillar.singleton.estaManipulando = true;
+                for (int i = 0; i < rotacionAngularObjeto.Length; i++)
+                {
+                    rotacionAngularObjeto[i].estaManipulando = true;
+                }
             }
             else
             {
@@ -35,7 +39,10 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
     {
         if (Atornillar.singleton != null)
         {
-            Atornillar.singleton.estaManipulando = false;
+            for (int i = 0; i < rotacionAngularObjeto.Length; i++)
+            {
+                rotacionAngularObjeto[i].estaManipulando = false;
+            }
         }        
     }
 }

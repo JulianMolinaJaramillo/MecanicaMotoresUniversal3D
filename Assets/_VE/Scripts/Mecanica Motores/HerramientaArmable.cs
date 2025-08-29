@@ -21,6 +21,8 @@ public enum ToolType
 /// </summary>
 public class HerramientaArmable : MonoBehaviour
 {
+    
+
     [Header("Tipo de esta herramienta")]
     public ToolType tipoHerramienta; // Tipo de herramienta (Rachet, Socket, etc.)
 
@@ -32,6 +34,9 @@ public class HerramientaArmable : MonoBehaviour
 
     [Header("Componente actualmente acoplado")]
     public HerramientaArmable componenteAcoplados; // Lista de herramientas ya acopladas
+
+    [Header("Unicamente para las herramientas tipo socket")]
+    public RotacionAngularObjeto rotacionAngularObjeto;
 
     public MessageOnly mensaje1 = new MessageOnly("Si lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
@@ -92,6 +97,13 @@ public class HerramientaArmable : MonoBehaviour
             actualRotation = transform.rotation;
             originalParent = transform.parent;
             InventarioHerramientas.singleton.ClickHerramienta(this,collider);
+
+            //habilitamos la herramienta en cuestion para rotar siempre y cuando sea una copa
+            if (tipoHerramienta == ToolType.Socket)
+            {
+                rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
+                rotacionAngularObjeto.herramientasManipulables[0].SetActive(true);
+            }         
         }
     }
 

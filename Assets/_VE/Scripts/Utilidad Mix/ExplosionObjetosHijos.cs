@@ -150,7 +150,7 @@ public class ExplosionObjetosHijos : MonoBehaviour
         }
     }
     [ContextMenu("destruir")]
-    // Destruye los hijos de todos los objetos padres del listado
+    /// Destruye los hijos de todos los objetos padres del listado, invocado desde btnReutilizarMotor en el canvas
     public void DestruirTodosLosHijos()
     {
         foreach (GameObject padre in objetosPadres)

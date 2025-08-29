@@ -10,7 +10,9 @@ public class ManagerMinijuego : MonoBehaviour
     public int sizeHerramienta; // Tamaño de herramienta tomada
     public string motorActivo; // Para controlar el motor activo
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuego
+    public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuegoTorque del canvas
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject herramientasRotatorias; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnAplicarTorque; // Referencia al bt que aplica torque
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -19,6 +21,8 @@ public class ManagerMinijuego : MonoBehaviour
     public GameObject sliderVelocidadMotor; // Slider que controla la velocidad de la animacion del motor activo
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Slider sliderTorqueMinijuego; // Slider que controla la velocidad de la animacion del motor activo
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject[] motoresAnimados; // Motores internos animados
 
     public Collider[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
     public Collider[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
@@ -38,7 +42,9 @@ public class ManagerMinijuego : MonoBehaviour
     public Transform posicionMonijuegoActual;
     [HideInInspector]
     public bool aplicandoTorque;
-    
+    [HideInInspector]
+    public GameObject motorAnimadoActivo;
+
     private int contador = 0;
     private int puntaje = 0;
     private Coroutine coroutine;
@@ -92,6 +98,7 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 sueloInteractivoDiesel[i].enabled = true;
                 sueloInteractivoNissan[i].enabled = false;
+                motorAnimadoActivo = motoresAnimados[0]; // Es igual al motor animado Diesel
             }
         }
         else if (nombreMotor == "Nissan")
@@ -100,6 +107,7 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 sueloInteractivoNissan[i].enabled = true;
                 sueloInteractivoDiesel[i].enabled = false;
+                motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
             }
         }
         else
@@ -113,6 +121,7 @@ public class ManagerMinijuego : MonoBehaviour
         asignarTornillos.Add(asignar);
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
+        herramientasRotatorias.SetActive(true);
         asignarTornillos[0].InicializarTornillosMinijuego();
         PosicionInicialCamaraMinijuego();
         HabilitarTornilloApretar();   
@@ -125,6 +134,7 @@ public class ManagerMinijuego : MonoBehaviour
         contador = 0;
         minijuegoActivo = false;
         miniJuegoAtornillar.SetActive(false);
+        herramientasRotatorias.SetActive(false);
     }
 
     public void PosicionInicialCamaraMinijuego()
@@ -153,22 +163,25 @@ public class ManagerMinijuego : MonoBehaviour
     {
         for (int i = 0; i < torquesTornillosBancada.Length; i++)
         {
-            if (torquesTornillosBancada[i] > 49 && torquesTornillosBancada[i] < 61)
+            if (torquesTornillosBancada[i] > 87 && torquesTornillosBancada[i] < 96)
             {
                 puntaje += 1;
+                Debug.Log(puntaje);
             }
         }
 
         for (int i = 0; i < torquesTornillosBielas.Length; i++)
         {
-            if (torquesTornillosBielas[i] > 59 && torquesTornillosBielas[i] < 71)
+            if (torquesTornillosBielas[i] > 51 && torquesTornillosBielas[i] < 59)
             {
                 puntaje += 1;
+                Debug.Log(puntaje);
             }
         }
 
         btnEncenderMotor.gameObject.SetActive(true);
-        
+        Debug.Log(puntaje);
+
         if (puntaje == 8)
         {
             Debug.Log("todo good");
@@ -177,6 +190,9 @@ public class ManagerMinijuego : MonoBehaviour
                 ManagerCanvas.singleton.btnReutilizableHabilitado = true;
             }
             sliderVelocidadMotor.gameObject.SetActive(true);
+            motorAnimadoActivo.SetActive(true);
+            ExplosionObjetosHijos.singleton.DestruirHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]);
+            ExplosionObjetosHijos.singleton.DestruirHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]);
         }
         else
         {
@@ -209,12 +225,12 @@ public class ManagerMinijuego : MonoBehaviour
     {
         if (!aplicandoTorque)
         {
-            Debug.Log("TorqueAplicadoTornillosBancada");
+            Debug.Log("TorqueAplicadoTornillosBancada");         
             ConfigurarTornilloActivo();
+            torquesTornillosBancada[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
 
             yield return new WaitForSeconds(0.1f);
-
-            torquesTornillosBancada[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
+        
             contador += 1;
             if (contador < 4)
             {
@@ -257,10 +273,10 @@ public class ManagerMinijuego : MonoBehaviour
         {
             Debug.Log("TorqueAplicadoTornillosBielas");
             ConfigurarTornilloActivo();
+            torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
 
             yield return new WaitForSeconds(0.1f);
-
-            torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
+        
             contador += 1;
             if (contador < 4)
             {
