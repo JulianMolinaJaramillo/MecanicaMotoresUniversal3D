@@ -30,6 +30,7 @@ public class GestorPersonalizacion : MonoBehaviour
     public Sexo sexoPorDefecto = Sexo.Hombre;
     public bool instanciarAlIniciar = true;
 
+    
     [Header("% Porcentajes de Selección")]
     [Tooltip("Porcentaje de probabilidades para cada una de las razas.")]
     public List<OpcionRaza> razasConProbabilidad;
@@ -39,7 +40,9 @@ public class GestorPersonalizacion : MonoBehaviour
 
     [Header("Efecto de Disolver.")]
     public float tiempoDisolver = 1.5f;  // tiempo de la interpolación
-    private Coroutine coroutine;         // para manejar corrutinas
+    public float rango;
+    private Coroutine coroutine;
+    private Coroutine coroutine2;
 
     [Header("Efectos y particulas.")]
     public ParticleSystem particulaSuelo;
@@ -369,8 +372,10 @@ public class GestorPersonalizacion : MonoBehaviour
             return;
         }
 
-        if (personajeActual != null) Destroy(personajeActual);
-
+        if (personajeActual != null) Destroy(personajeActual,1);
+        if (coroutine2 != null) StopCoroutine(coroutine2);
+        coroutine2 = StartCoroutine(Solver(personajeActual));
+        ;
         personajeActual = Instantiate(prefab, puntoInstancia);
         claveActiva = key;
         botonera.RecibirClaveActual(claveActiva);
@@ -612,7 +617,7 @@ public class GestorPersonalizacion : MonoBehaviour
         while (tiempo < tiempoDisolver)
         {
             float t = tiempo / tiempoDisolver;
-            float valor = Mathf.Lerp(1f, -1f, t);
+            float valor = Mathf.Lerp(rango, -rango, t);
 
             foreach (var mat in materialesInstanciados)
             {
@@ -626,7 +631,52 @@ public class GestorPersonalizacion : MonoBehaviour
         // Aseguramos valor final visible
         foreach (var mat in materialesInstanciados)
         {
-            mat.SetFloat("_Frecuencia", -1.2f);          
+            //mat.SetFloat("_Frecuencia", -1.2f);          
+        }
+
+        coroutine = null;
+    }
+    private IEnumerator Solver(GameObject personaje)
+    {
+        Debug.Log("curr");
+        Renderer[] renderers = personaje.GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0) yield break;
+
+        // Creamos materiales instanciados para no modificar materiales globales
+        List<Material> materialesInstanciados = new List<Material>();
+        foreach (var rend in renderers)
+        {
+            Material[] nuevos = new Material[rend.materials.Length];
+            for (int i = 0; i < rend.materials.Length; i++)
+            {
+                nuevos[i] = new Material(rend.materials[i]);
+                Debug.Log(rend.materials[i].name);
+                nuevos[i].SetFloat("_Frecuencia", 1f); // 👈 arranca invisible
+                materialesInstanciados.Add(nuevos[i]);
+            }
+            rend.materials = nuevos;
+        }
+
+        // Interpolamos de 1 → -1
+        float tiempo = 0f;
+        while (tiempo < tiempoDisolver)
+        {
+            float t = tiempo / tiempoDisolver;
+            float valor = Mathf.Lerp(-rango, rango, t);
+
+            foreach (var mat in materialesInstanciados)
+            {
+                mat.SetFloat("_Frecuencia", valor);
+            }
+
+            tiempo += Time.deltaTime;
+            yield return null;
+        }
+
+        // Aseguramos valor final visible
+        foreach (var mat in materialesInstanciados)
+        {
+           // mat.SetFloat("_Frecuencia", -1.2f);
         }
 
         coroutine = null;
