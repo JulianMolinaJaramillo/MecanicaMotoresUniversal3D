@@ -9,8 +9,8 @@ public class Botonera : MonoBehaviour
     public Button[] botonesMorfologia;
     public Button[] botonesTrajes;
 
-    public GameObject sexoMasculinoActivo;
-    public GameObject sexoFemeninoActivo;
+    public GameObject[] sexoMasculinoActivo;
+    public GameObject[] sexoFemeninoActivo;
 
     public ButtonHide buttonHideDemonio;
     public ButtonHide buttonHideHumano;
@@ -122,11 +122,53 @@ public class Botonera : MonoBehaviour
 
         if (razaActiva[1]) // Si es Suerhumano
         {
-            if (dato == "Antiheroe")
+            if (dato == "Bruto")
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
                     if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "GenioMal")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "Heroe")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "Normal")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnTrajeNeopreno" || botonesTrajes[i].name == "btnSinAtuendo" || botonesTrajes[i].name == "btnArmadura")
                     {
                         botonesTrajes[i].gameObject.SetActive(true);
                     }
@@ -172,7 +214,7 @@ public class Botonera : MonoBehaviour
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
-                    if (botonesTrajes[i].name == "btnTunica")
+                    if (botonesTrajes[i].name == "btnTunica" || botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno")
                     {
                         botonesTrajes[i].gameObject.SetActive(true);
                     }
@@ -186,7 +228,21 @@ public class Botonera : MonoBehaviour
 
         if (razaActiva[3]) // Si es Hibrido
         {
-            if (dato == "Antiheroe")
+            if (dato == "Normal")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "Heroe")
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
@@ -204,7 +260,21 @@ public class Botonera : MonoBehaviour
 
         if (razaActiva[4]) // Si es Extraterrestre
         {
-            if (dato == "Antiheroe")
+            if (dato == "Bruto")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "Heroe")
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
@@ -218,15 +288,43 @@ public class Botonera : MonoBehaviour
                     }
                 }
             }
+            else if (dato == "Normal")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
         }
 
         if (razaActiva[5]) // Si es Bestia
         {
-            if (dato == "Antiheroe")
+            if (dato == "Heroe")
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
                     if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "Normal")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura")
                     {
                         botonesTrajes[i].gameObject.SetActive(true);
                     }
@@ -257,13 +355,20 @@ public class Botonera : MonoBehaviour
 
         if (partes[3] == "Hombre")
         {
-            sexoFemeninoActivo.SetActive(false);
-            sexoMasculinoActivo.SetActive(true);
+            for (int i = 0; i < sexoFemeninoActivo.Length; i++)
+            {
+                sexoFemeninoActivo[i].SetActive(false);
+                sexoMasculinoActivo[i].SetActive(true);
+            }
+            
         }
         else
         {
-            sexoFemeninoActivo.SetActive(true);
-            sexoMasculinoActivo.SetActive(false);
+            for (int i = 0; i < sexoFemeninoActivo.Length; i++)
+            {
+                sexoFemeninoActivo[i].SetActive(true);
+                sexoMasculinoActivo[i].SetActive(false);
+            }            
         }
 
         if (partes[0] == "Demonio")

@@ -46,6 +46,7 @@ public class GestorPersonalizacion : MonoBehaviour
 
     [Header("Efectos y particulas.")]
     public ParticleSystem particulaSuelo;
+    public ParticleSystem particulasHumo;
 
     // --- Estado actual ---
     [SerializeField]
@@ -93,6 +94,12 @@ public class GestorPersonalizacion : MonoBehaviour
         SexoActual = sexoPorDefecto;
 
         if (instanciarAlIniciar) ActualizarPersonaje(); // Mostrar primer modelo válido
+    }
+
+    private void Start()
+    {
+        // Las partículas del humo
+        particulasHumo.Play();
     }
 
     /// <summary>
@@ -372,10 +379,13 @@ public class GestorPersonalizacion : MonoBehaviour
             return;
         }
 
-        if (personajeActual != null) Destroy(personajeActual,1);
-        if (coroutine2 != null) StopCoroutine(coroutine2);
-        coroutine2 = StartCoroutine(Solver(personajeActual));
-        ;
+        if (personajeActual != null)
+        { 
+            Destroy(personajeActual, 1);
+            if (coroutine2 != null) StopCoroutine(coroutine2);
+            coroutine2 = StartCoroutine(Solver(personajeActual));
+        } 
+        
         personajeActual = Instantiate(prefab, puntoInstancia);
         claveActiva = key;
         botonera.RecibirClaveActual(claveActiva);
@@ -402,14 +412,14 @@ public class GestorPersonalizacion : MonoBehaviour
             }
         }
 
-        // ⚡️ Si venimos de cargar, ya tenemos color/textura definidos:
+        // Si venimos de cargar, ya tenemos color/textura definidos:
         if (ultimoColorSeleccionado != Color.clear)
             CambiarColorBase(ultimoColorSeleccionado);
 
         // Las partículas del suelo
         particulaSuelo.Play();
 
-        // 🚀 Importante: lanzar el disolver solo DESPUÉS de aplicar texturas/colores
+        // lanzar el disolver solo DESPUÉS de aplicar texturas/colores
         if (coroutine != null) StopCoroutine(coroutine);
         coroutine = StartCoroutine(AplicarDisolver(personajeActual));
     }
