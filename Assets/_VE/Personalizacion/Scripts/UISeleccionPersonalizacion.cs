@@ -60,4 +60,10 @@ public class UISeleccionPersonalizacion : MonoBehaviour
         inputmensaje.text = dato;
         panelAlerta.SetActive(true);
     }
+
+    public void SalirAplicacion()
+    {
+        Application.Quit();
+        Debug.Log("salio");
+    }
 }

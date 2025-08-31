@@ -264,7 +264,7 @@ public class Botonera : MonoBehaviour
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
-                    if (botonesTrajes[i].name == "btnArmadura")
+                    if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno")
                     {
                         botonesTrajes[i].gameObject.SetActive(true);
                     }
@@ -278,7 +278,7 @@ public class Botonera : MonoBehaviour
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
-                    if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno")
+                    if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno" || botonesTrajes[i].name == "btnTunica")
                     {
                         botonesTrajes[i].gameObject.SetActive(true);
                     }
@@ -292,7 +292,21 @@ public class Botonera : MonoBehaviour
             {
                 for (int i = 0; i < botonesTrajes.Length; i++)
                 {
-                    if (botonesTrajes[i].name == "btnArmadura")
+                    if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno")
+                    {
+                        botonesTrajes[i].gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        botonesTrajes[i].gameObject.SetActive(false);
+                    }
+                }
+            }
+            else if (dato == "GenioMal")
+            {
+                for (int i = 0; i < botonesTrajes.Length; i++)
+                {
+                    if (botonesTrajes[i].name == "btnArmadura" || botonesTrajes[i].name == "btnTrajeNeopreno" || botonesTrajes[i].name == "btnTunica")
                     {
                         botonesTrajes[i].gameObject.SetActive(true);
                     }
