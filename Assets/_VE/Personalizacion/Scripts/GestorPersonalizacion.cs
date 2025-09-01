@@ -62,7 +62,6 @@ public class GestorPersonalizacion : MonoBehaviour
     //[HideInInspector]
     public Texture texturaOriginal; // Referencia a la textura original del personaje
 
-    private bool puedoActualizar;
     private string claveActiva = ""; // Para guardar la combinación activa
     private GameObject personajeActual; // Referencia al personaje actual en scena
     private Color ultimoColorSeleccionado = Color.white; // Referencia al último color base 
@@ -112,12 +111,8 @@ public class GestorPersonalizacion : MonoBehaviour
     /// <param name="nuevoSexo"> Indica el tipo de sexo, Masculino, Femenino, Otro </param>
     public void SeleccionarSexo(Sexo nuevoSexo)
     {
-        if (!puedoActualizar)
-        {
-            SexoActual = nuevoSexo;
-            ActualizarPersonaje();
-        }
-        
+        SexoActual = nuevoSexo;
+        ActualizarPersonaje();
     }
 
     /// <summary>
@@ -126,52 +121,33 @@ public class GestorPersonalizacion : MonoBehaviour
     /// </summary>
     public void SeleccionarRaza(Raza nueva)
     {
-        if (!puedoActualizar)
+        RazaActual = nueva;
+
+        //  Validamos si existe la combinación exacta con lo que ya estaba elegido
+        string keyExacta = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+        if (mapaPrefabs.ContainsKey(keyExacta))
         {
-            RazaActual = nueva;
-
-            //  Validamos si existe la combinación exacta con lo que ya estaba elegido
-            string keyExacta = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
-            if (mapaPrefabs.ContainsKey(keyExacta))
-            {
-                ActualizarPersonaje();
-                return;
-            }
-
-            // Si No existe: buscamos la "primera" de esa raza, priorizando lo actual
-            var alternativa = BuscarPrimeraDeRaza(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
-
-            if (alternativa != null)
-            {
-                // Ajustamos el estado a lo encontrado
-                RazaActual = alternativa.raza;
-                MorfologiaActual = alternativa.morfologia;
-                AtuendoActual = alternativa.atuendo;
-                SexoActual = alternativa.sexo;
-
-                ActualizarPersonaje();
-                return;
-            }
-
-            // Si la raza elegida no tiene ninguna combinación, caemos a la raza por defecto
-            Debug.Log($"No se encontró ninguna alternativa para Raza={RazaActual}. Probando raza por defecto.");
-
-            //var fallback = BuscarPrimeraDeRaza(razaPorDefecto, morfologiaInicial, atuendoInicial, sexoPorDefecto);
-            //if (fallback != null)
-            //{
-            //    RazaActual = fallback.raza;
-            //    MorfologiaActual = fallback.morfologia;
-            //    AtuendoActual = fallback.atuendo;
-            //    SexoActual = fallback.sexo;
-
-            //    ActualizarPersonaje();
-            //}
-            //else
-            //{
-            //    Debug.LogError("No hay combinaciones ni siquiera para la raza por defecto. Revisa tus ConfigPersonaje.");
-            //}
+            ActualizarPersonaje();
+            return;
         }
 
+        // Si No existe: buscamos la "primera" de esa raza, priorizando lo actual
+        var alternativa = BuscarPrimeraDeRaza(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+
+        if (alternativa != null)
+        {
+            // Ajustamos el estado a lo encontrado
+            RazaActual = alternativa.raza;
+            MorfologiaActual = alternativa.morfologia;
+            AtuendoActual = alternativa.atuendo;
+            SexoActual = alternativa.sexo;
+
+            ActualizarPersonaje();
+            return;
+        }
+
+        // Si la raza elegida no tiene ninguna combinación, caemos a la raza por defecto
+        Debug.Log($"No se encontró ninguna alternativa para Raza={RazaActual}. Probando raza por defecto.");
     }
 
     /// <summary>
@@ -225,45 +201,41 @@ public class GestorPersonalizacion : MonoBehaviour
     /// </summary>
     public void SeleccionarMorfologia(Morfologia nueva)
     {
-        if (!puedoActualizar)
+        // Si no hay definida ninguna raza asignamos la por defecto
+        if (!System.Enum.IsDefined(typeof(Raza), RazaActual))
+            RazaActual = razaPorDefecto;
+
+        // Guardamos el intento original
+        Morfologia morfoAnt = MorfologiaActual;
+        MorfologiaActual = nueva;
+
+        // Verificamos si existe la combinación exacta
+        string keyExacta = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+        if (mapaPrefabs.ContainsKey(keyExacta))
         {
-            // Si no hay definida ninguna raza asignamos la por defecto
-            if (!System.Enum.IsDefined(typeof(Raza), RazaActual))
-                RazaActual = razaPorDefecto;
-
-            // Guardamos el intento original
-            Morfologia morfoAnt = MorfologiaActual;
-            MorfologiaActual = nueva;
-
-            // Verificamos si existe la combinación exacta
-            string keyExacta = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
-            if (mapaPrefabs.ContainsKey(keyExacta))
-            {
-                ActualizarPersonaje();
-                return;
-            }
-
-            // Buscar alternativa más cercana
-            ConfigPersonaje alternativa = BuscarCombinacionDisponible(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
-
-            if (alternativa != null)
-            {
-                Debug.Log($"No existe {keyExacta}, usando alternativa {alternativa.raza}_{alternativa.morfologia}_{alternativa.atuendo}_{alternativa.sexo}");
-                // Actualizamos estado con lo que encontramos
-                RazaActual = alternativa.raza;
-                MorfologiaActual = alternativa.morfologia;
-                AtuendoActual = alternativa.atuendo;
-                SexoActual = alternativa.sexo;
-
-                ActualizarPersonaje();
-            }
-            else
-            {
-                Debug.LogWarning($"No se encontró ninguna alternativa para Raza={RazaActual}, Morfo={MorfologiaActual}. Restaurando morfo anterior.");
-                MorfologiaActual = morfoAnt; // restaurar si no hay nada
-            }
+            ActualizarPersonaje();
+            return;
         }
-        
+
+        // Buscar alternativa más cercana
+        ConfigPersonaje alternativa = BuscarCombinacionDisponible(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+
+        if (alternativa != null)
+        {
+            Debug.Log($"No existe {keyExacta}, usando alternativa {alternativa.raza}_{alternativa.morfologia}_{alternativa.atuendo}_{alternativa.sexo}");
+            // Actualizamos estado con lo que encontramos
+            RazaActual = alternativa.raza;
+            MorfologiaActual = alternativa.morfologia;
+            AtuendoActual = alternativa.atuendo;
+            SexoActual = alternativa.sexo;
+
+            ActualizarPersonaje();
+        }
+        else
+        {
+            Debug.LogWarning($"No se encontró ninguna alternativa para Raza={RazaActual}, Morfo={MorfologiaActual}. Restaurando morfo anterior.");
+            MorfologiaActual = morfoAnt; // restaurar si no hay nada
+        }
     }
 
     /// <summary>
@@ -300,15 +272,11 @@ public class GestorPersonalizacion : MonoBehaviour
     /// </summary>
     public void SeleccionarAtuendo(Atuendo nuevo)
     {
-        if (!puedoActualizar)
-        {
-            if (!System.Enum.IsDefined(typeof(Raza), RazaActual))
-                RazaActual = razaPorDefecto;
+        if (!System.Enum.IsDefined(typeof(Raza), RazaActual))
+            RazaActual = razaPorDefecto;
 
-            AtuendoActual = nuevo;
-            ActualizarPersonaje();
-        }
-        
+        AtuendoActual = nuevo;
+        ActualizarPersonaje();
     }
 
     /// <summary>
@@ -339,52 +307,48 @@ public class GestorPersonalizacion : MonoBehaviour
     /// </summary>
     public void GenerarAleatorio()
     {
-        if (!puedoActualizar)
+        // Creamos un set para recordar combinaciones ya probadas en esta ejecución
+        HashSet<string> intentadas = new HashSet<string>();
+
+        // Bucle de reintentos
+        for (int i = 0; i < 300; i++) // seguridad: máximo 100 intentos
         {
-            // Creamos un set para recordar combinaciones ya probadas en esta ejecución
-            HashSet<string> intentadas = new HashSet<string>();
+            Raza razaSel = SeleccionarConPorcentaje(razasConProbabilidad.Select(r => (r.raza, r.porcentaje)).ToList());
+            Morfologia morfoSel = SeleccionarConPorcentaje(morfologiasConProbabilidad.Select(m => (m.morfologia, m.porcentaje)).ToList());
+            Atuendo atuendoSel = SeleccionarConPorcentaje(atuendosConProbabilidad.Select(a => (a.atuendo, a.porcentaje)).ToList());
+            Sexo sexoSel = SeleccionarConPorcentaje(sexosConProbabilidad.Select(s => (s.sexo, s.porcentaje)).ToList());
 
-            // Bucle de reintentos
-            for (int i = 0; i < 300; i++) // seguridad: máximo 100 intentos
+            string clave = Clave(razaSel, morfoSel, atuendoSel, sexoSel);
+
+            if (intentadas.Contains(clave))
+                continue; // ya probamos esta combinación en esta ejecución
+
+            intentadas.Add(clave);
+            Debug.Log($"Intento numero: {i} Se probó con la combinacion: {clave}");
+
+            if (mapaPrefabs.ContainsKey(clave))
             {
-                Raza razaSel = SeleccionarConPorcentaje(razasConProbabilidad.Select(r => (r.raza, r.porcentaje)).ToList());
-                Morfologia morfoSel = SeleccionarConPorcentaje(morfologiasConProbabilidad.Select(m => (m.morfologia, m.porcentaje)).ToList());
-                Atuendo atuendoSel = SeleccionarConPorcentaje(atuendosConProbabilidad.Select(a => (a.atuendo, a.porcentaje)).ToList());
-                Sexo sexoSel = SeleccionarConPorcentaje(sexosConProbabilidad.Select(s => (s.sexo, s.porcentaje)).ToList());
-
-                string clave = Clave(razaSel, morfoSel, atuendoSel, sexoSel);
-
-                if (intentadas.Contains(clave))
-                    continue; // ya probamos esta combinación en esta ejecución
-
-                intentadas.Add(clave);
-                Debug.Log($"Intento numero: {i} Se probó con la combinacion: {clave}");
-
-                if (mapaPrefabs.ContainsKey(clave))
+                // Verificar que no sea la misma combinación activa
+                if (clave == claveActiva)
                 {
-                    // Verificar que no sea la misma combinación activa
-                    if (clave == claveActiva)
-                    {
-                        Debug.Log($"La combinación aleatoria {clave} coincide con la activa, probando otra...");
-                        continue; // seguir buscando otra distinta
-                    }
-
-                    // Encontramos combinación válida y distinta
-                    RazaActual = razaSel;
-                    MorfologiaActual = morfoSel;
-                    AtuendoActual = atuendoSel;
-                    SexoActual = sexoSel;
-
-                    ActualizarPersonaje();
-                    Debug.Log($"Generado aleatoriamente: {clave}");
-                    return;
+                    Debug.Log($"La combinación aleatoria {clave} coincide con la activa, probando otra...");
+                    continue; // seguir buscando otra distinta
                 }
-            }
 
-            // Si llegamos aquí, no se encontró nada válido
-            Debug.LogError("No se pudo generar ninguna combinación válida tras múltiples intentos.");
+                // Encontramos combinación válida y distinta
+                RazaActual = razaSel;
+                MorfologiaActual = morfoSel;
+                AtuendoActual = atuendoSel;
+                SexoActual = sexoSel;
+
+                ActualizarPersonaje();
+                Debug.Log($"Generado aleatoriamente: {clave}");
+                return;
+            }
         }
-            
+
+        // Si llegamos aquí, no se encontró nada válido
+        Debug.LogError("No se pudo generar ninguna combinación válida tras múltiples intentos.");
     }
 
     /// <summary>
@@ -392,66 +356,61 @@ public class GestorPersonalizacion : MonoBehaviour
     /// </summary>
     public void ActualizarPersonaje()
     {
-        if (!puedoActualizar)
+        string key = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+
+        if (claveActiva == key && personajeActual != null)
+            return;
+
+        if (!mapaPrefabs.TryGetValue(key, out GameObject prefab))
         {
-            
-            string key = Clave(RazaActual, MorfologiaActual, AtuendoActual, SexoActual);
+            Debug.Log($"No hay prefab para {key}.");
+            return;
+        }
 
-            if (claveActiva == key && personajeActual != null)
-                return;
+        if (personajeActual != null)
+        {
+            Destroy(personajeActual, 1);
+            if (coroutine2 != null) StopCoroutine(coroutine2);
+            coroutine2 = StartCoroutine(Solver(personajeActual));
+        }
 
-            if (!mapaPrefabs.TryGetValue(key, out GameObject prefab))
+        personajeActual = Instantiate(prefab, puntoInstancia);
+        claveActiva = key;
+        botonera.RecibirClaveActual(claveActiva);
+
+        personajeActual.transform.localPosition = Vector3.zero;
+        personajeActual.transform.localRotation = Quaternion.identity;
+        personajeActual.transform.localScale = Vector3.one;
+
+        Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            // Guardar textura original
+            if (rend.material.HasProperty("_BaseMap"))
+                texturaOriginal = rend.material.GetTexture("_BaseMap");
+            else
+                texturaOriginal = rend.material.mainTexture;
+
+            // Si ya teníamos textura guardada → aplicarla de una
+            if (texturaActualPersonaje != null)
             {
-                Debug.Log($"No hay prefab para {key}.");
-                return;
+                foreach (var mat in rend.materials)
+                    if (mat.HasProperty("_BaseMap"))
+                        mat.SetTexture("_BaseMap", texturaActualPersonaje);
             }
+        }
 
-            if (personajeActual != null)
-            {
-                Destroy(personajeActual, 1);                
-                if (coroutine2 != null) StopCoroutine(coroutine2);
-                coroutine2 = StartCoroutine(Solver(personajeActual));
-                puedoActualizar = true;
-            }
+        // Si venimos de cargar, ya tenemos color/textura definidos:
+        if (ultimoColorSeleccionado != Color.clear)
+            CambiarColorBase(ultimoColorSeleccionado);
 
-            personajeActual = Instantiate(prefab, puntoInstancia);
-            claveActiva = key;
-            botonera.RecibirClaveActual(claveActiva);
+        // Las partículas del suelo
+        particulaSuelo.Play();
+        if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("2"); // Ejecutamos el efecto nombrado
 
-            personajeActual.transform.localPosition = Vector3.zero;
-            personajeActual.transform.localRotation = Quaternion.identity;
-            personajeActual.transform.localScale = Vector3.one;
-
-            Renderer rend = personajeActual.GetComponentInChildren<Renderer>();
-            if (rend != null)
-            {
-                // Guardar textura original
-                if (rend.material.HasProperty("_BaseMap"))
-                    texturaOriginal = rend.material.GetTexture("_BaseMap");
-                else
-                    texturaOriginal = rend.material.mainTexture;
-
-                // Si ya teníamos textura guardada → aplicarla de una
-                if (texturaActualPersonaje != null)
-                {
-                    foreach (var mat in rend.materials)
-                        if (mat.HasProperty("_BaseMap"))
-                            mat.SetTexture("_BaseMap", texturaActualPersonaje);
-                }
-            }
-
-            // Si venimos de cargar, ya tenemos color/textura definidos:
-            if (ultimoColorSeleccionado != Color.clear)
-                CambiarColorBase(ultimoColorSeleccionado);
-
-            // Las partículas del suelo
-            particulaSuelo.Play();
-            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("2"); // Ejecutamos el efecto nombrado
-
-            // lanzar el disolver solo DESPUÉS de aplicar texturas/colores
-            if (coroutine != null) StopCoroutine(coroutine);
-            coroutine = StartCoroutine(AplicarDisolver(personajeActual));
-        }      
+        // lanzar el disolver solo DESPUÉS de aplicar texturas/colores
+        if (coroutine != null) StopCoroutine(coroutine);
+        coroutine = StartCoroutine(AplicarDisolver(personajeActual));
     }
 
     /// <summary>
@@ -492,7 +451,7 @@ public class GestorPersonalizacion : MonoBehaviour
             PlayerPrefs.SetString($"Combinacion_{nombre}", dataFinal);
             PlayerPrefs.Save();
 
-            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("2"); // Ejecutamos el efecto nombrado
+            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("enter"); // Ejecutamos el efecto nombrado
             seleccionPersonalizacion.ActualizarMensaje($"Combinación guardada con nombre '{nombre}'");
             Debug.Log($"Combinación guardada con nombre '{nombre}': {dataFinal}");
         }
@@ -560,6 +519,7 @@ public class GestorPersonalizacion : MonoBehaviour
                 ActualizarPersonaje();
 
                 seleccionPersonalizacion.ActualizarMensaje($"Combinación de '{nombre}' cargada con éxito");
+                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("2"); // Ejecutamos el efecto nombrado
                 Debug.Log($"Combinación '{nombre}' cargada con datos extra: Color={colorCargado}, Textura={nombreTextura}");
                 return;
             }
@@ -681,9 +641,7 @@ public class GestorPersonalizacion : MonoBehaviour
             tiempo += Time.deltaTime;
             yield return null;
         }
-        puedoActualizar = false;
-        coroutine = null;
-         
+        coroutine = null;         
     }
     private IEnumerator Solver(GameObject personaje)
     {

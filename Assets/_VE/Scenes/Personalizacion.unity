@@ -534,7 +534,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -2.600006, y: 3.899994}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -98.77, y: -74.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &72032462
 MonoBehaviour:
@@ -771,7 +771,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -8.6, y: 1.5}
-  m_SizeDelta: {x: -9.069999, y: -3}
+  m_SizeDelta: {x: -101.94, y: -75.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78419624
 MonoBehaviour:
@@ -884,6 +884,7 @@ GameObject:
   - component: {fileID: 87010142}
   - component: {fileID: 87010141}
   - component: {fileID: 87010144}
+  - component: {fileID: 87010145}
   m_Layer: 5
   m_Name: btnTunica
   m_TagString: Untagged
@@ -983,7 +984,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1020,6 +1021,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &87010145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87010139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &96480097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1190,7 @@ GameObject:
   - component: {fileID: 110940586}
   - component: {fileID: 110940585}
   - component: {fileID: 110940588}
+  - component: {fileID: 110940589}
   m_Layer: 5
   m_Name: btnSinAtuendo
   m_TagString: Untagged
@@ -1267,7 +1290,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1304,6 +1327,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &110940589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110940583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &121761716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,8 +1458,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.69999695, y: 3.300003}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.2100067, y: 2.369995}
+  m_SizeDelta: {x: -99.71, y: -71.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &122720286
 MonoBehaviour:
@@ -6673,6 +6717,7 @@ GameObject:
   - component: {fileID: 207195910}
   - component: {fileID: 207195909}
   - component: {fileID: 207195912}
+  - component: {fileID: 207195913}
   m_Layer: 5
   m_Name: btnSexoMasculino
   m_TagString: Untagged
@@ -6845,6 +6890,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &207195913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207195907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1001 &231064362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7622,6 +7688,7 @@ GameObject:
   - component: {fileID: 328827846}
   - component: {fileID: 328827849}
   - component: {fileID: 328827850}
+  - component: {fileID: 328827851}
   m_Layer: 5
   m_Name: btnBestia
   m_TagString: Untagged
@@ -7733,7 +7800,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7787,6 +7854,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &328827851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328827844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &340269980
 GameObject:
   m_ObjectHideFlags: 0
@@ -7886,7 +7975,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -7984,8 +8073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.1, y: 4.8}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -9.100006, y: 1.7400017}
+  m_SizeDelta: {x: -96.99, y: -76.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347134341
 MonoBehaviour:
@@ -13265,7 +13354,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -13546,7 +13635,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -13722,7 +13811,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14026,6 +14115,7 @@ GameObject:
   - component: {fileID: 431432273}
   - component: {fileID: 431432272}
   - component: {fileID: 431432275}
+  - component: {fileID: 431432276}
   m_Layer: 5
   m_Name: btnGigante
   m_TagString: Untagged
@@ -14137,7 +14227,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14174,6 +14264,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &431432276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431432270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &436481234
 GameObject:
   m_ObjectHideFlags: 0
@@ -14187,6 +14299,7 @@ GameObject:
   - component: {fileID: 436481237}
   - component: {fileID: 436481236}
   - component: {fileID: 436481235}
+  - component: {fileID: 436481240}
   m_Layer: 5
   m_Name: btnAdelante (1)
   m_TagString: Untagged
@@ -14276,7 +14389,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -14303,7 +14416,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8101982, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 60.74, y: 0, z: 58.88, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14345,6 +14458,44 @@ RectTransform:
   m_AnchoredPosition: {x: 340, y: -30.774967}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &436481240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436481234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 1
+  puedoValidar: 0
 --- !u!1 &449232046
 GameObject:
   m_ObjectHideFlags: 0
@@ -14379,8 +14530,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.300003, y: 4}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.7400055, y: 4}
+  m_SizeDelta: {x: -100.41, y: -74.93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &449232048
 MonoBehaviour:
@@ -14887,6 +15038,7 @@ GameObject:
   - component: {fileID: 472574273}
   - component: {fileID: 472574272}
   - component: {fileID: 472574275}
+  - component: {fileID: 472574276}
   m_Layer: 5
   m_Name: btnHeroe
   m_TagString: Untagged
@@ -14998,7 +15150,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15035,6 +15187,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &472574276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472574270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &480818429
 GameObject:
   m_ObjectHideFlags: 0
@@ -15415,7 +15589,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -15513,8 +15687,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5, y: 5.6}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5, y: 5.600006}
+  m_SizeDelta: {x: -95.02, y: -74.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &525659006
 MonoBehaviour:
@@ -16025,7 +16199,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -16089,18 +16263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
---- !u!114 &584458485 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 304430292278924203, guid: 289516cda34f95e458d51abc8624d46f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1414935205}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07bdd971916fd424eb6e62249bddc6ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &595122950
 GameObject:
   m_ObjectHideFlags: 0
@@ -16113,6 +16275,7 @@ GameObject:
   - component: {fileID: 595122954}
   - component: {fileID: 595122953}
   - component: {fileID: 595122952}
+  - component: {fileID: 595122956}
   - component: {fileID: 595122955}
   m_Layer: 5
   m_Name: btnAtras (2)
@@ -16208,7 +16371,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -16272,6 +16435,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &595122956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595122950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 1
+  puedoValidar: 0
 --- !u!1 &609726665
 GameObject:
   m_ObjectHideFlags: 0
@@ -16342,7 +16543,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 6542468395039733413}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -16506,8 +16707,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.2, y: 3.3}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -9.2, y: 3.300003}
+  m_SizeDelta: {x: -97.28, y: -71.44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628932516
 MonoBehaviour:
@@ -16641,8 +16842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.600006, y: 4.5999985}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2.600006, y: 4.600006}
+  m_SizeDelta: {x: -93.71, y: -75.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632630106
 MonoBehaviour:
@@ -17158,7 +17359,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -6.600006, y: 4.600006}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -99.55, y: -73.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666038575
 MonoBehaviour:
@@ -17667,6 +17868,7 @@ GameObject:
   - component: {fileID: 699376496}
   - component: {fileID: 699376495}
   - component: {fileID: 699376498}
+  - component: {fileID: 699376499}
   m_Layer: 5
   m_Name: btnSexoMasculino
   m_TagString: Untagged
@@ -17839,6 +18041,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &699376499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699376493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &712988702
 GameObject:
   m_ObjectHideFlags: 0
@@ -17960,7 +18184,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -17987,7 +18211,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18387,7 +18611,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -18465,6 +18689,7 @@ GameObject:
   - component: {fileID: 738195510}
   - component: {fileID: 738195513}
   - component: {fileID: 738195514}
+  - component: {fileID: 738195515}
   m_Layer: 5
   m_Name: btnEstraterrestre
   m_TagString: Untagged
@@ -18576,7 +18801,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18628,6 +18853,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &738195515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738195508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &741896698
 GameObject:
   m_ObjectHideFlags: 0
@@ -18776,6 +19023,7 @@ GameObject:
   - component: {fileID: 792643604}
   - component: {fileID: 792643603}
   - component: {fileID: 792643606}
+  - component: {fileID: 792643607}
   m_Layer: 5
   m_Name: btnSexoFemenino
   m_TagString: Untagged
@@ -18948,6 +19196,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &792643607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792643601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &794935749
 GameObject:
   m_ObjectHideFlags: 0
@@ -19069,7 +19339,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -19096,7 +19366,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -19232,7 +19502,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -19395,7 +19665,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -19599,6 +19869,7 @@ GameObject:
   - component: {fileID: 847327516}
   - component: {fileID: 847327515}
   - component: {fileID: 847327518}
+  - component: {fileID: 847327519}
   m_Layer: 5
   m_Name: btnCasual
   m_TagString: Untagged
@@ -19698,7 +19969,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -19735,6 +20006,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &847327519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847327513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1572350408}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 0
+  puedoValidar: 0
+--- !u!114 &864987627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 304430292278924203, guid: 289516cda34f95e458d51abc8624d46f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1414935205}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bdd971916fd424eb6e62249bddc6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &878065554
 GameObject:
   m_ObjectHideFlags: 0
@@ -19905,7 +20209,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -6.600006, y: 3.899994}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -100.33, y: -77.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918685141
 MonoBehaviour:
@@ -20220,7 +20524,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -20408,7 +20712,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -20676,7 +20980,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -20725,6 +21029,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938830023}
+  m_CullTransparentMesh: 1
+--- !u!1 &959076223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 959076224}
+  - component: {fileID: 959076226}
+  - component: {fileID: 959076225}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &959076224
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959076223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1669439796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.2, y: -48.57}
+  m_SizeDelta: {x: 242.2, y: 7.67}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &959076225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959076223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: ____________
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 1024
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -0.09593966, y: 0, z: 0.007812495, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &959076226
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959076223}
   m_CullTransparentMesh: 1
 --- !u!1 &979303259
 GameObject:
@@ -20797,7 +21235,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -8.5, y: 3.899994}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -108.14, y: -73.55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &993107132
 MonoBehaviour:
@@ -21054,7 +21492,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -9.9, y: 2.4}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -108.29, y: -69.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1042208978
 MonoBehaviour:
@@ -21165,7 +21603,6 @@ GameObject:
   - component: {fileID: 1050764876}
   - component: {fileID: 1050764878}
   - component: {fileID: 1050764877}
-  - component: {fileID: 1050764879}
   m_Layer: 5
   m_Name: txtFemenino
   m_TagString: Untagged
@@ -21290,20 +21727,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050764875}
   m_CullTransparentMesh: 1
---- !u!114 &1050764879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1050764875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feed2549520ccf64b822d43bd2d074f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  escalaExtra: 1.1
-  tiempo: 0.2
 --- !u!1 &1057277727
 GameObject:
   m_ObjectHideFlags: 0
@@ -21479,6 +21902,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 864987627}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayEfectString
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: exit
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 464309137}
         m_TargetAssemblyTypeName: UISeleccionPersonalizacion, Assembly-CSharp
         m_MethodName: SalirAplicacion
@@ -21489,18 +21924,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 584458485}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: PlayEfectString
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: exit
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1071370381
@@ -21518,7 +21941,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 18.5, y: 47.31, z: 25.5, w: 43.2}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -21700,8 +22123,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.7, y: 4.8}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -6.699997, y: 4.799999}
+  m_SizeDelta: {x: -90.37, y: -78.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1072280704
 MonoBehaviour:
@@ -27029,7 +27452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -27730,7 +28153,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -27757,7 +28180,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -28077,6 +28500,7 @@ GameObject:
   - component: {fileID: 1158731529}
   - component: {fileID: 1158731528}
   - component: {fileID: 1158731531}
+  - component: {fileID: 1158731532}
   m_Layer: 5
   m_Name: btnSexoFemenino
   m_TagString: Untagged
@@ -28185,18 +28609,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1158731529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28249,6 +28661,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1158731532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158731526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1879888186}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1172830815
 GameObject:
   m_ObjectHideFlags: 0
@@ -38706,7 +39134,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -38782,6 +39210,7 @@ GameObject:
   - component: {fileID: 1232940948}
   - component: {fileID: 1232940947}
   - component: {fileID: 1232940946}
+  - component: {fileID: 1232940950}
   - component: {fileID: 1232940949}
   m_Layer: 5
   m_Name: btnAdelante (1)
@@ -38877,7 +39306,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -38904,7 +39333,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8101982, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 60.66, y: 0, z: 62.24, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -38941,6 +39370,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1232940950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232940944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 1
+  puedoValidar: 0
 --- !u!1001 &1241134503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39289,7 +39756,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -9.2, y: 3.899994}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -98.43, y: -73.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1278873394
 MonoBehaviour:
@@ -39599,7 +40066,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -4.600006, y: 3.300003}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -94.82, y: -77.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1291531246
 MonoBehaviour:
@@ -39712,6 +40179,7 @@ GameObject:
   - component: {fileID: 1298187578}
   - component: {fileID: 1298187577}
   - component: {fileID: 1298187580}
+  - component: {fileID: 1298187581}
   m_Layer: 5
   m_Name: btnSexoFemenino
   m_TagString: Untagged
@@ -39884,6 +40352,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1298187581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298187575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 207195909}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1304088368
 GameObject:
   m_ObjectHideFlags: 0
@@ -40379,6 +40868,7 @@ GameObject:
   - component: {fileID: 1325559466}
   - component: {fileID: 1325559469}
   - component: {fileID: 1325559470}
+  - component: {fileID: 1325559471}
   m_Layer: 5
   m_Name: "btnH\xEDbrido"
   m_TagString: Untagged
@@ -40490,7 +40980,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -40544,6 +41034,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1325559471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325559464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1328726948
 GameObject:
   m_ObjectHideFlags: 0
@@ -40578,8 +41090,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.6, y: 3.300003}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -9.600006, y: 3.300003}
+  m_SizeDelta: {x: -108.49, y: -73.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1328726950
 MonoBehaviour:
@@ -40854,7 +41366,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -40931,6 +41443,7 @@ GameObject:
   - component: {fileID: 1352457878}
   - component: {fileID: 1352457877}
   - component: {fileID: 1352457880}
+  - component: {fileID: 1352457881}
   m_Layer: 5
   m_Name: btnNormal
   m_TagString: Untagged
@@ -41042,7 +41555,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -41079,6 +41592,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1352457881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352457875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1356194751
 GameObject:
   m_ObjectHideFlags: 0
@@ -41190,8 +41725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.100006, y: 3.2000008}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -5.100006, y: 3.199997}
+  m_SizeDelta: {x: -99.68, y: -71.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359888317
 MonoBehaviour:
@@ -41361,8 +41896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.5, y: 5.8}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -9.92, y: 2.61}
+  m_SizeDelta: {x: -97.03, y: -74.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1362310443
 MonoBehaviour:
@@ -41583,7 +42118,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -41610,7 +42145,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -41746,7 +42281,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -41909,7 +42444,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -42036,12 +42571,12 @@ PrefabInstance:
         type: 3}
       propertyPath: efectosClips.Array.data[3]
       value: 
-      objectReference: {fileID: 8300000, guid: 3326b5f792c40c949a48b88e0f1e8148, type: 3}
+      objectReference: {fileID: 8300000, guid: a0253502e94c6b646996b33994a1a9bc, type: 3}
     - target: {fileID: 304430292278924203, guid: 289516cda34f95e458d51abc8624d46f,
         type: 3}
       propertyPath: efectosClips.Array.data[4]
       value: 
-      objectReference: {fileID: 8300000, guid: a0253502e94c6b646996b33994a1a9bc, type: 3}
+      objectReference: {fileID: 8300000, guid: 3326b5f792c40c949a48b88e0f1e8148, type: 3}
     - target: {fileID: 304430292278924203, guid: 289516cda34f95e458d51abc8624d46f,
         type: 3}
       propertyPath: efectosClips.Array.data[5]
@@ -42258,7 +42793,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -42535,7 +43070,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -42843,8 +43378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.899994, y: 4.799999}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.8999786, y: 4.799999}
+  m_SizeDelta: {x: -92.32, y: -79.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1481065325
 MonoBehaviour:
@@ -42957,6 +43492,7 @@ GameObject:
   - component: {fileID: 1481181743}
   - component: {fileID: 1481181742}
   - component: {fileID: 1481181745}
+  - component: {fileID: 1481181746}
   m_Layer: 5
   m_Name: btnPersonaje Aleatorio
   m_TagString: Untagged
@@ -43056,7 +43592,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 101.4, y: 32.6, z: 117, w: 28.2}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -43093,6 +43629,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1481181746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481181740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1481181742}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1497105062
 GameObject:
   m_ObjectHideFlags: 0
@@ -43441,7 +43993,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -43773,6 +44325,7 @@ GameObject:
   - component: {fileID: 1562256299}
   - component: {fileID: 1562256302}
   - component: {fileID: 1562256303}
+  - component: {fileID: 1562256304}
   m_Layer: 5
   m_Name: btnDemonio
   m_TagString: Untagged
@@ -43884,7 +44437,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -43937,6 +44490,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1562256304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562256297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1567182948
 GameObject:
   m_ObjectHideFlags: 0
@@ -43950,6 +44525,7 @@ GameObject:
   - component: {fileID: 1567182951}
   - component: {fileID: 1567182950}
   - component: {fileID: 1567182953}
+  - component: {fileID: 1567182954}
   m_Layer: 5
   m_Name: btnTrajeNeopreno
   m_TagString: Untagged
@@ -44049,7 +44625,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -44086,6 +44662,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1567182954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567182948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1569532179
 GameObject:
   m_ObjectHideFlags: 0
@@ -44234,6 +44831,7 @@ GameObject:
   - component: {fileID: 1572350409}
   - component: {fileID: 1572350408}
   - component: {fileID: 1572350411}
+  - component: {fileID: 1572350412}
   m_Layer: 5
   m_Name: btnArmadura
   m_TagString: Untagged
@@ -44333,7 +44931,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -44370,6 +44968,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1572350412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572350406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1582398509
 GameObject:
   m_ObjectHideFlags: 0
@@ -44544,7 +45163,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -45057,7 +45676,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -50115,6 +50734,7 @@ GameObject:
   - component: {fileID: 1661855133}
   - component: {fileID: 1661855136}
   - component: {fileID: 1661855137}
+  - component: {fileID: 1661855138}
   m_Layer: 5
   m_Name: btnHumano
   m_TagString: Untagged
@@ -50226,7 +50846,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -50277,6 +50897,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1661855138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661855131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1666889392
 GameObject:
   m_ObjectHideFlags: 0
@@ -50290,6 +50932,7 @@ GameObject:
   - component: {fileID: 1666889395}
   - component: {fileID: 1666889394}
   - component: {fileID: 1666889397}
+  - component: {fileID: 1666889398}
   m_Layer: 5
   m_Name: btnBruto
   m_TagString: Untagged
@@ -50401,7 +51044,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -50438,6 +51081,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1666889398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666889392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1669439795
 GameObject:
   m_ObjectHideFlags: 0
@@ -50450,7 +51115,7 @@ GameObject:
   - component: {fileID: 1669439798}
   - component: {fileID: 1669439797}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50467,7 +51132,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 959076224}
+  - {fileID: 1992043448}
   m_Father: {fileID: 1199529245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -50612,7 +51279,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -50711,7 +51378,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -8.4, y: 4.5}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -98.28, y: -75.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700683712
 MonoBehaviour:
@@ -50910,7 +51577,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -51212,7 +51879,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -51323,7 +51990,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -6.7, y: 4.2}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -91.58, y: -76.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743869091
 MonoBehaviour:
@@ -51522,7 +52189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -51621,7 +52288,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -6.5, y: 3.199997}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -97.86, y: -70.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763560402
 MonoBehaviour:
@@ -51864,7 +52531,6 @@ GameObject:
   - component: {fileID: 1791038646}
   - component: {fileID: 1791038648}
   - component: {fileID: 1791038647}
-  - component: {fileID: 1791038649}
   m_Layer: 5
   m_Name: txtMasculino
   m_TagString: Untagged
@@ -51989,20 +52655,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791038645}
   m_CullTransparentMesh: 1
---- !u!114 &1791038649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791038645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feed2549520ccf64b822d43bd2d074f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  escalaExtra: 1.1
-  tiempo: 0.2
 --- !u!1 &1791710082
 GameObject:
   m_ObjectHideFlags: 0
@@ -52559,6 +53211,7 @@ GameObject:
   - component: {fileID: 1837825968}
   - component: {fileID: 1837825967}
   - component: {fileID: 1837825970}
+  - component: {fileID: 1837825971}
   m_Layer: 5
   m_Name: btnSexoMasculino
   m_TagString: Untagged
@@ -52731,6 +53384,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1837825971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837825965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1845352114
 GameObject:
   m_ObjectHideFlags: 0
@@ -53170,6 +53845,7 @@ GameObject:
   - component: {fileID: 1879888187}
   - component: {fileID: 1879888186}
   - component: {fileID: 1879888189}
+  - component: {fileID: 1879888190}
   m_Layer: 5
   m_Name: btnSexoMasculino
   m_TagString: Untagged
@@ -53278,18 +53954,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1879888187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53342,6 +54006,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &1879888190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879888184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1158731528}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &1913644505
 GameObject:
   m_ObjectHideFlags: 0
@@ -53586,8 +54266,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.2, y: 3.899994}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -7.199997, y: 3.899994}
+  m_SizeDelta: {x: -93.47, y: -73.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1922221930
 MonoBehaviour:
@@ -53807,7 +54487,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -53970,7 +54650,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -54208,7 +54888,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -54392,7 +55072,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -54456,6 +55136,140 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!1 &1992043447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1992043448}
+  - component: {fileID: 1992043450}
+  - component: {fileID: 1992043449}
+  m_Layer: 5
+  m_Name: Text (TMP) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1992043448
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992043447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1669439796}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.2, y: 55.3}
+  m_SizeDelta: {x: 242.2, y: 7.67}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1992043449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992043447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: ____________
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 1024
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -0.09593966, y: 0, z: 0.007812495, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1992043450
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992043447}
+  m_CullTransparentMesh: 1
 --- !u!1 &2000343874
 GameObject:
   m_ObjectHideFlags: 0
@@ -54622,6 +55436,7 @@ GameObject:
   - component: {fileID: 2004441738}
   - component: {fileID: 2004441741}
   - component: {fileID: 2004441742}
+  - component: {fileID: 2004441743}
   m_Layer: 5
   m_Name: btnSuperHumano
   m_TagString: Untagged
@@ -54733,7 +55548,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -54785,6 +55600,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &2004441743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004441736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &2008542447
 GameObject:
   m_ObjectHideFlags: 0
@@ -54933,6 +55770,7 @@ GameObject:
   - component: {fileID: 2019741696}
   - component: {fileID: 2019741695}
   - component: {fileID: 2019741698}
+  - component: {fileID: 2019741699}
   m_Layer: 5
   m_Name: btnSexoFemenino
   m_TagString: Untagged
@@ -55105,6 +55943,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &2019741699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019741693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &2024205195
 GameObject:
   m_ObjectHideFlags: 0
@@ -55194,6 +56054,7 @@ GameObject:
   - component: {fileID: 2031760002}
   - component: {fileID: 2031760001}
   - component: {fileID: 2031760000}
+  - component: {fileID: 2031760004}
   - component: {fileID: 2031760003}
   m_Layer: 5
   m_Name: btnAtras (1)
@@ -55289,7 +56150,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -55316,7 +56177,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0.8101982, b: 0, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 59.7, y: 0, z: 62.82, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -55353,6 +56214,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &2031760004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031759998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 328827846}
+  - {fileID: 738195510}
+  - {fileID: 1325559466}
+  - {fileID: 1562256299}
+  - {fileID: 2004441738}
+  - {fileID: 1661855133}
+  - {fileID: 792643603}
+  - {fileID: 699376495}
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  - {fileID: 1572350408}
+  - {fileID: 847327515}
+  - {fileID: 87010141}
+  - {fileID: 1567182950}
+  - {fileID: 110940585}
+  - {fileID: 1298187577}
+  - {fileID: 207195909}
+  pasarPagina: 1
+  puedoValidar: 0
 --- !u!1 &2039078479
 GameObject:
   m_ObjectHideFlags: 0
@@ -55474,7 +56373,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -55501,7 +56400,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -55637,7 +56536,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -55929,7 +56828,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -6.25, y: 1.09}
-  m_SizeDelta: {x: 206.12, y: 43.48}
+  m_SizeDelta: {x: 115.76, y: 23.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2056722887
 MonoBehaviour:
@@ -56042,6 +56941,7 @@ GameObject:
   - component: {fileID: 2057495544}
   - component: {fileID: 2057495543}
   - component: {fileID: 2057495546}
+  - component: {fileID: 2057495547}
   m_Layer: 5
   m_Name: "btnAntih\xE9roe"
   m_TagString: Untagged
@@ -56153,7 +57053,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -56190,6 +57090,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &2057495547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057495541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 1666889394}
+  - {fileID: 2073605227}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &2058251461
 GameObject:
   m_ObjectHideFlags: 0
@@ -56366,7 +57288,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584458485}
+      - m_Target: {fileID: 864987627}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlayEfectString
         m_Mode: 5
@@ -56443,6 +57365,7 @@ GameObject:
   - component: {fileID: 2073605228}
   - component: {fileID: 2073605227}
   - component: {fileID: 2073605230}
+  - component: {fileID: 2073605231}
   m_Layer: 5
   m_Name: btnGenioDelMal
   m_TagString: Untagged
@@ -56554,7 +57477,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_RaycastPadding: {x: 36.09, y: 38.55, z: 54.12, w: 34.98}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -56591,6 +57514,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   escalaExtra: 1.1
   tiempo: 0.2
+--- !u!114 &2073605231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073605225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0615868a015e754489798c87973c0d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonesAfectados:
+  - {fileID: 2057495543}
+  - {fileID: 1666889394}
+  - {fileID: 431432272}
+  - {fileID: 472574272}
+  - {fileID: 1352457877}
+  - {fileID: 2019741695}
+  - {fileID: 1837825967}
+  pasarPagina: 0
+  puedoValidar: 0
 --- !u!1 &2078784823
 GameObject:
   m_ObjectHideFlags: 0
