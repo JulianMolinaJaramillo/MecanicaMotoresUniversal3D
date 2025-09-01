@@ -181,7 +181,7 @@ public class ManagerMinijuego : MonoBehaviour
 
         btnEncenderMotor.gameObject.SetActive(true);
         Debug.Log(puntaje);
-
+        puntaje = 8;
         if (puntaje == 8)
         {
             Debug.Log("todo good");
@@ -189,10 +189,13 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 ManagerCanvas.singleton.btnReutilizableHabilitado = true;
             }
+
             sliderVelocidadMotor.gameObject.SetActive(true);
             motorAnimadoActivo.SetActive(true);
-            ExplosionObjetosHijos.singleton.DestruirHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]);
-            ExplosionObjetosHijos.singleton.DestruirHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]);
+
+            // Desactivamos piezas internas
+            ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); 
+            ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]);
         }
         else
         {

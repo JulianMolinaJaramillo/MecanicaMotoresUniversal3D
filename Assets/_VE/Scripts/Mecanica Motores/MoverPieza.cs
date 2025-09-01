@@ -72,6 +72,8 @@ public class MoverPieza : MonoBehaviour
             puedoValidar = false;
             if (!noMover)
             {
+                ManagerBrazos.singleton.AsignarTargets(this.transform); // Le asignamos este transform como target a los brazis
+
                 AgregarSegundoMaterial(0);
                 coordinadaZ = Camera.main.WorldToScreenPoint(transform.position).z; // Convertimos la posicion del objeto en coordenadas de la pantalla
                 offset = transform.position - ObtenerPosicionMouse(); // Calcula la diferencia entre la posición real del objeto y la posición del mouse en el mundo 3D
@@ -111,6 +113,8 @@ public class MoverPieza : MonoBehaviour
 
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
+            //ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
+
             puedoValidar = true;
             QuitarMateriales();
             coroutine = StartCoroutine(GetPuedoValidar());
@@ -204,11 +208,11 @@ public class MoverPieza : MonoBehaviour
 
         if (ManagerCanvas.singleton != null)
         {
-            ManagerCanvas.singleton.HabilitarBtnSalir();
             ManagerCanvas.singleton.HabilitarBtnRotar();
+            ManagerCanvas.singleton.HabilitarBtnSalir();         
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         }
-
+        
         coroutine = null;
     }
 

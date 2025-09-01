@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
@@ -11,10 +11,20 @@ public class BrazoMecanico : MonoBehaviour
 
     [SerializeField]
     int solverInteractions = 5;
-
+    public bool puedoValidar;
 
     [SerializeField]
     Transform targetPositions;
+    public Transform targetPositionInicial;
+
+    [Header("Interpolación")]
+    [SerializeField, Range(0.1f, 10f)]
+    float velocidad = 2f; // velocidad ajustable en inspector
+
+    [Header("Offset del Target")]
+    [SerializeField, Range(0f, 5f)]
+    float offsetDistancia = 0.5f; // distancia mínima al target
+
 
     void Start()
     {
@@ -30,12 +40,13 @@ public class BrazoMecanico : MonoBehaviour
             {
                 bonesLengths[i] = 0f;
             }
+
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (puedoValidar || targetPositions == null) return;
         SolveIK();
     }
 
@@ -46,6 +57,16 @@ public class BrazoMecanico : MonoBehaviour
         {
             Gizmos.DrawSphere(bones[i].transform.position, 0.1f);
             Gizmos.DrawLine(bones[i].transform.position, bones[i - 1].transform.position);
+        }
+
+        // Dibujamos el punto donde realmente se está "deteniendo" el brazo (offset)
+        if (targetPositions != null && bones.Length > 0)
+        {
+            Vector3 dir = (targetPositions.position - bones[bones.Length - 1].position).normalized;
+            Vector3 offsetPos = targetPositions.position - dir * offsetDistancia;
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(offsetPos, 0.12f);
         }
     }
 
@@ -65,15 +86,13 @@ public class BrazoMecanico : MonoBehaviour
 
         for (int i = 0; i < bones.Length; i++)
         {
-            bones[i].position = finalBonesPositions[i];
-
-            //bones[i].eulerAngles = new Vector3(CalcularRotacionX(), 0, CalcularRotaciones());
-            //bones[i].GetChild(0).transform.localEulerAngles = new Vector3(0, CalcularRotacionX(bones[i], (i == bones.Length - 1) ? targetPositions : bones[i + 1]) + 90 + 180, 0);
+            bones[i].position = Vector3.Lerp(
+                bones[i].position,
+                finalBonesPositions[i],
+                Time.deltaTime * velocidad
+            );
         }
-
-
     }
-
 
     Vector3[] SolverInversePositions(Vector3[] forwardPositions)
     {
@@ -83,7 +102,9 @@ public class BrazoMecanico : MonoBehaviour
         {
             if (i == forwardPositions.Length - 1)
             {
-                inversePositions[i] = targetPositions.position;
+                //Aplicamos el offset al target
+                Vector3 dir = (targetPositions.position - forwardPositions[i]).normalized;
+                inversePositions[i] = targetPositions.position - dir * offsetDistancia;
             }
             else
             {
@@ -119,5 +140,18 @@ public class BrazoMecanico : MonoBehaviour
         }
 
         return forwardPositions;
+    }
+
+    // Método para activar el retorno
+    [ContextMenu("volver")]
+    public void RegresarAPosicionInicial()
+    {
+        targetPositions = targetPositionInicial;
+    }
+
+    // Lógica de interpolación al volver a la posicion inicial
+    public void AsignarTarget(Transform nuevotarget)
+    {
+        targetPositions = nuevotarget;
     }
 }

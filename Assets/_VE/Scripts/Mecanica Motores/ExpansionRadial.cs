@@ -12,6 +12,8 @@ public class ExpansionRadial : MonoBehaviour
     public bool randomDirection = true;
     public float alturaMinimaY = 0.5f;
     public float alturaMaximaY = 2.5f;
+    public bool piezasInternas;
+
     [HideInInspector]
     public bool noInteractuar;
 
@@ -86,6 +88,13 @@ public class ExpansionRadial : MonoBehaviour
         {
             if (!expandir)
             {
+                if (piezasInternas)// Solo si son las piezas internas
+                {
+                    MesaMotor.singleton.motorExpandido = true;
+                    if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
+                    if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+                }
+                
                 ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
 
                 ManagerMinijuego.singleton.DeshabilitarBtnEnceder();
@@ -93,9 +102,7 @@ public class ExpansionRadial : MonoBehaviour
                 AsignarHijos();
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionExpansion, 1);
 
-                if (contraerCoroutine != null)
-                    StopCoroutine(contraerCoroutine);
-
+                if (contraerCoroutine != null) StopCoroutine(contraerCoroutine);
                 expandirCoroutine = StartCoroutine(ExpandirCoroutine());
             }
         }
@@ -114,10 +121,9 @@ public class ExpansionRadial : MonoBehaviour
                 contraer = false;
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
 
-                if (expandirCoroutine != null)
-                    StopCoroutine(expandirCoroutine);
-
+                if (expandirCoroutine != null) StopCoroutine(expandirCoroutine);
                 contraerCoroutine = StartCoroutine(ContraerCoroutine());
+
             }
         }
     }
@@ -198,7 +204,23 @@ public class ExpansionRadial : MonoBehaviour
         }
         spInfos.Clear();
 
-        ManagerMinijuego.singleton.HabilitarBtnEnceder();
+        if (ManagerMinijuego.singleton != null)
+        {
+            ManagerMinijuego.singleton.HabilitarBtnEnceder();
+
+            if (piezasInternas) // Solo si son las piezas internas
+            {
+                MesaMotor.singleton.motorExpandido = false;
+
+                if (!MesaMotor.singleton.motorRotando)
+                {           
+                    if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+                    ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir  
+                }
+                
+            }     
+        }
+   
         txtBoton.text = "Expandir";
         expandir = false;
         contraerCoroutine = null;

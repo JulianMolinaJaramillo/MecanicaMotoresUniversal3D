@@ -38,6 +38,11 @@ public class RotadorPiezas : MonoBehaviour
                 if (MesaMotor.singleton != null)
                 {
                     MesaMotor.singleton.motorRotando = false;
+                    if (!MesaMotor.singleton.motorExpandido)
+                    {
+                        if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+                        ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir 
+                    }              
                 }
             }
 
@@ -88,6 +93,10 @@ public class RotadorPiezas : MonoBehaviour
     {
         IndicarRotacion();
         gestorPiezas.TransferirPiezasColocadas();
+
+        if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
+        if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+
         rotarEnX = false;
         rotarEnZ = false;
         rotarEnY = true;

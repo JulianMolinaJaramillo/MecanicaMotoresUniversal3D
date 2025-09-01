@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RotacionBrazo : MonoBehaviour
@@ -19,6 +17,5 @@ public class RotacionBrazo : MonoBehaviour
             graficos[i].transform.position = referencias[i].transform.position;
             graficos[i].LookAt(referencias[i + 1]);
         }
-
     }
 }

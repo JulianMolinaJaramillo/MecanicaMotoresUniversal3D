@@ -16,6 +16,7 @@ public class ExplosionObjetosHijos : MonoBehaviour
     public float duracionVibracion = 5f;
     public float intensidadVibracion = 0.05f; // qué tanto se mueven las piezas
 
+    private GameObject motorAnimadoActivo;
     public static ExplosionObjetosHijos singleton;
 
     private void Awake()
@@ -149,6 +150,41 @@ public class ExplosionObjetosHijos : MonoBehaviour
             Destroy(hijo.gameObject);
         }
     }
+
+    // Desactiva todos los hijos de un objeto padre específico
+    public void DesactivarHijos(GameObject padre)
+    {
+        if (padre == null) return;
+
+        List<Transform> hijos = new List<Transform>();
+        foreach (Transform hijo in padre.transform)
+        {
+            hijos.Add(hijo);
+        }
+
+        foreach (Transform hijo in hijos)
+        {
+           hijo.gameObject.SetActive(false);
+        }
+    }
+
+    // Activa todos los hijos de un objeto padre específico
+    public void ActivarHijos(GameObject padre)
+    {
+        if (padre == null) return;
+
+        List<Transform> hijos = new List<Transform>();
+        foreach (Transform hijo in padre.transform)
+        {
+            hijos.Add(hijo);
+        }
+
+        foreach (Transform hijo in hijos)
+        {
+            hijo.gameObject.SetActive(true);
+        }
+    }
+
     [ContextMenu("destruir")]
     /// Destruye los hijos de todos los objetos padres del listado, invocado desde btnReutilizarMotor en el canvas
     public void DestruirTodosLosHijos()

@@ -7,6 +7,7 @@ public class MesaMotor : MonoBehaviour
     public bool mesaMotorActiva;
     public bool interaccionEjecutada; // Para confirmar si se ejecuto la interaccion del encendido del motor
     public bool motorRotando; // Para validar cuando el motor este rotando y no permitir que se coloquen piezas
+    public bool motorExpandido; // Para validar cuando el motor expandido
     public RotadorPiezas[] rotadorPiezas;
     public ExpansionRadial[] expansionRadials;
 
