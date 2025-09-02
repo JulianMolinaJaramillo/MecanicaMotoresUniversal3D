@@ -94,7 +94,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -197,8 +197,8 @@ MonoBehaviour:
     y: 0
     width: 801
     height: 580
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -4572,8 +4572,8 @@ MonoBehaviour:
     y: 0
     width: 633
     height: 580
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 12}
@@ -4618,7 +4618,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 115190
+  m_LastSelectedObjectID: 31654
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -4684,7 +4684,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 29931
+  controlID: 621
   draggingID: 0
 --- !u!114 &15
 MonoBehaviour:
@@ -4705,8 +4705,8 @@ MonoBehaviour:
     y: 0
     width: 499
     height: 367
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -4750,9 +4750,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f6c10100
-      m_LastClickedID: 115190
-      m_ExpandedIDs: 8a31ffff3832ffff7e35ffff16d5ffff1addffffc8ddfffff8e0ffff18fbffffb8190100661b0100fa1b0100281c0100ca1c0100ba210100a8be0100e2be0100e4bf010068c001004ec101006cc1010006c20100e0c3010022c40100c8c40100
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: f0e7ffffa0e8ffff14ecffff06fbffff9276000072790000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -4786,7 +4786,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -4795,15 +4795,15 @@ MonoBehaviour:
     y: 0
     width: 935
     height: 367
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 18}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -4850,24 +4850,24 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_VE/Personalizacion/Scripts
+    - Assets/_VE/Scripts/Mecanica Motores
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
-  m_StartGridSize: 16
+  m_StartGridSize: 76
   m_LastFolders:
-  - Assets/_VE/Personalizacion/Scripts
-  m_LastFoldersGridSize: 16
+  - Assets/_VE/Scripts/Mecanica Motores
+  m_LastFoldersGridSize: 76
   m_LastProjectPath: D:\Trabajo Pascual\Repositorios Unity\MecanicaMotoresUniversal3D
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 86}
-    m_SelectedIDs: 4ec70000
-    m_LastClickedID: 51022
-    m_ExpandedIDs: 00000000cac60000ccc60000cec60000d0c60000d2c60000d4c60000d6c60000d8c60000dac60000dcc60000dec60000e0c60000e2c60000e4c60000e6c60000e8c60000eac60000ecc60000eec60000f0c60000f2c60000f4c6000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 222}
+    m_SelectedIDs: cec70000
+    m_LastClickedID: 51150
+    m_ExpandedIDs: 00000000dac60000dcc60000dec60000e0c60000e2c60000e4c60000e6c60000e8c60000eac60000ecc60000eec60000f0c60000f2c60000f4c60000f6c60000f8c60000fac60000fcc60000fec6000000c7000002c7000004c700006ec7000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4895,7 +4895,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000cac60000ccc60000cec60000d0c60000d2c60000d4c60000d6c60000d8c60000dac60000dcc60000dec60000e0c60000e2c60000e4c60000e6c60000e8c60000eac60000ecc60000eec60000f0c60000f2c60000f4c6000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000dac60000dcc60000dec60000e0c60000e2c60000e4c60000e6c60000e8c60000eac60000ecc60000eec60000f0c60000f2c60000f4c60000f6c60000f8c60000fac60000fcc60000fec6000000c7000002c7000004c7000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -4920,9 +4920,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: f6c10100
-    m_LastClickedInstanceID: 115190
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: a67b0000
+    m_LastClickedInstanceID: 31654
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300000499000096a1000042a8000034980000bc9000004ea70000007f00000814feff4a9d00003e9d0000469d0000449d0000429d0000369d0000409d0000489d0000389d00004c9d00003c9d00005aa000005ca00000b2950000e8e401008a44010078440100feb502008244010054b302001c8a0000a6a10000f88d0000529300006c290100742901005a140200581402008080000032970000687a0000ac8b00003c8a000084780000eebe0000988b0000ec8b000018d408000cd4080004d4080012d40800a43b0b0032aa000046aa00009041010002920000b6af0000128d00007efb0f00826a020050020000cabf0000000000004cc6000054900000ea7800006a6802009e7e0200
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -4939,7 +4939,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 5}
+      m_ClientGUIView: {fileID: 17}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -4948,7 +4948,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 16
+    m_GridSize: 76
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 318
 --- !u!114 &19
@@ -5188,8 +5188,8 @@ MonoBehaviour:
     y: 0
     width: 486
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
