@@ -246,6 +246,9 @@ public class SueloInteractivo : MonoBehaviour
                 ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
             }
 
+
+            if (ManagerBrazos.singleton != null) ManagerBrazos.singleton.RetornarBrazos();
+
             if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
 
             if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = false;
