@@ -213,9 +213,12 @@ public class ExpansionRadial : MonoBehaviour
                 MesaMotor.singleton.motorExpandido = false;
 
                 if (!MesaMotor.singleton.motorRotando)
-                {           
-                    if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
-                    ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir  
+                {
+                    if (ManagerMinijuego.singleton.minijuegoTerminado)
+                    {
+                        if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Desactivamos los hijos antes de expandir
+                        ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
+                    }          
                 }
                 
             }     

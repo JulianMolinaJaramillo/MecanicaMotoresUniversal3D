@@ -113,7 +113,7 @@ public class MoverPieza : MonoBehaviour
 
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
-            //ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
+            ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
 
             puedoValidar = true;
             QuitarMateriales();

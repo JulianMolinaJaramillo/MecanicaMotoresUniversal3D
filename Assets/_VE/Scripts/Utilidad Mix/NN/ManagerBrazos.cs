@@ -18,7 +18,12 @@ public class ManagerBrazos : MonoBehaviour
             Destroy(this);
         }
     }
-    
+
+    private void Start()
+    {
+        RetornarBrazos();
+    }
+
     public void AsignarTargets(Transform nuevoTarget)
     {
         for (int i = 0; i < brazosMecanicos.Length; i++)

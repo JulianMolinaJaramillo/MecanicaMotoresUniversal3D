@@ -38,6 +38,8 @@ public class ManagerMinijuego : MonoBehaviour
     public List<ApretarTornillos> tornillosParaApretar;
     public List<AsignarTornillos> asignarTornillos;
 
+    
+    public bool minijuegoTerminado;
     [HideInInspector]
     public Transform posicionMonijuegoActual;
     [HideInInspector]
@@ -158,9 +160,10 @@ public class ManagerMinijuego : MonoBehaviour
     }
 
     
-
     public void ValidarMiniJuego()
     {
+        minijuegoTerminado = true; // indicamos que ya terminaron los minijuegos
+
         for (int i = 0; i < torquesTornillosBancada.Length; i++)
         {
             if (torquesTornillosBancada[i] > 87 && torquesTornillosBancada[i] < 96)
@@ -243,6 +246,7 @@ public class ManagerMinijuego : MonoBehaviour
             }
             else
             {
+                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
                 if (asignarTornillos.Count > 0)
                 {
                     asignarTornillos.RemoveAt(0);
@@ -289,6 +293,7 @@ public class ManagerMinijuego : MonoBehaviour
             }
             else
             {
+                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
                 DesactivarMinijuego();
                 //posicionMonijuegoActual = posicionesMinijuego3[contador];
             }
