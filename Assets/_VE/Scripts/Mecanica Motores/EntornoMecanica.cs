@@ -14,7 +14,7 @@ public class EntornoMecanica : MonoBehaviour
     public ControlarShape[] particulasCascadaShape;
     public ActivarMaterialesDisolverHijos[] puntosIntanciasPiezasMateriales;
     public MoverObjeto mesa;
-    public RotacionObjeto rotacionObjeto;
+    public RotacionObjetoAR rotacionObjeto;
     public MoverObjeto[] compuertas;
     public MoverObjeto[] brazoMecanico;
     public MoverObjeto[] brazoMecanicoDedos;

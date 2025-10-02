@@ -8,7 +8,7 @@ public class ControlVelocidadAnimacion : MonoBehaviour
     public float velocidadBase = 2f;   // Factor multiplicador
 
     [Header("Referencias")]
-    public RotacionObjeto[] rotacionObjetos;
+    public RotacionObjetoAR[] rotacionObjetos;
     public SnapAnimacion[] snaps;
     public Transform[] snapsReestablecer;
     public Transform ejeBarillas;   
