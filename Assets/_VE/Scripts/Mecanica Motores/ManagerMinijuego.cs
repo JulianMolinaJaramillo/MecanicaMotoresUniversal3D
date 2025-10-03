@@ -109,7 +109,7 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 sueloInteractivoNissan[i].enabled = true;
                 sueloInteractivoDiesel[i].enabled = false;
-                motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
+                //motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
             }
         }
         else

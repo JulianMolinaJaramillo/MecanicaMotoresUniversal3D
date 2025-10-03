@@ -8,6 +8,7 @@ public class MoverPieza : MonoBehaviour
     [HideInInspector]
     public bool piezaColocada; // Para validar si la pieza ya fue colocada   
 
+    [Header("CONFIGURACION INICIAL")]
     public bool piezaFinal; // Para validar si el prefab activa minijuego
     public Vector3 posicionObjetivo;  // La posicion en la cual dejaremos la pieza colocada
     public Material[] materialesSeleccion; // Para los materiales de seleccion verde y rojo
@@ -16,12 +17,13 @@ public class MoverPieza : MonoBehaviour
     public GameObject[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
     public GameObject[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
 
+    [Header("PIEZAS QUE ACTIVAN MINIJUEGOS")]
     public MessageOnly mensaje = new MessageOnly("Para las piezas que activen minijuegos", MessageTypeCustom.Info);
-
     public bool activaMinijuego; // Para validar si el prefab activa minijuego
     public AsignarTornillos asignarTornillos; // unicamente para las piezas que activen minijuego
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
-    
+
+    [Header("MODIFICACION DE PIEZAS QUE TENGAN HIJOS")]
     public MessageOnly mensaje2 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
 
@@ -30,6 +32,7 @@ public class MoverPieza : MonoBehaviour
     private float coordinadaZ; // Para guardar la profundidad Z entre la camara y el objeto cuando se hace click
     private float valorDisolver;
     private bool noMover; // Para identificar si puedo o no mover la pieza
+    private bool validarBrazo;
     private MeshRenderer meshRenderer;
     private Material[] materialesOriginales;
     private Collider collider;
@@ -57,6 +60,22 @@ public class MoverPieza : MonoBehaviour
         AgregarDisolver(tiempoDisolver,1); // Asegúrate de que esté seteado
     }
 
+    private void Update()
+    {
+        // Verificamos si estamos validando el brazo, para saber dependiendo de la posicion si activo el derecho o izquierdo
+        if (validarBrazo)
+        {
+            if (transform.localPosition.x > 0)
+            {
+                ManagerBrazos.singleton.AsignarTargetDerecho(this.transform); // Le asignamos este transform como target a los brazos
+            }
+            else
+            {
+                ManagerBrazos.singleton.AsignarTargetIzquierdo(this.transform); // Le asignamos este transform como target a los brazos
+            }
+        }
+    }
+
     /// <summary>
     /// metodo invocado al momento de hacer click con el mouse sobre una pieza
     /// </summary>
@@ -70,10 +89,9 @@ public class MoverPieza : MonoBehaviour
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             puedoValidar = false;
+            validarBrazo = true;
             if (!noMover)
-            {
-                ManagerBrazos.singleton.AsignarTargets(this.transform); // Le asignamos este transform como target a los brazis
-
+            {         
                 AgregarSegundoMaterial(0);
                 coordinadaZ = Camera.main.WorldToScreenPoint(transform.position).z; // Convertimos la posicion del objeto en coordenadas de la pantalla
                 offset = transform.position - ObtenerPosicionMouse(); // Calcula la diferencia entre la posición real del objeto y la posición del mouse en el mundo 3D
@@ -113,6 +131,7 @@ public class MoverPieza : MonoBehaviour
 
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
+            validarBrazo = false; // Indicamos que ya no estamos validando el brazo
             ManagerBrazos.singleton.RetornarBrazos(); // Le asignamos este transform como target a los brazis
 
             puedoValidar = true;

@@ -220,4 +220,9 @@ public class ManagerCanvas : MonoBehaviour
     {
         menuEleccionMotor.SetActive(false);
     }
+
+    public void Salir()
+    {
+        Application.Quit();
+    }
 }
