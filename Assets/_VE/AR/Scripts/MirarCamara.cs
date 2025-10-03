@@ -14,7 +14,7 @@ public class MirarCamara : MonoBehaviour
 
     private float rotacionX = 0f;
     private float rotacionY = 0f;
-    private bool detener;
+    public bool detener;
 
     public static MirarCamara singleton;
     private void Awake()

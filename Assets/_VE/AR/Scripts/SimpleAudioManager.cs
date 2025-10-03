@@ -33,7 +33,7 @@ public class SimpleAudioManager : MonoBehaviour
     {
         if (clips == null || clips.Length == 0 || index < 0 || index >= clips.Length)
             return;
-
+        audioSource.volume = 0.4f;
         audioSource.clip = clips[index];
         audioSource.Play();
     }
@@ -68,6 +68,7 @@ public class SimpleAudioManager : MonoBehaviour
     public void RestaurarAudioFondo()
     {
         audioSourceFondo.Play();
+        audioSourceFondo.volume = 0.7f;
         audioSourceGritos.volume = 0.5f;
         audioSourceAlarma.volume = 0.4f;
         audioSourcePersonas.volume = 0.5f;

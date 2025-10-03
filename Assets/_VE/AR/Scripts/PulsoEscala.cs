@@ -1,44 +1,56 @@
-using UnityEngine;
+锘縰sing UnityEngine;
 
 public class PulsoEscala : MonoBehaviour
 {
-    [Header("Configuraci髇 del Pulso")]
-    public Vector3 escalaInicial = Vector3.one;   // Escala de inicio
-    public Vector3 escalaObjetivo = new Vector3(1200f, 1200f, 1200f); // Escala m醲ima a alcanzar
-    public float tiempoPulso = 1f; // Tiempo en segundos para completar ida y vuelta
+    [Header("Configuraci贸n del Pulso")]
+    public Vector3 escalaInicial = Vector3.one;
+    public Vector3 escalaObjetivo = new Vector3(1200f, 1200f, 1200f);
+    public float tiempoPulso = 1f;
 
-    [Header("Configuraci髇 de Color")]
-    public Color colorInicial = Color.yellow;      // Color de inicio
-    public Color colorObjetivo = Color.red;  // Color objetivo
+    [Header("Configuraci贸n de Color")]
+    public Color colorInicial = Color.yellow;
+    public Color colorObjetivo = Color.red;
+
+    [Header("Configuraci贸n Emission")]
+    private float intensidadEmission = 5f; // Intensidad fija de la emission
 
     private float tiempo;
     private bool haciaArriba = true;
 
-    public Material material; // Referencia al material
+    public Material material;
     private bool escalar;
     public bool escalarAlIniciar;
+
     void Start()
     {
         transform.localScale = escalaInicial;
         material.color = colorInicial;
-        escalar = true;
 
+        // 馃敼 Aseguramos que la emisi贸n est茅 activa
+        material.EnableKeyword("_EMISSION");
+        material.SetColor("_EmissionColor", colorInicial * intensidadEmission);
+
+        escalar = true;
     }
 
     void Update()
     {
         if (escalar) return;
 
-        // Calcular fracci髇 de tiempo
+        // Calcular fracci贸n de tiempo
         tiempo += (haciaArriba ? 1 : -1) * Time.deltaTime / (tiempoPulso / 2f);
 
-        // Interpolaci髇 entre escalas
+        // Interpolaci贸n entre escalas
         transform.localScale = Vector3.Lerp(escalaInicial, escalaObjetivo, tiempo);
 
-        // Interpolaci髇 entre colores (Albedo)
-        material.color = Color.Lerp(colorInicial, colorObjetivo, tiempo);
+        // Interpolaci贸n entre colores (Albedo)
+        Color nuevoColor = Color.Lerp(colorInicial, colorObjetivo, tiempo);
+        material.color = nuevoColor;
 
-        // Invertir cuando llega a los l韒ites
+        // Interpolaci贸n entre colores (Emission) con intensidad fija
+        material.SetColor("_EmissionColor", nuevoColor * intensidadEmission);
+
+        // Invertir cuando llega a los l铆mites
         if (tiempo >= 1f)
         {
             tiempo = 1f;
@@ -55,11 +67,10 @@ public class PulsoEscala : MonoBehaviour
     public void RestablecerEscalaColor()
     {
         escalar = true;
-        // Interpolaci髇 entre escalas
         transform.localScale = escalaInicial;
 
-        // Interpolaci髇 entre colores (Albedo)
         material.color = colorInicial;
+        material.SetColor("_EmissionColor", colorInicial * intensidadEmission);
     }
 
     [ContextMenu("iniciar")]

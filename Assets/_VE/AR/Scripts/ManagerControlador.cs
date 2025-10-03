@@ -454,7 +454,7 @@ public class ManagerControlador : MonoBehaviour
         SimpleAudioManager.singleton.PlaySound(6);
         canvasInformativoCuencaInterno.textoAlmacenado = "Gracias a los sistemas de alerta temprana integrados al SIRMED se logró una exitosa evacuación por las rutas integradas.";
         canvasInformativoCuencaInterno.MostrarTexto("Gracias a los sistemas de alerta temprana integrados al SIRMED se logró una exitosa evacuación por las rutas integradas.");
-        IntensidadLuz.singleton.RestaurarIntensidad();
+        
 
         yield return new WaitForSeconds(0.5f);
         botonPuntoReunion.IniciarAlerta();
@@ -476,7 +476,7 @@ public class ManagerControlador : MonoBehaviour
         
         rioCuenca.ResetDisplace();
         yield return new WaitForSeconds(7f);
-
+        IntensidadLuz.singleton.RestaurarIntensidad();
         canvasInformativoCuencaInterno.textoAlmacenado = "La lluvia se detiene por completo, sale el sol y el nivel de la corriente vuelve a la normalidad, la comunidad procede con la evaluación de daños.";
         canvasInformativoCuencaInterno.MostrarTexto("La lluvia se detiene por completo, sale el sol y el nivel de la corriente vuelve a la normalidad, la comunidad procede con la evaluación de daños.");
 
@@ -694,17 +694,17 @@ public class ManagerControlador : MonoBehaviour
         movimientoSuavizadoCasas.velocidad = 0.8f; ;
         movimientoSuavizadoCasas.CambiarObjetivoSecundario();
 
-        for (int i = 0; i < temblorTerrenoCasas.Length; i++)
-        {
-            temblorTerrenoCasas[i].Vibrar();
-        }
-
         for (int i = 0; i < npcsCasas.Length; i++)
         {
             npcsCasas[i].CorrerPorSuVida();
         }
 
         yield return new WaitForSeconds(7f);
+
+        for (int i = 0; i < temblorTerrenoCasas.Length; i++)
+        {
+            temblorTerrenoCasas[i].Vibrar();
+        }
 
         pulsosInternos[1].gameObject.SetActive(true);
         SimpleAudioManager.singleton.PlaySound(6);
@@ -713,6 +713,14 @@ public class ManagerControlador : MonoBehaviour
 
         pulsosInternos[1].IniciarAlerta();
         momentoDosCasasTerminado = true;
+    }
+
+    public void DesactivarNPCCasas()
+    {
+        for (int i = 0; i < npcsCasas.Length; i++)
+        {
+            npcsCasas[i].gameObject.SetActive(false);
+        }
     }
 
     public void AntesDeNormalizarCuenca()

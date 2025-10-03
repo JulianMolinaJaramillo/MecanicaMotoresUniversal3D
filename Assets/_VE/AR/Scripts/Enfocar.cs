@@ -107,6 +107,11 @@ public class Enfocar : MonoBehaviour
                 MirarCamara.singleton.ReanudarRotacion();
             }
 
+            if (ManagerControlador.singleton.momentoDosCasasTerminado)
+            {
+                ManagerControlador.singleton.DesactivarNPCCasas();
+            }
+
             if (ManagerControlador.singleton.desastreSecundarioActivo)
             {
                 SimpleAudioManager.singleton.DesactivarGritos();
