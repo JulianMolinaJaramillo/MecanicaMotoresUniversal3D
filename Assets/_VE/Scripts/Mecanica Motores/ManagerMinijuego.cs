@@ -99,7 +99,8 @@ public class ManagerMinijuego : MonoBehaviour
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
                 sueloInteractivoDiesel[i].enabled = true;
-                sueloInteractivoNissan[i].enabled = false;
+                //sueloInteractivoNissan[i].enabled = false;
+                sueloInteractivoNissan[i].enabled = true;
                 motorAnimadoActivo = motoresAnimados[0]; // Es igual al motor animado Diesel
             }
         }
