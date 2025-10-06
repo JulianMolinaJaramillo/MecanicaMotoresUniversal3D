@@ -99,8 +99,7 @@ public class ManagerMinijuego : MonoBehaviour
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
                 sueloInteractivoDiesel[i].enabled = true;
-                //sueloInteractivoNissan[i].enabled = false;
-                sueloInteractivoNissan[i].enabled = true;
+                sueloInteractivoNissan[i].enabled = false;
                 motorAnimadoActivo = motoresAnimados[0]; // Es igual al motor animado Diesel
             }
         }
@@ -115,7 +114,12 @@ public class ManagerMinijuego : MonoBehaviour
         }
         else
         {
-            
+            // Sino selecciona ningun motor para armar
+            for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
+            {
+                sueloInteractivoDiesel[i].enabled = false;
+                sueloInteractivoNissan[i].enabled = false;
+            }
         }
     }
 
