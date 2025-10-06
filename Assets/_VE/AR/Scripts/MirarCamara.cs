@@ -34,7 +34,7 @@ public class MirarCamara : MonoBehaviour
     {
         // Opcional: bloquear cursor en el centro
         //Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 
     void Update()
