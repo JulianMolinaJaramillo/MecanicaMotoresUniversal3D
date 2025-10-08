@@ -211,7 +211,11 @@ public class MoverPieza : MonoBehaviour
         {
             if (ManagerMinijuego.singleton != null)
             {
-                ManagerMinijuego.singleton.ActivarMinijuego(asignarTornillos);
+                if (asignarTornillos != null)
+                {
+                    ManagerMinijuego.singleton.ActivarMinijuego(asignarTornillos);
+                }
+                ManagerMinijuego.singleton.ActivarMinijuego();
                 ManagerMinijuego.singleton.sizeHerramienta = sizeMinijuego;
             }
         }

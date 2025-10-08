@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +11,9 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject herramientasRotatorias; // Referencia al objeto de minujuegoTorque del canvas
+    public GameObject herramientasRotatorias; // Referencia al objeto dentro de la camara
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject prensaValvulas; // Referencia al objeto dentro de la camara
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnAplicarTorque; // Referencia al bt que aplica torque
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -31,6 +32,9 @@ public class ManagerMinijuego : MonoBehaviour
     public int[] torquesTornillosBancada; // Guarda el torque aplicado de dicho minijuego
 
     public Transform[] posicionesMinijuego2; // Posiciones minijuego
+    public int[] torquesValvulas; // Guarda el torque aplicado de dicho minijuego
+
+    public Transform[] posicionesMinijuego3; // Posiciones minijuego
     public int[] torquesTornillosBielas; // Guarda el torque aplicado de dicho minijuego
 
     public bool[] minijuegos;
@@ -128,10 +132,35 @@ public class ManagerMinijuego : MonoBehaviour
         asignarTornillos.Add(asignar);
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
-        herramientasRotatorias.SetActive(true);
+        if (InventarioUI.singleton.tamanoHerramienta == 1)
+        {
+            prensaValvulas.SetActive(true);
+        }
+        else
+        {
+            herramientasRotatorias.SetActive(true);
+        }
+        
         asignarTornillos[0].InicializarTornillosMinijuego();
         PosicionInicialCamaraMinijuego();
         HabilitarTornilloApretar();   
+    }
+
+    public void ActivarMinijuego()
+    {
+        minijuegoActivo = true;
+        miniJuegoAtornillar.SetActive(true);
+
+        if (InventarioUI.singleton.tamanoHerramienta == 1)
+        {
+            prensaValvulas.SetActive(true);
+        }
+        else
+        {
+            herramientasRotatorias.SetActive(true);
+        }
+
+        PosicionInicialCamaraMinijuego();
     }
 
     public void DesactivarMinijuego()
@@ -141,7 +170,14 @@ public class ManagerMinijuego : MonoBehaviour
         contador = 0;
         minijuegoActivo = false;
         miniJuegoAtornillar.SetActive(false);
-        herramientasRotatorias.SetActive(false);
+        if (InventarioUI.singleton.tamanoHerramienta == 1)
+        {
+            prensaValvulas.SetActive(false);
+        }
+        else
+        {
+            herramientasRotatorias.SetActive(false);
+        }       
     }
 
     public void PosicionInicialCamaraMinijuego()
@@ -152,7 +188,7 @@ public class ManagerMinijuego : MonoBehaviour
         }
         else if (minijuegos[1])
         {
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego2[0], 1);
+            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego3[0], 1);
         }
     }
 
@@ -264,7 +300,7 @@ public class ManagerMinijuego : MonoBehaviour
                 aplicandoTorque = false;
 
                 DesactivarMinijuego();
-                posicionMonijuegoActual = posicionesMinijuego2[contador];
+                posicionMonijuegoActual = posicionesMinijuego3[contador];
             }
         }       
     }
@@ -292,9 +328,9 @@ public class ManagerMinijuego : MonoBehaviour
             contador += 1;
             if (contador < 4)
             {
-                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego2[contador], 1);
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego3[contador], 1);
                 Atornillar.singleton.ReiniciarValorSlider();
-                posicionMonijuegoActual = posicionesMinijuego2[contador];
+                posicionMonijuegoActual = posicionesMinijuego3[contador];
             }
             else
             {

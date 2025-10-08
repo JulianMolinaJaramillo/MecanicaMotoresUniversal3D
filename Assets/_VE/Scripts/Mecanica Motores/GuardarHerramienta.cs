@@ -17,6 +17,9 @@ public class GuardarHerramienta : MonoBehaviour
     private string frecuencia = "_Frecuencia"; // Nombre exacto de la propiedad en el Shader Graph
     public Sprite icono; // Imagen para mostrar en el botón del inventario
 
+    public MessageOnly mensaje1 = new MessageOnly("Si lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
+    public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
+
     private MeshRenderer meshRenderer; // Referencia a nuestro mesh
     private Material[] materialesOriginales; // Para almacenar nuestros materiales
 
@@ -30,8 +33,16 @@ public class GuardarHerramienta : MonoBehaviour
 
     void Start()
     {
-        // Guardamos el material original
-        materialesOriginales = meshRenderer.materials;
+        if (meshRendererHijos.Length > 0)
+        {
+            // Guardamos el material original de los hijos
+            materialesOriginales = meshRendererHijos[0].materials;
+        }
+        else
+        {
+            // Guardamos el material original
+            materialesOriginales = meshRenderer.materials;
+        }
     }
 
     /// <summary>
@@ -92,8 +103,17 @@ public class GuardarHerramienta : MonoBehaviour
                 Material[] nuevosMateriales = new Material[1];
                 nuevosMateriales[0] = instanciaMaterial;
 
-                // Asignar material a los renderers
-                meshRenderer.materials = nuevosMateriales;
+                if (meshRendererHijos.Length > 0) // Validamos si tengo renders hijos o no
+                {
+                    for (int i = 0; i < meshRendererHijos.Length; i++)
+                    {
+                        meshRendererHijos[i].materials = nuevosMateriales; // Agrego los materiales a los hijos
+                    }
+                }
+                else
+                {
+                    meshRenderer.materials = nuevosMateriales; // Agrego el material a nuestro objeto padre
+                }
 
                 // Interpolar la propiedad "_Frecuencia"
                 float tiempo = 0f;
@@ -143,7 +163,18 @@ public class GuardarHerramienta : MonoBehaviour
             Material[] nuevosMateriales = new Material[2]; // Creamos los nuevos materiales
             nuevosMateriales[0] = materialesOriginales[0]; // mantener el original
             nuevosMateriales[1] = materialSeleccion; // añadir el segundo
-            meshRenderer.materials = nuevosMateriales; // Agrego el material a nuestro objeto objeto
+
+            if (meshRendererHijos.Length > 0) // Validamos si tengo renders hijos o no
+            {
+                for (int i = 0; i < meshRendererHijos.Length; i++)
+                {
+                    meshRendererHijos[i].materials = nuevosMateriales; // Agrego los materiales a los hijos
+                }
+            }
+            else
+            {
+                meshRenderer.materials = nuevosMateriales; // Agrego el material a nuestro objeto padre
+            }
         }
     }
 
@@ -152,6 +183,16 @@ public class GuardarHerramienta : MonoBehaviour
     /// </summary>
     public void QuitarMaterial()
     {
-        meshRenderer.materials = new Material[] { materialesOriginales[0] };
+        if (meshRendererHijos.Length > 0)
+        {
+            for (int i = 0; i < meshRendererHijos.Length; i++)
+            {
+                meshRendererHijos[i].materials = new Material[] { materialesOriginales[0] };
+            }
+        }
+        else
+        {
+            meshRenderer.materials = new Material[] { materialesOriginales[0] };
+        }
     }
 }
