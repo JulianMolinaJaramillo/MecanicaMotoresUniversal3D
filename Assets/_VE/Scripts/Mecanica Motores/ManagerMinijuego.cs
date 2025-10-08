@@ -132,15 +132,7 @@ public class ManagerMinijuego : MonoBehaviour
         asignarTornillos.Add(asignar);
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
-        if (InventarioUI.singleton.tamanoHerramienta == 1)
-        {
-            prensaValvulas.SetActive(true);
-        }
-        else
-        {
-            herramientasRotatorias.SetActive(true);
-        }
-        
+        herramientasRotatorias.SetActive(true);
         asignarTornillos[0].InicializarTornillosMinijuego();
         PosicionInicialCamaraMinijuego();
         HabilitarTornilloApretar();   
@@ -150,16 +142,7 @@ public class ManagerMinijuego : MonoBehaviour
     {
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
-
-        if (InventarioUI.singleton.tamanoHerramienta == 1)
-        {
-            prensaValvulas.SetActive(true);
-        }
-        else
-        {
-            herramientasRotatorias.SetActive(true);
-        }
-
+        prensaValvulas.SetActive(true);
         PosicionInicialCamaraMinijuego();
     }
 
@@ -170,6 +153,7 @@ public class ManagerMinijuego : MonoBehaviour
         contador = 0;
         minijuegoActivo = false;
         miniJuegoAtornillar.SetActive(false);
+
         if (InventarioUI.singleton.tamanoHerramienta == 1)
         {
             prensaValvulas.SetActive(false);

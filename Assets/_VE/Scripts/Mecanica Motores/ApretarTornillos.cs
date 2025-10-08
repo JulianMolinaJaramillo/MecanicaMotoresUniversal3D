@@ -8,6 +8,7 @@ public class ApretarTornillos : MonoBehaviour
     public float rotations = 5f;       // Número de vueltas completas que da en todo el slider
     public bool rotarZ;
     public bool rotarX;
+    public bool prensaValvula;
 
     private Vector3 startPos;
     private MeshRenderer meshRenderer; // Referencia a nuestro mesh
@@ -23,6 +24,7 @@ public class ApretarTornillos : MonoBehaviour
 
     private void Start()
     {
+        if (prensaValvula) HabilitarSliderPrueba();
         StartCoroutine(AsignarMaterial()); 
     }
 

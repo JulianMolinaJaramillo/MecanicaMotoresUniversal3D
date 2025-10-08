@@ -36952,6 +36952,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotacionAngularObjeto: {fileID: 277500156}
   llaveInglesa: 0
+  prensaValvula: 1
   nombreHerramientaImagen: Prensa
   nombreHerramienta: Prensa Valvulas
   sizeHerramienta: 1
@@ -82122,7 +82123,7 @@ PrefabInstance:
     - target: {fileID: 1261712427345845695, guid: fd1dfde7781204349826b24d9bcae996,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323101914556260697, guid: fd1dfde7781204349826b24d9bcae996,
         type: 3}
@@ -82377,7 +82378,7 @@ PrefabInstance:
     - target: {fileID: 6969635195007525761, guid: fd1dfde7781204349826b24d9bcae996,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7213378155201987331, guid: fd1dfde7781204349826b24d9bcae996,
         type: 3}
@@ -93857,6 +93858,7 @@ MonoBehaviour:
   rotations: 2
   rotarZ: 0
   rotarX: 1
+  prensaValvula: 1
   sliderPrueba: {fileID: 545055357}
 --- !u!4 &6435814927566978114
 Transform:
@@ -102925,6 +102927,7 @@ MonoBehaviour:
   rotations: 2
   rotarZ: 0
   rotarX: 1
+  prensaValvula: 1
   sliderPrueba: {fileID: 545055357}
 --- !u!4 &9204720418962074494 stripped
 Transform:

@@ -5,6 +5,7 @@ public class GuardarHerramienta : MonoBehaviour
 {
     public RotacionAngularObjeto rotacionAngularObjeto;
     public bool llaveInglesa;
+    public bool prensaValvula;
     public string nombreHerramientaImagen; // Nombre para asignarle a la imagen
     public string nombreHerramienta; // Nombre completo de la pieza para el titulo
     public int sizeHerramienta; // Para indicar el tamaño en milimetros
@@ -82,6 +83,10 @@ public class GuardarHerramienta : MonoBehaviour
                 rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
                 rotacionAngularObjeto.herramientasManipulables[1].SetActive(true);
             }
+            else if (prensaValvula)
+            {
+                rotacionAngularObjeto.ReiniciarHerramientasRotatorias();
+            }  
             StartCoroutine(AgregarMaterialDisolver());
         }    
     }

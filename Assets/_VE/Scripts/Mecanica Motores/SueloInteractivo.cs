@@ -198,6 +198,11 @@ public class SueloInteractivo : MonoBehaviour
                 {
                     ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(true);
                     ManagerMinijuego.singleton.herramientasRotatorias.SetActive(true);
+
+                    if (InventarioUI.singleton.tamanoHerramienta == 1)
+                    {
+                        ManagerMinijuego.singleton.prensaValvulas.SetActive(true);
+                    }
                 } 
 
                 if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
@@ -244,8 +249,12 @@ public class SueloInteractivo : MonoBehaviour
             {
                 ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
                 ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
-            }
 
+                if (InventarioUI.singleton.tamanoHerramienta == 1)
+                {
+                    ManagerMinijuego.singleton.prensaValvulas.SetActive(false);
+                }
+            }
 
             if (ManagerBrazos.singleton != null) ManagerBrazos.singleton.RetornarBrazos();
 
