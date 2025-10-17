@@ -10,6 +10,7 @@ public class IluminarMaterial : MonoBehaviour
     private Color emisionOriginal;
     private float intensidadOriginal;
     private readonly Color colorFijo = new Color(0.749f, 0.749f, 0.749f); // 191/255
+    private SueloInteractivo sueloInteractivo;
 
     void Start()
     {
@@ -19,15 +20,21 @@ public class IluminarMaterial : MonoBehaviour
         // Guardamos la emision e intensidad original del material en cuestion
         emisionOriginal = material.GetColor("_EmissionColor");
         intensidadOriginal = emisionOriginal.maxColorComponent;
+
+        sueloInteractivo = GetComponent<SueloInteractivo>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (sueloInteractivo.puedoInteractuarInicialmente)
         {
-            StopCoroutine(BajarEmission()); // Detenemos currutina actual
-            StartCoroutine(SubirEmission()); // Iniciamos nueva currutina
+            if (other.CompareTag("Player"))
+            {
+                StopCoroutine(BajarEmission()); // Detenemos currutina actual
+                StartCoroutine(SubirEmission()); // Iniciamos nueva currutina
+            }
         }
     }
+
 
     private void OnTriggerExit(Collider other)
     {

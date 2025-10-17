@@ -147,6 +147,17 @@ public class EntornoMecanica : MonoBehaviour
         }
 
         BajarIntensidadLuzPrincipal();
+
+        if (ManagerMinijuego.singleton.minijuegoActivo)
+        {
+            ManagerMinijuego.singleton.herramientasRotatorias.SetActive(true);
+
+            if (InventarioUI.singleton.tamanoHerramienta == 1)
+            {
+                ManagerMinijuego.singleton.prensaValvulas.SetActive(true);
+            }
+        }
+        
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
         sueloInteractivo.SaliendoInteraccion();
         iniciarCompuertas = null;
@@ -161,6 +172,16 @@ public class EntornoMecanica : MonoBehaviour
     {
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Particulas"); // Ejecutamos el efecto nombrado
 
+        if (ManagerMinijuego.singleton.minijuegoActivo)
+        {
+            ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
+
+            if (InventarioUI.singleton.tamanoHerramienta == 1 || ManagerMinijuego.singleton.sizeHerramienta == 1)
+            {
+                ManagerMinijuego.singleton.prensaValvulas.SetActive(false);
+            }
+        }
+        
         MesaMotor.singleton.mesaMotorActiva = false;
         SubirIntensidadLuzPrincipal();
 

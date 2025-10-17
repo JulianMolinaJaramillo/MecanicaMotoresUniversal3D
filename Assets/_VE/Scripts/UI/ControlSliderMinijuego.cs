@@ -24,8 +24,17 @@ public class ControlSliderMinijuego : MonoBehaviour, IPointerDownHandler, IPoint
                 if (ManagerCanvas.singleton != null)
                 {
                     if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
-                    string texto = "Estas utilizando el tamaño de herramienta incorrecto, necesitas la llave o copa de "+ ManagerMinijuego.singleton.sizeHerramienta+ " mm, vuelve a intentarlo";
-                    ManagerCanvas.singleton.AlertarMensaje(texto);
+
+                    if (ManagerMinijuego.singleton.sizeHerramienta == 1)
+                    {
+                        string texto = "Estas utilizando la herramienta incorrecta, necesitas prensa de valvulas para generar presión ";
+                        ManagerCanvas.singleton.AlertarMensaje(texto);
+                    }
+                    else
+                    {
+                        string texto = "Estas utilizando el tamaño de herramienta incorrecto, necesitas la llave o copa de " + ManagerMinijuego.singleton.sizeHerramienta + " mm, vuelve a intentarlo";
+                        ManagerCanvas.singleton.AlertarMensaje(texto);
+                    }               
                 }         
             }
         }          

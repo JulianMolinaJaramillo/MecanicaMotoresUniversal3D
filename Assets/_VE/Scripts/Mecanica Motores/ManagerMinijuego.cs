@@ -25,27 +25,36 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject[] motoresAnimados; // Motores internos animados
 
-    public Collider[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
-    public Collider[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
+    public SueloInteractivo[] sueloInteractivoNissan; // Para activar o desactivar segun el motor activo
+    public ActivarDesactivarHijos[] partesNissan; // Para reactivar las partes del motor
+    public SueloInteractivo[] sueloInteractivoDiesel; // Para activar o desactivar segun el motor activo
+    public ActivarDesactivarHijos[] partesDiesel; // Para reactivar las partes del motor
 
-    public Transform[] posicionesMinijuego1; // Posiciones minijuego
-    public int[] torquesTornillosBancada; // Guarda el torque aplicado de dicho minijuego
+    [Header("CONFIGURACION INICIAL")]
+    public bool[] cantidadMinijuegosMotorDiesel; // Cantidad de minijuegos disponibles
+    public bool[] cantidadMinijuegosMotorNissan; // Cantidad de minijuegos disponibles
 
-    public Transform[] posicionesMinijuego2; // Posiciones minijuego
-    public int[] torquesValvulas; // Guarda el torque aplicado de dicho minijuego
-
-    public Transform[] posicionesMinijuego3; // Posiciones minijuego
+    [Header("MINIJUEGO 1 MOTOR DIESEL")]
+    public Transform[] posicionesMinijuegoBielas; // Posiciones minijuego
     public int[] torquesTornillosBielas; // Guarda el torque aplicado de dicho minijuego
 
-    public bool[] minijuegos;
+    [Header("MINIJUEGO 2 MOTOR DIESEL")]
+    public Transform[] posicionesMinijuegoValvulas; // Posiciones minijuego
+    public int[] torquesValvulas; // Guarda el torque aplicado de dicho minijuego
 
-    public List<ApretarTornillos> tornillosParaApretar;
-    public List<AsignarTornillos> asignarTornillos;
+    [Header("MINIJUEGO 3 MOTOR DIESEL")]
+    public Transform[] posicionesMinijuegoBombaAgua; // Posiciones minijuego
+    public int[] torquesTornillosBombaAgua; // Guarda el torque aplicado de dicho minijuego
 
-    
-    public bool minijuegoTerminado;
+
     [HideInInspector]
-    public Transform posicionMonijuegoActual;
+    public List<ApretarTornillos> tornillosParaApretar;
+    [HideInInspector]
+    public List<AsignarTornillos> asignarTornillos;
+    [HideInInspector]
+    public bool minijuegoTerminado; // Para validar en el script de rotacion y de expansion cuando terminan estas
+    [HideInInspector]
+    public Transform posicionMinijuegoActual;
     [HideInInspector]
     public bool aplicandoTorque;
     [HideInInspector]
@@ -67,12 +76,6 @@ public class ManagerMinijuego : MonoBehaviour
         {
             Destroy(this);
         }
-    }
-
-    private void Start()
-    {
-        posicionMonijuegoActual = posicionesMinijuego1[0];
-        btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBancada);
     }
 
     /// <summary>
@@ -98,23 +101,72 @@ public class ManagerMinijuego : MonoBehaviour
     public void AsignarMotorActivo(string nombreMotor)
     {
         motorActivo = nombreMotor;
+        ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
+        btnAplicarTorque.onClick.RemoveAllListeners(); // Removemos todos los listener
+        InventarioUI.singleton.LimpiarInventario(); // Limpiamos inventario
+        minijuegoActivo = false;
+        contador = 0;
+
+        // Los que involucren tornillos
+        if (asignarTornillos.Count > 0)
+        {
+            asignarTornillos.Clear();
+        }
+
+        // Los que involucren tornillos
+        if (tornillosParaApretar.Count > 0)
+        {
+            tornillosParaApretar.Clear();
+        }
+
         if (nombreMotor == "Diesel")
         {
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
-                sueloInteractivoDiesel[i].enabled = true;
-                sueloInteractivoNissan[i].enabled = false;
-                motorAnimadoActivo = motoresAnimados[0]; // Es igual al motor animado Diesel
+                //Habilitamos piezas en cuestion
+                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = true; 
+                partesDiesel[i].ActivarTodosLosHijos();
+
+                //Deshabilitamos lo demas
+                sueloInteractivoNissan[i].puedoInteractuarInicialmente = false;          
+                sueloInteractivoNissan[i].TrigerExit();                         
             }
+
+            // habilitamos el minijuego cero del Diesel
+            for (int i = 0; i < cantidadMinijuegosMotorDiesel.Length; i++)
+            {
+                cantidadMinijuegosMotorDiesel[i] = false;
+            }
+            cantidadMinijuegosMotorDiesel[0] = true;
+            posicionMinijuegoActual = posicionesMinijuegoBielas[0];
+            btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBancada);
+
+            motorAnimadoActivo = motoresAnimados[0]; // Es igual al motor animado Diesel
+        
         }
         else if (nombreMotor == "Nissan")
         {
             for (int i = 0; i < sueloInteractivoNissan.Length; i++)
             {
-                sueloInteractivoNissan[i].enabled = true;
-                sueloInteractivoDiesel[i].enabled = false;
-                //motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
+                //Habilitamos piezas en cuestion
+                sueloInteractivoNissan[i].puedoInteractuarInicialmente = true; 
+                partesNissan[i].ActivarTodosLosHijos();
+
+                //Deshabilitamos lo demas
+                sueloInteractivoDiesel[i].puedoInteractuarInicialmente = false;
+                sueloInteractivoDiesel[i].TrigerExit();         
             }
+
+            // habilitamos el minijuego cero del Nissan
+            for (int i = 0; i < cantidadMinijuegosMotorNissan.Length; i++)
+            {
+                cantidadMinijuegosMotorNissan[i] = false;
+            }
+            cantidadMinijuegosMotorNissan[0] = true;
+            //posicionMinijuegoActual = posicionesMinijuegoBielas[0];
+            //btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBancada);
+
+            //motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
         }
         else
         {
@@ -129,20 +181,43 @@ public class ManagerMinijuego : MonoBehaviour
 
     public void ActivarMinijuego(AsignarTornillos asignar)
     {
-        asignarTornillos.Add(asignar);
+        // Se activa minijuego
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
+
+        // Activamos herramienta
         herramientasRotatorias.SetActive(true);
+
+        if (InventarioUI.singleton.tamanoHerramienta == 1)
+        {
+            prensaValvulas.SetActive(true);
+        }
+
+        // Configuración de los tornillos
+        asignarTornillos.Add(asignar);                 
         asignarTornillos[0].InicializarTornillosMinijuego();
+        HabilitarTornilloApretar();
+
+        // Posicionamos
         PosicionInicialCamaraMinijuego();
-        HabilitarTornilloApretar();   
+          
     }
 
     public void ActivarMinijuego()
     {
+        // Se activa minijuego
         minijuegoActivo = true;
         miniJuegoAtornillar.SetActive(true);
-        prensaValvulas.SetActive(true);
+
+        // Activamos herramientas
+        herramientasRotatorias.SetActive(true);
+
+        if (InventarioUI.singleton.tamanoHerramienta == 1)
+        {
+            prensaValvulas.SetActive(true);
+        }
+        
+        // Posicionamos
         PosicionInicialCamaraMinijuego();
     }
 
@@ -151,6 +226,7 @@ public class ManagerMinijuego : MonoBehaviour
         Atornillar.singleton.ReiniciarValorSlider();
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
         contador = 0;
+        aplicandoTorque = false;
         minijuegoActivo = false;
         miniJuegoAtornillar.SetActive(false);
 
@@ -166,14 +242,34 @@ public class ManagerMinijuego : MonoBehaviour
 
     public void PosicionInicialCamaraMinijuego()
     {
-        if (minijuegos[0])
+        if (motorActivo == "Diesel")
         {
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego1[0], 1);
+            if (cantidadMinijuegosMotorDiesel[0])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBielas[0], 1);
+            }
+            else if (cantidadMinijuegosMotorDiesel[1])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoValvulas[0], 1);
+            }
+            else if (cantidadMinijuegosMotorDiesel[2])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBombaAgua[0], 1);
+            }
         }
-        else if (minijuegos[1])
+        else if (motorActivo == "Nissan")
         {
-            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego3[0], 1);
-        }
+
+        }   
+    }
+
+    public void ConfigurarTornilloActivo()
+    {
+        aplicandoTorque = true;
+        tornillosParaApretar[0].DeshabilitarSlider(sliderTorqueMinijuego);
+        tornillosParaApretar[0].QuitarMaterial();
+        tornillosParaApretar.RemoveAt(0);
+        HabilitarTornilloApretar();
     }
 
     public void HabilitarTornilloApretar()
@@ -189,18 +285,27 @@ public class ManagerMinijuego : MonoBehaviour
     {
         minijuegoTerminado = true; // indicamos que ya terminaron los minijuegos
 
-        for (int i = 0; i < torquesTornillosBancada.Length; i++)
+        for (int i = 0; i < torquesTornillosBielas.Length; i++)
         {
-            if (torquesTornillosBancada[i] > 87 && torquesTornillosBancada[i] < 96)
+            if (torquesTornillosBielas[i] >= 88 && torquesTornillosBielas[i] <= 95) // los torques Entre 88 y 95
             {
                 puntaje += 1;
                 Debug.Log(puntaje);
             }
         }
 
-        for (int i = 0; i < torquesTornillosBielas.Length; i++)
+        for (int i = 0; i < torquesValvulas.Length; i++)
         {
-            if (torquesTornillosBielas[i] > 51 && torquesTornillosBielas[i] < 59)
+            if (torquesValvulas[i] >= 70 && torquesValvulas[i] <= 80) // los torques Entre 70 y 80
+            {
+                puntaje += 1;
+                Debug.Log(puntaje);
+            }
+        }
+
+        for (int i = 0; i < torquesTornillosBombaAgua.Length; i++)
+        {
+            if (torquesTornillosBombaAgua[i] >= 52 && torquesTornillosBombaAgua[i] <= 58) // los torques Entre 52 y 58
             {
                 puntaje += 1;
                 Debug.Log(puntaje);
@@ -234,14 +339,7 @@ public class ManagerMinijuego : MonoBehaviour
         puntaje = 0;
     }
 
-    public void ConfigurarTornilloActivo()
-    {
-        aplicandoTorque = true;
-        tornillosParaApretar[0].DeshabilitarSlider(sliderTorqueMinijuego);
-        tornillosParaApretar[0].QuitarMaterial();
-        tornillosParaApretar.RemoveAt(0);
-        HabilitarTornilloApretar();
-    }
+    
 
     public void TorqueAplicadoTornillosBancada()
     {
@@ -255,72 +353,125 @@ public class ManagerMinijuego : MonoBehaviour
     IEnumerator TorqueAplicadoTornillosBancadaCorrutina()
     {
         if (!aplicandoTorque)
-        {
-            Debug.Log("TorqueAplicadoTornillosBancada");         
-            ConfigurarTornilloActivo();
-            torquesTornillosBancada[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
+        {       
+            ConfigurarTornilloActivo(); // Los que involucren tornillos
+
+            torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
         
             contador += 1;
             if (contador < 4)
             {
-                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego1[contador], 1);
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBielas[contador], 1);
                 Atornillar.singleton.ReiniciarValorSlider();
-                posicionMonijuegoActual = posicionesMinijuego1[contador];
+                posicionMinijuegoActual = posicionesMinijuegoBielas[contador];
             }
             else
             {
                 ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
+                // Los que involucren tornillos
                 if (asignarTornillos.Count > 0)
                 {
                     asignarTornillos.RemoveAt(0);
                 }
 
+                // Reestablecemos valores minijuego
                 btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoTornillosBancada);
-                btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBielas);
-                minijuegos[0] = false;
-                minijuegos[1] = true;
-                aplicandoTorque = false;
-
+                btnAplicarTorque.onClick.AddListener(TorqueAplicadoValvulas);
+                cantidadMinijuegosMotorDiesel[0] = false;
+                cantidadMinijuegosMotorDiesel[1] = true;
                 DesactivarMinijuego();
-                posicionMonijuegoActual = posicionesMinijuego3[contador];
+                posicionMinijuegoActual = posicionesMinijuegoValvulas[contador];
             }
         }       
     }
     
 
-    public void TorqueAplicadoTornillosBielas()
+    public void TorqueAplicadoValvulas()
     {
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
         }
-        coroutine = StartCoroutine(TorqueAplicadoTornillosBielasCorrutina());
+        coroutine = StartCoroutine(TorqueAplicadoValvulasCorrutina());
     }
 
-    IEnumerator TorqueAplicadoTornillosBielasCorrutina()
+    IEnumerator TorqueAplicadoValvulasCorrutina()
     {
         if (!aplicandoTorque)
         {
-            Debug.Log("TorqueAplicadoTornillosBielas");
-            ConfigurarTornilloActivo();
-            torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque());
+            Debug.Log("TorqueAplicadoTornillosValvulas");
+            torquesValvulas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
         
             contador += 1;
             if (contador < 4)
             {
-                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuego3[contador], 1);
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoValvulas[contador], 1);
                 Atornillar.singleton.ReiniciarValorSlider();
-                posicionMonijuegoActual = posicionesMinijuego3[contador];
+                posicionMinijuegoActual = posicionesMinijuegoValvulas[contador];
             }
             else
             {
                 ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoValvulas);
+                btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBombaAgua);
+                cantidadMinijuegosMotorDiesel[1] = false;
+                cantidadMinijuegosMotorDiesel[2] = true;
                 DesactivarMinijuego();
-                //posicionMonijuegoActual = posicionesMinijuego3[contador];
+                posicionMinijuegoActual = posicionesMinijuegoBombaAgua[contador];
+            }
+        }
+    }
+
+    public void TorqueAplicadoTornillosBombaAgua()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueAplicadoTornillosBombaAguaCorrutina());
+    }
+
+    IEnumerator TorqueAplicadoTornillosBombaAguaCorrutina()
+    {
+        if (!aplicandoTorque)
+        {
+            ConfigurarTornilloActivo(); // Los que involucren tornillos
+
+            torquesTornillosBombaAgua[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+
+            yield return new WaitForSeconds(0.1f);
+
+            contador += 1;
+            if (contador < 4)
+            {
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBombaAgua[contador], 1);
+                Atornillar.singleton.ReiniciarValorSlider();
+                posicionMinijuegoActual = posicionesMinijuegoBombaAgua[contador];
+            }
+            else
+            {
+                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
+                // Los que involucren tornillos
+                if (asignarTornillos.Count > 0)
+                {
+                    asignarTornillos.RemoveAt(0);
+                }
+
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoTornillosBombaAgua);
+                cantidadMinijuegosMotorDiesel[2] = false;
+                DesactivarMinijuego();
             }
         }
     }

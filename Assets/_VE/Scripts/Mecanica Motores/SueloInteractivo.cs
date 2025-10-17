@@ -11,15 +11,18 @@ public class SueloInteractivo : MonoBehaviour
     public CamaraOrbital camaraPrincipal; // Camara orbital / principal
     public Transform posicionObjetivoCamara; // Posicion a la que deseamos llevar la camara
     public float velocidadPosCamara = 1; // Velocidad de desplazamiento de la camara
-    
+    public Collider[] piezasMeson; // Piezas sobre la mesa
 
     [Header("Referencias Opcionales")]
     public MoverObjeto moverObjeto;
     public Button btnBajarPlataforma; // Referencia al btnBajarPlataforma del canvas
-    public Collider[] piezasMeson; // Piezas sobre la mesa
+
+    [Header("Booleanos ID")]
+    public bool mesaGenerica; // Para validar si es el suelo es donde hay partes de herramienta
     public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
     public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
 
+    public bool puedoInteractuarInicialmente;
     private MovimientoJugador movimientoJugador; // Para guardar la referencia del movimiento del jugador
     private Camera camera; // Para guardar referencia a nuestra camara
     private int playerLayer; // Para guardar el numero de layer
@@ -63,12 +66,12 @@ public class SueloInteractivo : MonoBehaviour
                 {
                     if (plataformaAbajo)
                     {
-                        EntornoMecanica.singleton.AbrirCompuerta(ManagerMinijuego.singleton.posicionMonijuegoActual);
+                        EntornoMecanica.singleton.AbrirCompuerta(ManagerMinijuego.singleton.posicionMinijuegoActual);
                         plataformaAbajo = false;
                     }
                     else
                     {
-                        InicializarMovimientoCamara(ManagerMinijuego.singleton.posicionMonijuegoActual);
+                        InicializarMovimientoCamara(ManagerMinijuego.singleton.posicionMinijuegoActual);
                     }
                 }
                 else if (mesaArmadoMotor)
@@ -125,24 +128,53 @@ public class SueloInteractivo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (puedoInteractuarInicialmente)
         {
-            interactuar = true; // Indicamos que podemos interactuar
-            canvasWorldSpace.SetActive(true); // Activamos canvas visual
+            if (other.CompareTag("Player"))
+            {
+                interactuar = true; // Indicamos que podemos interactuar
+                canvasWorldSpace.SetActive(true); // Activamos canvas visual
 
-            movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua       
+                movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua       
+            }
         }
+
+        if (mesaGenerica)
+        {
+            if (other.CompareTag("Player"))
+            {
+                ManagerCanvas.singleton.DesactivarBTNEleccionMotor();
+            }
+        }   
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (puedoInteractuarInicialmente)
         {
-            interactuar = false; // Indicamos que no podemos interactuar
-            canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
+            if (other.CompareTag("Player"))
+            {
+                interactuar = false; // Indicamos que no podemos interactuar
+                canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
 
-            movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua    
+                movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua    
+            }
         }
+
+        if (mesaGenerica)
+        {
+            if (other.CompareTag("Player"))
+            {
+                ManagerCanvas.singleton.ActivarBTNEleccionMotor();
+            }
+        }     
+    }
+
+    public void TrigerExit()
+    {
+        interactuar = false; // Indicamos que no podemos interactuar
+        canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
+        movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua    
     }
 
     /// <summary>
@@ -250,7 +282,7 @@ public class SueloInteractivo : MonoBehaviour
                 ManagerMinijuego.singleton.miniJuegoAtornillar.SetActive(false);
                 ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
 
-                if (InventarioUI.singleton.tamanoHerramienta == 1)
+                if (InventarioUI.singleton.tamanoHerramienta == 1 || ManagerMinijuego.singleton.sizeHerramienta == 1)
                 {
                     ManagerMinijuego.singleton.prensaValvulas.SetActive(false);
                 }

@@ -2260,7 +2260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 48889713}
   m_Layer: 0
-  m_Name: PosicionMinijuegoValvulas (2)
+  m_Name: PosicionMinijuegoValvulas2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6525,11 +6525,13 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 6542468395039733414}
   posicionObjetivoCamara: {fileID: 616234087}
   velocidadPosCamara: 1
+  piezasMeson: []
   moverObjeto: {fileID: 0}
   btnBajarPlataforma: {fileID: 1659708975}
-  piezasMeson: []
+  mesaGenerica: 0
   mesaArmadoMotor: 1
   mesaHerramientas: 0
+  puedoInteractuarInicialmente: 1
   salirInteraccion: 0
 --- !u!65 &179001282
 BoxCollider:
@@ -8912,7 +8914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 261822048}
   m_Layer: 0
-  m_Name: PosicionMinijuegoBielas2
+  m_Name: PosicionMinijuegoBombaAgua2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10170,7 +10172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286812885}
   m_Layer: 0
-  m_Name: PosicionMinijuego (2)
+  m_Name: PosicionMinijuegoTornillosBielas2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11286,8 +11288,6 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 6542468395039733414}
   posicionObjetivoCamara: {fileID: 1230295512}
   velocidadPosCamara: 1
-  moverObjeto: {fileID: 0}
-  btnBajarPlataforma: {fileID: 0}
   piezasMeson:
   - {fileID: 1043393425929601014}
   - {fileID: 4291452782324715978}
@@ -11314,8 +11314,12 @@ MonoBehaviour:
   - {fileID: 4077795357505002361}
   - {fileID: 275369552}
   - {fileID: 989007665}
+  moverObjeto: {fileID: 0}
+  btnBajarPlataforma: {fileID: 0}
+  mesaGenerica: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
+  puedoInteractuarInicialmente: 0
   salirInteraccion: 0
 --- !u!65 &307473259
 BoxCollider:
@@ -13007,7 +13011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 345717880}
   m_Layer: 0
-  m_Name: PosicionMinijuegoValvulas (1)
+  m_Name: PosicionMinijuegoValvulas1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17501,8 +17505,6 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 6542468395039733414}
   posicionObjetivoCamara: {fileID: 1571925416}
   velocidadPosCamara: 1
-  moverObjeto: {fileID: 0}
-  btnBajarPlataforma: {fileID: 0}
   piezasMeson:
   - {fileID: 330926004}
   - {fileID: 2132260346}
@@ -17522,8 +17524,12 @@ MonoBehaviour:
   - {fileID: 1841149768}
   - {fileID: 1802460056}
   - {fileID: 573344671}
+  moverObjeto: {fileID: 0}
+  btnBajarPlataforma: {fileID: 0}
+  mesaGenerica: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
+  puedoInteractuarInicialmente: 0
   salirInteraccion: 0
 --- !u!65 &457212689
 BoxCollider:
@@ -17916,7 +17922,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -17968,6 +17974,7 @@ MonoBehaviour:
   movimientoJugador: {fileID: 8140545513180934590}
   menuBienvenida: {fileID: 353988751}
   menuEleccionMotor: {fileID: 323818475}
+  btnEleccionMotor: {fileID: 236405725}
   menuPausa: {fileID: 870989492}
   btnSalir: {fileID: 109406430}
   btnRotar: {fileID: 787934132}
@@ -18006,34 +18013,41 @@ MonoBehaviour:
   motoresAnimados:
   - {fileID: 62766425}
   sueloInteractivoNissan:
-  - {fileID: 2015546995}
-  - {fileID: 457212689}
+  - {fileID: 2015546994}
+  - {fileID: 457212688}
+  partesNissan:
+  - {fileID: 226896927}
+  - {fileID: 1416913276}
   sueloInteractivoDiesel:
-  - {fileID: 1301983429}
-  - {fileID: 307473259}
-  posicionesMinijuego1:
+  - {fileID: 1301983433}
+  - {fileID: 307473258}
+  partesDiesel:
+  - {fileID: 2055060363}
+  - {fileID: 344918365}
+  cantidadMinijuegosMotorDiesel: 000000
+  cantidadMinijuegosMotorNissan: 00
+  posicionesMinijuegoBielas:
   - {fileID: 1655314178}
   - {fileID: 1758981459}
   - {fileID: 286812885}
   - {fileID: 1526027963}
-  torquesTornillosBancada: 00000000000000000000000000000000
-  posicionesMinijuego2:
+  torquesTornillosBielas: 00000000000000000000000000000000
+  posicionesMinijuegoValvulas:
   - {fileID: 261357729}
   - {fileID: 345717880}
   - {fileID: 48889713}
   - {fileID: 1282037216}
   torquesValvulas: 00000000000000000000000000000000
-  posicionesMinijuego3:
+  posicionesMinijuegoBombaAgua:
   - {fileID: 1981066850}
   - {fileID: 1460334424}
   - {fileID: 261822048}
   - {fileID: 1119168985}
-  torquesTornillosBielas: 00000000000000000000000000000000
-  minijuegos: 010000
+  torquesTornillosBombaAgua: 00000000000000000000000000000000
   tornillosParaApretar: []
   asignarTornillos: []
   minijuegoTerminado: 0
-  posicionMonijuegoActual: {fileID: 0}
+  posicionMinijuegoActual: {fileID: 0}
   aplicandoTorque: 0
   motorAnimadoActivo: {fileID: 0}
 --- !u!1 &464579627
@@ -39126,8 +39140,6 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 6542468395039733414}
   posicionObjetivoCamara: {fileID: 143123878}
   velocidadPosCamara: 1
-  moverObjeto: {fileID: 3119614211217863150}
-  btnBajarPlataforma: {fileID: 0}
   piezasMeson:
   - {fileID: 7456321552679619893}
   - {fileID: 8056837853418468397}
@@ -39149,8 +39161,12 @@ MonoBehaviour:
   - {fileID: 6344692269563616478}
   - {fileID: 2073016945}
   - {fileID: 2124537099}
+  moverObjeto: {fileID: 3119614211217863150}
+  btnBajarPlataforma: {fileID: 0}
+  mesaGenerica: 0
   mesaArmadoMotor: 0
   mesaHerramientas: 1
+  puedoInteractuarInicialmente: 1
   salirInteraccion: 0
 --- !u!65 &1087283525
 BoxCollider:
@@ -40319,7 +40335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119168985}
   m_Layer: 0
-  m_Name: PosicionMinijuegoBielas3
+  m_Name: PosicionMinijuegoBombaAgua3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45303,7 +45319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1282037216}
   m_Layer: 0
-  m_Name: PosicionMinijuegoValvulas (3)
+  m_Name: PosicionMinijuegoValvulas3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46462,8 +46478,6 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 6542468395039733414}
   posicionObjetivoCamara: {fileID: 301185395}
   velocidadPosCamara: 1
-  moverObjeto: {fileID: 0}
-  btnBajarPlataforma: {fileID: 0}
   piezasMeson:
   - {fileID: 184402861}
   - {fileID: 278112349}
@@ -46478,8 +46492,12 @@ MonoBehaviour:
   - {fileID: 1421305439}
   - {fileID: 739081720}
   - {fileID: 301661761419831886}
+  moverObjeto: {fileID: 0}
+  btnBajarPlataforma: {fileID: 0}
+  mesaGenerica: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
+  puedoInteractuarInicialmente: 0
   salirInteraccion: 0
 --- !u!114 &1301983434
 MonoBehaviour:
@@ -50730,7 +50748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460334424}
   m_Layer: 0
-  m_Name: PosicionMinijuegoBielas1
+  m_Name: PosicionMinijuegoBombaAgua1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50965,6 +50983,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8140545513180934590}
         m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
         m_MethodName: HabilitarJugador
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 464309137}
+        m_TargetAssemblyTypeName: ManagerCanvas, Assembly-CSharp
+        m_MethodName: ActivarPausa
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52521,7 +52551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1526027963}
   m_Layer: 0
-  m_Name: PosicionMinijuego (3)
+  m_Name: PosicionMinijuegoTornillosBielas3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56539,7 +56569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1655314178}
   m_Layer: 0
-  m_Name: PosicionMinijuego
+  m_Name: PosicionMinijuegoTornillosBielas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57008,14 +57038,14 @@ Transform:
   - {fileID: 1758981459}
   - {fileID: 286812885}
   - {fileID: 1526027963}
-  - {fileID: 1981066850}
-  - {fileID: 1460334424}
-  - {fileID: 261822048}
-  - {fileID: 1119168985}
   - {fileID: 261357729}
   - {fileID: 345717880}
   - {fileID: 48889713}
   - {fileID: 1282037216}
+  - {fileID: 1981066850}
+  - {fileID: 1460334424}
+  - {fileID: 261822048}
+  - {fileID: 1119168985}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666165602
@@ -59890,7 +59920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1758981459}
   m_Layer: 0
-  m_Name: PosicionMinijuego (1)
+  m_Name: PosicionMinijuegoTornillosBielas1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63184,6 +63214,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8140545513180934590}
         m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
         m_MethodName: HabilitarJugador
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 464309137}
+        m_TargetAssemblyTypeName: ManagerCanvas, Assembly-CSharp
+        m_MethodName: ActivarPausa
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -67000,7 +67042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981066850}
   m_Layer: 0
-  m_Name: PosicionMinijuegoBielas
+  m_Name: PosicionMinijuegoBombaAgua
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68568,8 +68610,6 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 6542468395039733414}
   posicionObjetivoCamara: {fileID: 513027017}
   velocidadPosCamara: 1
-  moverObjeto: {fileID: 0}
-  btnBajarPlataforma: {fileID: 0}
   piezasMeson:
   - {fileID: 1982201604}
   - {fileID: 723589843}
@@ -68577,8 +68617,12 @@ MonoBehaviour:
   - {fileID: 1504633013}
   - {fileID: 1351727366}
   - {fileID: 373645129}
+  moverObjeto: {fileID: 0}
+  btnBajarPlataforma: {fileID: 0}
+  mesaGenerica: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
+  puedoInteractuarInicialmente: 0
   salirInteraccion: 0
 --- !u!65 &2015546995
 BoxCollider:

@@ -12,6 +12,8 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject menuEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject btnEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
@@ -211,14 +213,36 @@ public class ManagerCanvas : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo invocado desde btnElegirMotor en el menu de pausa
+    /// </summary>
     public void ActivarMenuEleccionMotor()
     {
         menuEleccionMotor.SetActive(true);
     }
 
+    /// <summary>
+    /// Metodo sin utilizar aun
+    /// </summary>
     public void DesactivarMenuEleccionMotor()
     {
         menuEleccionMotor.SetActive(false);
+    }
+
+    /// <summary>
+    /// Metodo invocado desde los suelos interactivos al momento de entrar al trigger
+    /// </summary>
+    public void ActivarBTNEleccionMotor()
+    {
+        btnEleccionMotor.SetActive(true);
+    }
+
+    /// <summary>
+    /// Metodo invocado desde los suelos interactivos al momento de salir del trigger
+    /// </summary>
+    public void DesactivarBTNEleccionMotor()
+    {
+        btnEleccionMotor.SetActive(false);
     }
 
     public void Salir()

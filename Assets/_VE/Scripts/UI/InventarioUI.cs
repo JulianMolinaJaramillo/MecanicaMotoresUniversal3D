@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System.Drawing;
+using System;
 
 public class InventarioUI : MonoBehaviour
 {
@@ -94,6 +95,15 @@ public class InventarioUI : MonoBehaviour
         contadorInstancias += 1; // Aumentamos el contador
     }
 
+    public void LimpiarInventario()
+    {
+        contadorInstancias = 0;
+        foreach (Transform child in contentPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     /// <summary>
     /// Metodo invocado para agregar una herramienta a mi inventario de tools
     /// </summary>
@@ -117,7 +127,13 @@ public class InventarioUI : MonoBehaviour
         {
             InventarioHerramientas.singleton.herramientasIndividuales.Clear(); // Limpiamos la lista de herramientas
         }
-        
+
+        if (ManagerMinijuego.singleton.minijuegoActivo)
+        {
+            ManagerMinijuego.singleton.herramientasRotatorias.SetActive(false);
+            ManagerMinijuego.singleton.prensaValvulas.SetActive(false);
+        }
+
         imgHerramienta.sprite = spriteActualHerramienta;
         txtHerramienta.text = "";
         tamanoHerramienta = 0;

@@ -445,10 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.0069, y: -0.1068, z: 0.0146}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -459,6 +456,12 @@ MonoBehaviour:
   - {fileID: 2110825967848677448}
   snappsParaDesactivar:
   - {fileID: 209505428418674715}
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 1
+  asignarTornillos: {fileID: 0}
+  sizeMinijuego: 1
   mensaje2:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
