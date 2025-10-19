@@ -16,15 +16,18 @@ public class MoverPieza : MonoBehaviour
     public float tiempoDisolver; // Para controlar el tiempo de disolver 
     public GameObject[] snappsParaActivar; // Los puntos de contacto que se activan al momento de colocar una pieza
     public GameObject[] snappsParaDesactivar; // Los puntos de contacto que se desactivan al momento de colocar una pieza
+    [TextArea(3, 4)]
+    public string pista;
 
     [Header("PIEZAS QUE ACTIVAN MINIJUEGOS")]
     public MessageOnly mensaje = new MessageOnly("Para las piezas que activen minijuegos", MessageTypeCustom.Info);
-    public bool activaMinijuego; // Para validar si el prefab activa minijuego
-    public AsignarTornillos asignarTornillos; // unicamente para las piezas que activen minijuego
+    public bool activaMinijuego; // Para validar si el prefab activa minijuego  
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
+    public MessageOnly mensaje4 = new MessageOnly("Unicamente para las piezas con tornillos", MessageTypeCustom.Info);
+    public AsignarTornillos asignarTornillos; // unicamente para las piezas que activen minijuego
 
     [Header("MODIFICACION DE PIEZAS QUE TENGAN HIJOS")]
-    public MessageOnly mensaje2 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
+    public MessageOnly mensaje3 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
     public MeshRenderer[] meshRendererHijos; // Para los mesh de los hijos de este objeto
 
 
@@ -190,6 +193,7 @@ public class MoverPieza : MonoBehaviour
     public IEnumerator MoverPiezaSuavemente(float duracion)
     {
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("PiezaColocada"); // Ejecutamos el efecto nombrado
+        ManagerCanvas.singleton.ActualizarInformacionPista(pista); // Actualizamos la pista de armado para el jugador
 
         Vector3 inicio = transform.localPosition; // Trabajamos en local
         float tiempo = 0f;

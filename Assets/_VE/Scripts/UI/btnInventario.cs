@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public GameObject prebafInstancia; //Prefab a instanciar
     public Transform posicionInstancia; // Punto en el que vamos a realizar la instancia
@@ -64,6 +64,14 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     /// Metodo utilizado para borrar la informacion de la pieza, Se llama automáticamente cuando el mouse sale del botón
     /// </summary>
     public void OnPointerExit(PointerEventData eventData)
+    {
+        ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
+    }
+
+    /// <summary>
+    /// Metodo utilizado para borrar la informacion de la pieza, Se llama automáticamente cuando se hace click
+    /// </summary>
+    public void OnPointerClick(PointerEventData eventData)
     {
         ManagerCanvas.singleton.BorrarInformacionPieza(); // Retiramos la informacion de la pieza del canvas
     }

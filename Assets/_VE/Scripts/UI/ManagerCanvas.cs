@@ -31,6 +31,8 @@ public class ManagerCanvas : MonoBehaviour
     public GameObject mensajeAlerta;
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtMensaje; // Referencia al texto que nos indica si algo esta incorrecto o el inventario esta lleno
+    [TextArea(3, 4)]
+    public string pistaActual;
 
     //[HideInInspector]
     public bool btnReutilizableHabilitado;
@@ -98,6 +100,24 @@ public class ManagerCanvas : MonoBehaviour
     {
         txtTituloPieza.text = titulo;
         txtDescripcionPieza.text = descripcion;
+    }
+
+    /// <summary>
+    /// Metodo utilizado para actualizar la pista o ayuda en cuestion segun la pieza en la que vaya actualmente
+    /// </summary>
+    /// <param name="pistaDada"> Descripcion de la pista de para esta pieza </param>
+    public void ActualizarInformacionPista(string pistaDada)
+    {
+        pistaActual = pistaDada;
+    }
+
+    /// <summary>
+    /// Metodo invocado desde btnAyuda en el canvas para actualizar la pista o ayuda en cuestion segun la pieza en la que vaya actualmente
+    /// </summary>
+    public void PistaSolicitada()
+    {
+        txtTituloPieza.text = "Pista";
+        txtDescripcionPieza.text = pistaActual;
     }
 
     /// <summary>

@@ -203,10 +203,10 @@ public class SueloInteractivo : MonoBehaviour
         camaraPrincipal.transform.position = destinoPos; // Aseguramos la posición final
         camaraPrincipal.transform.rotation = destinoRot; // Aseguramos la rotacion final
 
-        SaliendoInteraccion();
+        IngresandoInteraccion();
     }
 
-    public void SaliendoInteraccion()
+    public void IngresandoInteraccion()
     {
         if (salirInteraccion) // Si salimos de interaccion
         {

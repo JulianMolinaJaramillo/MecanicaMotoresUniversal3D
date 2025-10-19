@@ -159,7 +159,7 @@ public class EntornoMecanica : MonoBehaviour
         }
         
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
-        sueloInteractivo.SaliendoInteraccion();
+        sueloInteractivo.IngresandoInteraccion();
         iniciarCompuertas = null;
     }
 
@@ -269,7 +269,7 @@ public class EntornoMecanica : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        sueloInteractivo.SaliendoInteraccion();
+        sueloInteractivo.IngresandoInteraccion();
         sueloInteractivo.HabilitarInfoMesaArmado();
         
         iniciarCompuertas = null;
