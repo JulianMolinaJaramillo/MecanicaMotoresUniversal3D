@@ -578,9 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0241, y: -0.4716, z: 0.1016}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -591,7 +589,20 @@ MonoBehaviour:
   - {fileID: 224734799670257844}
   snappsParaDesactivar:
   - {fileID: 1700930861672258434}
-  mensaje2:
+  pista: "Ahora debes preparar los alojamientos donde descansar\xE1 el eje principal
+    del motor. Las bancadas aseguran el cig\xFCe\xF1al, permitiendo que gire libremente
+    con el soporte y alineaci\xF3n adecuados. Su montaje correcto es esencial para
+    evitar vibraciones o da\xF1os."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

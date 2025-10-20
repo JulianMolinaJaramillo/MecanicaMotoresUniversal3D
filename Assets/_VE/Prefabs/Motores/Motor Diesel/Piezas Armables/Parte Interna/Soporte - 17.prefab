@@ -847,10 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.0619, y: -0.0561, z: 0.0094}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -861,7 +858,19 @@ MonoBehaviour:
   - {fileID: 6813710655894660875}
   snappsParaDesactivar:
   - {fileID: 732596374076232726}
-  mensaje2:
+  pista: "Este eje sostiene los balancines, permitiendo que pivoten y transmitan
+    el movimiento hacia las v\xE1lvulas. Aseg\xFArate de lubricarlo adecuadamente
+    antes del montaje."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

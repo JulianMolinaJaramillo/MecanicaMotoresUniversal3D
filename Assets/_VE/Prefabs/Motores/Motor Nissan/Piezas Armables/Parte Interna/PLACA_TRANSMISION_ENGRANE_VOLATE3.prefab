@@ -284,9 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0133, y: -0.3066, z: -0.0044}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -297,7 +295,20 @@ MonoBehaviour:
   - {fileID: 3601729012667192256}
   snappsParaDesactivar:
   - {fileID: 7786233510376683015}
-  mensaje2:
+  pista: "Antes de girar, cada eje necesita apoyos que reduzcan la fricci\xF3n. Los
+    cojinetes externos se colocan en los extremos del cig\xFCe\xF1al o de los ejes
+    secundarios, proporcionando estabilidad al giro. Verifica que est\xE9n bien alineados
+    antes de cerrar el conjunto."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

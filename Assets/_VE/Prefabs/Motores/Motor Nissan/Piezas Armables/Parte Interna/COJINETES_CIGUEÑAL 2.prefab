@@ -151,9 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0053, y: -0.3124, z: 0.021}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -164,7 +162,19 @@ MonoBehaviour:
   - {fileID: 1817275043295501964}
   snappsParaDesactivar:
   - {fileID: 1512789593045418262}
-  mensaje2:
+  pista: "Una vez colocados los cojinetes y el eje, aseg\xFAralos con los tornillos
+    correspondientes. Este paso fija las bancadas al bloque, manteniendo todo el
+    conjunto en posici\xF3n. Recuerda respetar el orden de apriete y el torque indicado."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

@@ -284,9 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0066, y: -0.3132, z: 0.0202}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -297,7 +295,20 @@ MonoBehaviour:
   - {fileID: 8579040231530092873}
   snappsParaDesactivar:
   - {fileID: 9157904466077562034}
-  mensaje2:
+  pista: "Estos cojinetes se instalan dentro del bloque o las bancadas y son los
+    principales encargados de soportar el giro del cig\xFCe\xF1al. Col\xF3calos con
+    cuidado, asegur\xE1ndote de que sus orificios de lubricaci\xF3n coincidan con
+    los conductos del bloque."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

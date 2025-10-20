@@ -578,9 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0202, y: 0.0453, z: 0.0513}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -591,7 +589,19 @@ MonoBehaviour:
   - {fileID: 820800050830976733}
   snappsParaDesactivar:
   - {fileID: 6609524853399307240}
-  mensaje2:
+  pista: "Una vez montadas las bancadas, fija el \xE1rbol de levas con los tornillos
+    correspondientes. El apriete debe hacerse de forma gradual y cruzada para evitar
+    tensiones en el eje."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

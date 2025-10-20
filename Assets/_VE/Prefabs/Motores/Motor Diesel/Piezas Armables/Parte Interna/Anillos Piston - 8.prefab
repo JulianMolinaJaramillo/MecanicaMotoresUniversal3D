@@ -694,10 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: -0.2302, z: 0.004}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -708,7 +705,19 @@ MonoBehaviour:
   - {fileID: 5536180529149987599}
   snappsParaDesactivar:
   - {fileID: 4961980757528674446}
-  mensaje2:
+  pista: "Este peque\xF1o componente es clave para que el movimiento entre el pist\xF3n
+    y la biela sea suave y sin desgaste. Se instala en el orificio de la biela y
+    act\xFAa como superficie de contacto para el pasador del pist\xF3n."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

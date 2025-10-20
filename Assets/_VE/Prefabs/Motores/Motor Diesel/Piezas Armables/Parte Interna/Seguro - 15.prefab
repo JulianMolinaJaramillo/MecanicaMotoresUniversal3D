@@ -2322,10 +2322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.001000002, y: -0.0474, z: 0.01}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -2336,7 +2333,19 @@ MonoBehaviour:
   - {fileID: 5180741309865412430}
   snappsParaDesactivar:
   - {fileID: 2404174889423387921}
-  mensaje2:
+  pista: "En algunos sistemas de distribuci\xF3n, los patines sirven como gu\xEDas
+    o apoyos para sobre los seguros. Garantizan que la tensi\xF3n se mantenga constante
+    y que el rozamiento sea m\xEDnimo."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

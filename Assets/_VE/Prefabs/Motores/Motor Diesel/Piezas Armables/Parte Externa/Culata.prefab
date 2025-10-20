@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3029775309872620179}
   - component: {fileID: 252519060578836433}
   m_Layer: 8
-  m_Name: SPvalvulas
+  m_Name: SPempaque
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 209505428418674715}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.7072302}
-  m_LocalPosition: {x: 0.081806995, y: -0.4605358, z: -0.04202008}
+  m_LocalPosition: {x: 0.0024, y: -0.31, z: -0.04202008}
   m_LocalScale: {x: 0.08521561, y: 0.04278414, z: 0.18057513}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 8565246258797601132}
   - component: {fileID: 3269172059807005010}
   m_Layer: 8
-  m_Name: SPretenInferior
+  m_Name: SPvalvulas
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: retenInferior
+  snapID: valvulas
 --- !u!1 &2353710017563122034
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,13 +456,20 @@ MonoBehaviour:
   - {fileID: 2110825967848677448}
   snappsParaDesactivar:
   - {fileID: 209505428418674715}
+  pista: "Instala las v\xE1lvulas en sus gu\xEDas dentro de la culata. Estas controlan
+    el ingreso de mezcla y la salida de gases quemados. Aseg\xFArate de que cada
+    v\xE1lvula est\xE9 en su posici\xF3n correcta (admisi\xF3n o escape) y que se
+    deslice libremente."
   mensaje:
     message: Para las piezas que activen minijuegos
     type: 0
-  activaMinijuego: 1
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
   asignarTornillos: {fileID: 0}
-  sizeMinijuego: 1
-  mensaje2:
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

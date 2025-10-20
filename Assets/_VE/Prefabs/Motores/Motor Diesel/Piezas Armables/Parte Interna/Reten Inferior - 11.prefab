@@ -158,10 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.001000002, y: -0.0757, z: 0.0074}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -172,7 +169,19 @@ MonoBehaviour:
   - {fileID: 8469905590607031697}
   snappsParaDesactivar:
   - {fileID: 4324349711870036590}
-  mensaje2:
+  pista: "Cada v\xE1lvula necesita fuerza para volver a su posici\xF3n cerrada. Este
+    resorte se monta en la parte inferior del conjunto, ofreciendo la tensi\xF3n
+    inicial necesaria para el retorno."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

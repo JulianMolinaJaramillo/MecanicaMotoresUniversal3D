@@ -6655,9 +6655,10 @@ MonoBehaviour:
   posicionObjetivoCamara: {fileID: 616234087}
   velocidadPosCamara: 1
   piezasMeson: []
+  canvasSecundario: {fileID: 2113849648}
   moverObjeto: {fileID: 0}
   btnBajarPlataforma: {fileID: 1659708975}
-  mesaGenerica: 0
+  btnCambiarMotor: 1
   mesaArmadoMotor: 1
   mesaHerramientas: 0
   puedoInteractuarInicialmente: 1
@@ -11454,9 +11455,10 @@ MonoBehaviour:
   - {fileID: 4077795357505002361}
   - {fileID: 275369552}
   - {fileID: 989007665}
+  canvasSecundario: {fileID: 0}
   moverObjeto: {fileID: 0}
   btnBajarPlataforma: {fileID: 0}
-  mesaGenerica: 1
+  btnCambiarMotor: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
   puedoInteractuarInicialmente: 0
@@ -14761,18 +14763,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 464309138}
-        m_TargetAssemblyTypeName: ManagerMinijuego, Assembly-CSharp
-        m_MethodName: AsignarMotorActivo
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 323818475}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -14785,10 +14775,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 870989492}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 464309137}
+        m_TargetAssemblyTypeName: ManagerCanvas, Assembly-CSharp
+        m_MethodName: ActivarPausa
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14796,30 +14786,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6542468395039733414}
-        m_TargetAssemblyTypeName: CamaraOrbital, Assembly-CSharp
-        m_MethodName: HabilitarCamara
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8140545513180934590}
-        m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
-        m_MethodName: HabilitarJugador
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &379170128
 MonoBehaviour:
@@ -17797,9 +17763,10 @@ MonoBehaviour:
   - {fileID: 1841149768}
   - {fileID: 1802460056}
   - {fileID: 573344671}
+  canvasSecundario: {fileID: 0}
   moverObjeto: {fileID: 0}
   btnBajarPlataforma: {fileID: 0}
-  mesaGenerica: 1
+  btnCambiarMotor: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
   puedoInteractuarInicialmente: 0
@@ -18221,9 +18188,9 @@ RectTransform:
   - {fileID: 109406429}
   - {fileID: 1659708974}
   - {fileID: 1397938226}
-  - {fileID: 870989493}
   - {fileID: 1120564620}
   - {fileID: 236405726}
+  - {fileID: 870989493}
   - {fileID: 323818476}
   - {fileID: 353988752}
   m_Father: {fileID: 0}
@@ -18258,7 +18225,7 @@ MonoBehaviour:
   txtDescripcionPieza: {fileID: 1273288557}
   mensajeAlerta: {fileID: 1397938225}
   txtMensaje: {fileID: 737907399}
-  pistaActual: Empiece por la base parce
+  pistaActual: 
   btnReutilizableHabilitado: 0
   juegoPausado: 0
   mensajeAlertaActivo: 0
@@ -33541,22 +33508,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8140545513180934590}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 6542468395039733414}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 464309137}
+        m_TargetAssemblyTypeName: ManagerCanvas, Assembly-CSharp
+        m_MethodName: ActivarPausa
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -38589,9 +38544,10 @@ MonoBehaviour:
   - {fileID: 6344692269563616478}
   - {fileID: 2073016945}
   - {fileID: 2124537099}
+  canvasSecundario: {fileID: 0}
   moverObjeto: {fileID: 3119614211217863150}
   btnBajarPlataforma: {fileID: 0}
-  mesaGenerica: 0
+  btnCambiarMotor: 0
   mesaArmadoMotor: 0
   mesaHerramientas: 1
   puedoInteractuarInicialmente: 1
@@ -45769,9 +45725,10 @@ MonoBehaviour:
   - {fileID: 1421305439}
   - {fileID: 739081720}
   - {fileID: 301661761419831886}
+  canvasSecundario: {fileID: 0}
   moverObjeto: {fileID: 0}
   btnBajarPlataforma: {fileID: 0}
-  mesaGenerica: 1
+  btnCambiarMotor: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
   puedoInteractuarInicialmente: 0
@@ -50232,42 +50189,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 870989492}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6542468395039733414}
-        m_TargetAssemblyTypeName: CamaraOrbital, Assembly-CSharp
-        m_MethodName: HabilitarCamara
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8140545513180934590}
-        m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
-        m_MethodName: HabilitarJugador
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 464309137}
         m_TargetAssemblyTypeName: ManagerCanvas, Assembly-CSharp
@@ -62042,42 +61963,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 870989492}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6542468395039733414}
-        m_TargetAssemblyTypeName: CamaraOrbital, Assembly-CSharp
-        m_MethodName: HabilitarCamara
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8140545513180934590}
-        m_TargetAssemblyTypeName: MovimientoJugador, Assembly-CSharp
-        m_MethodName: HabilitarJugador
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 464309137}
         m_TargetAssemblyTypeName: ManagerCanvas, Assembly-CSharp
         m_MethodName: ActivarPausa
@@ -62088,7 +61973,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1861810737
 MonoBehaviour:
@@ -67472,9 +67357,10 @@ MonoBehaviour:
   - {fileID: 1504633013}
   - {fileID: 1351727366}
   - {fileID: 373645129}
+  canvasSecundario: {fileID: 0}
   moverObjeto: {fileID: 0}
   btnBajarPlataforma: {fileID: 0}
-  mesaGenerica: 1
+  btnCambiarMotor: 1
   mesaArmadoMotor: 0
   mesaHerramientas: 0
   puedoInteractuarInicialmente: 0
@@ -73102,7 +72988,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2232696506275775596}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

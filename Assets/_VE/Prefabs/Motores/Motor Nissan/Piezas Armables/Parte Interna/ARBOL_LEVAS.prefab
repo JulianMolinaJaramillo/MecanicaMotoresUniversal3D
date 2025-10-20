@@ -298,9 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0167, y: 0.0182, z: 0.0535}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -311,7 +309,19 @@ MonoBehaviour:
   - {fileID: 2028044580271362257}
   snappsParaDesactivar:
   - {fileID: 9153305289162051442}
-  mensaje2:
+  pista: "Estas piezas mantienen el \xE1rbol de levas en posici\xF3n y permiten su
+    giro estable. Col\xF3calas en el orden correcto, respetando la numeraci\xF3n
+    o marcas para evitar desalineaciones que puedan generar desgaste o ruido."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

@@ -714,10 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: -0.2446, z: 0.007}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -728,7 +725,19 @@ MonoBehaviour:
   - {fileID: 1700046542955429216}
   snappsParaDesactivar:
   - {fileID: 2696029589755649334}
-  mensaje2:
+  pista: "Antes de insertar los pistones en los cilindros, monta los anillos que
+    sellan la c\xE1mara de combusti\xF3n y controlan el consumo de aceite. Cada ranura
+    del pist\xF3n tiene su anillo correspondiente."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

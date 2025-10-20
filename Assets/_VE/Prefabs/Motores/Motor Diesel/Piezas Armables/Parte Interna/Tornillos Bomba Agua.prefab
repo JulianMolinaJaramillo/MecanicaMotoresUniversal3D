@@ -337,13 +337,19 @@ MonoBehaviour:
   - {fileID: 3122565995113484308}
   snappsParaDesactivar:
   - {fileID: 296482254312253391}
+  pista: "Finalmente, cierra el conjunto superior del motor. Esta tapa protege el
+    tren de v\xE1lvulas y evita fugas de aceite hacia el exterior. Col\xF3cala con
+    su empaque correspondiente para garantizar la estanqueidad."
   mensaje:
     message: Para las piezas que activen minijuegos
     type: 0
   activaMinijuego: 1
-  asignarTornillos: {fileID: 2678618405826722636}
   sizeMinijuego: 8
-  mensaje2:
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 2678618405826722636}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:
@@ -501,6 +507,7 @@ MonoBehaviour:
   rotations: 5
   rotarZ: 1
   rotarX: 0
+  prensaValvula: 0
   sliderPrueba: {fileID: 0}
 --- !u!1 &3122565995113484308
 GameObject:
@@ -799,6 +806,7 @@ MonoBehaviour:
   rotations: 5
   rotarZ: 1
   rotarX: 0
+  prensaValvula: 0
   sliderPrueba: {fileID: 0}
 --- !u!1 &7508039845391892460
 GameObject:
@@ -950,6 +958,7 @@ MonoBehaviour:
   rotations: 5
   rotarZ: 1
   rotarX: 0
+  prensaValvula: 0
   sliderPrueba: {fileID: 0}
 --- !u!1 &7672084785347097034
 GameObject:
@@ -1101,4 +1110,5 @@ MonoBehaviour:
   rotations: 5
   rotarZ: 1
   rotarX: 0
+  prensaValvula: 0
   sliderPrueba: {fileID: 0}

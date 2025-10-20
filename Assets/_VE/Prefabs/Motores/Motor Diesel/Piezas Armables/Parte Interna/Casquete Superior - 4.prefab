@@ -568,10 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: -0.3895, z: 0.0092}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -582,7 +579,19 @@ MonoBehaviour:
   - {fileID: 2484798574484085427}
   snappsParaDesactivar:
   - {fileID: 5151614790680460117}
-  mensaje2:
+  pista: "Con el cig\xFCe\xF1al asegurado, es momento de conectar los elementos que
+    transmitir\xE1n el movimiento hacia los pistones. Estas piezas transforman la
+    rotaci\xF3n del eje en desplazamiento vertical dentro de los cilindros."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

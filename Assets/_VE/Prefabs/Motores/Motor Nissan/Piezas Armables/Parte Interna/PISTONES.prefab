@@ -686,9 +686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0083, y: -0.25312, z: 0.02153}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -699,7 +697,20 @@ MonoBehaviour:
   - {fileID: 7840988634605522736}
   snappsParaDesactivar:
   - {fileID: 7220006368909745127}
-  mensaje2:
+  pista: "Este es el n\xFAcleo del motor, donde se alojan los cilindros, el cig\xFCe\xF1al
+    y los conductos de lubricaci\xF3n. Col\xF3calo asegur\xE1ndote de que todas las
+    piezas internas encajen correctamente y que las uniones est\xE9n selladas para
+    evitar fugas de aceite."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

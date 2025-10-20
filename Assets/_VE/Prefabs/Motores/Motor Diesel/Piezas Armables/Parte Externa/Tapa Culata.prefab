@@ -160,13 +160,19 @@ MonoBehaviour:
   snappsParaActivar: []
   snappsParaDesactivar:
   - {fileID: 4806447536975255493}
+  pista: "Con todo en su lugar deber\xEDas probar a encender el motor, si los torques
+    empleados fueron los correctos, todo deber\xEDa funcionar perfectamente y podr\xE1s
+    ver el motor en funcionamiento."
   mensaje:
     message: Para las piezas que activen minijuegos
     type: 0
   activaMinijuego: 0
-  asignarTornillos: {fileID: 0}
   sizeMinijuego: 0
-  mensaje2:
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

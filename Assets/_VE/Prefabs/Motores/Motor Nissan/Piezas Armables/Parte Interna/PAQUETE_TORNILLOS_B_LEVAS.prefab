@@ -284,9 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0177, y: 0.0366, z: 0.0503}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -297,7 +295,20 @@ MonoBehaviour:
   - {fileID: 7558982899899768194}
   snappsParaDesactivar:
   - {fileID: 8484035760949363816}
-  mensaje2:
+  pista: "Este es el v\xEDnculo que sincroniza el movimiento del cig\xFCe\xF1al con
+    el \xE1rbol de levas. Inst\xE1lala asegur\xE1ndote de alinear las marcas de tiempo
+    en ambos engranajes. Una sincronizaci\xF3n incorrecta puede provocar fallos graves
+    en el funcionamiento."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

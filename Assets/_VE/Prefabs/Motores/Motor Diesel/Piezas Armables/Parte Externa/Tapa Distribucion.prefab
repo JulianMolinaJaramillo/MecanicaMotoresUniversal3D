@@ -298,10 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.009819984, y: -0.29696, z: 0.2257996}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -312,7 +309,19 @@ MonoBehaviour:
   - {fileID: 61573699600471690}
   snappsParaDesactivar:
   - {fileID: 8510474494425865430}
-  mensaje2:
+  pista: "Los cilindros forman la c\xE1mara donde los pistones se desplazan. Revisa
+    su alineaci\xF3n antes de colocarlos ya que cualquier part\xEDcula puede causar
+    rayaduras o p\xE9rdida de compresi\xF3n."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

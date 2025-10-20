@@ -121,6 +121,8 @@ public class ManagerMinijuego : MonoBehaviour
 
         if (nombreMotor == "Diesel")
         {
+            ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar cualquier armado, asegúrate de tener la base sólida que soportará todo el conjunto interno del motor. Esta pieza es el punto de anclaje donde descansan los componentes principales, y sobre ella se construirá toda la estructura.");
+
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
                 //Habilitamos piezas en cuestion
@@ -146,6 +148,8 @@ public class ManagerMinijuego : MonoBehaviour
         }
         else if (nombreMotor == "Nissan")
         {
+            ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar lo primero es asegurar la base donde descansarán los mecanismos internos. Este componente actúa como recipiente para el aceite y como soporte inferior del bloque, garantizando la lubricación y rigidez estructural del conjunto.");
+
             for (int i = 0; i < sueloInteractivoNissan.Length; i++)
             {
                 //Habilitamos piezas en cuestion

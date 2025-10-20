@@ -980,10 +980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0, y: -0.2549, z: 0.007689998}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -994,7 +991,20 @@ MonoBehaviour:
   - {fileID: 5081743858183869594}
   snappsParaDesactivar:
   - {fileID: 3368294628200055697}
-  mensaje2:
+  pista: "Algunos puntos del motor necesitan superficies antifricci\xF3n adicionales,
+    especialmente en los mecanismos de rotaci\xF3n. Este cojinete ayuda a reducir
+    la fricci\xF3n entre partes m\xF3viles cr\xEDticas. Inst\xE1lalo con limpieza
+    y precisi\xF3n."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

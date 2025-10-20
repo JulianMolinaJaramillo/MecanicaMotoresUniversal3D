@@ -151,9 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0122, y: -0.3391, z: 0.0233}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -164,7 +162,19 @@ MonoBehaviour:
   - {fileID: 5448461071871445235}
   snappsParaDesactivar:
   - {fileID: 6709504222771579434}
-  mensaje2:
+  pista: "Llega el momento de instalar los componentes que transforman la presi\xF3n
+    de los gases en movimiento. Los pistones se insertan cuidadosamente en los cilindros,
+    verificando la orientaci\xF3n del perno y la correcta posici\xF3n de los anillos."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

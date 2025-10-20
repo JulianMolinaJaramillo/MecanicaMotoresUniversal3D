@@ -431,9 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0049, y: -0.026, z: 0.0202}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -444,7 +442,20 @@ MonoBehaviour:
   - {fileID: 8086800071607292763}
   snappsParaDesactivar:
   - {fileID: 1665824542997462330}
-  mensaje2:
+  pista: "Este peque\xF1o componente evita que el aceite descienda por el v\xE1stago
+    de la v\xE1lvula hacia la c\xE1mara de combusti\xF3n. Debe instalarse con precisi\xF3n
+    sobre la gu\xEDa para asegurar un sellado perfecto sin afectar el movimiento
+    del v\xE1stago."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

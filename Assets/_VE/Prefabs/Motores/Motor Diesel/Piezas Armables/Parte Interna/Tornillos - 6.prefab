@@ -2481,13 +2481,20 @@ MonoBehaviour:
   - {fileID: 112811758150902754}
   snappsParaDesactivar:
   - {fileID: 2801763310175405371}
+  pista: "Puedes instalar los elementos que se desplazar\xE1n dentro de los cilindros.
+    Los pistones transforman la energ\xEDa de la combusti\xF3n en fuerza mec\xE1nica.
+    Deben colocarse asegurando la correcta orientaci\xF3n del perno y la posici\xF3n
+    de los anillos de compresi\xF3n."
   mensaje:
     message: Para las piezas que activen minijuegos
     type: 0
   activaMinijuego: 1
-  asignarTornillos: {fileID: 4183997862633016590}
   sizeMinijuego: 5
-  mensaje2:
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 4183997862633016590}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

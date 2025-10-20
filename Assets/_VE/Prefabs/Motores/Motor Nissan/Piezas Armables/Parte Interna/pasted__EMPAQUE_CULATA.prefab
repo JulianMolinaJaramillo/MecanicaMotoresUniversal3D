@@ -151,9 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0204, y: -0.0585, z: 0.0219}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -164,7 +162,19 @@ MonoBehaviour:
   - {fileID: 4109198200594098381}
   snappsParaDesactivar:
   - {fileID: 621942404540627913}
-  mensaje2:
+  pista: "Una vez colocado el empaque, fija la culata aplicando los tornillos correspondientes.
+    Es fundamental seguir el orden y el torque especificado por el fabricante, para
+    evitar deformaciones o fugas en la c\xE1mara de combusti\xF3n."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

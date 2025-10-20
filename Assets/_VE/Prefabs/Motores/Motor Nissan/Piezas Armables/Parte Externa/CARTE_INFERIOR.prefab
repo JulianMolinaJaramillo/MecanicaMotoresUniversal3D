@@ -284,9 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: -0.0226, y: -0.503, z: 0.1025}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -297,7 +295,20 @@ MonoBehaviour:
   - {fileID: 3832716352426845229}
   snappsParaDesactivar:
   - {fileID: 6335171967812291101}
-  mensaje2:
+  pista: "Una vez instalada la parte inferior, es necesario cerrar la estructura
+    inferior del motor para formar una c\xE1mara sellada que contenga el lubricante.
+    Este componente complementa la base y sirve tambi\xE9n de soporte para otros
+    elementos del tren inferior."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

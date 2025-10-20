@@ -298,10 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.0006, y: -0.4035, z: -0.248}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -312,7 +309,20 @@ MonoBehaviour:
   - {fileID: 6870799052280115792}
   snappsParaDesactivar:
   - {fileID: 6043290143086673150}
-  mensaje2:
+  pista: "Llega el momento de estabilizar el giro del motor. Este pesado disco acumula
+    energ\xEDa durante los ciclos de combusti\xF3n, permitiendo que el movimiento
+    sea constante. Se fija al cig\xFCe\xF1al y su alineaci\xF3n es vital para evitar
+    vibraciones."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos: []

@@ -579,9 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.0546, y: -0.2178, z: 0.2832}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -592,7 +590,18 @@ MonoBehaviour:
   - {fileID: 1343386284402356146}
   snappsParaDesactivar:
   - {fileID: 4539670805410753700}
-  mensaje2:
+  pista: "Una vez colocada la bomba, estos tornillos la fijan al bloque. Apri\xE9talos
+    en forma cruzada y con el torque indicado para evitar deformaciones en la carcasa."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

@@ -589,13 +589,19 @@ MonoBehaviour:
   - {fileID: 1764566350864015464}
   snappsParaDesactivar:
   - {fileID: 5888440476161472296}
+  pista: "Protege todo el sistema de engranajes o cadena que sincroniza el \xE1rbol
+    de levas con el cig\xFCe\xF1al. Una buena estanqueidad aqu\xED evita fugas de
+    aceite y entrada de polvo."
   mensaje:
     message: Para las piezas que activen minijuegos
     type: 0
   activaMinijuego: 0
-  asignarTornillos: {fileID: 0}
   sizeMinijuego: 0
-  mensaje2:
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

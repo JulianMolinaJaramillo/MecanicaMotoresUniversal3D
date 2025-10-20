@@ -435,13 +435,19 @@ MonoBehaviour:
   - {fileID: 8300244383922971723}
   snappsParaDesactivar:
   - {fileID: 7333058680790013677}
+  pista: "Para evitar fugas de aceite en la parte baja del motor, coloca el ret\xE9n
+    que sella sobre la culata Es importante no da\xF1arlo durante la instalaci\xF3n,
+    ya que cualquier fisura podr\xEDa generar p\xE9rdidas de lubricante."
   mensaje:
     message: Para las piezas que activen minijuegos
     type: 0
-  activaMinijuego: 0
+  activaMinijuego: 1
+  sizeMinijuego: 1
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
   asignarTornillos: {fileID: 0}
-  sizeMinijuego: 0
-  mensaje2:
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:
@@ -1148,7 +1154,7 @@ Transform:
   m_GameObject: {fileID: 7333058680790013677}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07737335, y: -0.005, z: -0.525}
+  m_LocalPosition: {x: -0.168, y: 0.0072, z: 0.23}
   m_LocalScale: {x: 0.42280516, y: 0.05370589, z: 0.14909194}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1280,7 +1286,7 @@ GameObject:
   - component: {fileID: 1898484549736911363}
   - component: {fileID: 5258561578627710728}
   m_Layer: 8
-  m_Name: SPculata
+  m_Name: SPretenInferior
   m_TagString: SnapPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1295,7 +1301,7 @@ Transform:
   m_GameObject: {fileID: 8300244383922971723}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.57, y: 0.01, z: -0.526}
+  m_LocalPosition: {x: -0.162, y: 0.0051, z: 0.227}
   m_LocalScale: {x: 0.42280516, y: 0.05370589, z: 0.14909194}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1411,7 +1417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e722f2e5e3dd4291d8b20d864432a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapID: culata
+  snapID: retenInferior
 --- !u!1 &9186625533907421413
 GameObject:
   m_ObjectHideFlags: 0

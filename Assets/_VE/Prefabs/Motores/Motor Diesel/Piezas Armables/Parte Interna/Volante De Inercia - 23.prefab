@@ -297,10 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.0011, y: -0.4065, z: -0.2544}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -311,7 +308,19 @@ MonoBehaviour:
   - {fileID: 8676383794397241591}
   snappsParaDesactivar:
   - {fileID: 63789637927397287}
-  mensaje2:
+  pista: "El bloque es la estructura principal donde se alojan los cilindros, conductos
+    de lubricaci\xF3n y refrigeraci\xF3n. Su funci\xF3n es sostener y alinear todos
+    los componentes internos."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos: []

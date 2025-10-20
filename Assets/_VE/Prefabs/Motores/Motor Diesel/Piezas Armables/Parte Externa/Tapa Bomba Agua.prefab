@@ -299,10 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puedoValidar: 0
   piezaColocada: 0
-  activaMinijuego: 0
   piezaFinal: 0
-  nombreMotor: 
-  sizeMinijuego: 0
   posicionObjetivo: {x: 0.0215, y: -0.2298, z: 0.2572}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
@@ -313,7 +310,19 @@ MonoBehaviour:
   - {fileID: 4224787330167671345}
   snappsParaDesactivar:
   - {fileID: 3072329532706114327}
-  mensaje2:
+  pista: "Es la encargada de mantener la circulaci\xF3n del refrigerante por todo
+    el motor. Aseg\xFArate de colocarla correctamente alineada con las poleas y de
+    que el rotor gire libremente."
+  mensaje:
+    message: Para las piezas que activen minijuegos
+    type: 0
+  activaMinijuego: 0
+  sizeMinijuego: 0
+  mensaje4:
+    message: Unicamente para las piezas con tornillos
+    type: 0
+  asignarTornillos: {fileID: 0}
+  mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
   meshRendererHijos:

@@ -14,11 +14,12 @@ public class SueloInteractivo : MonoBehaviour
     public Collider[] piezasMeson; // Piezas sobre la mesa
 
     [Header("Referencias Opcionales")]
+    public GameObject canvasSecundario; // Hace referencia al canvas secundario a activar
     public MoverObjeto moverObjeto;
     public Button btnBajarPlataforma; // Referencia al btnBajarPlataforma del canvas
 
     [Header("Booleanos ID")]
-    public bool mesaGenerica; // Para validar si es el suelo es donde hay partes de herramienta
+    public bool btnCambiarMotor; // Para validar si quiero habilitar el boton de cambio de motor
     public bool mesaArmadoMotor; // Para validar si es el suelo interactivo de la mesa de armado, deberia ir activa en el sueloInteractivoArmadoMotor
     public bool mesaHerramientas; // Para validar si es el suelo interactivo de la mesa de herramientas, deberia ir activa en el SueloInteractivo Porta Herramientas
 
@@ -139,7 +140,7 @@ public class SueloInteractivo : MonoBehaviour
             }
         }
 
-        if (mesaGenerica)
+        if (btnCambiarMotor)
         {
             if (other.CompareTag("Player"))
             {
@@ -161,7 +162,7 @@ public class SueloInteractivo : MonoBehaviour
             }
         }
 
-        if (mesaGenerica)
+        if (btnCambiarMotor)
         {
             if (other.CompareTag("Player"))
             {
@@ -220,6 +221,7 @@ public class SueloInteractivo : MonoBehaviour
         {
             btnSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
             canvasPrincipal.SetActive(true);  // Activamos canvas informativo
+            if (canvasSecundario != null) canvasSecundario.SetActive(true);  // Activamos canvas informativo
 
             if (btnBajarPlataforma != null) btnBajarPlataforma.gameObject.SetActive(true);// Si tenemos referenciado el boton lo activamos
 
@@ -308,7 +310,13 @@ public class SueloInteractivo : MonoBehaviour
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-        canvasPrincipal.SetActive(false);  // Desactivamos canvas informativo   
+        canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
+        if (canvasSecundario != null)
+        {
+            canvasSecundario.SetActive(false);  // Activamos canvas informativo
+            ManagerCanvas.singleton.ActualizarInformacionPieza("", ""); //Borramos la informacion del cavas
+        }
+        
         btnSalir.gameObject.SetActive(false); // Deshabilitamos el boton de salir 
         btnSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
 
