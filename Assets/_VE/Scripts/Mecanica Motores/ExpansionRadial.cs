@@ -16,8 +16,8 @@ public class ExpansionRadial : MonoBehaviour
 
     [HideInInspector]
     public bool noInteractuar;
-
-    private bool expandir;
+    [HideInInspector]
+    public bool expandir;
     private bool contraer;
     private List<Transform> hijos = new List<Transform>();
     private Dictionary<Transform, Vector3> posicionesOriginales = new Dictionary<Transform, Vector3>();
@@ -91,7 +91,8 @@ public class ExpansionRadial : MonoBehaviour
                 if (piezasInternas)// Solo si son las piezas internas
                 {
                     MesaMotor.singleton.motorExpandido = true;
-                    if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
+                    AsignarHijos();
+                    if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
                     if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
                 }
                 

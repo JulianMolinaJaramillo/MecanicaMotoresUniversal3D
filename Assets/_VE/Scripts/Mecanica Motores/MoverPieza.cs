@@ -5,7 +5,7 @@ public class MoverPieza : MonoBehaviour
 {
     [HideInInspector]
     public bool puedoValidar; // Para validar la colocacion de la pieza al momento de soltar el click y  no mientras arrastro
-    [HideInInspector]
+    //[HideInInspector]
     public bool piezaColocada; // Para validar si la pieza ya fue colocada   
 
     [Header("CONFIGURACION INICIAL")]

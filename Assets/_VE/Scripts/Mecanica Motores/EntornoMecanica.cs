@@ -1,5 +1,6 @@
 
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class EntornoMecanica : MonoBehaviour
@@ -19,6 +20,8 @@ public class EntornoMecanica : MonoBehaviour
     public MoverObjeto[] brazoMecanico;
     public MoverObjeto[] brazoMecanicoDedos;
     public Transform[] posicionDeseada;
+    public MeshRenderer[] meshBrazoMecanico;
+    public ExpansionRadial expansionRadialPiezasInternas;
 
     public static EntornoMecanica singleton;
     private Coroutine iniciarCompuertas;
@@ -45,6 +48,11 @@ public class EntornoMecanica : MonoBehaviour
     private IEnumerator IniciarAnimacionAbrirCompuertas()
     {
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Compuerta"); // Ejecutamos el efecto nombrado
+
+        if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
+        {
+            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+        }
 
         for (int i = 0; i < compuertas.Length; i++)
         {
@@ -157,7 +165,18 @@ public class EntornoMecanica : MonoBehaviour
                 ManagerMinijuego.singleton.prensaValvulas.SetActive(true);
             }
         }
-        
+
+        for (int i = 0; i < meshBrazoMecanico.Length; i++)
+        {
+            meshBrazoMecanico[i].enabled = true;
+        }
+
+        if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
+        {
+            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Desactivamos los hijos antes de expandir
+            ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
+        }
+
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
         sueloInteractivo.IngresandoInteraccion();
         iniciarCompuertas = null;
@@ -171,6 +190,17 @@ public class EntornoMecanica : MonoBehaviour
     private IEnumerator IniciarAnimacionCerrarCompuertas()
     {
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Particulas"); // Ejecutamos el efecto nombrado
+
+        if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
+        {
+            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+            if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
+        }
+           
+        for (int i = 0; i < meshBrazoMecanico.Length; i++)
+        {
+            meshBrazoMecanico[i].enabled = false;
+        }
 
         if (ManagerMinijuego.singleton.minijuegoActivo)
         {
@@ -283,5 +313,21 @@ public class EntornoMecanica : MonoBehaviour
     public void BajarIntensidadLuzPrincipal()
     {
         luzPrincipal.intensity = 1;
+    }
+
+    public void ActivarMeshBrazos()
+    {
+        for (int i = 0; i < meshBrazoMecanico.Length; i++)
+        {
+            meshBrazoMecanico[i].enabled = true;
+        }
+    }
+
+    public void DesactivarMeshBrazos()
+    {
+        for (int i = 0; i < meshBrazoMecanico.Length; i++)
+        {
+            meshBrazoMecanico[i].enabled = false;
+        }
     }
 }

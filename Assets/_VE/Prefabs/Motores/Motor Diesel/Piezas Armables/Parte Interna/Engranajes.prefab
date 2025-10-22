@@ -300,8 +300,8 @@ MonoBehaviour:
   pista: "La banda o correa de distribuci\xF3n conecta el cig\xFCe\xF1al con el \xE1rbol
     de levas. Al instalarla, aseg\xFArate de respetar las marcas de sincronizaci\xF3n
     y la tensi\xF3n adecuada para evitar saltos de tiempo."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -309,6 +309,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

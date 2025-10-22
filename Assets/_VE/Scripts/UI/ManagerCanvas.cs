@@ -8,13 +8,13 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public MovimientoJugador movimientoJugador; // Referencia al movimiento jugador principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject menuBienvenida; // Referencia al Menu de bienvenida del canvas principal
+    public EscaladorUI menuBienvenida; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject menuEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
+    public EscaladorUI menuEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnEleccionMotor; // Referencia al Menu de bienvenida del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject menuPausa; // Referencia al Menu Pausa del canvas principal
+    public EscaladorUI menuPausa; // Referencia al Menu Pausa del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnSalir; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -63,8 +63,8 @@ public class ManagerCanvas : MonoBehaviour
         {
             if (menuBienvenida != null)
             {
-                menuBienvenida.SetActive(true);
-                menuEleccionMotor.SetActive(true);
+                menuEleccionMotor.Escalar();
+                ActivarPausa();
             }
         }    
     }
@@ -76,7 +76,7 @@ public class ManagerCanvas : MonoBehaviour
             {
                 if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
                 juegoPausado = true;
-                menuPausa.SetActive(true);
+                menuPausa.Escalar();
                 movimientoJugador.DeneterJugador();
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
             }
@@ -84,7 +84,7 @@ public class ManagerCanvas : MonoBehaviour
             {
                 if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
                 juegoPausado = false;
-                menuPausa.SetActive(false);
+                menuPausa.Restaurar();
                 movimientoJugador.HabilitarJugador();
                 if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
             }
@@ -219,7 +219,7 @@ public class ManagerCanvas : MonoBehaviour
         {
             if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
             juegoPausado = true;
-            menuPausa.SetActive(true);
+            menuPausa.Escalar();
             movimientoJugador.DeneterJugador();
             if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.DeneterCamara();
         }
@@ -227,7 +227,7 @@ public class ManagerCanvas : MonoBehaviour
         {
             if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Menu"); // Ejecutamos el efecto nombrado
             juegoPausado = false;
-            menuPausa.SetActive(false);
+            menuPausa.Restaurar();
             movimientoJugador.HabilitarJugador();
             if (CamaraOrbital.singleton != null) CamaraOrbital.singleton.HabilitarCamara();
         }
@@ -238,7 +238,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void ActivarMenuEleccionMotor()
     {
-        menuEleccionMotor.SetActive(true);
+        menuEleccionMotor.Escalar();
     }
 
     /// <summary>
@@ -246,7 +246,7 @@ public class ManagerCanvas : MonoBehaviour
     /// </summary>
     public void DesactivarMenuEleccionMotor()
     {
-        menuEleccionMotor.SetActive(false);
+        menuEleccionMotor.Restaurar();
     }
 
     /// <summary>

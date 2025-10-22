@@ -2,13 +2,15 @@ using System.Collections;
 using UnityEngine;
 
 public class MoverObjeto : MonoBehaviour
-{
-    public bool elementoUI;
+{   
     public Vector3 posicionObjetivo; // Camara objetivo
     public Quaternion rotacionObjetivo; // Camara objetivo
-
     public float velocidadMovimiento = 1f; // Velocidad de desplazamiento
-    //public float intervaloTiempo = 1f;
+
+    [Header("SOLO PARA ELEMENTOS UI")]
+    public bool elementoUI;
+    public GameObject btnAbrir;
+    public GameObject btnCerrar;
 
     private Vector3 posicionInicial; // Para saber si debo o no mover la camara
     private Quaternion rotacionInicial; // Para saber si debo o no mover la camara
@@ -71,6 +73,21 @@ public class MoverObjeto : MonoBehaviour
 
     private void OnEnable()
     {
-        if (elementoUI) IniciarDesplazamientoObjeto();
+        if (elementoUI) 
+        {
+            btnAbrir.SetActive(false);
+            btnCerrar.SetActive(true);
+            IniciarDesplazamientoObjeto();
+        } 
+    }
+
+    public void HabilitarAyuda()
+    {
+        if (elementoUI)
+        {
+            btnAbrir.SetActive(false);
+            btnCerrar.SetActive(true);
+            IniciarDesplazamientoObjeto();
+        }
     }
 }

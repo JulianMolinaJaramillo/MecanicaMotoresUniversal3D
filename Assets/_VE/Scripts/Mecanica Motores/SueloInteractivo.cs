@@ -239,7 +239,11 @@ public class SueloInteractivo : MonoBehaviour
                     }
                 } 
 
-                if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
+                if (EntornoMecanica.singleton != null)
+                {
+                    EntornoMecanica.singleton.BajarIntensidadLuzPrincipal();
+                    EntornoMecanica.singleton.ActivarMeshBrazos();
+                } 
 
                 if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = true;
 
@@ -292,7 +296,11 @@ public class SueloInteractivo : MonoBehaviour
 
             if (ManagerBrazos.singleton != null) ManagerBrazos.singleton.RetornarBrazos();
 
-            if (EntornoMecanica.singleton != null) EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
+            if (EntornoMecanica.singleton != null)
+            {
+                EntornoMecanica.singleton.SubirIntensidadLuzPrincipal();
+                EntornoMecanica.singleton.DesactivarMeshBrazos();
+            } 
 
             if (ControlCamaraMotor.singleton != null) ControlCamaraMotor.singleton.enabled = false;
 
