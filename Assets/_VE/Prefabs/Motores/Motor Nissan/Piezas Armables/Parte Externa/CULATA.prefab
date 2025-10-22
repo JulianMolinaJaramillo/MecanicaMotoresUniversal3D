@@ -444,10 +444,10 @@ MonoBehaviour:
   - {fileID: 2778596911023574772}
   pista: "Es el eje encargado de abrir y cerrar las v\xE1lvulas en sincron\xEDa con
     el cig\xFCe\xF1al. Inst\xE1lalo sobre sus bancadas en la culata, asegurando que
-    gire libremente. Su sincronizaci\xF3n es esencial para el correcto funcionamiento
-    del motor."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    gire libremente y que este lubricado. Su sincronizaci\xF3n es esencial para el
+    correcto funcionamiento del motor."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -455,6 +455,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

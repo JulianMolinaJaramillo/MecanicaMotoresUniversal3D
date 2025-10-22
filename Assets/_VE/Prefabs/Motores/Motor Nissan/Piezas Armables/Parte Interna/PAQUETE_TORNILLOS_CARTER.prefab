@@ -591,10 +591,9 @@ MonoBehaviour:
   - {fileID: 1700930861672258434}
   pista: "Ahora debes preparar los alojamientos donde descansar\xE1 el eje principal
     del motor. Las bancadas aseguran el cig\xFCe\xF1al, permitiendo que gire libremente
-    con el soporte y alineaci\xF3n adecuados. Su montaje correcto es esencial para
-    evitar vibraciones o da\xF1os."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    con el soporte y alineaci\xF3n adecuados. Asegurate de lubricarlas correctamente."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -602,6 +601,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

@@ -993,10 +993,10 @@ MonoBehaviour:
   - {fileID: 3368294628200055697}
   pista: "Algunos puntos del motor necesitan superficies antifricci\xF3n adicionales,
     especialmente en los mecanismos de rotaci\xF3n. Este cojinete ayuda a reducir
-    la fricci\xF3n entre partes m\xF3viles cr\xEDticas. Inst\xE1lalo con limpieza
-    y precisi\xF3n."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    la fricci\xF3n entre partes m\xF3viles cr\xEDticas. Inst\xE1lalo con limpieza,
+    precisi\xF3n y bien lubricado."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -1004,6 +1004,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

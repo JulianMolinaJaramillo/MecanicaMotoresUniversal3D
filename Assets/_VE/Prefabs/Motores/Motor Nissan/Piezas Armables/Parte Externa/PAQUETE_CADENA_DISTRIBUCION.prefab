@@ -564,8 +564,8 @@ MonoBehaviour:
   pista: "Coloca la tapa superior que protege el tren de v\xE1lvulas y la distribuci\xF3n.
     Este componente evita fugas de aceite y protege las partes m\xF3viles de contaminantes
     externos. Revisa que el empaque est\xE9 en buen estado antes de colocarla."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -573,6 +573,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

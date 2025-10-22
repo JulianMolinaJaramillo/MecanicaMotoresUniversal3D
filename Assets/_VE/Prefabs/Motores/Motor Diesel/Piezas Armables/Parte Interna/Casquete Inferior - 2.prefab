@@ -714,10 +714,9 @@ MonoBehaviour:
   - {fileID: 2156179017817447811}
   pista: "Ahora llega el coraz\xF3n del movimiento rotativo. Este eje transforma
     el desplazamiento lineal de los pistones en rotaci\xF3n. Debe colocarse con precisi\xF3n
-    sobre los casquillos, asegurando que todas las mu\xF1equillas y contrapesos queden
-    perfectamente alineados."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    sobre los casquillos, asegurando que quede perfectamente alineado y bien lubricado."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 3
@@ -725,6 +724,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

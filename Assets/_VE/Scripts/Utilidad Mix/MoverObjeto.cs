@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class MoverObjeto : MonoBehaviour
 {
+    public bool elementoUI;
     public Vector3 posicionObjetivo; // Camara objetivo
     public Quaternion rotacionObjetivo; // Camara objetivo
 
@@ -19,7 +20,7 @@ public class MoverObjeto : MonoBehaviour
         rotacionInicial = transform.localRotation; //  Guardamos la rotacion de inicial      
     }
 
-    [ContextMenu("si")]
+    [ContextMenu("Mover")]
     public void IniciarDesplazamientoObjeto()
     {
         // Si ya se está ejecutando una corrutina, la detenemos primero
@@ -30,7 +31,7 @@ public class MoverObjeto : MonoBehaviour
         movimientoActual = StartCoroutine(MoverObjetoA(posicionObjetivo, rotacionObjetivo, velocidadMovimiento));
     }
 
-    [ContextMenu("no")]
+    [ContextMenu("Devolver")]
     public void RetornarPosicionOriginal()
     {
         // Si ya se está ejecutando una corrutina, la detenemos primero
@@ -66,5 +67,10 @@ public class MoverObjeto : MonoBehaviour
 
         transform.localPosition = posicionDeseada; // Aseguramos la posición final
         transform.localRotation = rotacionDeseada; // Aseguramos la rotacion final
+    }
+
+    private void OnEnable()
+    {
+        if (elementoUI) IniciarDesplazamientoObjeto();
     }
 }

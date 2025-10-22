@@ -164,9 +164,10 @@ MonoBehaviour:
   - {fileID: 6709504222771579434}
   pista: "Llega el momento de instalar los componentes que transforman la presi\xF3n
     de los gases en movimiento. Los pistones se insertan cuidadosamente en los cilindros,
-    verificando la orientaci\xF3n del perno y la correcta posici\xF3n de los anillos."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    bien lubricados, verificando la orientaci\xF3n del perno y la correcta posici\xF3n
+    de los anillos."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -174,6 +175,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

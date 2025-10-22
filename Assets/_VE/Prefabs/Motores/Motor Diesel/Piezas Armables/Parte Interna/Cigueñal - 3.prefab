@@ -489,9 +489,9 @@ MonoBehaviour:
   - {fileID: 1526066298915807743}
   pista: "Para completar el alojamiento del cig\xFCe\xF1al, coloca las mitades superiores
     de los casquillos. Al hacerlo, estar\xE1s encerrando al eje entre dos superficies
-    de fricci\xF3n perfectamente ajustadas."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    de fricci\xF3n perfectamente ajustadas. Recuerda aplicar lubricante de montaje."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -499,6 +499,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

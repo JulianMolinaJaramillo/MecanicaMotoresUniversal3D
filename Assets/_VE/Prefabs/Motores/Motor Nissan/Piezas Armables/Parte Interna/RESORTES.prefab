@@ -444,10 +444,10 @@ MonoBehaviour:
   - {fileID: 1665824542997462330}
   pista: "Este peque\xF1o componente evita que el aceite descienda por el v\xE1stago
     de la v\xE1lvula hacia la c\xE1mara de combusti\xF3n. Debe instalarse con precisi\xF3n
-    sobre la gu\xEDa para asegurar un sellado perfecto sin afectar el movimiento
-    del v\xE1stago."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    y bien lubricado sobre la gu\xEDa para asegurar un sellado perfecto sin afectar
+    el movimiento del v\xE1stago."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -455,6 +455,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

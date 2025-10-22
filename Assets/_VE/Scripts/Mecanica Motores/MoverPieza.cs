@@ -20,11 +20,13 @@ public class MoverPieza : MonoBehaviour
     public string pista;
 
     [Header("PIEZAS QUE ACTIVAN MINIJUEGOS")]
-    public MessageOnly mensaje = new MessageOnly("Para las piezas que activen minijuegos", MessageTypeCustom.Info);
+    public MessageOnly mensaje7 = new MessageOnly("Para las piezas que activen minijuegos de atornillar", MessageTypeCustom.Info);
     public bool activaMinijuego; // Para validar si el prefab activa minijuego  
     public int sizeMinijuego; // Para indicar el tamaño de la llave para dicho minijuego
     public MessageOnly mensaje4 = new MessageOnly("Unicamente para las piezas con tornillos", MessageTypeCustom.Info);
     public AsignarTornillos asignarTornillos; // unicamente para las piezas que activen minijuego
+    public MessageOnly mensaje6 = new MessageOnly("Para las piezas de lubricación", MessageTypeCustom.Info);
+    public bool esLubricada; // unicamente para las piezas que activen minijuego de lubricación
 
     [Header("MODIFICACION DE PIEZAS QUE TENGAN HIJOS")]
     public MessageOnly mensaje3 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);

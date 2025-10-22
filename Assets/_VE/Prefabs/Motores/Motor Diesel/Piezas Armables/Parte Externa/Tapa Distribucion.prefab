@@ -310,10 +310,10 @@ MonoBehaviour:
   snappsParaDesactivar:
   - {fileID: 8510474494425865430}
   pista: "Los cilindros forman la c\xE1mara donde los pistones se desplazan. Revisa
-    su alineaci\xF3n antes de colocarlos ya que cualquier part\xEDcula puede causar
-    rayaduras o p\xE9rdida de compresi\xF3n."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    su alineaci\xF3n y lubricaci\xF3n antes de colocar los pistones, ya que cualquier
+    part\xEDcula puede causar rayaduras o p\xE9rdida de compresi\xF3n."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -321,6 +321,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

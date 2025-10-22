@@ -297,10 +297,10 @@ MonoBehaviour:
   - {fileID: 7786233510376683015}
   pista: "Antes de girar, cada eje necesita apoyos que reduzcan la fricci\xF3n. Los
     cojinetes externos se colocan en los extremos del cig\xFCe\xF1al o de los ejes
-    secundarios, proporcionando estabilidad al giro. Verifica que est\xE9n bien alineados
-    antes de cerrar el conjunto."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    secundarios, proporcionando estabilidad al giro. Verifica que est\xE9n bien lubricados
+    y alineados antes de cerrar el conjunto."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -308,6 +308,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

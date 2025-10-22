@@ -457,9 +457,9 @@ MonoBehaviour:
   - {fileID: 5779822384181560806}
   pista: "Los balancines son las palancas que abren las v\xE1lvulas cuando el \xE1rbol
     de levas empuja. Su correcta instalaci\xF3n garantiza que las v\xE1lvulas trabajen
-    con precisi\xF3n y sin ruidos."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    con precisi\xF3n y sin ruidos, asegurate de lubricarlos adecuadamente."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -467,6 +467,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

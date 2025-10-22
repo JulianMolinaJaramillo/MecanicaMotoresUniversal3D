@@ -311,9 +311,10 @@ MonoBehaviour:
   - {fileID: 9153305289162051442}
   pista: "Estas piezas mantienen el \xE1rbol de levas en posici\xF3n y permiten su
     giro estable. Col\xF3calas en el orden correcto, respetando la numeraci\xF3n
-    o marcas para evitar desalineaciones que puedan generar desgaste o ruido."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    o marcas para evitar desalineaciones que puedan generar desgaste o ruido y asegurate
+    de lubricarlas adecuadamente."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -321,6 +322,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

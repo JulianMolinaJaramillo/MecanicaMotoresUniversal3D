@@ -715,8 +715,8 @@ MonoBehaviour:
     garantizan la uni\xF3n entre la biela y su tapa, soportando enormes esfuerzos
     de tracci\xF3n durante el funcionamiento. Apretarlos con el torque especificado
     para evitar fallas graves."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -724,6 +724,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

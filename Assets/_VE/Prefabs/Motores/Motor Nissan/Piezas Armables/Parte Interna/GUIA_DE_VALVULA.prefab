@@ -313,8 +313,8 @@ MonoBehaviour:
     a su posici\xF3n cerrada tras cada ciclo. Cada v\xE1lvula lleva un conjunto de
     resortes que mantienen la tensi\xF3n necesaria para un funcionamiento estable
     incluso a altas revoluciones."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -322,6 +322,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

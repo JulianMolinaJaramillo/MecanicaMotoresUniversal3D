@@ -299,8 +299,8 @@ MonoBehaviour:
     principales encargados de soportar el giro del cig\xFCe\xF1al. Col\xF3calos con
     cuidado, asegur\xE1ndote de que sus orificios de lubricaci\xF3n coincidan con
     los conductos del bloque."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -308,6 +308,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

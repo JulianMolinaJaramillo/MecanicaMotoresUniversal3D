@@ -718,8 +718,8 @@ MonoBehaviour:
   pista: "La culata cierra los cilindros por la parte superior y alberga las v\xE1lvulas,
     buj\xEDas e inyectores. Col\xF3cala con precisi\xF3n sobre el empaque, respetando
     la alineaci\xF3n. De esta uni\xF3n depende gran parte de la eficiencia del motor."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -727,6 +727,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

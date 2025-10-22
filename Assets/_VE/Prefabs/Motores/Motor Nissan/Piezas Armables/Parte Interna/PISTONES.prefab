@@ -701,8 +701,8 @@ MonoBehaviour:
     y los conductos de lubricaci\xF3n. Col\xF3calo asegur\xE1ndote de que todas las
     piezas internas encajen correctamente y que las uniones est\xE9n selladas para
     evitar fugas de aceite."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -710,6 +710,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 1
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

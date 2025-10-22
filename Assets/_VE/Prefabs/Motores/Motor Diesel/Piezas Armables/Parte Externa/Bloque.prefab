@@ -590,9 +590,10 @@ MonoBehaviour:
   snappsParaDesactivar:
   - {fileID: 276559439765156929}
   pista: "Es el encargado de controlar la apertura y cierre de las v\xE1lvulas, sincronizado
-    con el cig\xFCe\xF1al mediante engranajes o una correa."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    con el cig\xFCe\xF1al mediante engranajes o una correa, asegurate de lubricarlo
+    correctamente."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -600,6 +601,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

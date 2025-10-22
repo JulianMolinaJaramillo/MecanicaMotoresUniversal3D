@@ -296,11 +296,11 @@ MonoBehaviour:
   snappsParaDesactivar:
   - {fileID: 8484035760949363816}
   pista: "Este es el v\xEDnculo que sincroniza el movimiento del cig\xFCe\xF1al con
-    el \xE1rbol de levas. Inst\xE1lala asegur\xE1ndote de alinear las marcas de tiempo
-    en ambos engranajes. Una sincronizaci\xF3n incorrecta puede provocar fallos graves
-    en el funcionamiento."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+    el \xE1rbol de levas. Lubricala e inst\xE1lala asegur\xE1ndote de alinear las
+    marcas de tiempo en ambos engranajes. Una sincronizaci\xF3n incorrecta puede
+    provocar fallos graves en el funcionamiento."
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -308,6 +308,10 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
