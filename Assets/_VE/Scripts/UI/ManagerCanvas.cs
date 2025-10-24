@@ -22,6 +22,8 @@ public class ManagerCanvas : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnBajarPlataforma; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button[] btnExpandir; // Referencia al boton btnSalir del canvas principal
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject btnReutilizarMotor; // Referencia al boton btnSalir del canvas principal
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtTituloPieza; // Referencia al texto titulo de la pieza
@@ -211,6 +213,28 @@ public class ManagerCanvas : MonoBehaviour
     public void DeshabilitarBtnReutilizarMotor()
     {
         btnReutilizarMotor.SetActive(false);
+    }
+
+    /// <summary>
+    /// Para habilitar los botones de expandir donde se requiera
+    /// </summary>
+    public void HabilitarBtnExpandir()
+    {
+        for (int i = 0; i < btnExpandir.Length; i++)
+        {
+            btnExpandir[i].interactable = true;
+        }
+    }
+
+    /// <summary>
+    /// Para deshabilitar los botones de expandir donde se requiera
+    /// </summary>
+    public void DeshabilitarBtnExpandir()
+    {
+        for (int i = 0; i < btnExpandir.Length; i++)
+        {
+            btnExpandir[i].interactable = false;
+        }
     }
 
     public void ActivarPausa()

@@ -19,6 +19,8 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnEncenderMotor; // Boton que enciende el motor despues de colocar la ultima pieza
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public Button btnAplicarAceite; // Boton que se habilita al momento de colocar una pieza aceitada
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject sliderVelocidadMotor; // Slider que controla la velocidad de la animacion del motor activo
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Slider sliderTorqueMinijuego; // Slider que controla la velocidad de la animacion del motor activo
@@ -46,6 +48,11 @@ public class ManagerMinijuego : MonoBehaviour
     public Transform[] posicionesMinijuegoBombaAgua; // Posiciones minijuego
     public int[] torquesTornillosBombaAgua; // Guarda el torque aplicado de dicho minijuego
 
+    [Header("MINIJUEGOS ACEITE MOTOR DIESEL")]
+    public Transform[] posicionesMinijuegoAceiteDiesel; // Posiciones minijuego
+    public ExpansionRadial piezasInternas;
+    public MoverObjeto botellaAceite;
+    public ParticleSystem aceite;
 
     [HideInInspector]
     public List<ApretarTornillos> tornillosParaApretar;
@@ -61,7 +68,8 @@ public class ManagerMinijuego : MonoBehaviour
     public GameObject motorAnimadoActivo;
 
     private int contador = 0;
-    private int puntaje = 0;
+    private int piezaAceitadaActual = 0;
+    public int puntaje = 0;
     private Coroutine coroutine;
     public static ManagerMinijuego singleton;
 
@@ -106,6 +114,7 @@ public class ManagerMinijuego : MonoBehaviour
         InventarioUI.singleton.LimpiarInventario(); // Limpiamos inventario
         minijuegoActivo = false;
         contador = 0;
+        puntaje = 0;
 
         // Los que involucren tornillos
         if (asignarTornillos.Count > 0)
@@ -183,6 +192,10 @@ public class ManagerMinijuego : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Metodo invocado al momento de colocar una pieza que active minijuego con tornillos
+    /// </summary>
+    /// <param name="asignar"> Script para el manejo de los tornillos</param>
     public void ActivarMinijuego(AsignarTornillos asignar)
     {
         // Se activa minijuego
@@ -207,6 +220,9 @@ public class ManagerMinijuego : MonoBehaviour
           
     }
 
+    /// <summary>
+    /// Metodo invocado al momento de colocar una pieza que active minijuego sin tornillos
+    /// </summary>
     public void ActivarMinijuego()
     {
         // Se activa minijuego
@@ -225,9 +241,74 @@ public class ManagerMinijuego : MonoBehaviour
         PosicionInicialCamaraMinijuego();
     }
 
+    /// <summary>
+    /// Metodo invocado al momento de colocar una pieza que sea aceitable
+    /// </summary>
+    /// <param name="numeroPieza"> Numero de la pieza a aceitar </param>
+    public void ActivarMinijuegoAceite(int numeroPieza)
+    {
+        piezaAceitadaActual = numeroPieza; // Guardamos la pieza aceitable actual
+        btnAplicarAceite.gameObject.SetActive(true); // Activamos el boton para aplicar aceite
+    }
+
+    /// <summary>
+    /// Metodo invocado desde btnAceitar en informacion de motor en el canvas principal
+    /// </summary>
+    /// <param name="numeroPieza"></param>
+    public void AplicarAceite()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(AplicarAceiteCorrutine());
+    }
+
+    IEnumerator AplicarAceiteCorrutine()
+    {
+        btnAplicarAceite.gameObject.SetActive(false); // Desactivamos el boton para aplicar aceite
+        puntaje += 1; // Damos un punto por aplicar aceite
+
+        piezasInternas.Contraer();// Contraemos las piezas internas si estan expandidas
+
+        ControlCamaraMotor.singleton.noMover = true; // Indicamos que no podemos mover la camara
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteDiesel[piezaAceitadaActual], 1);
+        ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
+
+        //Desactivamos momentaneamente los botones que no necesitamos
+        ManagerCanvas.singleton.DeshabilitarBtnSalir(); 
+        ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+        ManagerCanvas.singleton.DeshabilitarBtnExpandir();
+
+        yield return new WaitForSeconds(1f);
+
+        // Activamos la botella de aceite y la rotamos
+        botellaAceite.gameObject.SetActive(true);
+        botellaAceite.IniciarDesplazamientoObjeto();
+
+        yield return new WaitForSeconds(0.5f);
+        aceite.Play(); // Aplicamos aceite en particulas
+
+        yield return new WaitForSeconds(1f);
+
+        botellaAceite.RetornarPosicionOriginal(); // Regresamos a la posicion original
+
+        yield return new WaitForSeconds(1f);
+
+        botellaAceite.gameObject.SetActive(false);
+        ControlCamaraMotor.singleton.noMover = false;
+        ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
+
+        //Activamos nuevamente los botones de salir 
+        ManagerCanvas.singleton.HabilitarBtnSalir();
+        ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+        ManagerCanvas.singleton.HabilitarBtnExpandir();
+    }
+
     public void DesactivarMinijuego()
     {
         Atornillar.singleton.ReiniciarValorSlider();
+        ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(ControlCamaraMotor.singleton.posicionFrontal, 1);
         contador = 0;
         aplicandoTorque = false;
@@ -317,8 +398,9 @@ public class ManagerMinijuego : MonoBehaviour
         }
 
         btnEncenderMotor.gameObject.SetActive(true);
-        Debug.Log(puntaje);
+        
         puntaje = 8;
+        Debug.Log("Puntaje " + puntaje);
         if (puntaje == 8)
         {
             Debug.Log("todo good");
@@ -374,8 +456,6 @@ public class ManagerMinijuego : MonoBehaviour
             }
             else
             {
-                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
-
                 // Los que involucren tornillos
                 if (asignarTornillos.Count > 0)
                 {
@@ -422,8 +502,6 @@ public class ManagerMinijuego : MonoBehaviour
             }
             else
             {
-                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
-
                 // Reestablecemos valores minijuego
                 btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoValvulas);
                 btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBombaAgua);
@@ -464,8 +542,6 @@ public class ManagerMinijuego : MonoBehaviour
             }
             else
             {
-                ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
-
                 // Los que involucren tornillos
                 if (asignarTornillos.Count > 0)
                 {

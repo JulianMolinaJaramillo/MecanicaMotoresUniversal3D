@@ -3,13 +3,15 @@ using UnityEngine;
 
 public class ControlCamaraMotor : MonoBehaviour
 {
-    public Transform camara; // Camara objetivo
+    public Camera camara; // Camara objetivo
     public Transform posicionFrontal; // Posicion por defecto de la vista del motor    
     public Transform[] posicionesCamara; // Lista de posiciones de cámara para ejercer una rotacion
     public Transform[] posicionesCamaraArriba; // Lista de posiciones de cámara para ejercer una rotacion pero la vista desde arriba
     public Transform[] posicionesCamaraAbajo; // Lista de posiciones de cámara para ejercer una rotacion pero la vista desde abajo
     public Transform posicionExpansion;
     public float velocidadPos = 1; // Velocidad de desplazamiento
+    [HideInInspector]
+    public bool noMover; // Para validar si puedo o no mover la camara
 
     [HideInInspector]
     public int indiceActual = 0;  // Índice de la posición actual
@@ -20,6 +22,7 @@ public class ControlCamaraMotor : MonoBehaviour
     //[HideInInspector]
     public bool posicionadoAbajo; // Para confirmar si estoy en las camaras debajo del motor
     private Coroutine miCoroutine;
+    private Transform posicionActual;
     public static ControlCamaraMotor singleton;
 
     private void Awake()
@@ -36,8 +39,18 @@ public class ControlCamaraMotor : MonoBehaviour
     }
     private void Update()
     {
-        if (!ManagerMinijuego.singleton.minijuegoActivo)
-        {  
+        if (!ManagerMinijuego.singleton.minijuegoActivo && !noMover)
+        {
+            // Modificamos el near
+            if (posicionadoAbajo)
+            {
+                camara.nearClipPlane = 0.35f;
+            }
+            else
+            {
+                camara.nearClipPlane = 0.01f;
+            }
+
             // Validamos si presionamos las flechas de direccion del tecla o las teclas ASDW
             if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
@@ -111,7 +124,7 @@ public class ControlCamaraMotor : MonoBehaviour
             }
         }
     }
-
+    [ContextMenu("reiniar")]
     public void ReestablecerPosicionCamara()
     {
         indiceActual = 0;
@@ -123,6 +136,7 @@ public class ControlCamaraMotor : MonoBehaviour
 
     public void IniciarMovimientoCamara(Transform posicionDeseada, float duracion)
     {
+        posicionActual = posicionDeseada; // guardamos la posicion actual
         if (miCoroutine != null)
         {
             StopCoroutine(miCoroutine);

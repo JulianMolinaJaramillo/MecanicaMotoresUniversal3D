@@ -6,6 +6,7 @@ public class MoverObjeto : MonoBehaviour
     public Vector3 posicionObjetivo; // Camara objetivo
     public Quaternion rotacionObjetivo; // Camara objetivo
     public float velocidadMovimiento = 1f; // Velocidad de desplazamiento
+    public bool soloRotacion; // Si unicamente quiero rotar el objeto
 
     [Header("SOLO PARA ELEMENTOS UI")]
     public bool elementoUI;
@@ -60,14 +61,14 @@ public class MoverObjeto : MonoBehaviour
         while (tiempo < duracion)
         {
             // Asignamos la posicion y rotacion de la camara, con interpolacion lineal
-            transform.localPosition = Vector3.Lerp(posicionInicio, posicionDeseada, tiempo / duracion);
+            if (!soloRotacion) transform.localPosition = Vector3.Lerp(posicionInicio, posicionDeseada, tiempo / duracion);
             transform.localRotation = Quaternion.Lerp(rotacionInicio, rotacionDeseada, tiempo / duracion);
 
             tiempo += Time.deltaTime;
             yield return null;
         }
 
-        transform.localPosition = posicionDeseada; // Aseguramos la posición final
+        if (!soloRotacion) transform.localPosition = posicionDeseada; // Aseguramos la posición final
         transform.localRotation = rotacionDeseada; // Aseguramos la rotacion final
     }
 
