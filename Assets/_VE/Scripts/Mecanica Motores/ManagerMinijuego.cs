@@ -53,6 +53,7 @@ public class ManagerMinijuego : MonoBehaviour
     public ExpansionRadial piezasInternas;
     public MoverObjeto botellaAceite;
     public ParticleSystem aceite;
+    private bool desactivarExternas;
 
     [HideInInspector]
     public List<ApretarTornillos> tornillosParaApretar;
@@ -245,10 +246,11 @@ public class ManagerMinijuego : MonoBehaviour
     /// Metodo invocado al momento de colocar una pieza que sea aceitable
     /// </summary>
     /// <param name="numeroPieza"> Numero de la pieza a aceitar </param>
-    public void ActivarMinijuegoAceite(int numeroPieza)
+    public void ActivarMinijuegoAceite(int numeroPieza , bool desExternas)
     {
         piezaAceitadaActual = numeroPieza; // Guardamos la pieza aceitable actual
         btnAplicarAceite.gameObject.SetActive(true); // Activamos el boton para aplicar aceite
+        desactivarExternas = desExternas;
     }
 
     /// <summary>
@@ -270,6 +272,12 @@ public class ManagerMinijuego : MonoBehaviour
         puntaje += 1; // Damos un punto por aplicar aceite
 
         piezasInternas.Contraer();// Contraemos las piezas internas si estan expandidas
+
+        if (desactivarExternas)
+        {
+            ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[0]); // Desactivamos las piezas externas mientras aplicamos aceite
+            ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[2]); // Desactivamos las piezas externas mientras aplicamos aceite
+        }
 
         ControlCamaraMotor.singleton.noMover = true; // Indicamos que no podemos mover la camara
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteDiesel[piezaAceitadaActual], 1);
@@ -303,6 +311,12 @@ public class ManagerMinijuego : MonoBehaviour
         ManagerCanvas.singleton.HabilitarBtnSalir();
         ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
         ManagerCanvas.singleton.HabilitarBtnExpandir();
+
+        if (desactivarExternas)
+        {
+            ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[0]); // Desactivamos las piezas externas mientras aplicamos aceite
+            ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[2]); // Desactivamos las piezas externas mientras aplicamos aceite
+        }
     }
 
     public void DesactivarMinijuego()

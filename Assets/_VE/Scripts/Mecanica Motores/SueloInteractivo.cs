@@ -136,7 +136,9 @@ public class SueloInteractivo : MonoBehaviour
                 interactuar = true; // Indicamos que podemos interactuar
                 canvasWorldSpace.SetActive(true); // Activamos canvas visual
 
-                movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua       
+                movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua
+
+                if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = true;
             }
         }
 
@@ -158,7 +160,9 @@ public class SueloInteractivo : MonoBehaviour
                 interactuar = false; // Indicamos que no podemos interactuar
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
 
-                movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua    
+                movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua
+
+                if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = false;
             }
         }
 

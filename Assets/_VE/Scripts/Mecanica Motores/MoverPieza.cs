@@ -30,6 +30,7 @@ public class MoverPieza : MonoBehaviour
     public MessageOnly mensaje6 = new MessageOnly("Para las piezas de lubricación", MessageTypeCustom.Info);
     public bool esLubricada; // unicamente para las piezas que activen minijuego de lubricación
     public int numeroPieza;
+    public bool desactivaExternas;
 
     [Header("MODIFICACION DE PIEZAS QUE TENGAN HIJOS")]
     public MessageOnly mensaje3 = new MessageOnly("SI lo que deseas es modificarle el material a los hijos", MessageTypeCustom.Info);
@@ -200,6 +201,21 @@ public class MoverPieza : MonoBehaviour
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("PiezaColocada"); // Ejecutamos el efecto nombrado
         ManagerCanvas.singleton.ActualizarInformacionPista(pista); // Actualizamos la pista de armado para el jugador
 
+        // Validamos si la pieza a colocar debe ser lubricada
+        if (esLubricada)
+        {
+            if (ManagerMinijuego.singleton != null)
+            {
+                ManagerMinijuego.singleton.ActivarMinijuegoAceite(numeroPieza, desactivaExternas);
+                ManagerMinijuego.singleton.btnAplicarAceite.interactable = false;
+            }
+        }
+        else
+        {
+            //Sino es pieza lubricable desactivo el boton
+            ManagerMinijuego.singleton.btnAplicarAceite.gameObject.SetActive(false);
+        }
+
         Vector3 inicio = transform.localPosition; // Trabajamos en local
         float tiempo = 0f;
 
@@ -232,18 +248,12 @@ public class MoverPieza : MonoBehaviour
             }
         }
 
-        // Validamos si la pieza a colocar debe ser lubricada
         if (esLubricada)
         {
             if (ManagerMinijuego.singleton != null)
             {
-                ManagerMinijuego.singleton.ActivarMinijuegoAceite(numeroPieza);
+                ManagerMinijuego.singleton.btnAplicarAceite.interactable = true;
             }
-        }
-        else
-        {
-            //Sino es pieza lubricable desactivo el boton
-            ManagerMinijuego.singleton.btnAplicarAceite.gameObject.SetActive(false);
         }
 
         // Validamos si la pieza a colocar es la ultima pieza de dicho motor para la validacion final

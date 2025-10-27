@@ -11,6 +11,8 @@ public class MesaMotor : MonoBehaviour
     public RotadorPiezas[] rotadorPiezas;
     public ExpansionRadial[] expansionRadials;
 
+    [HideInInspector]
+    public bool estoyEnMesa;
     public static MesaMotor singleton;
     private void Awake()
     {

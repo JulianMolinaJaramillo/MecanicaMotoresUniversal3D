@@ -15,7 +15,7 @@ public class MoverObjeto : MonoBehaviour
 
     private Vector3 posicionInicial; // Para saber si debo o no mover la camara
     private Quaternion rotacionInicial; // Para saber si debo o no mover la camara
-
+    private bool abrirAlIniciar;
     private Coroutine movimientoActual; // Referencia de la corrutina activa
     private void Start()
     {
@@ -74,7 +74,7 @@ public class MoverObjeto : MonoBehaviour
 
     private void OnEnable()
     {
-        if (elementoUI) 
+        if (elementoUI && !MesaMotor.singleton.estoyEnMesa) 
         {
             btnAbrir.SetActive(false);
             btnCerrar.SetActive(true);
@@ -82,6 +82,9 @@ public class MoverObjeto : MonoBehaviour
         } 
     }
 
+    /// <summary>
+    /// Metodo invocado desde btnAyuda en el canvas en el armado del motor
+    /// </summary>
     public void HabilitarAyuda()
     {
         if (elementoUI)
