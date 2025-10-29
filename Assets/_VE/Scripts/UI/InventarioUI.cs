@@ -32,6 +32,7 @@ public class InventarioUI : MonoBehaviour
     public int contadorInstancias; // Para limitar la cantidad de objetos en el inventario
     private GameObject prefabSeleccionado; // El prefab seleccionado actualmente 
     private Sprite spriteActualHerramienta;
+    private Color alfaActual;
 
     public static InventarioUI singleton;
     private void Awake()
@@ -51,6 +52,7 @@ public class InventarioUI : MonoBehaviour
     {
         // Obtenemos una referencia a el sprite inicial de la herramienta
         spriteActualHerramienta = imgHerramienta.sprite;
+        alfaActual = imgHerramienta.color;
     }
 
     /// <summary>
@@ -111,6 +113,10 @@ public class InventarioUI : MonoBehaviour
     {
         tamanoHerramienta = size;
         imgHerramienta.sprite = imagenHerramienta;
+        Color nuevoAlfa = imgHerramienta.color;
+        nuevoAlfa.a = 255f;
+        imgHerramienta.color = nuevoAlfa;
+        txtHerramienta.fontSize = 26f;
         txtHerramienta.text = textoHerramienta;
         imgManoSuelta.enabled = false;
         btnSoltarHerramienta.SetActive(true);
@@ -133,8 +139,11 @@ public class InventarioUI : MonoBehaviour
         }
 
         imgHerramienta.sprite = spriteActualHerramienta;
-        txtHerramienta.text = "";
+        imgHerramienta.color = alfaActual;
+        txtHerramienta.fontSize = 18f;
+        txtHerramienta.text = "Sin Herramienta";
         tamanoHerramienta = 0;
         btnSoltarHerramienta.SetActive(false);
+        imgManoSuelta.enabled = true;
     }
 }
