@@ -14,6 +14,7 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Configuración de Funcionalidad")]
     public bool esBoton;
     public bool esMensaje;
+    public GameObject brillo;
 
     private bool cerrando;
     private RectTransform rectTransform;
@@ -52,6 +53,8 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // Si ya hay una corrutina activa, la detenemos
         if (escalaCoroutine != null) StopCoroutine(escalaCoroutine);
 
+        if (brillo != null) brillo.SetActive(true);
+
         escalaCoroutine = StartCoroutine(InterpolarEscala(escalaObjetivo, duracion));
     }
 
@@ -64,6 +67,8 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (esMensaje) cerrando = true; // Solo para los tipo mensaje
 
         if (escalaCoroutine != null) StopCoroutine(escalaCoroutine);
+
+        if (brillo != null) brillo.SetActive(false);
 
         escalaCoroutine = StartCoroutine(InterpolarEscala(escalaInicial, duracion));
     }

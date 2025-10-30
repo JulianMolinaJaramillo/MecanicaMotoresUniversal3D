@@ -21,7 +21,7 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Button btnAplicarAceite; // Boton que se habilita al momento de colocar una pieza aceitada
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
-    public GameObject sliderVelocidadMotor; // Slider que controla la velocidad de la animacion del motor activo
+    public GameObject controlVelocidadMotor; // Slider que controla la velocidad de la animacion del motor activo
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public Slider sliderTorqueMinijuego; // Slider que controla la velocidad de la animacion del motor activo
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -423,7 +423,7 @@ public class ManagerMinijuego : MonoBehaviour
                 ManagerCanvas.singleton.btnReutilizableHabilitado = true;
             }
 
-            sliderVelocidadMotor.gameObject.SetActive(true);
+            controlVelocidadMotor.gameObject.SetActive(true);
             motorAnimadoActivo.SetActive(true);
 
             // Desactivamos piezas internas
