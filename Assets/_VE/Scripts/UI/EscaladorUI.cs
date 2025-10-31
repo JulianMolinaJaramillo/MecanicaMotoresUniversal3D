@@ -14,6 +14,7 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Configuración de Funcionalidad")]
     public bool esBoton;
     public bool esMensaje;
+    public bool esPop;
     public GameObject brillo;
 
     private bool cerrando;
@@ -106,10 +107,24 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Escalar();
         }
 
+        if (esPop)
+        {
+            // Escalar al activar el objeto
+            Escalar();
+        }
+
         if (esBoton)
         {
             // Escalar al activar el objeto
             Restaurar();
         }
+    }
+
+    private void OnDisable()
+    {
+        if (esPop)
+        {
+            rectTransform.localScale = escalaInicial;
+        }     
     }
 }

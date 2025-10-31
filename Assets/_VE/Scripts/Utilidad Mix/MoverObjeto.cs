@@ -10,6 +10,7 @@ public class MoverObjeto : MonoBehaviour
 
     [Header("SOLO PARA ELEMENTOS UI")]
     public bool elementoUI;
+    public bool infoPiezas; // Unicamente para el objeto de informacion de piezas
     public GameObject btnAbrir;
     public GameObject btnCerrar;
 
@@ -92,6 +93,15 @@ public class MoverObjeto : MonoBehaviour
             btnAbrir.SetActive(false);
             btnCerrar.SetActive(true);
             IniciarDesplazamientoObjeto();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (infoPiezas)
+        {
+            transform.localPosition = posicionInicial; //  Guardamos la posicion de inicial
+            transform.localRotation = rotacionInicial; //  Guardamos la rotacion de inicial  
         }
     }
 }

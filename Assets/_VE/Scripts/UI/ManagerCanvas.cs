@@ -65,7 +65,6 @@ public class ManagerCanvas : MonoBehaviour
         {
             if (menuBienvenida != null)
             {
-                menuEleccionMotor.Escalar();
                 ActivarPausa();
             }
         }    
