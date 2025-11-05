@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class VelocidadAnimacion : MonoBehaviour
+public class VelocidadAnimacionNissan : MonoBehaviour
 {
     [Header("Parámetros de velocidad")]
     public Slider sliderVelocidad;      // Control deslizante para ajustar la velocidad
