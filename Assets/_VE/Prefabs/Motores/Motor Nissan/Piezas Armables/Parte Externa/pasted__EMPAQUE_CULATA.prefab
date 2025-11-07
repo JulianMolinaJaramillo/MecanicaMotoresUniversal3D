@@ -32,7 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0204, y: -0.0585, z: 0.0219}
   m_LocalScale: {x: 0.27829817, y: 0.021083232, z: 0.4288977}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 375370511574725354}
   - {fileID: 2187264485076437885}
@@ -152,7 +152,7 @@ MonoBehaviour:
   puedoValidar: 0
   piezaColocada: 0
   piezaFinal: 0
-  posicionObjetivo: {x: -0.0204, y: -0.0585, z: 0.0219}
+  posicionObjetivo: {x: -0.0149, y: -0.0585, z: 0.0137}
   materialesSeleccion:
   - {fileID: 2100000, guid: 7fedf1846e15ef44099bb4888249ade4, type: 2}
   - {fileID: 2100000, guid: 6ef22ed9796e48d4aa57da4ce20dfb02, type: 2}
@@ -165,8 +165,8 @@ MonoBehaviour:
   pista: "Una vez colocado el empaque, fija la culata aplicando los tornillos correspondientes.
     Es fundamental seguir el orden y el torque especificado por el fabricante, para
     evitar deformaciones o fugas en la c\xE1mara de combusti\xF3n."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -174,6 +174,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
