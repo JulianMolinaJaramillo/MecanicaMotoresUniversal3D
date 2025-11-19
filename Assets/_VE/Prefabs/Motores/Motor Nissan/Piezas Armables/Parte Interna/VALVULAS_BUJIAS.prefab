@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
   m_LocalPosition: {x: -0.10092307, y: 0.17910862, z: -0.038868427}
-  m_LocalScale: {x: 0.3003663, y: 0.065268286, z: 0.21842502}
+  m_LocalScale: {x: 0.39000002, y: 0.084745295, z: 0.28360623}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 624963666157833056}
@@ -178,7 +178,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
   m_LocalPosition: {x: -0.15438826, y: -0.022063747, z: -0.038867}
-  m_LocalScale: {x: 0.3003663, y: 0.065268286, z: 0.21842502}
+  m_LocalScale: {x: 0.36, y: 0.07822643, z: 0.2617904}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 624963666157833056}
@@ -460,8 +460,8 @@ MonoBehaviour:
     sin fricci\xF3n. Las gu\xEDas se presionan dentro de la culata y mantienen la
     orientaci\xF3n exacta del v\xE1stago. Verifica que el ajuste sea firme y la lubricaci\xF3n
     adecuada."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -469,6 +469,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

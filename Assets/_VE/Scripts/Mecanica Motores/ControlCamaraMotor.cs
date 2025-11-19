@@ -123,6 +123,10 @@ public class ControlCamaraMotor : MonoBehaviour
                 }                
             }
         }
+        if (ManagerMinijuego.singleton.minijuegoActivo)
+        {
+            camara.nearClipPlane = 0.01f;
+        }
     }
     [ContextMenu("reiniar")]
     public void ReestablecerPosicionCamara()

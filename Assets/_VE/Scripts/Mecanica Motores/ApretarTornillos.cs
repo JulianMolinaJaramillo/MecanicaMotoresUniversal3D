@@ -1,46 +1,58 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ApretarTornillos : MonoBehaviour
 {
-    public float moveDistance = 0.05f; // Distancia que recorre el tornillo (subir/bajar)
-    public float rotations = 5f;       // Número de vueltas completas que da en todo el slider
+    public float moveDistance = 0.05f;
+    public float rotations = 5f;
     public bool rotarZ;
     public bool rotarX;
     public bool prensaValvula;
 
     private Vector3 startPos;
-    private MeshRenderer meshRenderer; // Referencia a nuestro mesh
-    private Material[] materialesOriginales; // Para almacenar nuestros materiales
-    public Slider sliderPrueba;
 
+    private MeshRenderer meshRendererObjetivo;  // Ahora es el mesh target
+    private Material[] materialesOriginales;
+
+    public Slider sliderPrueba;
 
     private void Awake()
     {
-        // Obtenemos los componentes
-        meshRenderer = GetComponent<MeshRenderer>();
+        // Buscar si tiene hijos con MeshRenderer
+        MeshRenderer[] hijos = GetComponentsInChildren<MeshRenderer>();
+
+        if (hijos.Length > 1)
+        {
+            // El primer elemento hijos[0] suele ser el padre, hijos[1] serÃ­a el primer hijo REAL
+            meshRendererObjetivo = hijos[1];
+        }
+        else
+        {
+            // No tiene hijos â†’ usar el MeshRenderer propio
+            meshRendererObjetivo = GetComponent<MeshRenderer>();
+        }
     }
 
     private void Start()
     {
         if (prensaValvula) HabilitarSliderPrueba();
-        StartCoroutine(AsignarMaterial()); 
+
+        StartCoroutine(AsignarMaterial());
     }
 
     private IEnumerator AsignarMaterial()
     {
         yield return new WaitForSeconds(2f);
-        materialesOriginales = meshRenderer.materials; // Guardamos el material original
+
+        materialesOriginales = meshRendererObjetivo.materials;
     }
 
-    /// <summary>
-    /// Para quitar el materiale de seleccion y solo dejar el material por defecto
-    /// </summary>
     public void QuitarMaterial()
     {
-        meshRenderer.materials = new Material[] { materialesOriginales[0] };
+        meshRendererObjetivo.materials = new Material[] { materialesOriginales[0] };
     }
+
     [ContextMenu("activar")]
     public void HabilitarSliderPrueba()
     {
@@ -48,7 +60,6 @@ public class ApretarTornillos : MonoBehaviour
         sliderPrueba.onValueChanged.AddListener(OnSliderValueChanged);
     }
 
-    
     public void HabilitarSlider(Slider slider)
     {
         startPos = transform.localPosition;
@@ -64,23 +75,19 @@ public class ApretarTornillos : MonoBehaviour
     {
         if (rotarZ)
         {
-            // Movimiento lineal (subir/bajar)
             float yOffset = Mathf.Lerp(0f, -moveDistance, value);
             transform.localPosition = startPos + new Vector3(0, 0, yOffset);
 
-            // Rotación (simula rosca)
             float angle = value * 360f * rotations;
             transform.localRotation = Quaternion.Euler(0, 0, angle);
         }
-        else if(rotarX)
+        else if (rotarX)
         {
-            // Movimiento lineal (subir/bajar)
             float yOffset = Mathf.Lerp(0f, -moveDistance, value);
             transform.localPosition = startPos + new Vector3(yOffset, 0, 0);
 
-            // Rotación (simula rosca)
             float angle = value * 360f * rotations;
             transform.localRotation = Quaternion.Euler(angle, 0, 90f);
-        }       
+        }
     }
 }

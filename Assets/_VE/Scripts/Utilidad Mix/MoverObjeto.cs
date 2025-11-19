@@ -80,7 +80,12 @@ public class MoverObjeto : MonoBehaviour
             btnAbrir.SetActive(false);
             btnCerrar.SetActive(true);
             IniciarDesplazamientoObjeto();
-        } 
+        }
+        if (elementoUI && MesaMotor.singleton.estoyEnMesa)
+        {
+            btnAbrir.SetActive(true);
+            btnCerrar.SetActive(false);
+        }
     }
 
     /// <summary>

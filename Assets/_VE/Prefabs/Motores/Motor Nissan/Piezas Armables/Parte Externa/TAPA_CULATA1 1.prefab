@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
   m_LocalPosition: {x: 0.013185503, y: 0.072246775, z: -0.028176306}
-  m_LocalScale: {x: 0.0753459, y: 0.04143517, z: 0.11843974}
+  m_LocalScale: {x: 0.11, y: 0.06049259, z: 0.17291413}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5884266720509234312}
@@ -291,8 +291,8 @@ MonoBehaviour:
   pista: "Finalmente, fija la tapa superior con sus tornillos. Apri\xE9talos de forma
     uniforme y con el torque indicado para asegurar un sellado correcto. Con este
     paso, el armado del motor queda completamente cerrado y listo para pruebas."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -300,6 +300,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
@@ -357,7 +363,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
   m_LocalPosition: {x: 0.013185503, y: 0.025345804, z: -0.028135778}
-  m_LocalScale: {x: 0.0753459, y: 0.04143517, z: 0.11843974}
+  m_LocalScale: {x: 0.11, y: 0.06049259, z: 0.17291413}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5884266720509234312}

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
   m_LocalPosition: {x: 0.06962529, y: -0.4809729, z: 0.14441709}
-  m_LocalScale: {x: 0.053352706, y: 0.04591959, z: 0.100832835}
+  m_LocalScale: {x: 0.08, y: 0.06885438, z: 0.15119433}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1981708749219887288}
@@ -312,8 +312,8 @@ MonoBehaviour:
   pista: "Con ambas partes unidas, es momento de fijarlas firmemente. Estos tornillos
     aseguran la uni\xF3n y garantizan la estanqueidad del sistema de lubricaci\xF3n.
     Apri\xE9talos con el torque indicado para evitar fugas o deformaciones"
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -321,6 +321,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0
@@ -490,7 +496,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: -0, z: -0, w: 0.70723015}
   m_LocalPosition: {x: 0.06962529, y: -0.17464262, z: 0.144417}
-  m_LocalScale: {x: 0.053352706, y: 0.04591959, z: 0.100832835}
+  m_LocalScale: {x: 0.08, y: 0.06885438, z: 0.15119433}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1981708749219887288}
