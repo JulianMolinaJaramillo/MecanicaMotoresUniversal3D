@@ -350,12 +350,19 @@ public class MoverPieza : MonoBehaviour
     
     public void AgregarDisolver(float tiempo, int disolver)
     {
-        tiempoDisolver = tiempo;
-        if (coroutine != null)
+        if (this.gameObject.activeInHierarchy)
         {
-            StopCoroutine(coroutine);
+            tiempoDisolver = tiempo;
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+            coroutine = StartCoroutine(AgregarMaterialDisolver(disolver));
         }
-        coroutine = StartCoroutine(AgregarMaterialDisolver(disolver));
+        else
+        {
+            Debug.Log("El objeto está inactivo.");
+        }     
     }
 
     private IEnumerator AgregarMaterialDisolver(int disolverAdentro)

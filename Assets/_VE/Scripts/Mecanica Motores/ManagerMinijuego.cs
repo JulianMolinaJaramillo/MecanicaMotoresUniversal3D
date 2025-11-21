@@ -38,26 +38,47 @@ public class ManagerMinijuego : MonoBehaviour
 
     [Header("MINIJUEGO 1 MOTOR DIESEL")]
     public Transform[] posicionesMinijuegoBielas; // Posiciones minijuego
-    public int[] torquesTornillosBielas; // Guarda el torque aplicado de dicho minijuego
+    public int[] torquesDieselBielas; // Guarda el torque aplicado de dicho minijuego
 
     [Header("MINIJUEGO 2 MOTOR DIESEL")]
     public Transform[] posicionesMinijuegoValvulas; // Posiciones minijuego
-    public int[] torquesValvulas; // Guarda el torque aplicado de dicho minijuego
+    public int[] torquesDieselValvulas; // Guarda el torque aplicado de dicho minijuego
 
     [Header("MINIJUEGO 3 MOTOR DIESEL")]
     public Transform[] posicionesMinijuegoBombaAgua; // Posiciones minijuego
-    public int[] torquesTornillosBombaAgua; // Guarda el torque aplicado de dicho minijuego
+    public int[] torquesDieselBombaAgua; // Guarda el torque aplicado de dicho minijuego
 
     [Header("MINIJUEGO 1 MOTOR NISSAN")]
     public Transform[] posicionesMinijuegoCarterInferior; // Posiciones minijuego
-    public int[] torquesTornillosCarterInferior; // Guarda el torque aplicado de dicho minijuego
+    public int[] torquesNissanCarterInferior; // Guarda el torque aplicado de dicho minijuego
 
     [Header("MINIJUEGO 2 MOTOR NISSAN")]
-    public Transform[] posicionesMinijuegoBancadasLevas; // Posiciones minijuego
-    public int[] torquesTornillosBancadasLevas; // Guarda el torque aplicado de dicho minijuego
+    public Transform[] posicionesMinijuegoBancadasCiguenal; // Posiciones minijuego
+    public int[] torquesNissanBancadasCiguenal; // Guarda el torque aplicado de dicho minijuego
+
+    [Header("MINIJUEGO 3 MOTOR NISSAN")]
+    public Transform[] posicionesMinijuegoBloque; // Posiciones minijuego
+    public int[] torquesNissanBloque; // Guarda el torque aplicado de dicho minijuego
+
+    [Header("MINIJUEGO 4 MOTOR NISSAN")]
+    public Transform[] posicionesMinijuegoEmpaqueCulata; // Posiciones minijuego
+    public int[] torquesNissanEmpaqueCulata; // Guarda el torque aplicado de dicho minijuego
+
+    [Header("MINIJUEGO 5 MOTOR NISSAN")]
+    public Transform[] posicionesMinijuegoNissanValvulas; // Posiciones minijuego
+    public int[] torquesNissanValvulas; // Guarda el torque aplicado de dicho minijuego
+
+    [Header("MINIJUEGO 6 MOTOR NISSAN")]
+    public Transform[] posicionesMinijuegoBancadaLevas; // Posiciones minijuego
+    public int[] torquesNissanBancadaLevas; // Guarda el torque aplicado de dicho minijuego
+
+    [Header("MINIJUEGO 7 MOTOR NISSAN")]
+    public Transform[] posicionesMinijuegoTapaCulata; // Posiciones minijuego
+    public int[] torquesNissanTapaCulata; // Guarda el torque aplicado de dicho minijuego
 
     [Header("MINIJUEGOS ACEITES")]
     public Transform[] posicionesMinijuegoAceiteDiesel; // Posiciones minijuego
+    public Transform[] posicionesMinijuegoAceiteNissan; // Posiciones minijuego
     public ExpansionRadial piezasInternas;
     public MoverObjeto botellaAceite;
     public ParticleSystem aceite;
@@ -186,7 +207,7 @@ public class ManagerMinijuego : MonoBehaviour
             }
             cantidadMinijuegosMotorNissan[0] = true;
             posicionMinijuegoActual = posicionesMinijuegoCarterInferior[0];
-            btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosCarterInferior);
+            btnAplicarTorque.onClick.AddListener(TorqueNissanCarterInferior);
 
             motorAnimadoActivo = motoresAnimados[1]; // Es igual al motor animado Nissan
         }
@@ -288,7 +309,16 @@ public class ManagerMinijuego : MonoBehaviour
         }
 
         ControlCamaraMotor.singleton.noMover = true; // Indicamos que no podemos mover la camara
-        ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteDiesel[piezaAceitadaActual], 1);
+
+        if (motorActivo == "Diesel")
+        {
+            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteDiesel[piezaAceitadaActual], 1);
+        }
+        else if (motorActivo == "Nissan")
+        {
+            ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoAceiteNissan[piezaAceitadaActual], 1);
+        }
+        
         ControlCamaraMotor.singleton.ReestablecerPosicionCamara(); // Reiniciamos el indice para que la posicion de la camara sea correcta
 
         //Desactivamos momentaneamente los botones que no necesitamos
@@ -370,6 +400,30 @@ public class ManagerMinijuego : MonoBehaviour
             {
                 ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoCarterInferior[0], 1);
             }
+            else if (cantidadMinijuegosMotorNissan[1])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBancadasCiguenal[0], 1);
+            }
+            else if (cantidadMinijuegosMotorNissan[2])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBloque[0], 1);
+            }
+            else if (cantidadMinijuegosMotorNissan[3])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoEmpaqueCulata[0], 1);
+            }
+            else if (cantidadMinijuegosMotorNissan[4])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoNissanValvulas[0], 1);
+            }
+            else if (cantidadMinijuegosMotorNissan[5])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBancadaLevas[0], 1);
+            }
+            else if (cantidadMinijuegosMotorNissan[6])
+            {
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoTapaCulata[0], 1);
+            }
         }   
     }
 
@@ -395,27 +449,27 @@ public class ManagerMinijuego : MonoBehaviour
     {
         minijuegoTerminado = true; // indicamos que ya terminaron los minijuegos
 
-        for (int i = 0; i < torquesTornillosBielas.Length; i++)
+        for (int i = 0; i < torquesDieselBielas.Length; i++)
         {
-            if (torquesTornillosBielas[i] >= 88 && torquesTornillosBielas[i] <= 95) // los torques Entre 88 y 95
+            if (torquesDieselBielas[i] >= 88 && torquesDieselBielas[i] <= 95) // los torques Entre 88 y 95
             {
                 puntaje += 1;
                 Debug.Log(puntaje);
             }
         }
 
-        for (int i = 0; i < torquesValvulas.Length; i++)
+        for (int i = 0; i < torquesDieselValvulas.Length; i++)
         {
-            if (torquesValvulas[i] >= 70 && torquesValvulas[i] <= 80) // los torques Entre 70 y 80
+            if (torquesDieselValvulas[i] >= 70 && torquesDieselValvulas[i] <= 80) // los torques Entre 70 y 80
             {
                 puntaje += 1;
                 Debug.Log(puntaje);
             }
         }
 
-        for (int i = 0; i < torquesTornillosBombaAgua.Length; i++)
+        for (int i = 0; i < torquesDieselBombaAgua.Length; i++)
         {
-            if (torquesTornillosBombaAgua[i] >= 52 && torquesTornillosBombaAgua[i] <= 58) // los torques Entre 52 y 58
+            if (torquesDieselBombaAgua[i] >= 52 && torquesDieselBombaAgua[i] <= 58) // los torques Entre 52 y 58
             {
                 puntaje += 1;
                 Debug.Log(puntaje);
@@ -466,7 +520,7 @@ public class ManagerMinijuego : MonoBehaviour
         {       
             ConfigurarTornilloActivo(); // Los que involucren tornillos
 
-            torquesTornillosBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+            torquesDieselBielas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
         
@@ -512,7 +566,7 @@ public class ManagerMinijuego : MonoBehaviour
         if (!aplicandoTorque)
         {
             Debug.Log("TorqueAplicadoTornillosValvulas");
-            torquesValvulas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+            torquesDieselValvulas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
         
@@ -552,7 +606,7 @@ public class ManagerMinijuego : MonoBehaviour
         {
             ConfigurarTornilloActivo(); // Los que involucren tornillos
 
-            torquesTornillosBombaAgua[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+            torquesDieselBombaAgua[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
 
@@ -583,22 +637,22 @@ public class ManagerMinijuego : MonoBehaviour
 
     // Minijuegos Motor NISSAN
 
-    public void TorqueAplicadoTornillosCarterInferior()
+    public void TorqueNissanCarterInferior()
     {
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
         }
-        coroutine = StartCoroutine(TorqueAplicadoTornillosCarterInferiorCorrutina());
+        coroutine = StartCoroutine(TorqueNissanCarterInferiorCorrutina());
     }
 
-    IEnumerator TorqueAplicadoTornillosCarterInferiorCorrutina()
+    IEnumerator TorqueNissanCarterInferiorCorrutina()
     {
         if (!aplicandoTorque)
         {
             ConfigurarTornilloActivo(); // Los que involucren tornillos
 
-            torquesTornillosCarterInferior[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+            torquesNissanCarterInferior[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
 
@@ -619,33 +673,33 @@ public class ManagerMinijuego : MonoBehaviour
                 }
 
                 // Reestablecemos valores minijuego
-                btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoTornillosCarterInferior);
-                btnAplicarTorque.onClick.AddListener(TorqueAplicadoTornillosBancadaLevas);
+                btnAplicarTorque.onClick.RemoveListener(TorqueNissanCarterInferior);
+                btnAplicarTorque.onClick.AddListener(TorqueNissanBancadaCiguenal);
                 cantidadMinijuegosMotorNissan[0] = false;
                 cantidadMinijuegosMotorNissan[1] = true;
                 DesactivarMinijuego();
-                posicionMinijuegoActual = posicionesMinijuegoBancadasLevas[contador];
+                posicionMinijuegoActual = posicionesMinijuegoBancadasCiguenal[contador];
             }
         }
     }
 
 
-    public void TorqueAplicadoTornillosBancadaLevas()
+    public void TorqueNissanBancadaCiguenal()
     {
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
         }
-        coroutine = StartCoroutine(TorqueAplicadoTornillosBancadaLevasCorrutina());
+        coroutine = StartCoroutine(TorqueNissanBancadaCiguenalCorrutina());
     }
 
-    IEnumerator TorqueAplicadoTornillosBancadaLevasCorrutina()
+    IEnumerator TorqueNissanBancadaCiguenalCorrutina()
     {
         if (!aplicandoTorque)
         {
             ConfigurarTornilloActivo(); // Los que involucren tornillos
 
-            torquesTornillosCarterInferior[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+            torquesNissanBancadasCiguenal[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
 
             yield return new WaitForSeconds(0.1f);
 
@@ -653,9 +707,9 @@ public class ManagerMinijuego : MonoBehaviour
             if (contador < 4)
             {
                 // Nos movemos a la siguiente posicion del minijuego
-                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoCarterInferior[contador], 1);
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBancadasCiguenal[contador], 1);
                 Atornillar.singleton.ReiniciarValorSlider();
-                posicionMinijuegoActual = posicionesMinijuegoCarterInferior[contador];
+                posicionMinijuegoActual = posicionesMinijuegoBancadasCiguenal[contador];
             }
             else
             {
@@ -666,12 +720,232 @@ public class ManagerMinijuego : MonoBehaviour
                 }
 
                 // Reestablecemos valores minijuego
-                //btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoTornillosBancadaLevas);
-                //btnAplicarTorque.onClick.AddListener();
-                //cantidadMinijuegosMotorNissan[1] = false;
-                //cantidadMinijuegosMotorNissan[2] = true;
-                //DesactivarMinijuego();
-                //posicionMinijuegoActual = posicionesMinijuegoValvulas[contador];
+                btnAplicarTorque.onClick.RemoveListener(TorqueNissanBancadaCiguenal);
+                btnAplicarTorque.onClick.AddListener(TorqueNissanBloque);
+                cantidadMinijuegosMotorNissan[1] = false;
+                cantidadMinijuegosMotorNissan[2] = true;
+                DesactivarMinijuego();
+                posicionMinijuegoActual = posicionesMinijuegoBloque[contador];
+            }
+        }
+    }
+
+    public void TorqueNissanBloque()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueNissanBloqueCorrutina());
+    }
+
+    IEnumerator TorqueNissanBloqueCorrutina()
+    {
+        if (!aplicandoTorque)
+        {
+            ConfigurarTornilloActivo(); // Los que involucren tornillos
+
+            torquesNissanBloque[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+
+            yield return new WaitForSeconds(0.1f);
+
+            contador += 1;
+            if (contador < 4)
+            {
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBloque[contador], 1);
+                Atornillar.singleton.ReiniciarValorSlider();
+                posicionMinijuegoActual = posicionesMinijuegoBloque[contador];
+            }
+            else
+            {
+                // Los que involucren tornillos
+                if (asignarTornillos.Count > 0)
+                {
+                    asignarTornillos.RemoveAt(0);
+                }
+
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueNissanBloque);
+                btnAplicarTorque.onClick.AddListener(TorqueNissanEmpaqueCulata);
+                cantidadMinijuegosMotorNissan[2] = false;
+                cantidadMinijuegosMotorNissan[3] = true;
+                DesactivarMinijuego();
+                posicionMinijuegoActual = posicionesMinijuegoEmpaqueCulata[contador];
+            }
+        }
+    }
+
+    public void TorqueNissanEmpaqueCulata()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueNissanEmpaqueCulataCorrutina());
+    }
+
+    IEnumerator TorqueNissanEmpaqueCulataCorrutina()
+    {
+        if (!aplicandoTorque)
+        {
+            ConfigurarTornilloActivo(); // Los que involucren tornillos
+
+            torquesNissanEmpaqueCulata[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+
+            yield return new WaitForSeconds(0.1f);
+
+            contador += 1;
+            if (contador < 4)
+            {
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoEmpaqueCulata[contador], 1);
+                Atornillar.singleton.ReiniciarValorSlider();
+                posicionMinijuegoActual = posicionesMinijuegoEmpaqueCulata[contador];
+            }
+            else
+            {
+                // Los que involucren tornillos
+                if (asignarTornillos.Count > 0)
+                {
+                    asignarTornillos.RemoveAt(0);
+                }
+
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueNissanEmpaqueCulata);
+                btnAplicarTorque.onClick.AddListener(TorqueAplicadoValvulasNissan);
+                cantidadMinijuegosMotorNissan[3] = false;
+                cantidadMinijuegosMotorNissan[4] = true;
+                DesactivarMinijuego();
+                posicionMinijuegoActual = posicionesMinijuegoNissanValvulas[contador];
+            }
+        }
+    }
+
+    public void TorqueAplicadoValvulasNissan()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueAplicadoValvulasNissanCorrutina());
+    }
+
+    IEnumerator TorqueAplicadoValvulasNissanCorrutina()
+    {
+        if (!aplicandoTorque)
+        {
+            Debug.Log("TorqueAplicadoTornillosValvulas");
+            torquesNissanValvulas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+
+            yield return new WaitForSeconds(0.1f);
+
+            contador += 1;
+            if (contador < 4)
+            {
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoNissanValvulas[contador], 1);
+                Atornillar.singleton.ReiniciarValorSlider();
+                posicionMinijuegoActual = posicionesMinijuegoNissanValvulas[contador];
+            }
+            else
+            {
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueAplicadoValvulasNissan);
+                btnAplicarTorque.onClick.AddListener(TorqueNissanBancadaLevas);
+                cantidadMinijuegosMotorNissan[4] = false;
+                cantidadMinijuegosMotorNissan[5] = true;
+                DesactivarMinijuego();
+                posicionMinijuegoActual = posicionesMinijuegoBancadaLevas[contador];
+            }
+        }
+    }
+
+    public void TorqueNissanBancadaLevas()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueNissanBancadaLevasCorrutina());
+    }
+
+    IEnumerator TorqueNissanBancadaLevasCorrutina()
+    {
+        if (!aplicandoTorque)
+        {
+            ConfigurarTornilloActivo(); // Los que involucren tornillos
+
+            torquesNissanBancadaLevas[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+
+            yield return new WaitForSeconds(0.1f);
+
+            contador += 1;
+            if (contador < 4)
+            {
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoBancadaLevas[contador], 1);
+                Atornillar.singleton.ReiniciarValorSlider();
+                posicionMinijuegoActual = posicionesMinijuegoBancadaLevas[contador];
+            }
+            else
+            {
+                // Los que involucren tornillos
+                if (asignarTornillos.Count > 0)
+                {
+                    asignarTornillos.RemoveAt(0);
+                }
+
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueNissanBancadaLevas);
+                btnAplicarTorque.onClick.AddListener(TorqueNissanTapaCulata);
+                cantidadMinijuegosMotorNissan[5] = false;
+                cantidadMinijuegosMotorNissan[6] = true;
+                DesactivarMinijuego();
+                posicionMinijuegoActual = posicionesMinijuegoTapaCulata[contador];
+            }
+        }
+    }
+
+    public void TorqueNissanTapaCulata()
+    {
+        if (coroutine != null)
+        {
+            StopCoroutine(coroutine);
+        }
+        coroutine = StartCoroutine(TorqueNissanTapaCulataCorrutina());
+    }
+
+    IEnumerator TorqueNissanTapaCulataCorrutina()
+    {
+        if (!aplicandoTorque)
+        {
+            ConfigurarTornilloActivo(); // Los que involucren tornillos
+
+            torquesNissanTapaCulata[contador] = Mathf.RoundToInt(Atornillar.singleton.AsignarValorTorque()); // Asignamos el valor del torque
+
+            yield return new WaitForSeconds(0.1f);
+
+            contador += 1;
+            if (contador < 4)
+            {
+                // Nos movemos a la siguiente posicion del minijuego
+                ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionesMinijuegoTapaCulata[contador], 1);
+                Atornillar.singleton.ReiniciarValorSlider();
+                posicionMinijuegoActual = posicionesMinijuegoTapaCulata[contador];
+            }
+            else
+            {
+                // Los que involucren tornillos
+                if (asignarTornillos.Count > 0)
+                {
+                    asignarTornillos.RemoveAt(0);
+                }
+
+                // Reestablecemos valores minijuego
+                btnAplicarTorque.onClick.RemoveListener(TorqueNissanTapaCulata);
+                cantidadMinijuegosMotorNissan[6] = false;
+                DesactivarMinijuego();
             }
         }
     }
