@@ -1738,6 +1738,9 @@ MonoBehaviour:
   pista: "Ahora debes preparar los alojamientos donde descansar\xE1 el eje principal
     del motor. Las bancadas aseguran el cig\xFCe\xF1al, permitiendo que gire libremente
     con el soporte y alineaci\xF3n adecuados. Asegurate de lubricarlas correctamente."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

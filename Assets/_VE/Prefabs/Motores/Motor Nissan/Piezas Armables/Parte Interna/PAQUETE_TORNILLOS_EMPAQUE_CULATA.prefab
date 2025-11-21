@@ -1743,6 +1743,9 @@ MonoBehaviour:
   pista: "Ahora puedes instalar los componentes encargados de controlar el flujo
     de aire y gases en el motor. Las v\xE1lvulas de admisi\xF3n y escape deben montarse
     con sus respectivas gu\xEDas, asegurando un movimiento suave y preciso."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

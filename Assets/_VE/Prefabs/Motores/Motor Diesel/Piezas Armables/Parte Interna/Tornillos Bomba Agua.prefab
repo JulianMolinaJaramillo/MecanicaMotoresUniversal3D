@@ -340,8 +340,11 @@ MonoBehaviour:
   pista: "Finalmente, cierra el conjunto superior del motor. Esta tapa protege el
     tren de v\xE1lvulas y evita fugas de aceite hacia el exterior. Col\xF3cala con
     su empaque correspondiente para garantizar la estanqueidad."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 1
   sizeMinijuego: 8
@@ -349,6 +352,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 2678618405826722636}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

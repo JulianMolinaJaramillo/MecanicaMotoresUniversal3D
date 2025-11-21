@@ -305,6 +305,9 @@ MonoBehaviour:
   pista: "Algunos motores utilizan un pist\xF3n de regulaci\xF3n para mantener la
     tensi\xF3n del sistema de distribuci\xF3n. Este componente regula autom\xE1ticamente
     la presi\xF3n, se colocan en la apertura de los balancines."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -319,6 +322,7 @@ MonoBehaviour:
     type: 0
   esLubricada: 1
   numeroPieza: 5
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

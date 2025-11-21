@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 6e139d67dd97c284183485c3d06fd225
+guid: da3fc2deda6e40343903ebb030f471fc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MATERIAL_VIDRIO_PANTALLA
+    second: {fileID: 2100000, guid: dca6323aeb1473a47a5b2de012fa973f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_DINAMOMETRO
+    second: {fileID: 2100000, guid: 4a3aea2469231fe4fb03466cc1a329b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_pantalla
+    second: {fileID: 2100000, guid: 540f0704d162085438eb8334035b9f3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_proyeccion
+    second: {fileID: 2100000, guid: adbfa3332fb42364c8bea874557a4bf4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

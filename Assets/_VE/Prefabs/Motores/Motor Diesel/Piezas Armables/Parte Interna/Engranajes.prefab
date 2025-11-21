@@ -300,6 +300,9 @@ MonoBehaviour:
   pista: "La banda o correa de distribuci\xF3n conecta el cig\xFCe\xF1al con el \xE1rbol
     de levas. Al instalarla, aseg\xFArate de respetar las marcas de sincronizaci\xF3n
     y la tensi\xF3n adecuada para evitar saltos de tiempo."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -314,6 +317,7 @@ MonoBehaviour:
     type: 0
   esLubricada: 1
   numeroPieza: 7
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

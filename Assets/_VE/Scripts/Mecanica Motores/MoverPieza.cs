@@ -19,6 +19,11 @@ public class MoverPieza : MonoBehaviour
     [TextArea(3, 4)]
     public string pista;
 
+    [Header("LIMITES DE MOVIMIENTO")]
+    public bool usarLimites;
+    public Vector3 limiteMin;   // Limite mínimo permitido (x, y, z)
+    public Vector3 limiteMax;   // Limite máximo permitido (x, y, z)
+
     [Header("PIEZAS QUE ACTIVAN MINIJUEGOS DE ATORNILLAR")]
     public MessageOnly mensaje7 = new MessageOnly("Para las piezas que activen minijuegos de atornillar", MessageTypeCustom.Info);
     public bool activaMinijuego; // Para validar si el prefab activa minijuego  
@@ -98,7 +103,12 @@ public class MoverPieza : MonoBehaviour
         if (MesaMotor.singleton.mesaMotorActiva) // Validamos que estamos interactuando en la mesa de armado para poder manipular las piezas
         {
             puedoValidar = false;
-            validarBrazo = true;
+
+            if (!ControlCamaraMotor.singleton.posicionadoArriba)
+            {
+                validarBrazo = true;
+            }
+            
             if (!noMover)
             {         
                 AgregarSegundoMaterial(0);
@@ -122,8 +132,11 @@ public class MoverPieza : MonoBehaviour
         {
             if (!noMover)
             {
-                // Actualiza la posición del objeto a la nueva posición del mouse en el mundo, manteniendo el offset inicial
-                transform.position = ObtenerPosicionMouse() + offset;
+                Vector3 posicionGlobal = ObtenerPosicionMouse() + offset;
+                transform.position = posicionGlobal; // Se coloca global…
+
+                // convertimos esa global a local clamp
+                AplicarLimitesMovimiento();
             }
         }
     }
@@ -147,6 +160,19 @@ public class MoverPieza : MonoBehaviour
             QuitarMateriales();
             coroutine = StartCoroutine(GetPuedoValidar());
         }
+    }
+
+    void AplicarLimitesMovimiento()
+    {
+        if (!usarLimites) return;
+
+        Vector3 p = transform.localPosition;
+
+        p.x = Mathf.Clamp(p.x, limiteMin.x, limiteMax.x);
+        p.y = Mathf.Clamp(p.y, limiteMin.y, limiteMax.y);
+        p.z = Mathf.Clamp(p.z, limiteMin.z, limiteMax.z);
+
+        transform.localPosition = p;
     }
 
     /// <summary>

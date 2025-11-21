@@ -165,6 +165,9 @@ MonoBehaviour:
   pista: "Una vez colocados los cojinetes y el eje, aseg\xFAralos con los tornillos
     correspondientes. Este paso fija las bancadas al bloque, manteniendo todo el
     conjunto en posici\xF3n. Recuerda respetar el orden de apriete y el torque indicado."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

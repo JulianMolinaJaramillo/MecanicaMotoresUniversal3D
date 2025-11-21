@@ -717,8 +717,11 @@ MonoBehaviour:
   - {fileID: 8507005286332983490}
   pista: "Este elemento ayuda a expulsar residuos o fluidos de determinadas cavidades
     internas. Inst\xE1lalo asegurando que las conducciones est\xE9n libres de obstrucciones."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -726,6 +729,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

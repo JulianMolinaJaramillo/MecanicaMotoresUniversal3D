@@ -728,6 +728,9 @@ MonoBehaviour:
   pista: "Antes de insertar los pistones en los cilindros, monta los anillos que
     sellan la c\xE1mara de combusti\xF3n y controlan el consumo de aceite. Cada ranura
     del pist\xF3n tiene su anillo correspondiente."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -742,6 +745,7 @@ MonoBehaviour:
     type: 0
   esLubricada: 1
   numeroPieza: 1
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

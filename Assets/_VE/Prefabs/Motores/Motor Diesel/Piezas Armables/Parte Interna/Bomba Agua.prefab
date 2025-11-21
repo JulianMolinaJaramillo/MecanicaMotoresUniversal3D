@@ -592,8 +592,11 @@ MonoBehaviour:
   - {fileID: 4539670805410753700}
   pista: "Una vez colocada la bomba, estos tornillos la fijan al bloque. Apri\xE9talos
     en forma cruzada y con el torque indicado para evitar deformaciones en la carcasa."
-  mensaje:
-    message: Para las piezas que activen minijuegos
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
+  mensaje7:
+    message: Para las piezas que activen minijuegos de atornillar
     type: 0
   activaMinijuego: 0
   sizeMinijuego: 0
@@ -601,6 +604,12 @@ MonoBehaviour:
     message: Unicamente para las piezas con tornillos
     type: 0
   asignarTornillos: {fileID: 0}
+  mensaje6:
+    message: "Para las piezas de lubricaci\xF3n"
+    type: 0
+  esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

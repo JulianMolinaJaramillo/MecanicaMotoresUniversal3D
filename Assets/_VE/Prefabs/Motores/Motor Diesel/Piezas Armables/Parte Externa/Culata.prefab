@@ -460,6 +460,9 @@ MonoBehaviour:
     el ingreso de mezcla y la salida de gases quemados. Aseg\xFArate de que cada
     v\xE1lvula est\xE9 en su posici\xF3n correcta (admisi\xF3n o escape) y que se
     deslice libremente."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -473,6 +476,8 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

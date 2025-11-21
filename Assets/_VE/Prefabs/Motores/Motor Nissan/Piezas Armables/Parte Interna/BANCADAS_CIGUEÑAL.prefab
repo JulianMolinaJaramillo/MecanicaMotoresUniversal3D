@@ -299,6 +299,9 @@ MonoBehaviour:
     hacia el sistema de embrague o el volante. Esta placa act\xFAa como interfaz
     entre el motor y la transmisi\xF3n, y debe quedar perfectamente centrada para
     garantizar un acople suave."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

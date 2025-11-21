@@ -2484,6 +2484,9 @@ MonoBehaviour:
   pista: "Los pistones transforman la energ\xEDa de la combusti\xF3n en fuerza mec\xE1nica.
     Deben colocarse asegurando la correcta orientaci\xF3n del perno y la posici\xF3n
     de los anillos de compresi\xF3n. Recuerda lubricarlos correctamente."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -2497,6 +2500,8 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 0
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

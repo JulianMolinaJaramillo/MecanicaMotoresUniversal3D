@@ -313,6 +313,9 @@ MonoBehaviour:
     energ\xEDa durante los ciclos de combusti\xF3n, permitiendo que el movimiento
     sea constante. Se fija al cig\xFCe\xF1al y su alineaci\xF3n es vital para evitar
     vibraciones."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -327,6 +330,7 @@ MonoBehaviour:
     type: 0
   esLubricada: 1
   numeroPieza: 2
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,14 @@ public class ManagerMinijuego : MonoBehaviour
     public bool minijuegoActivo; // Para validar si hay un minijuego activo
     public int sizeHerramienta; // Tamaño de herramienta tomada
     public string motorActivo; // Para controlar el motor activo
+
+    [Header(" REFERENCIAS ")]
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject infoTorquesDiesel; // Referencia al objeto de minujuegoTorque del canvas
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public GameObject infoTorquesNissan; // Referencia al objeto de minujuegoTorque del canvas
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTorques; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
@@ -162,6 +171,11 @@ public class ManagerMinijuego : MonoBehaviour
         {
             ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar cualquier armado, asegúrate de tener la base sólida que soportará todo el conjunto interno del motor. Esta pieza es el punto de anclaje donde descansan los componentes principales, y sobre ella se construirá toda la estructura.");
 
+            // Actualizamos el panel de torques
+            txtTorques.text = "Información Torques \r\n Motor Diesel";
+            infoTorquesDiesel.SetActive(true);
+            infoTorquesNissan.SetActive(false);
+
             for (int i = 0; i < sueloInteractivoDiesel.Length; i++)
             {
                 //Habilitamos piezas en cuestion
@@ -188,6 +202,11 @@ public class ManagerMinijuego : MonoBehaviour
         else if (nombreMotor == "Nissan")
         {
             ManagerCanvas.singleton.ActualizarInformacionPista("Antes de comenzar lo primero es asegurar la base donde descansarán los mecanismos internos. Este componente actúa como recipiente para el aceite y como soporte inferior del bloque, garantizando la lubricación y rigidez estructural del conjunto.");
+
+            // Actualizamos el panel de torques
+            txtTorques.text = "Información Torques \r\n Motor Nissan";
+            infoTorquesDiesel.SetActive(false);
+            infoTorquesNissan.SetActive(true);
 
             for (int i = 0; i < sueloInteractivoNissan.Length; i++)
             {

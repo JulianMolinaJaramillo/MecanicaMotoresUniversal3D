@@ -250,6 +250,9 @@ MonoBehaviour:
     la uni\xF3n entre el bloque y la culata. Este componente evita fugas de gases
     de combusti\xF3n, refrigerante y aceite. Su posici\xF3n debe ser exacta para
     asegurar la compresi\xF3n ideal."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

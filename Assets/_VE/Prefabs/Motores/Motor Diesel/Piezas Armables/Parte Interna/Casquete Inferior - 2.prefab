@@ -715,6 +715,9 @@ MonoBehaviour:
   pista: "Ahora llega el coraz\xF3n del movimiento rotativo. Este eje transforma
     el desplazamiento lineal de los pistones en rotaci\xF3n. Debe colocarse con precisi\xF3n
     sobre los casquillos, asegurando que quede perfectamente alineado y bien lubricado."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -728,6 +731,8 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 1
+  numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

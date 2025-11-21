@@ -583,6 +583,9 @@ MonoBehaviour:
     transmitir\xE1n el movimiento hacia los pistones. Estas piezas transforman la
     rotaci\xF3n del eje en desplazamiento vertical dentro de los cilindros. Deben
     estar lubricadas."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -597,6 +600,7 @@ MonoBehaviour:
     type: 0
   esLubricada: 1
   numeroPieza: 0
+  desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos
     type: 0

@@ -592,6 +592,9 @@ MonoBehaviour:
   pista: "Una vez montadas las bancadas, fija el \xE1rbol de levas con los tornillos
     correspondientes. El apriete debe hacerse de forma gradual y cruzada para evitar
     tensiones en el eje."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
@@ -605,7 +608,7 @@ MonoBehaviour:
     message: "Para las piezas de lubricaci\xF3n"
     type: 0
   esLubricada: 1
-  numeroPieza: 0
+  numeroPieza: 2
   desactivaExternas: 0
   mensaje3:
     message: SI lo que deseas es modificarle el material a los hijos

@@ -312,6 +312,9 @@ MonoBehaviour:
   pista: "Con ambas partes unidas, es momento de fijarlas firmemente. Estos tornillos
     aseguran la uni\xF3n y garantizan la estanqueidad del sistema de lubricaci\xF3n.
     Apri\xE9talos con el torque indicado para evitar fugas o deformaciones"
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

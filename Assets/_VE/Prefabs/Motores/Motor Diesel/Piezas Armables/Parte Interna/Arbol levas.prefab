@@ -593,6 +593,9 @@ MonoBehaviour:
     fugas de gases, refrigerante y aceite. Es fundamental que las superficies est\xE9n
     limpias y sin irregularidades antes de colocarlo. Un mal asentamiento puede provocar
     fallos de compresi\xF3n."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

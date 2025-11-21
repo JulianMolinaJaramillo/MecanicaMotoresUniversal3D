@@ -129,14 +129,14 @@ public class SueloInteractivo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua
+
         if (puedoInteractuarInicialmente)
         {
             if (other.CompareTag("Player"))
             {
                 interactuar = true; // Indicamos que podemos interactuar
                 canvasWorldSpace.SetActive(true); // Activamos canvas visual
-
-                movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua
 
                 if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = true;
             }
@@ -153,14 +153,14 @@ public class SueloInteractivo : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua
+
         if (puedoInteractuarInicialmente)
         {
             if (other.CompareTag("Player"))
             {
                 interactuar = false; // Indicamos que no podemos interactuar
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual
-
-                movimientoJugador = null;  // Eliminamos la referencia al movimiento del jugador que interactua
 
                 if (mesaArmadoMotor) MesaMotor.singleton.estoyEnMesa = false;
             }
@@ -224,7 +224,7 @@ public class SueloInteractivo : MonoBehaviour
         else
         {
             btnSalir.gameObject.SetActive(true); // Habilitamos el boton de salir
-            canvasPrincipal.SetActive(true);  // Activamos canvas informativo
+            if (canvasPrincipal != null) canvasPrincipal.SetActive(true);  // Activamos canvas informativo
             if (canvasSecundario != null) canvasSecundario.SetActive(true);  // Activamos canvas informativo
 
             if (btnBajarPlataforma != null) btnBajarPlataforma.gameObject.SetActive(true);// Si tenemos referenciado el boton lo activamos
@@ -322,7 +322,7 @@ public class SueloInteractivo : MonoBehaviour
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-        canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
+        if (canvasPrincipal != null) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
         if (canvasSecundario != null)
         {
             canvasSecundario.SetActive(false);  // Activamos canvas informativo

@@ -701,6 +701,9 @@ MonoBehaviour:
     y los conductos de lubricaci\xF3n. Col\xF3calo asegur\xE1ndote de que todas las
     piezas internas encajen correctamente y que las uniones est\xE9n selladas para
     evitar fugas de aceite."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

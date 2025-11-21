@@ -291,6 +291,9 @@ MonoBehaviour:
   pista: "Finalmente, fija la tapa superior con sus tornillos. Apri\xE9talos de forma
     uniforme y con el torque indicado para asegurar un sellado correcto. Con este
     paso, el armado del motor queda completamente cerrado y listo para pruebas."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0

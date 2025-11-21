@@ -299,6 +299,9 @@ MonoBehaviour:
     principales encargados de soportar el giro del cig\xFCe\xF1al. Col\xF3calos con
     cuidado, asegur\xE1ndote de que sus orificios de lubricaci\xF3n coincidan con
     los conductos del bloque."
+  usarLimites: 1
+  limiteMin: {x: -0.6, y: -0.5, z: -0.7}
+  limiteMax: {x: 0.6, y: 0.1, z: 0.8}
   mensaje7:
     message: Para las piezas que activen minijuegos de atornillar
     type: 0
