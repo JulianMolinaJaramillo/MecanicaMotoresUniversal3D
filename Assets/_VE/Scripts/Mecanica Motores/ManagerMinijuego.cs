@@ -18,6 +18,8 @@ public class ManagerMinijuego : MonoBehaviour
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public TextMeshProUGUI txtTorques; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
+    public TextMeshProUGUI txtTorques2; // Referencia al objeto de minujuegoTorque del canvas
+    [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject miniJuegoAtornillar; // Referencia al objeto de minujuegoTorque del canvas
     [InfoMessage("Este es una referencia importante, arrastrala del CanvasPrincipal", MessageTypeCustom.Warning)]
     public GameObject herramientasRotatorias; // Referencia al objeto dentro de la camara
@@ -173,6 +175,7 @@ public class ManagerMinijuego : MonoBehaviour
 
             // Actualizamos el panel de torques
             txtTorques.text = "Información Torques \r\n Motor Diesel";
+            txtTorques2.text = "Prueba Motor Diesel";
             infoTorquesDiesel.SetActive(true);
             infoTorquesNissan.SetActive(false);
 
@@ -205,6 +208,7 @@ public class ManagerMinijuego : MonoBehaviour
 
             // Actualizamos el panel de torques
             txtTorques.text = "Información Torques \r\n Motor Nissan";
+            txtTorques2.text = "Prueba Motor Nissan";
             infoTorquesDiesel.SetActive(false);
             infoTorquesNissan.SetActive(true);
 

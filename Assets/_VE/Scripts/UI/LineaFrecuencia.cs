@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class LineaFrecuencia : MonoBehaviour
 {
     public Slider sliderVelocidad;      // Control deslizante para ajustar la velocidad
-    public Slider sliderVelocidadSecundario;      // Control deslizante para ajustar la velocidad
+    //public Slider sliderVelocidadSecundario;      // Control deslizante para ajustar la velocidad
     public int totalPuntos = 50;        // Número de puntos en la línea
     public float velocidad = 0.05f;   // Velocidad de actualización
     public float amplitud = 1f;        // Escala vertical general
@@ -31,7 +31,7 @@ public class LineaFrecuencia : MonoBehaviour
         line.SetPositions(puntos);
 
         sliderVelocidad.onValueChanged.AddListener(ActualizarValores);
-        sliderVelocidadSecundario.onValueChanged.AddListener(ActualizarValores);
+        //sliderVelocidadSecundario.onValueChanged.AddListener(ActualizarValores);
     }
 
     void Update()
