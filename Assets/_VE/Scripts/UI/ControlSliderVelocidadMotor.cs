@@ -58,28 +58,38 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
 
     public void EncenderMotor()
     {
-        if (!motorEncendido)
+        if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
         {
-            sliderVelocidad.interactable = true;
+            if (!motorEncendido)
+            {
+                sliderVelocidad.interactable = true;
+                sliderVelocidad.value = 0.1f;
+                txtbotonEncender.text = "Apagar";
+                controlVelocidadAnimacion.puedoValidar = true;
+            }
+        }
+        else
+        {
             sliderVelocidad.value = 0.1f;
-            txtbotonEncender.text = "Apagar";
-            controlVelocidadAnimacion.puedoValidar = true;
-        }   
+        }
     }
 
     public void ApagarMotor()
     {
-        if (motorEncendido)
+        if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
         {
-            if (coroutine != null)
+            if (motorEncendido)
             {
-                StopCoroutine(coroutine);
+                if (coroutine != null)
+                {
+                    StopCoroutine(coroutine);
+                }
+                apagandoMotor = true;
+                coroutine = StartCoroutine(BajarValorSlider());
+                return;
             }
-            apagandoMotor = true;
-            coroutine = StartCoroutine(BajarValorSlider());
-            return;
-        }
-        motorEncendido = true;
+            motorEncendido = true;
+        }     
     }
 
      private IEnumerator BajarValorSlider()

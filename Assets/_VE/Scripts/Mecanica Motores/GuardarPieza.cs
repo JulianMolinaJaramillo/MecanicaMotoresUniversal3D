@@ -107,7 +107,6 @@ public class GuardarPieza : MonoBehaviour
             }
             else
             {
-                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
                 string texto = "El Inventario Se Encuentra LLeno, Debes Liberar Espacio Primero";
                 ManagerCanvas.singleton.AlertarMensaje(texto);
             }

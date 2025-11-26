@@ -10,6 +10,7 @@ public class MesaMotor : MonoBehaviour
     public bool motorExpandido; // Para validar cuando el motor expandido
     public RotadorPiezas[] rotadorPiezas;
     public ExpansionRadial[] expansionRadials;
+    public ParticleSystem[] partciulasHumoMotor;
 
     [HideInInspector]
     public bool estoyEnMesa;
@@ -35,10 +36,23 @@ public class MesaMotor : MonoBehaviour
     private IEnumerator DetenerMotor()
     {
         interaccionEjecutada = true;
-        if (ManagerCanvas.singleton != null) ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+        if (!expansionRadials[1].expandir)
+        {
+            if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true);
+        }
+
+        if (ManagerCanvas.singleton != null) 
+        {
+            ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+            ManagerCanvas.singleton.DeshabilitarBtnExpandir();
+            ManagerCanvas.singleton.DeshabilitarBtnRotar();
+        }
+
+        if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.btnEncenderMotor.gameObject.SetActive(false);
 
         for (int i = 0; i < rotadorPiezas.Length; i++)
         {
+            rotadorPiezas[i].velocidadRetorno = 10;
             rotadorPiezas[i].RegresarARotacionOriginal();
             rotadorPiezas[i].dejarDeRotar = true;
         }
@@ -49,34 +63,72 @@ public class MesaMotor : MonoBehaviour
             expansionRadials[i].noInteractuar = true;
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+
+        if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true);
+
+        yield return new WaitForSeconds(1);
 
         ExplosionObjetosHijos.singleton.ExplotarTodo();
 
         yield return new WaitForSeconds(ExplosionObjetosHijos.singleton.duracionVibracion);
+
+        yield return new WaitForSeconds(2f);
+
+        DesactivarParticulasHumo();
+
         if (ManagerCanvas.singleton != null) 
         {
-            ManagerCanvas.singleton.btnReutilizableHabilitado = true;
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
-        } 
-    }
 
-    /// <summary>
-    /// Metodo invocado desde btnReutilizarMotor en el canvas principal
-    /// </summary>
-    public void RehabilitarInteraccionesMotor()
-    {
-        interaccionEjecutada = false;
-        if (ManagerCanvas.singleton != null) ManagerCanvas.singleton.btnReutilizableHabilitado = false;
+            string texto = "Al parecer los torques y el armado en general del motor no fué el correcto, vuelve a probar.";
+            ManagerCanvas.singleton.AlertarMensaje(texto);
+        }
 
         for (int i = 0; i < rotadorPiezas.Length; i++)
         {
+            rotadorPiezas[i].velocidadRetorno = 2;
             rotadorPiezas[i].dejarDeRotar = false;
         }
 
         for (int i = 0; i < expansionRadials.Length; i++)
         {
             expansionRadials[i].noInteractuar = false;
+        }
+    }
+
+    public void ActivarParticulasHumo()
+    {
+        StartCoroutine(ParticulasHumoMotor());
+        
+    }
+    private IEnumerator ParticulasHumoMotor()
+    {
+        if (!interaccionEjecutada)
+        {
+            if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.btnEncenderMotor.gameObject.SetActive(false);
+            ManagerCanvas.singleton.DeshabilitarBtnExpandir();
+            ManagerCanvas.singleton.DeshabilitarBtnRotar();
+        }
+
+        for (int i = 0; i < partciulasHumoMotor.Length; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            partciulasHumoMotor[i].Play();
+        }
+
+        if (!interaccionEjecutada)
+        {
+            string texto = "Al parecer una o algunas partes te quedaron sin lubricar correctamente, vuelve a probar.";
+            ManagerCanvas.singleton.AlertarMensaje(texto);
+        }    
+    }
+
+    public void DesactivarParticulasHumo()
+    {
+        for (int i = 0; i < partciulasHumoMotor.Length; i++)
+        {
+            partciulasHumoMotor[i].Stop();
         }
     }
 }

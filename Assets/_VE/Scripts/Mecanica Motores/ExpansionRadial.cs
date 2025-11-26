@@ -74,7 +74,7 @@ public class ExpansionRadial : MonoBehaviour
             }
         }
     }
-
+    [ContextMenu("limpiar")]
     public void LimpiarHijos()
     {
         hijos.Clear();
@@ -91,7 +91,6 @@ public class ExpansionRadial : MonoBehaviour
                 if (piezasInternas)// Solo si son las piezas internas
                 {
                     MesaMotor.singleton.motorExpandido = true;
-                    AsignarHijos();
                     if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
                     if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
                 }
@@ -215,11 +214,15 @@ public class ExpansionRadial : MonoBehaviour
 
                 if (!MesaMotor.singleton.motorRotando)
                 {
+                    if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
+                    {
+                        ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
+                    }
+
                     if (ManagerMinijuego.singleton.minijuegoTerminado)
                     {
-                        if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Desactivamos los hijos antes de expandir
-                        ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
-                    }          
+                        if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Desactivamos los hijos antes de expandir 
+                    }
                 }
                 
             }     

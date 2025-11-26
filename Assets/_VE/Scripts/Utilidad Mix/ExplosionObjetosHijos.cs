@@ -16,7 +16,6 @@ public class ExplosionObjetosHijos : MonoBehaviour
     public float duracionVibracion = 5f;
     public float intensidadVibracion = 0.05f; // qué tanto se mueven las piezas
 
-    private GameObject motorAnimadoActivo;
     public static ExplosionObjetosHijos singleton;
 
     private void Awake()
@@ -38,6 +37,15 @@ public class ExplosionObjetosHijos : MonoBehaviour
         foreach (GameObject padre in objetosPadres)
         {
             StartCoroutine(VibrarYExplotar(padre));
+        }
+    }
+
+    [ContextMenu("explot")]
+    public void VibrarTodo()
+    {
+        foreach (GameObject padre in objetosPadres)
+        {
+            StartCoroutine(Vibrar(padre));
         }
     }
 
@@ -125,11 +133,69 @@ public class ExplosionObjetosHijos : MonoBehaviour
             }
         }
 
+        if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false);
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("DestruccionMotor"); // Ejecutamos el efecto nombrado
         // 3. Aplicar explosión
         foreach (Transform pieza in padre.transform)
         {
             ActivarExplosiónRecursiva(pieza, padre.transform.position);
+        }
+    }
+
+    /// <summary>
+    /// Currutnia encargada de hacer vibrar las piezas antes de la explosion
+    /// </summary>
+    /// <param name="padre"> Objeto padre </param>
+    /// <returns></returns>
+    private IEnumerator Vibrar(GameObject padre)
+    {
+        if (padre == null) yield break;
+
+        // 1. Recolectar y reparentar los descendientes al padre
+        List<Transform> descendientes = new List<Transform>();
+        foreach (Transform child in padre.transform)
+        {
+            RecolectarDescendientes(child, descendientes);
+        }
+
+        foreach (Transform desc in descendientes)
+        {
+            desc.SetParent(padre.transform, true);
+        }
+
+        // 2. Vibrar cada hijo del padre
+        List<Vector3> posicionesOriginales = new List<Vector3>();
+        List<Transform> piezas = new List<Transform>();
+
+        foreach (Transform pieza in padre.transform)
+        {
+            posicionesOriginales.Add(pieza.localPosition);
+            piezas.Add(pieza);
+        }
+
+        float timer = 0f;
+        while (timer < duracionVibracion)
+        {
+            for (int i = 0; i < piezas.Count; i++)
+            {
+                if (piezas[i] != null)
+                {
+                    Vector3 offset = Random.insideUnitSphere * intensidadVibracion;
+                    piezas[i].localPosition = posicionesOriginales[i] + offset;
+                }
+            }
+
+            timer += Time.deltaTime;
+            yield return null; // Esperar un frame (fluido y constante)
+        }
+
+        // Restaurar posición original antes de la explosión (opcional)
+        for (int i = 0; i < piezas.Count; i++)
+        {
+            if (piezas[i] != null)
+            {
+                piezas[i].localPosition = posicionesOriginales[i];
+            }
         }
     }
 

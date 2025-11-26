@@ -12,6 +12,7 @@ public class LineaFrecuencia : MonoBehaviour
     public float pico = 2f;    // Cuánto se eleva el pico
     public float picoIntervalo = 2f;    // Cada cuánto ocurre un pico (en segundos)
     public float velocidadMovimiento = 10f; // Velocidad con la que la línea se desplaza a la izquierda
+    public bool multiplicarRuidoX2;
 
     private LineRenderer line;
     private Vector3[] puntos;
@@ -71,7 +72,18 @@ public class LineaFrecuencia : MonoBehaviour
 
     public void ActualizarValores(float valor)
     {
-        ruido = valor;
-        pico = valor;
+        if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
+        {
+            if (multiplicarRuidoX2)
+            {
+                ruido = valor * 2;
+                pico = valor;
+            }
+            else
+            {
+                ruido = valor;
+                pico = valor;
+            }
+        }          
     }
 }

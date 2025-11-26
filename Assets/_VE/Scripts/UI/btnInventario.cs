@@ -46,7 +46,6 @@ public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         else
         {
-            if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
             string texto = "Debes ir primero a la mesa de armado para colocar la pieza";
             ManagerCanvas.singleton.AlertarMensaje(texto);
         }

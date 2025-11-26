@@ -41,7 +41,7 @@ public class RotadorPiezas : MonoBehaviour
 
                     if (!MesaMotor.singleton.motorExpandido)
                     {
-                        if (ManagerMinijuego.singleton.minijuegoTerminado)
+                        if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
                         {
                             if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
                             ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir  

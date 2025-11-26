@@ -15,6 +15,8 @@ public class SueloInteractivo : MonoBehaviour
 
     [Header("Referencias Opcionales")]
     public GameObject canvasSecundario; // Hace referencia al canvas secundario a activar
+    public bool esRestaurable;
+    public EscaladorUI escaladorUI;
     public MoverObjeto moverObjeto;
     public Button btnBajarPlataforma; // Referencia al btnBajarPlataforma del canvas
 
@@ -94,14 +96,6 @@ public class SueloInteractivo : MonoBehaviour
                     InicializarMovimientoCamara(posicionObjetivoCamara);
                 }
 
-                if (!mesaArmadoMotor && !mesaHerramientas)
-                {
-                    if (ManagerCanvas.singleton != null && ManagerCanvas.singleton.btnReutilizableHabilitado == true && MesaMotor.singleton.interaccionEjecutada == true)
-                    {
-                        ManagerCanvas.singleton.HabilitarBtnReutilizarMotor();
-                    }
-                }
-
                 camera.cullingMask &= ~(1 << playerLayer); // Desactivamos la layer "PLayer" de la camara para que no se vea nuestro personaje
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 btnSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
@@ -129,7 +123,6 @@ public class SueloInteractivo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua
 
         if (puedoInteractuarInicialmente)
         {
@@ -149,6 +142,14 @@ public class SueloInteractivo : MonoBehaviour
                 ManagerCanvas.singleton.DesactivarBTNEleccionMotor();
             }
         }   
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            movimientoJugador = other.GetComponent<MovimientoJugador>();  // Obtenemos una referencia al movimiento del jugador que interactua
+        }     
     }
 
     private void OnTriggerExit(Collider other)
@@ -322,7 +323,8 @@ public class SueloInteractivo : MonoBehaviour
         }
 
         camera.cullingMask |= (1 << playerLayer); // Activamos de nuevo la layer "Player" para que nuestro personaje se vea     
-        if (canvasPrincipal != null) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
+        if (canvasPrincipal != null && !esRestaurable) canvasPrincipal.SetActive(false);  // Desactivamos canvas principal   
+        if (escaladorUI != null) escaladorUI.Restaurar();  // Restauramos 
         if (canvasSecundario != null)
         {
             canvasSecundario.SetActive(false);  // Activamos canvas informativo
@@ -331,14 +333,6 @@ public class SueloInteractivo : MonoBehaviour
         
         btnSalir.gameObject.SetActive(false); // Deshabilitamos el boton de salir 
         btnSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
-
-        if (!mesaArmadoMotor && !mesaHerramientas)
-        {
-            if (ManagerCanvas.singleton != null && ManagerCanvas.singleton.btnReutilizableHabilitado == true)
-            {
-                ManagerCanvas.singleton.DeshabilitarBtnReutilizarMotor();
-            }
-        }
 
         if (btnBajarPlataforma != null)
         {

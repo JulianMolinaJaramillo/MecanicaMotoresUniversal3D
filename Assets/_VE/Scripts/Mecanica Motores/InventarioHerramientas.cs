@@ -85,14 +85,12 @@ public class InventarioHerramientas : MonoBehaviour
                 }
                 else
                 {
-                    if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
                     string texto = "No es posible acoplar esta herramienta.";
                     ManagerCanvas.singleton.AlertarMensaje(texto);
                 }
             }
             else
             {
-                if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("Error"); // Ejecutamos el efecto nombrado
                 string texto = "Necesitas primero la base de la herramienta.";
                 ManagerCanvas.singleton.AlertarMensaje(texto);
             }

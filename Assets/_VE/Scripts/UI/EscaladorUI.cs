@@ -15,6 +15,7 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool esBoton;
     public bool esMensaje;
     public bool esPop;
+    public bool desactivarAlRestaurar;
     public GameObject brillo;
 
     private bool cerrando;
@@ -52,9 +53,10 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void Escalar()
     {
         // Si ya hay una corrutina activa, la detenemos
-        if (escalaCoroutine != null) StopCoroutine(escalaCoroutine);
 
         if (brillo != null) brillo.SetActive(true);
+
+        if (escalaCoroutine != null) StopCoroutine(escalaCoroutine);
 
         escalaCoroutine = StartCoroutine(InterpolarEscala(escalaObjetivo, duracion));
     }
@@ -65,11 +67,11 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [ContextMenu("Restaurar")]
     public void Restaurar()
     {
-        if (esMensaje) cerrando = true; // Solo para los tipo mensaje
-
-        if (escalaCoroutine != null) StopCoroutine(escalaCoroutine);
+        if (esMensaje || esPop) cerrando = true; // Solo para los tipo mensaje
 
         if (brillo != null) brillo.SetActive(false);
+
+        if (escalaCoroutine != null) StopCoroutine(escalaCoroutine);
 
         escalaCoroutine = StartCoroutine(InterpolarEscala(escalaInicial, duracion));
     }
@@ -93,10 +95,11 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         rectTransform.localScale = objetivo;
         escalaCoroutine = null;
 
-        if (cerrando && esMensaje)
-        {
-            this.gameObject.SetActive(false);
-        }
+        if (cerrando && esMensaje) this.gameObject.SetActive(false);
+
+        if (desactivarAlRestaurar && cerrando) this.gameObject.SetActive(false);
+
+        cerrando = false;
     }
 
     private void OnEnable()
@@ -125,6 +128,11 @@ public class EscaladorUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (esPop)
         {
             rectTransform.localScale = escalaInicial;
-        }     
+        }
+
+        //if (esMensaje)
+        //{
+        //    Restaurar();
+        //}
     }
 }
