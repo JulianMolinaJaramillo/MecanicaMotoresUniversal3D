@@ -1,9 +1,10 @@
-
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class btnInventario : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public Image imagenIcono;
     public GameObject prebafInstancia; //Prefab a instanciar
     public Transform posicionInstancia; // Punto en el que vamos a realizar la instancia
     public string nombre,descripcion;

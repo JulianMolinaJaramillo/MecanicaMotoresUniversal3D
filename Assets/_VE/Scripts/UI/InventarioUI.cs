@@ -68,13 +68,14 @@ public class InventarioUI : MonoBehaviour
             prefabSeleccionado = prefab; // Asignamos el prefab
 
             GameObject nuevoBoton = Instantiate(buttonPrefab, contentPanel);// Instanciamos el boton en el inventario
-            Image iamgenIcono = nuevoBoton.GetComponentInChildren<Image>(); // Obtenemos el componenete imagen
-            iamgenIcono.sprite = icono; // Asignamos la imagen al boton
+            //Image iamgenIcono = nuevoBoton.GetComponentInChildren<Image>(); // Obtenemos el componenete imagen
+            //iamgenIcono.sprite = icono; 
 
             TextMeshProUGUI textoBoton = nuevoBoton.GetComponentInChildren<TextMeshProUGUI>(); // Obtenemos el componente texto
             textoBoton.text = nombreBoton; // Asignamos el texto al boton
 
             btnInventario btnInventario = nuevoBoton.GetComponent<btnInventario>(); // Obtenemos el componenete inventario
+            btnInventario.imagenIcono.sprite = icono; // Asignamos la imagen al boton
             btnInventario.prebafInstancia = prefabSeleccionado; // Agregamos el prefab seleccionado
 
             if (piezaExterna)

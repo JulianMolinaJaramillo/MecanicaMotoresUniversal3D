@@ -20,7 +20,7 @@ public class MoverObjeto : MonoBehaviour
 
     private Vector3 posicionInicial; // Para saber si debo o no mover la camara
     private Quaternion rotacionInicial; // Para saber si debo o no mover la camara
-    private bool abrirAlIniciar;
+    private bool restaurandoPosicion;
     private Coroutine movimientoActual; // Referencia de la corrutina activa
     private void Start()
     {
@@ -42,6 +42,7 @@ public class MoverObjeto : MonoBehaviour
     [ContextMenu("Devolver")]
     public void RetornarPosicionOriginal()
     {
+        restaurandoPosicion = true;
         // Si ya se está ejecutando una corrutina, la detenemos primero
         if (movimientoActual != null)
         {
@@ -75,6 +76,8 @@ public class MoverObjeto : MonoBehaviour
 
         if (!soloRotacion) transform.localPosition = posicionDeseada; // Aseguramos la posición final
         transform.localRotation = rotacionDeseada; // Aseguramos la rotacion final
+        if (restaurandoPosicion && PuntoInicio != null) RegresarPosicionOriginal();
+        restaurandoPosicion = false;
     }
 
     private void OnEnable()

@@ -149,6 +149,7 @@ public class ManagerDesplazamientoMotor : MonoBehaviour
         MesaMotor.singleton.sliderVelocidadMotor.value = 0f;
         MesaMotor.singleton.ReestablecerRotacionExpasion();
         ValoresDinamometro.singleton.sliderControlador.interactable = false;
+        ValoresDinamometro.singleton.ValoresMotorApagado();
 
         desplazamientoEjecutado = false;
         desplazamientoFinalizado = false;

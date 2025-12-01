@@ -171,6 +171,16 @@ public class ValoresDinamometro : MonoBehaviour, IPointerDownHandler, IPointerUp
         txtHC.text = "0";
         txtHP.text = "0";
         txtTorqueNm.text = "0";
+
+        for (int i = 0; i < objetosRotatoriosPositivos.Length; i++)
+        {
+            objetosRotatoriosPositivos[i].velocidadRotacion = 0f;
+        }
+
+        for (int i = 0; i < objetosRotatoriosNegativos.Length; i++)
+        {
+            objetosRotatoriosNegativos[i].velocidadRotacion = 0f;
+        }
     }
 
     /// <summary>
