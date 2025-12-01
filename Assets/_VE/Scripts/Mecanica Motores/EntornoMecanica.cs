@@ -51,7 +51,7 @@ public class EntornoMecanica : MonoBehaviour
 
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
-            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
+            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); 
         }
 
         for (int i = 0; i < compuertas.Length; i++)
@@ -103,12 +103,15 @@ public class EntornoMecanica : MonoBehaviour
             particulasCascadaShape[i].AumentarEscala();
         }
 
-        for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
+        if (!ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado)
         {
-            puntosIntanciasPiezas[i].SetActive(true);
-            puntosIntanciasPiezasMateriales[i].ActivarMaterialesDisolucion(6,1);
+            for (int i = 0; i < puntosIntanciasPiezas.Length; i++)
+            {
+                puntosIntanciasPiezas[i].SetActive(true);
+                puntosIntanciasPiezasMateriales[i].ActivarMaterialesDisolucion(6, 1);
+            }
         }
-
+        
         for (int i = 0; i < brazoMecanico.Length; i++)
         {
             brazoMecanico[i].IniciarDesplazamientoObjeto();
@@ -174,7 +177,9 @@ public class EntornoMecanica : MonoBehaviour
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
             if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Desactivamos los hijos antes de expandir
-            ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
+            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]); // Desactivamos los hijos antes de expandir
+            if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null && !ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado && ManagerMinijuego.singleton.minijuegoValidadoCorrectamente || ManagerMinijuego.singleton.minijuegoValidadoAceiteMal) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true); // Activamos motor animado luego de expandir   
+            if (MesaMotor.singleton != null && ManagerMinijuego.singleton.minijuegoValidadoAceiteMal) MesaMotor.singleton.ActivarHumo();
         }
 
         ControlCamaraMotor.singleton.IniciarMovimientoCamara(posicionDeseada[2], 1);
@@ -194,7 +199,9 @@ public class EntornoMecanica : MonoBehaviour
         if (ManagerMinijuego.singleton.minijuegoTerminado && !MesaMotor.singleton.motorRotando && !expansionRadialPiezasInternas.expandir)
         {
             if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]); // Activamos los hijos antes de expandir
-            if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
+            if (ExplosionObjetosHijos.singleton != null) ExplosionObjetosHijos.singleton.ActivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]); // Activamos los hijos antes de expandir
+            if (ManagerMinijuego.singleton != null && ManagerMinijuego.singleton.motorAnimadoActivo != null && !ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false); // Desactivamos motor animado antes de expandir
+            if (MesaMotor.singleton != null) MesaMotor.singleton.DesactivarHumo();
         }
            
         for (int i = 0; i < meshBrazoMecanico.Length; i++)

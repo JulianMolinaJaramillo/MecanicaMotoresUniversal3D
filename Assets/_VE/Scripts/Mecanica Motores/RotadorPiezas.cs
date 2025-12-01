@@ -12,7 +12,8 @@ public class RotadorPiezas : MonoBehaviour
     public bool dejarDeRotar;
 
     private Quaternion rotacionInicial;
-    private bool regresandoARotacionOriginal = false;
+    [HideInInspector]
+    public bool regresandoARotacionOriginal = false;
 
     void Start()
     {

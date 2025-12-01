@@ -8,11 +8,15 @@ public class MoverObjeto : MonoBehaviour
     public float velocidadMovimiento = 1f; // Velocidad de desplazamiento
     public bool soloRotacion; // Si unicamente quiero rotar el objeto
 
+    [Header("OPCIONAL")]
+    public Transform PuntoInicio;
+
     [Header("SOLO PARA ELEMENTOS UI")]
     public bool elementoUI;
     public bool infoPiezas; // Unicamente para el objeto de informacion de piezas
     public GameObject btnAbrir;
     public GameObject btnCerrar;
+    
 
     private Vector3 posicionInicial; // Para saber si debo o no mover la camara
     private Quaternion rotacionInicial; // Para saber si debo o no mover la camara
@@ -108,5 +112,12 @@ public class MoverObjeto : MonoBehaviour
             transform.localPosition = posicionInicial; //  Guardamos la posicion de inicial
             transform.localRotation = rotacionInicial; //  Guardamos la rotacion de inicial  
         }
+    }
+
+    [ContextMenu("Reiniciar")]
+    public void RegresarPosicionOriginal()
+    {
+        transform.localPosition = PuntoInicio.localPosition; //  Guardamos la posicion de inicial
+        transform.localRotation = PuntoInicio.localRotation; //  Guardamos la rotacion de inicial  
     }
 }

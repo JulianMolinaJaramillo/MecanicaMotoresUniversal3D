@@ -105,7 +105,9 @@ public class ManagerMinijuego : MonoBehaviour
     [HideInInspector]
     public bool minijuegoTerminado; // Para validar en el script de rotacion y de expansion cuando terminan estas
     [HideInInspector]
-    public bool minijuegoValidadoCorrectamente; 
+    public bool minijuegoValidadoCorrectamente;
+    [HideInInspector]
+    public bool minijuegoValidadoAceiteMal;
     [HideInInspector]
     public Transform posicionMinijuegoActual;
     [HideInInspector]
@@ -158,14 +160,21 @@ public class ManagerMinijuego : MonoBehaviour
         motorActivo = nombreMotor;
         controlVelocidadMotor.gameObject.SetActive(false);
         btnEncenderMotor.gameObject.SetActive(true);
+        btnDesplazarMotor.gameObject.SetActive(false);
+        if (motorAnimadoActivo != null) motorAnimadoActivo.SetActive(false);
+
 
         MesaMotor.singleton.interaccionEjecutada = false;
         ExplosionObjetosHijos.singleton.DestruirTodosLosHijos(); // Destruimos todas las piezas que se hayan colocado
+        ExplosionObjetosHijos.singleton.vibrarHasta = false;
+        MesaMotor.singleton.DesactivarHumo();
+        ManagerDesplazamientoMotor.singleton.ReinicioMotores();
 
         btnAplicarTorque.onClick.RemoveAllListeners(); // Removemos todos los listener
         btnEncenderMotor.onClick.RemoveAllListeners(); // Removemos todos los listener
 
         minijuegoValidadoCorrectamente = false;
+        minijuegoValidadoAceiteMal = false;
         minijuegoTerminado = false;
 
         ManagerCanvas.singleton.HabilitarBtnExpandir();
@@ -578,9 +587,6 @@ public class ManagerMinijuego : MonoBehaviour
 
         Debug.Log(puntajeTorque);
 
-
-
-
         // RESULTADO
 
         if (motorActivo == "Diesel")
@@ -588,14 +594,13 @@ public class ManagerMinijuego : MonoBehaviour
             if (puntajeTorque == 12 && puntajeAceite == 13)
             {
                 Debug.Log("todo good");
-
                 MinijuegosSuperados();
             }
             else if(puntajeTorque == 12 && puntajeAceite < 13)
             {
                 Debug.Log("aceite mal");
                 btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
-                btnEncenderMotor.onClick.AddListener(ExplosionObjetosHijos.singleton.VibrarTodo);
+                minijuegoValidadoAceiteMal = true;
             }
             else if (puntajeTorque < 12 && puntajeAceite == 13)
             {
@@ -612,11 +617,30 @@ public class ManagerMinijuego : MonoBehaviour
         }
         else if (motorActivo == "Nissan")
         {
-
-
-        }
-
-        
+            if (puntajeTorque == 28 && puntajeAceite == 8)
+            {
+                Debug.Log("todo good");
+                MinijuegosSuperados();
+            }
+            else if (puntajeTorque == 28 && puntajeAceite < 8)
+            {
+                Debug.Log("aceite mal");
+                btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
+                minijuegoValidadoAceiteMal = true;
+            }
+            else if (puntajeTorque < 28 && puntajeAceite == 8)
+            {
+                Debug.Log("torque mal");
+                btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
+            }
+            else
+            {
+                Debug.Log("todo mal");
+                btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.DetenerInteraccionesMotor);
+                btnEncenderMotor.onClick.AddListener(MesaMotor.singleton.ActivarParticulasHumo);
+            }
+            controlVelocidadMotor.gameObject.SetActive(true);
+        }       
     }
 
     public void MinijuegosSuperados()

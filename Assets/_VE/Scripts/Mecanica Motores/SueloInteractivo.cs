@@ -100,6 +100,8 @@ public class SueloInteractivo : MonoBehaviour
                 canvasWorldSpace.SetActive(false);  // Desactivamos canvas visual       
                 btnSalir.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
 
+                ManagerMinijuego.singleton.btnDesplazarMotor.onClick.AddListener(SalirInteraccion); // Agregamos el evento actual al boton
+
                 // Si tenemos referenciado el boton lo activamos
                 if (btnBajarPlataforma != null) btnBajarPlataforma.onClick.AddListener(BajarPlataforma);
 
@@ -333,6 +335,7 @@ public class SueloInteractivo : MonoBehaviour
         
         btnSalir.gameObject.SetActive(false); // Deshabilitamos el boton de salir 
         btnSalir.onClick.RemoveListener(SalirInteraccion); // Retiramos el evento actual del boton
+        ManagerMinijuego.singleton.btnDesplazarMotor.onClick.RemoveListener(SalirInteraccion); // Agregamos el evento actual al boton
 
         if (btnBajarPlataforma != null)
         {

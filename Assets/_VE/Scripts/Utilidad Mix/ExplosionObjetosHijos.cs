@@ -15,6 +15,7 @@ public class ExplosionObjetosHijos : MonoBehaviour
     [Header("Configuración de vibración previa a la explosión")]
     public float duracionVibracion = 5f;
     public float intensidadVibracion = 0.05f; // qué tanto se mueven las piezas
+    public bool vibrarHasta;
 
     public static ExplosionObjetosHijos singleton;
 
@@ -134,6 +135,8 @@ public class ExplosionObjetosHijos : MonoBehaviour
         }
 
         if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(false);
+        ActivarHijos(objetosPadres[1]);
+        ActivarHijos(objetosPadres[3]);
         if (AudioManager.singleton != null) AudioManager.singleton.PlayEfectString("DestruccionMotor"); // Ejecutamos el efecto nombrado
         // 3. Aplicar explosión
         foreach (Transform pieza in padre.transform)
@@ -174,7 +177,7 @@ public class ExplosionObjetosHijos : MonoBehaviour
         }
 
         float timer = 0f;
-        while (timer < duracionVibracion)
+        while (vibrarHasta)
         {
             for (int i = 0; i < piezas.Count; i++)
             {

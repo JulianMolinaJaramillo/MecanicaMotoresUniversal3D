@@ -385,10 +385,6 @@ public class MoverPieza : MonoBehaviour
             }
             coroutine = StartCoroutine(AgregarMaterialDisolver(disolver));
         }
-        else
-        {
-            Debug.Log("El objeto está inactivo.");
-        }     
     }
 
     private IEnumerator AgregarMaterialDisolver(int disolverAdentro)

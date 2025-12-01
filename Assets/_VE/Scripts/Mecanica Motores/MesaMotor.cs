@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MesaMotor : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MesaMotor : MonoBehaviour
     public RotadorPiezas[] rotadorPiezas;
     public ExpansionRadial[] expansionRadials;
     public ParticleSystem[] partciulasHumoMotor;
+    public Slider sliderVelocidadMotor;
+    public ControlVelocidadAnimacion controlVelocidadAnimacion;
 
     [HideInInspector]
     public bool estoyEnMesa;
@@ -28,24 +31,21 @@ public class MesaMotor : MonoBehaviour
         }
     }
 
-    public void DetenerInteraccionesMotor()
+    public void ValidarExpansionRotacion()
     {
-        StartCoroutine(DetenerMotor()); 
-    }
-
-    private IEnumerator DetenerMotor()
-    {
-        interaccionEjecutada = true;
         if (!expansionRadials[1].expandir)
         {
             if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true);
+            ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[1]);
+            ExplosionObjetosHijos.singleton.DesactivarHijos(ExplosionObjetosHijos.singleton.objetosPadres[3]);
         }
 
-        if (ManagerCanvas.singleton != null) 
+        if (ManagerCanvas.singleton != null)
         {
-            ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
+            if (!ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado) ManagerCanvas.singleton.DeshabilitarBtnBajarPlataforma();
             ManagerCanvas.singleton.DeshabilitarBtnExpandir();
             ManagerCanvas.singleton.DeshabilitarBtnRotar();
+            if (!ManagerDesplazamientoMotor.singleton.desplazamientoEjecutado) ManagerCanvas.singleton.DeshabilitarBtnSalir();
         }
 
         if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.btnEncenderMotor.gameObject.SetActive(false);
@@ -62,6 +62,18 @@ public class MesaMotor : MonoBehaviour
             expansionRadials[i].Contraer();
             expansionRadials[i].noInteractuar = true;
         }
+    }
+
+    public void DetenerInteraccionesMotor()
+    {
+        StartCoroutine(DetenerMotor()); 
+    }
+
+    private IEnumerator DetenerMotor()
+    {
+        interaccionEjecutada = true;
+
+        ValidarExpansionRotacion();
 
         yield return new WaitForSeconds(1);
 
@@ -75,16 +87,65 @@ public class MesaMotor : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        DesactivarParticulasHumo();
+        DesactivarHumo();
 
         if (ManagerCanvas.singleton != null) 
         {
             ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+            ManagerCanvas.singleton.HabilitarBtnSalir();
 
             string texto = "Al parecer los torques y el armado en general del motor no fué el correcto, vuelve a probar.";
             ManagerCanvas.singleton.AlertarMensaje(texto);
         }
 
+        sliderVelocidadMotor.value = 0f;
+        controlVelocidadAnimacion.puedoValidar = true;
+
+        ReestablecerRotacionExpasion();
+    }
+
+    public void ActivarParticulasHumo()
+    {
+        StartCoroutine(ParticulasHumoMotor());      
+    }
+    private IEnumerator ParticulasHumoMotor()
+    {
+        if (!interaccionEjecutada)
+        {
+
+            ValidarExpansionRotacion();
+
+            yield return new WaitForSeconds(1);
+            ExplosionObjetosHijos.singleton.vibrarHasta = true;
+            ExplosionObjetosHijos.singleton.VibrarTodo();
+            if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.motorAnimadoActivo.SetActive(true);
+        }
+
+        for (int i = 0; i < partciulasHumoMotor.Length; i++)
+        {
+            yield return new WaitForSeconds(0.3f);
+            partciulasHumoMotor[i].Play();
+        }
+
+        yield return new WaitForSeconds(2);
+
+        if (!interaccionEjecutada)
+        {
+            string texto = "Al parecer una o algunas partes te quedaron sin lubricar correctamente, vuelve a probar.";
+            ManagerCanvas.singleton.AlertarMensaje(texto);
+
+            ManagerCanvas.singleton.HabilitarBtnSalir();
+            ManagerCanvas.singleton.HabilitarBtnBajarPlataforma();
+
+            sliderVelocidadMotor.value = 0f;
+            controlVelocidadAnimacion.puedoValidar = true;
+
+            ReestablecerRotacionExpasion();
+        }    
+    }
+
+    public void ReestablecerRotacionExpasion()
+    {
         for (int i = 0; i < rotadorPiezas.Length; i++)
         {
             rotadorPiezas[i].velocidadRetorno = 2;
@@ -97,38 +158,19 @@ public class MesaMotor : MonoBehaviour
         }
     }
 
-    public void ActivarParticulasHumo()
-    {
-        StartCoroutine(ParticulasHumoMotor());
-        
-    }
-    private IEnumerator ParticulasHumoMotor()
-    {
-        if (!interaccionEjecutada)
-        {
-            if (ManagerMinijuego.singleton != null) ManagerMinijuego.singleton.btnEncenderMotor.gameObject.SetActive(false);
-            ManagerCanvas.singleton.DeshabilitarBtnExpandir();
-            ManagerCanvas.singleton.DeshabilitarBtnRotar();
-        }
-
-        for (int i = 0; i < partciulasHumoMotor.Length; i++)
-        {
-            yield return new WaitForSeconds(0.3f);
-            partciulasHumoMotor[i].Play();
-        }
-
-        if (!interaccionEjecutada)
-        {
-            string texto = "Al parecer una o algunas partes te quedaron sin lubricar correctamente, vuelve a probar.";
-            ManagerCanvas.singleton.AlertarMensaje(texto);
-        }    
-    }
-
-    public void DesactivarParticulasHumo()
+    public void DesactivarHumo()
     {
         for (int i = 0; i < partciulasHumoMotor.Length; i++)
         {
             partciulasHumoMotor[i].Stop();
+        }
+    }
+
+    public void ActivarHumo()
+    {
+        for (int i = 0; i < partciulasHumoMotor.Length; i++)
+        {
+            partciulasHumoMotor[i].Play();
         }
     }
 }

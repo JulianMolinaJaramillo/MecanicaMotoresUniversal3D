@@ -56,6 +56,9 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
         }    
     }
 
+    /// <summary>
+    /// Metodo invocado desde btnEncenderMotor en el canvas principal
+    /// </summary>
     public void EncenderMotor()
     {
         if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
@@ -74,6 +77,9 @@ public class ControlSliderVelocidadMotor : MonoBehaviour, IPointerDownHandler, I
         }
     }
 
+    /// <summary>
+    /// Metodo invocado desde btnEncenderMotor en el canvas principal
+    /// </summary>
     public void ApagarMotor()
     {
         if (ManagerMinijuego.singleton.minijuegoValidadoCorrectamente)
